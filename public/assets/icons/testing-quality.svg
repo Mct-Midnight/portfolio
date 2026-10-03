@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="100%" height="100%" fill="none">
+  <!-- Tests & Contrôle Qualité Logicielle -->
+  <defs>
+    <linearGradient id="shieldBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+    <linearGradient id="shieldBorder" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="100%" stop-color="#2563EB"/>
+    </linearGradient>
+    <linearGradient id="checkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34D399"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Bouclier de conformité et de robustesse -->
+  <path d="M32 8L14 16v16c0 14 8 23 18 26 10-3 18-12 18-26V16L32 8z" fill="url(#shieldBg)" stroke="url(#shieldBorder)" stroke-width="2.2" stroke-linejoin="round"/>
+
+  <!-- Badge central de validation -->
+  <circle cx="32" cy="31" r="12" fill="url(#checkGrad)" stroke="#10B981" stroke-width="1.5"/>
+
+  <!-- Encoche de test réussi -->
+  <path d="M26 31l4 4 8-8" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
