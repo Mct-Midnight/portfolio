@@ -21,19 +21,22 @@
 
 ## 2. Direction Artistique (DA) & Design System
 
-### 2.1. Palette Chromatique Officielle
-La palette repose sur un contraste élégant entre une barre latérale sombre aux teintes de torréfaction et un espace de lecture lumineux et chaleureux.
+### 2.1. Palette Chromatique Officielle (Monochrome Mat & Titane Exécutif)
+La palette repose sur un contraste exécutif haut de gamme entre une barre latérale sombre anthracite mat, un espace de lecture lumineux et des accents noir mat profond, sans aucune teinte bleue criarde.
 
 | Rôle Visuel | Nom de la Teinte | Code HEX | Usage & Justification |
 | :--- | :--- | :--- | :--- |
-| **Fond Sidebar** | *Espresso Dark* | `#1E1B18` ou `#231F1D` | Fond de la barre latérale fixe (ancrage visuel haut de gamme, contraste élevé). |
-| **Fond Principal** | *Crème Chaud / Soft White* | `#F8F7F4` | Fond de la zone de contenu (confort de lecture supérieur au blanc pur `#FFFFFF`). |
-| **Fond Cartes** | *Blanc Pur* | `#FFFFFF` | Conteneurs des cartes de compétences, projets et contact (crée un léger relief sur fond crème). |
-| **Accent / Dynamique** | *Terracotta / Orange Brûlé* | `#D95A2B` | Surtitres de rubriques, puces de timeline, surbrillance d'onglets actifs, boutons d'action. |
-| **Texte Principal** | *Noir Encre Doux* | `#1F2937` | Titres et corps de texte pour une lisibilité optimale sans agressivité. |
-| **Texte Secondaire** | *Gris Ardoise Chaud* | `#6B7280` | Métadonnées, descriptions courtes, dates, labels de formulaire. |
-| **Badges Technos** | *Moka Doux / Gris Chaud* | `#ECE8E1` | Fond des pastilles technologiques (pills) avec texte `#3D3834`. |
-| **Statut "Obtenue"** | *Vert Sauge / Pastel* | `#D1FAE5` | Fond du badge de statut des certifications avec texte vert forêt `#065F46`. |
+| **Fond Sidebar** | *Anthracite Mat* | `#18181B` | Fond de la barre latérale fixe (ancrage visuel haut de gamme, contraste élevé). |
+| **Bordures Sidebar** | *Titane Foncé* | `#27272A` | Lignes de séparation et délimitations de la barre latérale. |
+| **Onglet Actif Sidebar** | *Capsule Blanc Pur* | `#FFFFFF` | Pill d'ancrage avec texte et icône en noir mat `#09090B`. |
+| **Fond Principal** | *Studio Neutre* | `#FAFAFA` | Fond de la zone de contenu (confort de lecture supérieur au blanc pur). |
+| **Fond Cartes** | *Blanc Pur* | `#FFFFFF` | Conteneurs des cartes de compétences, projets et contact avec bordure fine `#E2E8F0`. |
+| **Boutons Principaux (CTA)** | *Noir Mat Profond* | `#09090B` | Boutons d'action prioritaires (`bg-zinc-900 hover:bg-black text-white`). |
+| **Boutons Secondaires** | *Blanc Bordé* | `#FFFFFF` | Boutons d'action secondaires avec bordure grise discrète (`border-zinc-200`). |
+| **Texte Principal** | *Noir Encre Mat* | `#09090B` | Titres majeurs et corps de texte pour une lisibilité maximale. |
+| **Texte Secondaire** | *Gris Ardoise Neutre* | `#64748B` | Métadonnées, descriptions secondaires, dates, labels de formulaire. |
+| **Pastilles & Badges** | *Titane Feutré* | `#F4F4F5` | Fond des pastilles technologiques et catégories (`bg-zinc-100 text-zinc-800`). |
+| **Statut "Réalisé / Dispo"** | *Vert Émeraude* | `#10B981` | Pastille discrète de disponibilité stage ou certification délivrée. |
 
 ### 2.2. Typographie & Rythme Visuel
 - **Police Principale :** `Inter` ou `Poppins` (Google Fonts), polices sans-serif modernes, géométriques et hautement lisibles sur tous les types d'écrans.
