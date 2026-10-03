@@ -1,6 +1,6 @@
 ---
 title: "Atelier Professionnel n°2 — Évolution d'un Service en Ligne"
-status: "en cours"
+status: "à venir"
 category: "scolaire"
 dateStart: "2027-01-10"
 dateEnd: "2027-03-01"

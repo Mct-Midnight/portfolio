@@ -1,6 +1,6 @@
 ---
 title: "Application de Gestion de Contacts Desktop"
-status: "réalisé"
+status: "à venir"
 category: "scolaire"
 dateStart: "2026-10-05"
 dateEnd: "2026-11-20"

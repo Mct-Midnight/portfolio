@@ -27,12 +27,19 @@
       "description": "Langage de programmation polyvalent et lisible, très populaire pour le développement applicatif, les scripts d'automatisation et l'intelligence artificielle."
     },
     {
-      "name": "IA & Prompting",
+      "name": "JavaScript",
       "category": "dev-ia",
-      "customIcon": "/assets/icons/ai-prompting.svg",
+      "customIcon": "/assets/icons/javascript.svg",
       "iconKey": "",
-      "lucideFallback": "Cpu",
-      "description": "Méthodes d'ingénierie de requêtes et interaction avec les modèles d'IA pour accélérer la conception, l'analyse et la création logicielle."
+      "lucideFallback": "FileCode",
+      "description": "Langage incontournable du web pour dynamiser les interfaces, gérer les événements utilisateurs et interagir avec des services externes en direct."
+    },
+    {
+      "name": "Astro",
+      "category": "dev-ia",
+      "iconKey": "devicon-astro-plain",
+      "lucideFallback": "Rocket",
+      "description": "Framework web moderne axé sur la performance et l'architecture par composants, idéal pour concevoir des sites ultra-rapides et optimisés pour le référencement."
     },
     {
       "name": "HTML5",
@@ -49,12 +56,27 @@
       "description": "Langage de style utilisé pour concevoir des interfaces soignées, assurer la réactivité sur tous les écrans et animer les composants graphiques."
     },
     {
-      "name": "JavaScript",
+      "name": "Tailwind CSS",
       "category": "dev-ia",
-      "customIcon": "/assets/icons/javascript.svg",
+      "iconKey": "devicon-tailwindcss-original",
+      "lucideFallback": "Palette",
+      "description": "Framework CSS utilitaire permettant de concevoir des interfaces sur-mesure, modernes et hautement réactives avec une cohérence visuelle optimale."
+    },
+    {
+      "name": "APIs REST",
+      "category": "dev-ia",
+      "customIcon": "/assets/icons/api-rest.svg",
       "iconKey": "",
-      "lucideFallback": "FileCode",
-      "description": "Langage incontournable du web pour dynamiser les interfaces, gérer les événements utilisateurs et interagir avec des services externes en direct."
+      "lucideFallback": "Network",
+      "description": "Standard d'architecture pour l'interconnexion logicielle et l'échange fluide de données au format JSON via des requêtes HTTP (GET, POST, etc.)."
+    },
+    {
+      "name": "IA & Prompting",
+      "category": "dev-ia",
+      "customIcon": "/assets/icons/ai-prompting.svg",
+      "iconKey": "",
+      "lucideFallback": "Cpu",
+      "description": "Méthodes d'ingénierie de requêtes et interaction avec les modèles d'IA pour accélérer la conception, l'analyse et la création logicielle."
     },
     {
       "name": "PostgreSQL",
@@ -134,6 +156,22 @@
       "iconKey": "devicon-jira-plain",
       "lucideFallback": "Kanban",
       "description": "Approche de gestion de projet collaborative découpant le travail en cycles courts (sprints) pour privilégier l'adaptation continue et la réactivité."
+    },
+    {
+      "name": "Cahier des Charges",
+      "category": "methodes-gestion",
+      "customIcon": "/assets/icons/specifications.svg",
+      "iconKey": "",
+      "lucideFallback": "ClipboardCheck",
+      "description": "Cadrage des besoins fonctionnels et techniques, traduction des attentes utilisateurs en spécifications claires pour guider et séquencer les développements."
+    },
+    {
+      "name": "Tests & Contrôle Qualité",
+      "category": "methodes-gestion",
+      "customIcon": "/assets/icons/testing-quality.svg",
+      "iconKey": "",
+      "lucideFallback": "ShieldCheck",
+      "description": "Vérification de la conformité du code, exécution de tests fonctionnels et validation des livrables pour garantir un fonctionnement sans régression."
     }
   ]
 }
