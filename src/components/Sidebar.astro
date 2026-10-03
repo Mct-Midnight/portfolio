@@ -1,21 +1,6 @@
 ---
 // Composant Sidebar pour le Layout Dual-Pane (Desktop fixe 260px + Tiroir Mobile réactif)
-import {
-  Home,
-  User,
-  GraduationCap,
-  Wrench,
-  Award,
-  FolderGit2,
-  Mail,
-  FileText,
-  Menu,
-  X,
-  BookOpen,
-  Briefcase,
-  Rocket,
-  ExternalLink,
-} from 'lucide-astro';
+import { Menu, X } from 'lucide-astro';
 import profileData from '../content/data/profile.json';
 
 const { identity } = profileData;
@@ -32,10 +17,10 @@ const basePath = isHome ? '' : '/';
 
 <!-- Barre supérieure mobile (Visible uniquement sur écran < 1024px) -->
 <header
-  class="lg:hidden fixed top-0 left-0 right-0 h-16 bg-[#0F172A] border-b border-[#1E293B] z-50 flex items-center justify-between px-4"
+  class="lg:hidden fixed top-0 left-0 right-0 h-16 bg-[#18181B] border-b border-[#27272A] z-50 flex items-center justify-between px-4"
 >
   <a href={`${basePath}#hero`} class="flex items-center gap-3 group">
-    <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-blue-600 bg-slate-800 flex items-center justify-center">
+    <div class="w-10 h-10 rounded-full overflow-hidden border border-zinc-700 bg-zinc-800 flex items-center justify-center">
       <img
         src={identity.avatarUrl}
         alt={`${identity.firstName} ${identity.lastName}`}
@@ -46,7 +31,7 @@ const basePath = isHome ? '' : '/';
     </div>
     <div>
       <span class="text-white font-bold text-sm block font-title">{identity.firstName} {identity.lastName}</span>
-      <span class="text-xs text-blue-400 block">{identity.subRole}</span>
+      <span class="text-xs text-zinc-400 block font-medium">BTS SIO SLAM · CNED</span>
     </div>
   </a>
 
@@ -54,7 +39,7 @@ const basePath = isHome ? '' : '/';
   <button
     id="mobile-menu-open-btn"
     aria-label="Ouvrir le menu de navigation"
-    class="p-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-600"
+    class="p-2 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors focus:outline-none focus:ring-2 focus:ring-zinc-600"
   >
     <Menu class="w-6 h-6" />
   </button>
@@ -63,32 +48,32 @@ const basePath = isHome ? '' : '/';
 <!-- Volet d'arrière-plan semi-transparent (Backdrop Mobile) -->
 <div
   id="drawer-backdrop"
-  class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 hidden transition-opacity duration-300 opacity-0 lg:hidden"
+  class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden transition-opacity duration-300 opacity-0 lg:hidden"
   aria-hidden="true"
 ></div>
 
 <!-- Volet latéral fixe (Sidebar Desktop & Drawer Mobile) -->
 <aside
   id="sidebar-pane"
-  class="fixed top-0 bottom-0 left-0 w-[260px] bg-[#090D16] text-slate-200 border-r border-[#1E293B] z-50 flex flex-col justify-between transition-transform duration-300 ease-in-out -translate-x-full lg:translate-x-0"
+  class="fixed top-0 bottom-0 left-0 w-[260px] bg-[#18181B] text-zinc-300 border-r border-[#27272A] z-50 flex flex-col justify-between transition-transform duration-300 ease-in-out -translate-x-full lg:translate-x-0 shadow-lg"
 >
-  <!-- Partie Supérieure : En-tête Profil -->
-  <div class="p-6 border-b border-[#1E293B]">
+  <!-- Partie Supérieure : En-tête Profil épuré -->
+  <div class="p-6 border-b border-[#27272A]">
     <div class="flex items-center justify-between lg:hidden mb-4">
-      <span class="text-xs uppercase tracking-widest text-blue-400 font-bold font-title">Navigation</span>
+      <span class="text-xs uppercase tracking-widest text-zinc-400 font-bold font-title">Navigation</span>
       <button
         id="mobile-menu-close-btn"
         aria-label="Fermer le menu de navigation"
-        class="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+        class="p-1 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors"
       >
         <X class="w-5 h-5" />
       </button>
     </div>
 
-    <!-- Avatar et Identité -->
+    <!-- Avatar et Identité avec mise en page épurée -->
     <div class="text-center">
       <div class="relative inline-block mx-auto mb-3">
-        <div class="w-24 h-24 rounded-full overflow-hidden border-2 border-blue-500/80 shadow-lg bg-slate-800 flex items-center justify-center p-0.5">
+        <div class="w-24 h-24 rounded-full overflow-hidden border border-zinc-700 shadow-md bg-zinc-800 flex items-center justify-center p-0.5">
           <img
             src={identity.avatarUrl}
             alt={`${identity.firstName} ${identity.lastName}`}
@@ -99,61 +84,88 @@ const basePath = isHome ? '' : '/';
         </div>
         <!-- Indicateur de recherche de stage actif -->
         <span
-          class="absolute bottom-1 right-1 w-4 h-4 bg-emerald-500 border-2 border-[#090D16] rounded-full ring-2 ring-emerald-500/30 animate-pulse"
+          class="absolute bottom-1 right-1 w-4 h-4 bg-emerald-500 border-2 border-[#18181B] rounded-full ring-2 ring-emerald-500/20 animate-pulse"
           title="En recherche de stage SLAM (Mai-Août 2027)"
         ></span>
       </div>
 
+      <!-- Nom et prénom bien mis en valeur -->
       <h1 class="text-white font-extrabold text-lg tracking-tight font-title">{identity.firstName} {identity.lastName}</h1>
-      <p class="text-xs text-blue-400 font-semibold mt-0.5">{identity.subRole}</p>
-      <p class="text-[11px] text-slate-400 mt-1">{identity.institution}</p>
+      
+      <!-- Intitulé épuré et professionnel -->
+      <p class="text-xs text-zinc-300 font-medium mt-1 tracking-wide">1re année BTS SIO · Option SLAM</p>
+      <p class="text-[11px] text-zinc-500 mt-0.5 font-medium">CNED</p>
     </div>
   </div>
 
-  <!-- Navigation Principale repositionnée vers le haut avec dimensions confortables -->
+  <!-- Navigation Principale avec icônes pleines (Solid) modernes -->
   <nav class="flex-1 px-3.5 py-5 space-y-2 lg:space-y-2.5 overflow-y-auto" id="sidebar-nav">
+    
+    <!-- Accueil -->
     <a
       href={`${basePath}#hero`}
-      class="nav-link flex items-center gap-3 px-3.5 py-3 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/70 transition-all duration-200 group"
+      class="nav-link flex items-center gap-3 px-3.5 py-3 rounded-xl text-sm font-medium text-zinc-400 hover:text-white hover:bg-zinc-800/80 transition-all duration-200 group"
       data-section="hero"
     >
-      <Home class="w-5 h-5 text-blue-400 group-hover:text-blue-300 shrink-0 transition-colors" />
+      <!-- Maison pleine -->
+      <svg class="w-5 h-5 text-zinc-400 group-hover:text-white shrink-0 transition-colors" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M11.47 3.841a.75.75 0 0 1 1.06 0l8.69 8.69a.75.75 0 1 0 1.06-1.061l-8.689-8.69a2.25 2.25 0 0 0-3.182 0l-8.69 8.69a.75.75 0 1 0 1.061 1.06l8.69-8.689Z" />
+        <path d="m12 5.432 8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 0 1-.75-.75v-4.5a.75.75 0 0 0-.75-.75h-3a.75.75 0 0 0-.75.75V21a.75.75 0 0 1-.75.75H5.625a1.875 1.875 0 0 1-1.875-1.875v-6.198a2.29 2.29 0 0 0 .091-.086L12 5.432Z" />
+      </svg>
       <span>Accueil</span>
     </a>
 
+    <!-- Profil & Stage 2027 -->
     <a
       href={`${basePath}#profil`}
-      class="nav-link flex items-center gap-3 px-3.5 py-3 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/70 transition-all duration-200 group"
+      class="nav-link flex items-center gap-3 px-3.5 py-3 rounded-xl text-sm font-medium text-zinc-400 hover:text-white hover:bg-zinc-800/80 transition-all duration-200 group"
       data-section="profil"
     >
-      <User class="w-5 h-5 text-blue-400 group-hover:text-blue-300 shrink-0 transition-colors" />
+      <!-- Buste utilisateur plein -->
+      <svg class="w-5 h-5 text-zinc-400 group-hover:text-white shrink-0 transition-colors" viewBox="0 0 24 24" fill="currentColor">
+        <path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 21.75c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z" clip-rule="evenodd" />
+      </svg>
       <span>Profil & Stage 2027</span>
     </a>
 
+    <!-- Parcours & Cursus -->
     <a
       href={`${basePath}#parcours`}
-      class="nav-link flex items-center gap-3 px-3.5 py-3 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/70 transition-all duration-200 group"
+      class="nav-link flex items-center gap-3 px-3.5 py-3 rounded-xl text-sm font-medium text-zinc-400 hover:text-white hover:bg-zinc-800/80 transition-all duration-200 group"
       data-section="parcours"
     >
-      <GraduationCap class="w-5 h-5 text-blue-400 group-hover:text-blue-300 shrink-0 transition-colors" />
+      <!-- Chapeau étudiant plein -->
+      <svg class="w-5 h-5 text-zinc-400 group-hover:text-white shrink-0 transition-colors" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M11.7 2.805a.75.75 0 0 1 .6 0A60.65 60.65 0 0 1 22.83 8.72a.75.75 0 0 1-.231 1.337 49.948 49.948 0 0 0-9.902 3.912l-.003.002c-.114.06-.227.119-.34.18a.75.75 0 0 1-.707 0A50.88 50.88 0 0 0 7.5 12.174v-.224c0-.131.067-.248.172-.311a54.615 54.615 0 0 1 4.653-2.52.75.75 0 0 0-.65-1.352 56.123 56.123 0 0 0-4.78 2.589 1.858 1.858 0 0 0-.859 1.228 49.803 49.803 0 0 0-5.244-2.046.75.75 0 0 1-.233-1.337A60.653 60.653 0 0 1 11.7 2.805Z" />
+        <path d="M13.06 15.473a48.45 48.45 0 0 1 7.666-3.282c.134 1.414.22 2.843.255 4.284a.75.75 0 0 1-.456.711l-7.75 3.875a.75.75 0 0 1-.67 0l-7.75-3.875a.75.75 0 0 1-.456-.711c.035-1.441.121-2.87.255-4.284a48.455 48.455 0 0 1 7.666 3.282.75.75 0 0 0 .75 0l.49-.245Z" />
+        <path d="M5.25 15.75a.75.75 0 0 1 .75.75v3.18a3.001 3.001 0 0 0 1.5 2.598V17.25a.75.75 0 0 1 1.5 0v5.5a.75.75 0 0 1-1.125.65A4.5 4.5 0 0 1 4.5 19.68v-3.18a.75.75 0 0 1 .75-.75Z" />
+      </svg>
       <span>Parcours & Cursus</span>
     </a>
 
+    <!-- Compétences Tech -->
     <a
       href={`${basePath}#competences`}
-      class="nav-link flex items-center gap-3 px-3.5 py-3 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/70 transition-all duration-200 group"
+      class="nav-link flex items-center gap-3 px-3.5 py-3 rounded-xl text-sm font-medium text-zinc-400 hover:text-white hover:bg-zinc-800/80 transition-all duration-200 group"
       data-section="competences"
     >
-      <Wrench class="w-5 h-5 text-blue-400 group-hover:text-blue-300 shrink-0 transition-colors" />
+      <!-- Clé et outil plein -->
+      <svg class="w-5 h-5 text-zinc-400 group-hover:text-white shrink-0 transition-colors" viewBox="0 0 24 24" fill="currentColor">
+        <path fill-rule="evenodd" d="M12 6.75a5.25 5.25 0 0 1 6.775-5.025.75.75 0 0 1 .313 1.248l-3.32 3.319c.063.475.214.934.444 1.353l2.87 2.87a.75.75 0 0 1-.16 1.217 6.75 6.75 0 0 1-5.172.585l-7.466 7.466a2.25 2.25 0 0 1-3.182-3.182l7.466-7.466A6.745 6.745 0 0 1 12 6.75Z" clip-rule="evenodd" />
+      </svg>
       <span>Compétences Tech</span>
     </a>
 
+    <!-- Certifications -->
     <a
       href={`${basePath}#certifications`}
-      class="nav-link flex items-center gap-3 px-3.5 py-3 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/70 transition-all duration-200 group"
+      class="nav-link flex items-center gap-3 px-3.5 py-3 rounded-xl text-sm font-medium text-zinc-400 hover:text-white hover:bg-zinc-800/80 transition-all duration-200 group"
       data-section="certifications"
     >
-      <Award class="w-5 h-5 text-blue-400 group-hover:text-blue-300 shrink-0 transition-colors" />
+      <!-- Badge de certification plein avec coche -->
+      <svg class="w-5 h-5 text-zinc-400 group-hover:text-white shrink-0 transition-colors" viewBox="0 0 24 24" fill="currentColor">
+        <path fill-rule="evenodd" d="M8.603 3.799A4.49 4.49 0 0 1 12 2.25c1.357 0 2.573.6 3.397 1.549a4.49 4.49 0 0 1 3.498 1.307 4.491 4.491 0 0 1 1.307 3.497A4.49 4.49 0 0 1 21.75 12a4.49 4.49 0 0 1-1.549 3.397 4.491 4.491 0 0 1-1.307 3.497 4.491 4.491 0 0 1-3.497 1.307A4.49 4.49 0 0 1 12 21.75a4.49 4.49 0 0 1-3.397-1.549 4.49 4.49 0 0 1-3.498-1.306 4.491 4.491 0 0 1-1.307-3.498A4.49 4.49 0 0 1 2.25 12c0-1.357.6-2.573 1.549-3.397a4.49 4.49 0 0 1 1.307-3.497 4.49 4.49 0 0 1 3.497-1.307Zm7.007 6.387a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z" clip-rule="evenodd" />
+      </svg>
       <span>Certifications</span>
     </a>
 
@@ -161,68 +173,126 @@ const basePath = isHome ? '' : '/';
     <div class="pt-1">
       <a
         href={`${basePath}#projets`}
-        class="nav-link flex items-center gap-3 px-3.5 py-3 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/70 transition-all duration-200 group"
+        class="nav-link flex items-center gap-3 px-3.5 py-3 rounded-xl text-sm font-medium text-zinc-400 hover:text-white hover:bg-zinc-800/80 transition-all duration-200 group"
         data-section="projets"
       >
-        <FolderGit2 class="w-5 h-5 text-blue-400 group-hover:text-blue-300 shrink-0 transition-colors" />
+        <!-- Dossier plein -->
+        <svg class="w-5 h-5 text-zinc-400 group-hover:text-white shrink-0 transition-colors" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M19.5 21a3 3 0 0 0 3-3v-4.5a3 3 0 0 0-3-3h-1.5V9a3 3 0 0 0-3-3h-4.879a1.5 1.5 0 0 1-1.06-.44l-1.122-1.12A3 3 0 0 0 6.82 3.5H4.5A3 3 0 0 0 1.5 6.5v12A3 3 0 0 0 4.5 21h15Z" />
+        </svg>
         <span>Projets (Épreuve E4)</span>
       </a>
 
-      <!-- Sous-liens indentés pour Projets Freelance, Professionnels et Scolaires -->
-      <div class="ml-7 pl-3 border-l border-slate-800 mt-2 space-y-1.5">
+      <!-- Sous-liens indentés pour Projets Freelance, Professionnels et Scolaires avec icônes pleines -->
+      <div class="ml-7 pl-3 border-l border-zinc-800 mt-2 space-y-1.5">
         <a
           href={`${basePath}#projets`}
           data-filter="freelance"
-          class="project-subnav-link flex items-center gap-2 py-2 px-2.5 rounded-lg text-xs text-slate-400 hover:text-blue-400 hover:bg-slate-800/50 transition-colors"
+          class="project-subnav-link flex items-center gap-2 py-2 px-2.5 rounded-lg text-xs text-zinc-400 hover:text-white hover:bg-zinc-800/60 transition-colors group/sub"
         >
-          <Rocket class="w-3.5 h-3.5 text-amber-400" />
+          <!-- Fusée en argenté mat -->
+          <svg class="w-3.5 h-3.5 text-zinc-400 group-hover/sub:text-white shrink-0 transition-transform group-hover/sub:scale-110" viewBox="0 0 24 24" fill="currentColor">
+            <path fill-rule="evenodd" d="M12.963 2.286a.75.75 0 0 0-1.071-.136 9.742 9.742 0 0 0-3.539 6.177A7.547 7.547 0 0 1 6.64 11.15l-1.24-.829a.75.75 0 0 0-.965.15l-1.6 1.92a.75.75 0 0 0 .15.965l2.42 1.614a19.745 19.745 0 0 0 3.732 2.012l.142.06c.015.006.03.013.045.02.434.183.876.347 1.325.492a.75.75 0 0 0 .89-.356l1.01-1.85a.75.75 0 0 0-.15-.965l-.83-.622a7.55 7.55 0 0 1 2.823-1.713 9.74 9.74 0 0 0 6.177-3.539.75.75 0 0 0-.136-1.071l-6.84-5.467ZM9.75 8.25a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Z" clip-rule="evenodd" />
+            <path d="M4.654 18.318a.75.75 0 0 1 .994-.415l1.696.754a.75.75 0 1 1-.61 1.372l-1.696-.754a.75.75 0 0 1-.384-.957Z" />
+          </svg>
           <span>Freelance</span>
         </a>
         <a
           href={`${basePath}#projets`}
           data-filter="professionnel"
-          class="project-subnav-link flex items-center gap-2 py-2 px-2.5 rounded-lg text-xs text-slate-400 hover:text-blue-400 hover:bg-slate-800/50 transition-colors"
+          class="project-subnav-link flex items-center gap-2 py-2 px-2.5 rounded-lg text-xs text-zinc-400 hover:text-white hover:bg-zinc-800/60 transition-colors group/sub"
         >
-          <Briefcase class="w-3.5 h-3.5 text-blue-400" />
+          <!-- Mallette en argenté mat -->
+          <svg class="w-3.5 h-3.5 text-zinc-400 group-hover/sub:text-white shrink-0 transition-transform group-hover/sub:scale-110" viewBox="0 0 24 24" fill="currentColor">
+            <path fill-rule="evenodd" d="M7.5 5.25a3 3 0 0 1 3-3h3a3 3 0 0 1 3 3v.75h3.75A2.25 2.25 0 0 1 22.5 8.25v9a2.25 2.25 0 0 1-2.25 2.25H3.75A2.25 2.25 0 0 1 1.5 17.25v-9A2.25 2.25 0 0 1 3.75 6H7.5v-.75Zm1.5.75h6v-.75a1.5 1.5 0 0 0-1.5-1.5h-3a1.5 1.5 0 0 0-1.5 1.5v.75Z" clip-rule="evenodd" />
+          </svg>
           <span>Professionnel</span>
         </a>
         <a
           href={`${basePath}#projets`}
           data-filter="scolaire"
-          class="project-subnav-link flex items-center gap-2 py-2 px-2.5 rounded-lg text-xs text-slate-400 hover:text-blue-400 hover:bg-slate-800/50 transition-colors"
+          class="project-subnav-link flex items-center gap-2 py-2 px-2.5 rounded-lg text-xs text-zinc-400 hover:text-white hover:bg-zinc-800/60 transition-colors group/sub"
         >
-          <BookOpen class="w-3.5 h-3.5 text-sky-400" />
+          <!-- Livre en argenté mat -->
+          <svg class="w-3.5 h-3.5 text-zinc-400 group-hover/sub:text-white shrink-0 transition-transform group-hover/sub:scale-110" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M11.25 4.533A9.707 9.707 0 0 0 6 3a9.735 9.735 0 0 0-3.25.555.75.75 0 0 0-.5.707v14.25a.75.75 0 0 0 1 .707A8.237 8.237 0 0 1 6 18c2.023 0 3.9.724 5.25 1.933V4.533Z" />
+            <path d="M12.75 4.533A9.707 9.707 0 0 1 18 3c1.135 0 2.228.194 3.25.555a.75.75 0 0 1 .5.707v14.25a.75.75 0 0 1-1 .707A8.237 8.237 0 0 0 18 18c-2.023 0-3.9.724-5.25 1.933V4.533Z" />
+          </svg>
           <span>Scolaire</span>
         </a>
       </div>
     </div>
 
+    <!-- Veille Technologique -->
+    <a
+      href={`${basePath}#veille`}
+      class="nav-link flex items-center gap-3 px-3.5 py-3 rounded-xl text-sm font-medium text-zinc-400 hover:text-white hover:bg-zinc-800/80 transition-all duration-200 group"
+      data-section="veille"
+    >
+      <!-- Flux RSS / Signal de veille plein -->
+      <svg class="w-5 h-5 text-zinc-400 group-hover:text-white shrink-0 transition-colors" viewBox="0 0 24 24" fill="currentColor">
+        <path fill-rule="evenodd" d="M3.75 4.5a.75.75 0 0 1 .75-.75A15.75 15.75 0 0 1 20.25 19.5a.75.75 0 0 1-1.5 0A14.25 14.25 0 0 0 4.5 5.25a.75.75 0 0 1-.75-.75Zm0 6a.75.75 0 0 1 .75-.75 9.75 9.75 0 0 1 9.75 9.75.75.75 0 0 1-1.5 0A8.25 8.25 0 0 0 4.5 11.25a.75.75 0 0 1-.75-.75Zm0 6a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Z" clip-rule="evenodd" />
+      </svg>
+      <span>Veille Technologique</span>
+    </a>
+
+    <!-- Activité & Journal Git -->
+    <a
+      href="/journal"
+      class={`nav-link flex items-center gap-3 px-3.5 py-3 rounded-xl text-sm font-medium transition-all duration-200 group ${
+        currentPath === '/journal'
+          ? 'bg-white text-zinc-950 font-bold shadow-sm'
+          : 'text-zinc-400 hover:text-white hover:bg-zinc-800/80'
+      }`}
+    >
+      <!-- Icône Branche / Versioning Git -->
+      <svg class={`w-5 h-5 shrink-0 transition-colors ${currentPath === '/journal' ? 'text-zinc-950' : 'text-zinc-400 group-hover:text-white'}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="6" y1="3" x2="6" y2="15"></line>
+        <circle cx="18" cy="6" r="3" fill="currentColor"></circle>
+        <circle cx="6" cy="18" r="3" fill="currentColor"></circle>
+        <path d="M18 9a9 9 0 0 1-9 9"></path>
+      </svg>
+      <span>Activité & Journal Git</span>
+    </a>
+
+    <!-- Contact -->
     <a
       href={`${basePath}#contact`}
-      class="nav-link flex items-center gap-3 px-3.5 py-3 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/70 transition-all duration-200 group"
+      class="nav-link flex items-center gap-3 px-3.5 py-3 rounded-xl text-sm font-medium text-zinc-400 hover:text-white hover:bg-zinc-800/80 transition-all duration-200 group"
       data-section="contact"
     >
-      <Mail class="w-5 h-5 text-blue-400 group-hover:text-blue-300 shrink-0 transition-colors" />
+      <!-- Enveloppe pleine -->
+      <svg class="w-5 h-5 text-zinc-400 group-hover:text-white shrink-0 transition-colors" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.928 5.493a3 3 0 0 1-3.144 0L1.5 8.67Z" />
+        <path d="M22.5 6.908V6.75a3 3 0 0 0-3-3h-15a3 3 0 0 0-3 3v.158l9.714 5.978a1.5 1.5 0 0 0 1.572 0L22.5 6.908Z" />
+      </svg>
       <span>Contact</span>
     </a>
   </nav>
 
-  <!-- Partie Inférieure : Téléchargement CV et Footer Sidebar -->
-  <div class="p-4 border-t border-[#1E293B] space-y-3">
-    <!-- Bouton rapide CV -->
+  <!-- Partie Inférieure : Téléchargement CV et Footer Sidebar bien aérés avec barre de séparation surélevée -->
+  <div class="px-4 pt-6 pb-6 border-t border-[#27272A] space-y-4">
+    <!-- Bouton rapide CV avec icône pleine et espacement soigné -->
     <a
       href={identity.cvDownloadUrl}
       target="_blank"
       rel="noopener noreferrer"
-      class="group flex items-center justify-center gap-2 w-full py-2.5 px-3 rounded-xl bg-slate-800/90 hover:bg-blue-600 text-white text-xs font-semibold tracking-wide border border-slate-700 hover:border-blue-600 transition-all duration-200 shadow-sm"
+      class="group flex items-center justify-center gap-2.5 w-full py-2.5 px-3.5 rounded-xl bg-zinc-800/90 hover:bg-white text-zinc-200 hover:text-zinc-950 text-xs font-semibold tracking-wide border border-zinc-700/80 hover:border-white shadow-sm active:scale-[0.98] transition-all duration-200"
     >
-      <FileText class="w-4 h-4 text-blue-400 group-hover:text-white transition-colors" />
+      <!-- Document plein -->
+      <svg class="w-4 h-4 text-zinc-400 group-hover:text-zinc-950 shrink-0 transition-colors" viewBox="0 0 24 24" fill="currentColor">
+        <path fill-rule="evenodd" d="M5.625 1.5H9a3.75 3.75 0 0 1 3.75 3.75v1.875c0 1.036.84 1.875 1.875 1.875H16.5a3.75 3.75 0 0 1 3.75 3.75v7.875c0 1.035-.84 1.875-1.875 1.875H5.625a1.875 1.875 0 0 1-1.875-1.875V3.375c0-1.036.84-1.875 1.875-1.875ZM9.75 14.25a.75.75 0 0 0 0 1.5H15a.75.75 0 0 0 0-1.5H9.75Zm0-3a.75.75 0 0 0 0 1.5h4.5a.75.75 0 0 0 0-1.5H9.75Z" clip-rule="evenodd" />
+        <path d="M14.25 5.25a5.23 5.23 0 0 0-1.279-3.434 9.768 9.768 0 0 1 6.963 6.963A5.23 5.23 0 0 0 16.5 7.5h-1.875a.375.375 0 0 1-.375-.375V5.25Z" />
+      </svg>
       <span>Consulter mon CV (PDF)</span>
-      <ExternalLink class="w-3 h-3 opacity-60 group-hover:opacity-100" />
+      <!-- Flèche externe -->
+      <svg class="w-3.5 h-3.5 opacity-50 group-hover:opacity-100 shrink-0 transition-opacity" viewBox="0 0 24 24" fill="currentColor">
+        <path fill-rule="evenodd" d="M15.75 2.25H21a.75.75 0 0 1 .75.75v5.25a.75.75 0 0 1-1.5 0V4.81L11.03 14.03a.75.75 0 0 1-1.06-1.06L19.19 3.75h-3.44a.75.75 0 0 1 0-1.5Zm-10.5 4.5a1.5 1.5 0 0 0-1.5 1.5v10.5a1.5 1.5 0 0 0 1.5 1.5h10.5a1.5 1.5 0 0 0 1.5-1.5V13.5a.75.75 0 0 1 1.5 0v5.25a3 3 0 0 1-3 3H5.25a3 3 0 0 1-3-3V8.25a3 3 0 0 1 3-3h5.25a.75.75 0 0 1 0 1.5H5.25Z" clip-rule="evenodd" />
+      </svg>
     </a>
 
-    <!-- Mentions légales & Année académique -->
-    <div class="text-[11px] text-slate-400 text-center leading-relaxed">
+    <!-- Mention académique aérée avec marge confortable -->
+    <div class="text-[11px] text-zinc-500 text-center tracking-wide font-medium pt-1">
       <span>BTS SIO SLAM · Session 2026-2028</span>
     </div>
   </div>
@@ -296,20 +366,20 @@ const basePath = isHome ? '' : '/';
       if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
         mainNavLinks.forEach((link) => {
           if (link.getAttribute('data-section') === sectionId) {
-            link.classList.add('bg-blue-600', 'text-white', 'shadow-sm');
-            link.classList.remove('text-slate-300', 'hover:bg-slate-800/70');
+            link.classList.add('bg-white', 'text-zinc-950', 'font-semibold', 'shadow-sm');
+            link.classList.remove('text-zinc-400', 'hover:bg-zinc-800/80', 'hover:text-white');
             const icon = link.querySelector('svg');
             if (icon) {
-              icon.classList.remove('text-blue-400');
-              icon.classList.add('text-white');
+              icon.classList.remove('text-zinc-400');
+              icon.classList.add('text-zinc-950');
             }
           } else {
-            link.classList.remove('bg-blue-600', 'text-white', 'shadow-sm');
-            link.classList.add('text-slate-300', 'hover:bg-slate-800/70');
+            link.classList.remove('bg-white', 'text-zinc-950', 'font-semibold', 'shadow-sm');
+            link.classList.add('text-zinc-400', 'hover:bg-zinc-800/80', 'hover:text-white');
             const icon = link.querySelector('svg');
             if (icon) {
-              icon.classList.add('text-blue-400');
-              icon.classList.remove('text-white');
+              icon.classList.add('text-zinc-400');
+              icon.classList.remove('text-zinc-950');
             }
           }
         });

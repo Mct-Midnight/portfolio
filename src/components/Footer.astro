@@ -1,19 +1,69 @@
 ---
-// Pied de page du Portfolio BTS SIO SLAM
+// Pied de page du Portfolio BTS SIO SLAM avec liens juridiques et conformité CNIL
 import profileData from '../content/data/profile.json';
+import { ExternalLink, ShieldCheck, Scale, GitBranch } from 'lucide-astro';
 
+interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = '' } = Astro.props;
 const { identity } = profileData;
 ---
 
 <footer class="mt-20 py-8 border-t border-slate-200 text-xs text-slate-500">
   <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
-    <div class="space-y-1 text-center sm:text-left w-full">
+    <div class="space-y-1 text-center sm:text-left">
       <p class="font-semibold text-slate-900 font-title">
         Portfolio {identity.firstName} {identity.lastName} · BTS SIO Option SLAM
       </p>
       <p class="text-slate-400">
         Formation préparée avec le CNED · Référentiel national du BTS SIO (Session 2026-2028)
       </p>
+    </div>
+
+    <!-- Liens juridiques, traçabilité Git et conformité officielle CNIL / RGPD -->
+    <div class="flex items-center flex-wrap justify-center sm:justify-end gap-2.5 shrink-0">
+      {currentPath !== '/journal' && (
+        <a
+          href="/journal"
+          class="inline-flex items-center gap-1.5 font-medium text-slate-600 hover:text-zinc-950 transition-colors py-1.5 px-2.5 rounded-lg hover:bg-slate-100"
+          title="Consulter l'historique des livraisons Git et de maintenance du portfolio"
+        >
+          <GitBranch class="w-3.5 h-3.5 text-slate-400" />
+          <span>Journal Git</span>
+        </a>
+      )}
+
+      {currentPath !== '/mentions-legales' ? (
+        <a
+          href="/mentions-legales"
+          class="inline-flex items-center gap-1.5 font-medium text-slate-600 hover:text-zinc-950 transition-colors py-1.5 px-2.5 rounded-lg hover:bg-slate-100"
+        >
+          <Scale class="w-3.5 h-3.5 text-slate-400" />
+          <span>Mentions Légales</span>
+        </a>
+      ) : (
+        <a
+          href="/"
+          class="inline-flex items-center gap-1.5 font-medium text-slate-600 hover:text-zinc-950 transition-colors py-1.5 px-2.5 rounded-lg hover:bg-slate-100"
+        >
+          <span>← Accueil du portfolio</span>
+        </a>
+      )}
+
+      <!-- Bouton officiel Conformité RGPD ouvrant le site officiel de la CNIL -->
+      <a
+        href="https://www.cnil.fr/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-1.5 font-semibold text-zinc-800 hover:text-zinc-950 transition-colors py-1.5 px-3 rounded-lg bg-zinc-100 hover:bg-zinc-200/80 border border-zinc-200 shadow-sm"
+        title="Consulter le site officiel de la CNIL (Commission Nationale de l'Informatique et des Libertés)"
+      >
+        <ShieldCheck class="w-3.5 h-3.5 text-zinc-900" />
+        <span>Conformité RGPD (CNIL)</span>
+        <ExternalLink class="w-3 h-3 text-zinc-500 opacity-80" />
+      </a>
     </div>
   </div>
 </footer>
