@@ -29,7 +29,7 @@
   }
 
   ::selection {
-    background-color: #2563EB;
+    background-color: #18181B;
     color: #FFFFFF;
   }
 }
@@ -62,11 +62,11 @@
   font-family: 'Montserrat', system-ui, sans-serif;
   font-size: 1.5rem;
   font-weight: 800;
-  color: #090D16;
+  color: #18181B;
   margin-top: 2.5rem;
   margin-bottom: 1rem;
   padding-bottom: 0.5rem;
-  border-bottom: 2px solid #E2E8F0;
+  border-bottom: 2px solid #E4E4E7;
   letter-spacing: -0.02em;
 }
 
@@ -74,7 +74,7 @@
   font-family: 'Montserrat', system-ui, sans-serif;
   font-size: 1.15rem;
   font-weight: 700;
-  color: #131B2E;
+  color: #27272A;
   margin-top: 1.75rem;
   margin-bottom: 0.75rem;
 }
@@ -83,7 +83,7 @@
   font-family: 'Montserrat', system-ui, sans-serif;
   font-size: 1rem;
   font-weight: 700;
-  color: #2563EB;
+  color: #18181B;
   margin-top: 1.25rem;
   margin-bottom: 0.5rem;
 }
@@ -91,12 +91,12 @@
 .markdown-content p {
   font-size: 0.95rem;
   line-height: 1.75;
-  color: #334155;
+  color: #3f3f46;
   margin-bottom: 1.25rem;
 }
 
 .markdown-content strong {
-  color: #0F172A;
+  color: #18181B;
   font-weight: 600;
 }
 
@@ -124,7 +124,7 @@
 
 .markdown-content blockquote {
   background-color: #FFFFFF;
-  border-left: 4px solid #2563EB;
+  border-left: 4px solid #18181B;
   padding: 1rem 1.25rem;
   margin: 1.5rem 0;
   border-radius: 0 0.75rem 0.75rem 0;
@@ -153,7 +153,7 @@
 }
 
 .markdown-content th {
-  background-color: #0F172A;
+  background-color: #18181B;
   color: #FFFFFF;
   font-family: 'Space Grotesk', system-ui, sans-serif;
   font-size: 0.85rem;
@@ -162,14 +162,14 @@
   letter-spacing: 0.05em;
   padding: 0.75rem 1rem;
   text-align: left;
-  border-bottom: 2px solid #2563EB;
+  border-bottom: 2px solid #27272A;
 }
 
 .markdown-content td {
   padding: 0.85rem 1rem;
   font-size: 0.9rem;
-  color: #334155;
-  border-bottom: 1px solid #F1F5F9;
+  color: #3f3f46;
+  border-bottom: 1px solid #F4F4F5;
   vertical-align: middle;
 }
 
@@ -178,27 +178,27 @@
 }
 
 .markdown-content tr:nth-child(even) td {
-  background-color: #F8FAFC;
+  background-color: #FAFAFA;
 }
 
 .markdown-content tr:hover td {
-  background-color: #EFF6FF;
+  background-color: #F4F4F5;
 }
 
 /* Mise en valeur des images et captures dans le markdown */
 .markdown-content img {
   border-radius: 0.75rem;
-  border: 1px solid #E2E8F0;
-  box-shadow: 0 4px 15px -3px rgba(15, 23, 42, 0.06);
+  border: 1px solid #E4E4E7;
+  box-shadow: 0 4px 15px -3px rgba(24, 24, 27, 0.06);
   max-width: 100%;
   height: auto;
   margin: 0.5rem auto;
 }
 
 .markdown-content code {
-  background-color: #EFF6FF;
-  color: #1E40AF;
-  border: 1px solid #DBEAFE;
+  background-color: #F4F4F5;
+  color: #18181B;
+  border: 1px solid #E4E4E7;
   padding: 0.15rem 0.4rem;
   border-radius: 0.35rem;
   font-size: 0.85em;
@@ -206,9 +206,9 @@
 }
 
 .markdown-content pre {
-  background-color: #0F172A;
-  color: #F8FAFC;
-  border: 1px solid #1E293B;
+  background-color: #18181B;
+  color: #FAFAFA;
+  border: 1px solid #27272A;
   padding: 1.25rem;
   border-radius: 0.75rem;
   overflow-x: auto;

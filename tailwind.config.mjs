@@ -4,12 +4,19 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Nouvelle palette officielle "Midnight & Cobalt Vibrant"
+        // Palette officielle "Graphite & Titane" (Option 2)
+        graphite: {
+          DEFAULT: '#18181B', // Anthracite pur mat (Zinc 900)
+          light: '#27272A',   // Titane intermédiaire (Zinc 800)
+          dark: '#09090B',    // Noir graphite absolu (Zinc 950)
+          border: '#27272A',  // Bordure titane soignée
+        },
+        // Rétrocompatibilité pour midnight
         midnight: {
-          DEFAULT: '#090D16', // Bleu Nuit encre profond
-          light: '#131B2E',   // Bleu nuit intermédiaire
-          dark: '#030712',    // Noir bleuté absolu
-          border: '#1E293B',  // Bordure ardoise
+          DEFAULT: '#18181B',
+          light: '#27272A',
+          dark: '#09090B',
+          border: '#27272A',
         },
         cobalt: {
           DEFAULT: '#2563EB', // Bleu Cobalt électrique
@@ -19,9 +26,9 @@ export default {
           dark: '#1E40AF',    // Bleu foncé pour le texte des badges
         },
         ice: {
-          DEFAULT: '#F8FAFC', // Fond de page principal (Slate 50)
+          DEFAULT: '#FAFAFA', // Fond de page principal (Zinc 50 studio épuré)
           card: '#FFFFFF',    // Fond blanc pur des cartes
-          border: '#E2E8F0',  // Micro-bordure ardoise fine
+          border: '#E4E4E7',  // Micro-bordure titane clair
         },
       },
       fontFamily: {
