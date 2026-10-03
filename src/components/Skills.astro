@@ -24,9 +24,30 @@ import {
   Network,
   X,
 } from 'lucide-astro';
+import fs from 'node:fs';
+import path from 'node:path';
 import skillsData from '../content/data/skills.json';
 
 const { categories, items } = skillsData;
+
+// Pré-chargement sécurisé des SVGs personnalisés pour injection directe dans le HTML
+const customSvgMap: Record<string, string> = {};
+for (const item of items) {
+  if (item.customIcon) {
+    try {
+      const cleanPath = item.customIcon.startsWith('/') ? item.customIcon.slice(1) : item.customIcon;
+      const fullPath = path.join(process.cwd(), 'public', cleanPath);
+      if (fs.existsSync(fullPath)) {
+        let svg = fs.readFileSync(fullPath, 'utf-8');
+        // Nettoyage des prologues XML pour compatibilité HTML5 directe
+        svg = svg.replace(/<\?xml[^>]*\?>/gi, '').replace(/<!--[\s\S]*?-->/g, '').trim();
+        customSvgMap[item.customIcon] = svg;
+      }
+    } catch {
+      // Repli propre silencieux
+    }
+  }
+}
 
 // Correspondance des icônes Lucide de repli
 const lucideMap: Record<string, any> = {
@@ -107,18 +128,23 @@ const categoryIconMap: Record<string, any> = {
                   
                   <!-- Conteneur d'icône plus spacieux -->
                   <div class="skill-icon-source w-14 h-14 rounded-xl bg-slate-50 group-hover:bg-blue-50 flex items-center justify-center text-slate-700 group-hover:text-blue-600 transition-colors">
-                    {skill.customIcon ? (
+                    {skill.iconKey ? (
+                      <i
+                        class={`${skill.iconKey} colored text-3xl transition-transform group-hover:scale-110`}
+                        title={skill.name}
+                      ></i>
+                    ) : (skill.customIcon && customSvgMap[skill.customIcon]) ? (
+                      <div
+                        class="w-8 h-8 flex items-center justify-center transition-transform group-hover:scale-110 [&>svg]:w-full [&>svg]:h-full [&>svg]:object-contain"
+                        set:html={customSvgMap[skill.customIcon]}
+                      />
+                    ) : skill.customIcon ? (
                       <img
                         src={skill.customIcon}
                         alt={skill.name}
                         class="w-8 h-8 object-contain transition-transform group-hover:scale-110"
                         loading="lazy"
                       />
-                    ) : skill.iconKey ? (
-                      <i
-                        class={`${skill.iconKey} colored text-3xl transition-transform group-hover:scale-110`}
-                        title={skill.name}
-                      ></i>
                     ) : (
                       <FallbackIcon class="w-7 h-7 transition-transform group-hover:scale-110" />
                     )}
@@ -210,7 +236,7 @@ const categoryIconMap: Record<string, any> = {
       }
       const svg = modalIconContainer.querySelector('svg');
       if (svg) {
-        svg.setAttribute('class', 'w-10 h-10 text-blue-600');
+        svg.setAttribute('class', 'w-12 h-12 object-contain');
       }
     }
 
