@@ -1,0 +1,42 @@
+{
+  "identity": {
+    "firstName": "Quentin",
+    "lastName": "Machu",
+    "role": "Étudiant en informatique - Développement d'applications",
+    "subRole": "1re année BTS SIO · Option SLAM",
+    "institution": "CNED (Centre National d'Enseignement à Distance)",
+    "tagline": "Développement applicatif assisté par IA, modélisation relationnelle et gestion de projet logiciel.",
+    "avatarUrl": "/assets/images/profile-avatar.jpg",
+    "cvDownloadUrl": "/docs/CV_Quentin_Machu_BTS_SIO.pdf"
+  },
+  "bio": {
+    "intro": "Âgé de 21 ans et actuellement en 1re année de BTS SIO (option SLAM) au CNED, je suis passionné par l'univers du développement web et applicatif.",
+    "pathway": "Avant d'entamer mon cursus informatique, j'ai réalisé un service civique au sein de l'école primaire de mon village. Cette expérience humaine et pédagogique a été un véritable tournant : elle m'a permis de me recentrer, de développer une rigueur d'organisation, un sens affirmé de l'écoute et une discipline essentielle pour étudier en autonomie.",
+    "vision": "Mon immersion dans la programmation est née avec l'intelligence artificielle, qui a éveillé en moi une passion continue pour la création logicielle. Aujourd'hui, je développe un projet personnel avec l'ambition de me lancer en freelance, tout en recherchant un stage formateur pour collaborer au sein d'une équipe technique.",
+    "strengths": [
+      "Développement web & intégration de solutions IA",
+      "Conception de bases de données relationnelles & requêtes SQL",
+      "Rigueur, autonomie éprouvée (CNED) et sens du relationnel"
+    ]
+  },
+  "internshipSearch": {
+    "status": "actif",
+    "title": "Stage Développeur d'applications (SLAM)",
+    "duration": "4 à 5 semaines",
+    "period": "Mai à Août 2027",
+    "location": "Secteur Cambrai (59) ou Télétravail",
+    "objectifs": [
+      "Développement de fonctionnalités et composants logiciels",
+      "Conception de bases de données et requêtage SQL",
+      "Collaboration au sein d'une équipe en méthode Agile"
+    ],
+    "callToAction": "Proposer une mission de stage"
+  },
+  "contact": {
+    "city": "Cambrai (59400), Hauts-de-France",
+    "phone": "06 88 49 29 83",
+    "email": "quentinmachu23@gmail.com",
+    "github": "https://github.com/Mct-Midnight",
+    "linkedin": "https://www.linkedin.com/in/quentin-machu-227934440"
+  }
+}

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="100%" height="100%" fill="none">
+  <!-- Piles de base de données relationnelle moderne -->
+  <defs>
+    <linearGradient id="dbGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="100%" stop-color="#0284C7"/>
+    </linearGradient>
+    <linearGradient id="dbDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284C7"/>
+      <stop offset="100%" stop-color="#0369A1"/>
+    </linearGradient>
+    <linearGradient id="badgeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D97757"/>
+      <stop offset="100%" stop-color="#EA580C"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Étage 3 (Bas) -->
+  <path d="M12 40v8c0 5 9 9 20 9s20-4 20-9v-8c-4 3.5-11.5 5.5-20 5.5s-16-2-20-5.5z" fill="url(#dbDark)"/>
+  
+  <!-- Étage 2 (Milieu) -->
+  <path d="M12 26v8c0 5 9 9 20 9s20-4 20-9v-8c-4 3.5-11.5 5.5-20 5.5s-16-2-20-5.5z" fill="url(#dbDark)"/>
+
+  <!-- Étage 1 (Haut & Cylindre complet) -->
+  <path d="M12 12v8c0 5 9 9 20 9s20-4 20-9v-8" fill="url(#dbDark)"/>
+  <ellipse cx="32" cy="12" rx="20" ry="8" fill="url(#dbGrad)"/>
+  <ellipse cx="32" cy="11.5" rx="17" ry="6" fill="#7DD3FC" opacity="0.3"/>
+
+  <!-- Badge SQL incrusté au centre -->
+  <rect x="18" y="27" width="28" height="15" rx="4" fill="url(#badgeGrad)" stroke="#FFFFFF" stroke-width="1.2"/>
+  <text x="32" y="38" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="8.5" fill="#FFFFFF" text-anchor="middle" letter-spacing="0.5">SQL</text>
+</svg>

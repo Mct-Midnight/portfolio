@@ -1,0 +1,143 @@
+{
+  "categories": [
+    {
+      "id": "dev-ia",
+      "title": "Développement & Ingénierie IA"
+    },
+    {
+      "id": "bases-de-donnees",
+      "title": "Bases de Données & Persistance"
+    },
+    {
+      "id": "outils-environnements",
+      "title": "Outils de Développement & Environnements"
+    },
+    {
+      "id": "methodes-gestion",
+      "title": "Méthodes & Gestion de Projet"
+    }
+  ],
+  "items": [
+    {
+      "name": "Python",
+      "category": "dev-ia",
+      "customIcon": "/assets/icons/python.svg",
+      "iconKey": "devicon-python-plain",
+      "lucideFallback": "Terminal",
+      "description": "Langage de programmation polyvalent et lisible, très populaire pour le développement applicatif, les scripts d'automatisation et l'intelligence artificielle."
+    },
+    {
+      "name": "IA & Prompting",
+      "category": "dev-ia",
+      "customIcon": "/assets/icons/ai-prompting.svg",
+      "iconKey": "",
+      "lucideFallback": "Cpu",
+      "description": "Méthodes d'ingénierie de requêtes et interaction avec les modèles d'IA pour accélérer la conception, l'analyse et la création logicielle."
+    },
+    {
+      "name": "HTML5",
+      "category": "dev-ia",
+      "iconKey": "devicon-html5-plain",
+      "lucideFallback": "Globe",
+      "description": "Langage de balisage standard du web permettant de structurer le contenu des pages et applications avec une architecture sémantique propre."
+    },
+    {
+      "name": "CSS3",
+      "category": "dev-ia",
+      "iconKey": "devicon-css3-plain",
+      "lucideFallback": "Palette",
+      "description": "Langage de style utilisé pour concevoir des interfaces soignées, assurer la réactivité sur tous les écrans et animer les composants graphiques."
+    },
+    {
+      "name": "JavaScript",
+      "category": "dev-ia",
+      "customIcon": "/assets/icons/javascript.svg",
+      "iconKey": "devicon-javascript-plain",
+      "lucideFallback": "FileCode",
+      "description": "Langage incontournable du web pour dynamiser les interfaces, gérer les événements utilisateurs et interagir avec des services externes en direct."
+    },
+    {
+      "name": "PostgreSQL",
+      "category": "bases-de-donnees",
+      "customIcon": "/assets/icons/postgresql.svg",
+      "iconKey": "devicon-postgresql-plain",
+      "lucideFallback": "Database",
+      "description": "Système de gestion de base de données relationnelle puissant et open-source, réputé pour sa robustesse, sa fiabilité et ses fonctions avancées."
+    },
+    {
+      "name": "MySQL",
+      "category": "bases-de-donnees",
+      "customIcon": "/assets/icons/mysql.svg",
+      "iconKey": "devicon-mysql-plain",
+      "lucideFallback": "Database",
+      "description": "Système de base de données relationnelle performant et très répandu, idéal pour le stockage et l'organisation des données d'applications."
+    },
+    {
+      "name": "SQLite",
+      "category": "bases-de-donnees",
+      "customIcon": "/assets/icons/sqlite.svg",
+      "iconKey": "devicon-sqlite-plain",
+      "lucideFallback": "HardDrive",
+      "description": "Moteur de base de données relationnelle léger et autonome, directement embarqué dans les applications sans nécessiter de serveur indépendant."
+    },
+    {
+      "name": "SQL",
+      "category": "bases-de-donnees",
+      "customIcon": "/assets/icons/sql.svg",
+      "iconKey": "devicon-sqldeveloper-plain",
+      "lucideFallback": "Table2",
+      "description": "Langage standardisé indispensable pour manipuler, filtrer, créer et interroger des bases de données relationnelles de façon structurée."
+    },
+    {
+      "name": "VS Code",
+      "category": "outils-environnements",
+      "iconKey": "devicon-vscode-plain",
+      "lucideFallback": "AppWindow",
+      "description": "Éditeur de code moderne et personnalisable, enrichi d'un écosystème complet d'extensions pour développer, déboguer et tester efficacement."
+    },
+    {
+      "name": "Antigravity",
+      "category": "outils-environnements",
+      "customIcon": "/assets/icons/antigravity.svg",
+      "iconKey": "",
+      "lucideFallback": "Bot",
+      "description": "Environnement agentique avancé guidé par l'intelligence artificielle pour assister le cycle de développement et l'automatisation logicielle."
+    },
+    {
+      "name": "Claude Code",
+      "category": "outils-environnements",
+      "customIcon": "/assets/icons/claude.svg",
+      "iconKey": "",
+      "lucideFallback": "Terminal",
+      "description": "Assistant de développement en ligne de commande permettant de naviguer dans les architectures de code, refactoriser et concevoir rapidement."
+    },
+    {
+      "name": "Docker",
+      "category": "outils-environnements",
+      "iconKey": "devicon-docker-plain",
+      "lucideFallback": "Container",
+      "description": "Plateforme de conteneurisation logicielle permettant d'isoler une application avec toutes ses dépendances pour une exécution fiable partout."
+    },
+    {
+      "name": "Git & GitHub",
+      "category": "outils-environnements",
+      "iconKey": "devicon-github-original",
+      "lucideFallback": "Github",
+      "description": "Système de contrôle de version et plateforme collaborative pour historiser les développements, gérer les branches et travailler en équipe."
+    },
+    {
+      "name": "Modélisation Merise",
+      "category": "methodes-gestion",
+      "iconKey": "devicon-confluence-plain",
+      "lucideFallback": "Network",
+      "description": "Méthode d'ingénierie et de conception utilisée pour bâtir les modèles conceptuels (MCD) et logiques (MLD) avant de créer une base de données."
+    },
+    {
+      "name": "Méthodes Agiles",
+      "category": "methodes-gestion",
+      "iconKey": "devicon-jira-plain",
+      "lucideFallback": "Kanban",
+      "description": "Approche de gestion de projet collaborative découpant le travail en cycles courts (sprints) pour privilégier l'adaptation continue et la réactivité."
+    }
+  ]
+}

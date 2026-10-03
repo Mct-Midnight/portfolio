@@ -1,0 +1,258 @@
+---
+// Section 4 : Compétences Techniques (Grid Cards catégorisées sans jauges arbitraires)
+import {
+  Terminal,
+  Code2,
+  FileCode,
+  Globe,
+  Palette,
+  Cpu,
+  GitBranch,
+  Github,
+  AppWindow,
+  TerminalSquare,
+  Container,
+  Workflow,
+  Database,
+  Layers,
+  Kanban,
+  Wrench,
+  Sparkles,
+  Bot,
+  HardDrive,
+  Table2,
+  Network,
+  X,
+} from 'lucide-astro';
+import skillsData from '../content/data/skills.json';
+
+const { categories, items } = skillsData;
+
+// Correspondance des icônes Lucide de repli
+const lucideMap: Record<string, any> = {
+  Terminal,
+  Code2,
+  FileCode,
+  Globe,
+  Palette,
+  Cpu,
+  GitBranch,
+  Github,
+  AppWindow,
+  TerminalSquare,
+  Container,
+  Workflow,
+  Database,
+  Layers,
+  Kanban,
+  Sparkles,
+  Bot,
+  HardDrive,
+  Table2,
+  Network,
+};
+
+// Correspondance des icônes pour les en-têtes de catégories
+const categoryIconMap: Record<string, any> = {
+  'dev-ia': Code2,
+  'bases-de-donnees': Database,
+  'outils-environnements': Wrench,
+  'methodes-gestion': Kanban,
+};
+---
+
+<section id="competences" class="py-16 scroll-mt-20 border-t border-slate-200">
+  <!-- En-tête de section -->
+  <div class="mb-12">
+    <h2 class="text-3xl font-bold font-title text-slate-900 tracking-tight">
+      Compétences & Technologies
+    </h2>
+    <p class="text-sm text-slate-600 mt-2 max-w-2xl">
+      Technologies, outils de développement et méthodologies d'ingénierie logicielle mobilisés dans le cadre du BTS SIO SLAM. Cliquez sur une carte pour en découvrir la description.
+    </p>
+  </div>
+
+  <!-- Catégories de compétences équilibrées en 4 blocs -->
+  <div class="space-y-12">
+    {categories.map((cat) => {
+      const categorySkills = items.filter((item) => item.category === cat.id);
+      const CatIcon = categoryIconMap[cat.id] || Terminal;
+      return (
+        <div class="space-y-4">
+          <!-- Titre de catégorie avec icône thématique et compteur -->
+          <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
+            <h3 class="text-base font-bold font-title text-slate-900 flex items-center gap-2.5">
+              <span class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+                <CatIcon class="w-4 h-4" />
+              </span>
+              <span>{cat.title}</span>
+            </h3>
+            <span class="text-xs font-semibold text-slate-500 bg-slate-100 px-2.5 py-1 rounded-full border border-slate-200">
+              {categorySkills.length} technologies
+            </span>
+          </div>
+
+          <!-- Grille uniforme à 5 colonnes fixes avec cartes cliquables -->
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-5">
+            {categorySkills.map((skill) => {
+              const FallbackIcon = lucideMap[skill.lucideFallback] || Terminal;
+              return (
+                <button
+                  type="button"
+                  class="skill-card bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-card hover:shadow-card-hover hover:-translate-y-1 hover:border-blue-400 transition-all duration-200 flex flex-col items-center justify-center text-center gap-3 group min-h-[120px] cursor-pointer w-full focus:outline-none focus:ring-2 focus:ring-blue-600/40"
+                  data-name={skill.name}
+                  data-description={skill.description}
+                  title={`Cliquer pour voir la description de ${skill.name}`}
+                >
+                  
+                  <!-- Conteneur d'icône plus spacieux -->
+                  <div class="skill-icon-source w-14 h-14 rounded-xl bg-slate-50 group-hover:bg-blue-50 flex items-center justify-center text-slate-700 group-hover:text-blue-600 transition-colors">
+                    {skill.customIcon ? (
+                      <img
+                        src={skill.customIcon}
+                        alt={skill.name}
+                        class="w-8 h-8 object-contain transition-transform group-hover:scale-110"
+                        loading="lazy"
+                      />
+                    ) : skill.iconKey ? (
+                      <i
+                        class={`${skill.iconKey} colored text-3xl transition-transform group-hover:scale-110`}
+                        title={skill.name}
+                      ></i>
+                    ) : (
+                      <FallbackIcon class="w-7 h-7 transition-transform group-hover:scale-110" />
+                    )}
+                  </div>
+
+                  <!-- Nom clair et lisible de la compétence -->
+                  <span class="text-sm font-semibold text-slate-700 group-hover:text-blue-600 transition-colors leading-snug">
+                    {skill.name}
+                  </span>
+
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      );
+    })}
+  </div>
+
+  <!-- Fenêtre modale descriptive rapide de la compétence -->
+  <div
+    id="skill-modal-backdrop"
+    class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 hidden opacity-0 transition-opacity duration-200 flex items-center justify-center p-4"
+    aria-hidden="true"
+  >
+    <div
+      id="skill-modal-card"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="skill-modal-title"
+      class="bg-white rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl border border-slate-200 transform scale-95 transition-all duration-200 relative flex flex-col items-center text-center"
+    >
+      <!-- Bouton de fermeture instantanée avec croix -->
+      <button
+        id="skill-modal-close"
+        type="button"
+        aria-label="Fermer la fiche"
+        class="absolute top-4 right-4 p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-600 cursor-pointer"
+      >
+        <X class="w-5 h-5" />
+      </button>
+
+      <!-- Grande icône au centre -->
+      <div
+        id="skill-modal-icon-container"
+        class="w-20 h-20 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center mb-4 text-slate-700 shadow-inner"
+      >
+      </div>
+
+      <!-- Nom de la compétence en grand -->
+      <h3 id="skill-modal-title" class="text-2xl font-black font-title text-slate-900 tracking-tight mb-3"></h3>
+
+      <!-- Description courte et accessible du rôle de l'outil -->
+      <p id="skill-modal-description" class="text-sm text-slate-600 leading-relaxed font-normal"></p>
+    </div>
+  </div>
+</section>
+
+<!-- Script interactif d'ouverture et fermeture de la modale -->
+<script>
+  const modalBackdrop = document.getElementById('skill-modal-backdrop');
+  const modalCard = document.getElementById('skill-modal-card');
+  const modalClose = document.getElementById('skill-modal-close');
+  const modalIconContainer = document.getElementById('skill-modal-icon-container');
+  const modalTitle = document.getElementById('skill-modal-title');
+  const modalDescription = document.getElementById('skill-modal-description');
+  const skillButtons = document.querySelectorAll('.skill-card');
+
+  function openSkillModal(btn: Element) {
+    if (!modalBackdrop || !modalCard || !modalTitle || !modalDescription || !modalIconContainer) return;
+
+    const name = btn.getAttribute('data-name') || '';
+    const description = btn.getAttribute('data-description') || '';
+    const iconSource = btn.querySelector('.skill-icon-source');
+
+    modalTitle.textContent = name;
+    modalDescription.textContent = description;
+
+    if (iconSource) {
+      modalIconContainer.innerHTML = iconSource.innerHTML;
+      // Ajustement de taille de l'icône dans la modale
+      const img = modalIconContainer.querySelector('img');
+      if (img) {
+        img.className = 'w-12 h-12 object-contain';
+      }
+      const i = modalIconContainer.querySelector('i');
+      if (i) {
+        i.className = i.className.replace('text-3xl', 'text-5xl');
+      }
+      const svg = modalIconContainer.querySelector('svg');
+      if (svg) {
+        svg.setAttribute('class', 'w-10 h-10 text-blue-600');
+      }
+    }
+
+    modalBackdrop.classList.remove('hidden');
+    setTimeout(() => {
+      modalBackdrop.classList.add('opacity-100');
+      modalCard.classList.remove('scale-95');
+      modalCard.classList.add('scale-100');
+    }, 10);
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeSkillModal() {
+    if (!modalBackdrop || !modalCard) return;
+    modalBackdrop.classList.remove('opacity-100');
+    modalCard.classList.remove('scale-100');
+    modalCard.classList.add('scale-95');
+    setTimeout(() => {
+      modalBackdrop.classList.add('hidden');
+    }, 200);
+    document.body.style.overflow = '';
+  }
+
+  skillButtons.forEach((btn) => {
+    btn.addEventListener('click', () => openSkillModal(btn));
+  });
+
+  if (modalClose) {
+    modalClose.addEventListener('click', closeSkillModal);
+  }
+
+  if (modalBackdrop) {
+    modalBackdrop.addEventListener('click', (e) => {
+      if (e.target === modalBackdrop) {
+        closeSkillModal();
+      }
+    });
+  }
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modalBackdrop && !modalBackdrop.classList.contains('hidden')) {
+      closeSkillModal();
+    }
+  });
+</script>

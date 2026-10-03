@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <circle cx="50" cy="50" r="46" fill="#1E1B18" stroke="#3D3834" stroke-width="4"/>
+  <rect x="25" y="30" width="50" height="40" rx="8" fill="#ECE8E1"/>
+  <text x="50" y="55" font-family="sans-serif" font-weight="bold" font-size="16" fill="#1E1B18" text-anchor="middle">PY</text>
+  <circle cx="50" cy="50" r="30" fill="none" stroke="#D95A2B" stroke-width="2" stroke-dasharray="4 2"/>
+</svg>

@@ -1,0 +1,19 @@
+---
+// Pied de page du Portfolio BTS SIO SLAM
+import profileData from '../content/data/profile.json';
+
+const { identity } = profileData;
+---
+
+<footer class="mt-20 py-8 border-t border-slate-200 text-xs text-slate-500">
+  <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div class="space-y-1 text-center sm:text-left w-full">
+      <p class="font-semibold text-slate-900 font-title">
+        Portfolio {identity.firstName} {identity.lastName} · BTS SIO Option SLAM
+      </p>
+      <p class="text-slate-400">
+        Formation préparée avec le CNED · Référentiel national du BTS SIO (Session 2026-2028)
+      </p>
+    </div>
+  </div>
+</footer>

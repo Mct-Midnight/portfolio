@@ -1,0 +1,59 @@
+---
+// Page principale du portfolio Quentin Machu - BTS SIO SLAM
+import Layout from '../layouts/Layout.astro';
+import Sidebar from '../components/Sidebar.astro';
+import Hero from '../components/Hero.astro';
+import AboutStage from '../components/AboutStage.astro';
+import Timeline from '../components/Timeline.astro';
+import Skills from '../components/Skills.astro';
+import Certifications from '../components/Certifications.astro';
+import Projects from '../components/Projects.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  title="Quentin Machu — Portfolio BTS SIO SLAM | Épreuve E4"
+  description="Portfolio professionnel de Quentin Machu, étudiant en BTS SIO SLAM au CNED. Réalisations du Bloc 1, compétences en développement logiciel et recherche de stage 2027."
+>
+  <div class="flex min-h-screen bg-slate-50">
+    
+    <!-- Volet Latéral Gauche Fixe (Desktop 260px + Mobile Drawer) -->
+    <Sidebar currentPath="/" />
+
+    <!-- Zone de Contenu Principale à Droite (Right Pane) -->
+    <div class="flex-1 w-full lg:pl-[260px] flex flex-col min-w-0">
+      
+      <!-- Conteneur centré avec marge et espacement régulé -->
+      <main class="flex-1 max-w-5xl w-full mx-auto px-5 sm:px-8 lg:px-12 pt-20 lg:pt-10 pb-16">
+        
+        <!-- Section 1 : Hero / Accueil -->
+        <Hero />
+
+        <!-- Section 2 : Profil & Recherche de Stage 2027 -->
+        <AboutStage />
+
+        <!-- Section 3 : Parcours (Timeline) -->
+        <Timeline />
+
+        <!-- Section 4 : Compétences Techniques (Grid Cards) -->
+        <Skills />
+
+        <!-- Section 5 : Certifications -->
+        <Certifications />
+
+        <!-- Section 6 : Projets (Réalisations E4) -->
+        <Projects />
+
+        <!-- Section 7 : Contact -->
+        <Contact />
+
+        <!-- Pied de page -->
+        <Footer />
+
+      </main>
+
+    </div>
+
+  </div>
+</Layout>

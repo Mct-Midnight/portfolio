@@ -1,0 +1,300 @@
+---
+// Section 6 : Projets & Réalisations (Études de Cas pour l'Épreuve E4)
+import { getCollection } from 'astro:content';
+import { ArrowUpRight, Github, BookOpen, Briefcase, Rocket, Layers, ExternalLink } from 'lucide-astro';
+
+// Récupération de tous les projets enregistrés dans Content Collections
+const allProjects = await getCollection('projects');
+
+// Tri des projets : mis en avant d'abord, puis par date
+const sortedProjects = allProjects.sort((a, b) => {
+  return new Date(b.data.dateStart).getTime() - new Date(a.data.dateStart).getTime();
+});
+
+// Extraction pédagogique de la phrase de synthèse du Markdown
+function extractSummary(body: string): string {
+  const match = body.match(/> \*\*Synthèse en une phrase :\*\* (.*?)(?:\n|$)/);
+  if (match && match[1]) {
+    return match[1].trim();
+  }
+  return "Étude de cas technique et mise en œuvre des compétences du Bloc 1 (Épreuve E4).";
+}
+
+// Couleurs et puces des badges de statut sobres et raffinées
+function getStatusBadge(status: string) {
+  switch (status.toLowerCase()) {
+    case 'réalisé':
+      return {
+        bg: 'bg-white/95 text-slate-800 border-slate-200/90',
+        label: 'Réalisé',
+        dot: 'bg-emerald-500',
+      };
+    case 'en cours':
+      return {
+        bg: 'bg-white/95 text-slate-800 border-slate-200/90',
+        label: 'En cours',
+        dot: 'bg-amber-500',
+      };
+    case 'à venir':
+      return {
+        bg: 'bg-white/95 text-slate-700 border-slate-200/90',
+        label: 'À venir',
+        dot: 'bg-slate-400',
+      };
+    default:
+      return {
+        bg: 'bg-white/95 text-slate-700 border-slate-200/90',
+        label: status,
+        dot: 'bg-slate-400',
+      };
+  }
+}
+---
+
+<section id="projets" class="py-16 scroll-mt-20 border-t border-slate-200">
+  
+  <!-- En-tête de section avec sélecteur de catégories segmenté -->
+  <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+    <div>
+      <h2 class="text-3xl font-bold font-title text-slate-900 tracking-tight">
+        Projets & Réalisations
+      </h2>
+      <p class="text-sm text-slate-600 mt-2 max-w-2xl leading-relaxed">
+        Études de cas concrètes et projets techniques adossés aux compétences du référentiel officiel du BTS SIO SLAM.
+      </p>
+    </div>
+
+    <!-- Sélecteur d'onglets premium : Tous / Freelance / Professionnel / Scolaire -->
+    <div class="inline-flex p-1.5 rounded-2xl bg-slate-100/90 border border-slate-200/80 self-start flex-wrap gap-1 shadow-inner">
+      <button
+        type="button"
+        data-filter-btn="all"
+        class="project-filter-btn active-tab inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all duration-200 bg-white text-slate-900 shadow-sm"
+      >
+        <span>Tous</span>
+        <span class="count-badge px-2 py-0.5 rounded-full text-[10px] font-bold bg-blue-50 text-blue-700 border border-blue-100/80">
+          {allProjects.length}
+        </span>
+      </button>
+      <button
+        type="button"
+        data-filter-btn="freelance"
+        class="project-filter-btn inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-200/50 transition-all duration-200"
+      >
+        <span>Freelance</span>
+        <span class="count-badge px-2 py-0.5 rounded-full text-[10px] font-semibold bg-slate-200/80 text-slate-600">
+          {allProjects.filter(p => p.data.category === 'freelance').length}
+        </span>
+      </button>
+      <button
+        type="button"
+        data-filter-btn="professionnel"
+        class="project-filter-btn inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-200/50 transition-all duration-200"
+      >
+        <span>Professionnel</span>
+        <span class="count-badge px-2 py-0.5 rounded-full text-[10px] font-semibold bg-slate-200/80 text-slate-600">
+          {allProjects.filter(p => p.data.category === 'professionnel').length}
+        </span>
+      </button>
+      <button
+        type="button"
+        data-filter-btn="scolaire"
+        class="project-filter-btn inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-200/50 transition-all duration-200"
+      >
+        <span>Scolaire</span>
+        <span class="count-badge px-2 py-0.5 rounded-full text-[10px] font-semibold bg-slate-200/80 text-slate-600">
+          {allProjects.filter(p => p.data.category === 'scolaire').length}
+        </span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Grille de cartes équilibrée en 2 colonnes (Format 2x2 harmonieux) -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-7" id="projects-grid">
+    {sortedProjects.map((project) => {
+      const statusBadge = getStatusBadge(project.data.status);
+      const summary = extractSummary(project.body);
+
+      return (
+        <article
+          class="project-card bg-white rounded-2xl border border-slate-200/90 shadow-card hover:shadow-card-hover hover:border-slate-300 transition-all duration-300 flex flex-col justify-between overflow-hidden group"
+          data-category={project.data.category}
+        >
+          <!-- Bloc Supérieur : Visuel et Badges -->
+          <div>
+            <!-- Miniature 16:9 avec photo / capture soignée -->
+            <div class="relative aspect-video w-full overflow-hidden bg-slate-950 border-b border-slate-100">
+              <img
+                src={project.data.thumbnail}
+                alt={project.data.title}
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+              />
+              <div class="hidden w-full h-full bg-slate-900 text-slate-200 flex-col items-center justify-center p-4 text-center">
+                <Layers class="w-8 h-8 text-blue-400 mb-2" />
+                <span class="text-xs font-semibold font-title">{project.data.title}</span>
+              </div>
+
+              <!-- Voile sombre discret supérieur et inférieur pour une parfaite lisibilité des badges -->
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-slate-950/40 pointer-events-none"></div>
+
+              <!-- Badge de statut flottant (gauche) : capsule épurée avec point de couleur -->
+              <div class="absolute top-3.5 left-3.5">
+                <span class={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold border backdrop-blur-md shadow-xs ${statusBadge.bg}`}>
+                  <span class={`w-1.5 h-1.5 rounded-full ${statusBadge.dot}`}></span>
+                  <span>{statusBadge.label}</span>
+                </span>
+              </div>
+
+              <!-- Badge de catégorie flottant (droite) : Freelance / Professionnel / Scolaire -->
+              <div class="absolute top-3.5 right-3.5">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold bg-slate-950/80 text-white backdrop-blur-md border border-white/15 shadow-xs font-sans">
+                  {project.data.category === 'freelance' ? (
+                    <>
+                      <Rocket class="w-3.5 h-3.5 text-amber-400" />
+                      <span>Freelance</span>
+                    </>
+                  ) : project.data.category === 'professionnel' ? (
+                    <>
+                      <Briefcase class="w-3.5 h-3.5 text-blue-400" />
+                      <span>Professionnel</span>
+                    </>
+                  ) : (
+                    <>
+                      <BookOpen class="w-3.5 h-3.5 text-sky-400" />
+                      <span>Scolaire</span>
+                    </>
+                  )}
+                </span>
+              </div>
+            </div>
+
+            <!-- Contenu textuel de la carte -->
+            <div class="p-6 space-y-3">
+              <!-- Titre du projet -->
+              <h3 class="text-lg font-bold font-title text-slate-900 group-hover:text-blue-600 transition-colors leading-snug tracking-tight">
+                <a href={`/projets/${project.slug}`}>
+                  {project.data.title}
+                </a>
+              </h3>
+
+              <!-- Synthèse métier concise -->
+              <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed">
+                {summary}
+              </p>
+
+              <!-- Pastilles technologiques feutrées et modernes -->
+              <div class="flex flex-wrap gap-1.5 pt-2">
+                {project.data.tags.map((tag) => (
+                  <span class="px-2.5 py-1 rounded-lg bg-slate-50 text-slate-600 text-xs font-medium border border-slate-200/80 group-hover:border-slate-300 transition-colors">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <!-- Pied de carte épuré : action principale et liens secondaires -->
+          <div class="px-6 py-4 bg-slate-50/60 border-t border-slate-100 flex items-center justify-between gap-3 mt-auto">
+            <!-- Bouton principal : Consulter l'étude de cas -->
+            <a
+              href={`/projets/${project.slug}`}
+              class="inline-flex items-center gap-1.5 text-xs font-bold text-blue-600 hover:text-blue-700 transition-colors group/link py-1"
+            >
+              <span>Consulter l'étude de cas</span>
+              <ArrowUpRight class="w-3.5 h-3.5 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
+            </a>
+
+            <!-- Liens annexes (Code source / Démo) -->
+            <div class="flex items-center gap-1">
+              {project.data.repoUrl && (
+                <a
+                  href={project.data.repoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-500 hover:text-slate-900 hover:bg-white hover:border-slate-200 border border-transparent hover:shadow-xs transition-all"
+                  title="Code source sur GitHub"
+                >
+                  <Github class="w-3.5 h-3.5" />
+                  <span class="hidden sm:inline">Code source</span>
+                </a>
+              )}
+              {project.data.demoUrl && (
+                <a
+                  href={project.data.demoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-500 hover:text-slate-900 hover:bg-white hover:border-slate-200 border border-transparent hover:shadow-xs transition-all"
+                  title="Voir la démo en ligne"
+                >
+                  <ExternalLink class="w-3.5 h-3.5" />
+                  <span class="hidden sm:inline">Démo</span>
+                </a>
+              )}
+            </div>
+          </div>
+
+        </article>
+      );
+    })}
+  </div>
+</section>
+
+<!-- Script interactif de filtrage des projets (Onglets & Navigation globale) -->
+<script>
+  function setupProjectFilters() {
+    const buttons = document.querySelectorAll<HTMLButtonElement>('.project-filter-btn');
+    const cards = document.querySelectorAll<HTMLElement>('.project-card');
+
+    function applyFilter(category: string) {
+      // Mise à jour de l'état visuel des boutons et de leurs puces de comptage
+      buttons.forEach((btn) => {
+        const btnFilter = btn.getAttribute('data-filter-btn');
+        const countBadge = btn.querySelector('.count-badge');
+        
+        if (btnFilter === category) {
+          btn.classList.add('bg-white', 'text-slate-900', 'shadow-sm', 'font-semibold');
+          btn.classList.remove('text-slate-600', 'font-medium', 'hover:bg-slate-200/50');
+          if (countBadge) {
+            countBadge.classList.add('bg-blue-50', 'text-blue-700', 'border', 'border-blue-100/80', 'font-bold');
+            countBadge.classList.remove('bg-slate-200/80', 'text-slate-600', 'font-semibold');
+          }
+        } else {
+          btn.classList.remove('bg-white', 'text-slate-900', 'shadow-sm', 'font-semibold');
+          btn.classList.add('text-slate-600', 'font-medium', 'hover:bg-slate-200/50');
+          if (countBadge) {
+            countBadge.classList.remove('bg-blue-50', 'text-blue-700', 'border', 'border-blue-100/80', 'font-bold');
+            countBadge.classList.add('bg-slate-200/80', 'text-slate-600', 'font-semibold');
+          }
+        }
+      });
+
+      // Filtrage dynamique des cartes avec affichage flexible
+      cards.forEach((card) => {
+        const cardCat = card.getAttribute('data-category');
+        if (category === 'all' || cardCat === category) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const filter = btn.getAttribute('data-filter-btn') || 'all';
+        applyFilter(filter);
+      });
+    });
+
+    // Écoute de l'événement global déclenché depuis la Sidebar
+    window.addEventListener('filter-projects', (e: any) => {
+      if (e.detail && e.detail.category) {
+        applyFilter(e.detail.category);
+      }
+    });
+  }
+
+  // Initialisation lors du chargement de la page
+  setupProjectFilters();
+</script>

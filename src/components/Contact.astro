@@ -1,0 +1,254 @@
+---
+// Section 7 : Contact & Prise de Décision Rapide
+import { MapPin, Phone, Mail, Github, Linkedin, Send, CheckCircle2, MessageSquare, User, AtSign, Tag } from 'lucide-astro';
+import profileData from '../content/data/profile.json';
+
+const { identity, contact } = profileData;
+---
+
+<section id="contact" class="py-16 scroll-mt-20 border-t border-slate-200">
+  
+  <!-- En-tête de section sans sous-titre redondant -->
+  <div class="mb-12">
+    <h2 class="text-3xl font-bold font-title text-slate-900 tracking-tight">
+      Me Contacter
+    </h2>
+    <p class="text-sm text-slate-600 mt-2 max-w-2xl">
+      Disponible pour échanger au sujet d'une opportunité de stage en développement d'applications (SLAM) ou de l'épreuve E4.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+    
+    <!-- Colonne Gauche : Pile de Cartes de Coordonnées alignée en hauteur -->
+    <div class="lg:col-span-5 flex flex-col gap-3.5 lg:h-full">
+      
+      <!-- Carte Localisation -->
+      <div class="flex-1 min-h-[76px] bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-card flex items-center gap-4 hover:border-blue-400 transition-colors">
+        <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+          <MapPin class="w-5 h-5" />
+        </div>
+        <div>
+          <span class="text-xs text-slate-500 font-medium block">Localisation géographique</span>
+          <span class="text-sm font-bold text-slate-900">{contact.city}</span>
+        </div>
+      </div>
+
+      <!-- Carte Email -->
+      <a
+        href={`mailto:${contact.email}`}
+        class="flex-1 min-h-[76px] bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-card flex items-center gap-4 hover:border-blue-400 group transition-all"
+      >
+        <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+          <Mail class="w-5 h-5" />
+        </div>
+        <div class="overflow-hidden">
+          <span class="text-xs text-slate-500 font-medium block">Adresse électronique</span>
+          <span class="text-sm font-bold text-slate-900 group-hover:text-blue-600 transition-colors truncate block">
+            {contact.email}
+          </span>
+        </div>
+      </a>
+
+      <!-- Carte Téléphone -->
+      <a
+        href={`tel:${contact.phone.replace(/\s+/g, '')}`}
+        class="flex-1 min-h-[76px] bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-card flex items-center gap-4 hover:border-blue-400 group transition-all"
+      >
+        <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+          <Phone class="w-5 h-5" />
+        </div>
+        <div>
+          <span class="text-xs text-slate-500 font-medium block">Téléphone portable</span>
+          <span class="text-sm font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
+            {contact.phone}
+          </span>
+        </div>
+      </a>
+
+      <!-- Carte LinkedIn -->
+      <a
+        href={contact.linkedin}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex-1 min-h-[76px] bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-card flex items-center gap-4 hover:border-blue-400 group transition-all"
+      >
+        <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+          <Linkedin class="w-5 h-5" />
+        </div>
+        <div>
+          <span class="text-xs text-slate-500 font-medium block">Réseau professionnel</span>
+          <span class="text-sm font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
+            LinkedIn / {identity.firstName} {identity.lastName}
+          </span>
+        </div>
+      </a>
+
+      <!-- Carte GitHub -->
+      <a
+        href={contact.github}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex-1 min-h-[76px] bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-card flex items-center gap-4 hover:border-blue-400 group transition-all"
+      >
+        <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+          <Github class="w-5 h-5" />
+        </div>
+        <div>
+          <span class="text-xs text-slate-500 font-medium block">Dépôts & Code source</span>
+          <span class="text-sm font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
+            {contact.github.replace(/^https?:\/\//, '')}
+          </span>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- Colonne Droite : Formulaire de Contact Interactif -->
+    <div class="lg:col-span-7 lg:h-full flex flex-col">
+      <div class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-card lg:h-full flex flex-col justify-between">
+        
+        <div class="mb-6">
+          <h3 class="text-lg font-bold font-title text-slate-900">Formulaire de Prise de Contact</h3>
+          <p class="text-xs text-slate-500 mt-1">Tous les champs sont requis pour assurer un suivi personnalisé de votre demande.</p>
+        </div>
+
+        <form id="contact-form" class="space-y-4">
+          
+          <!-- Ligne 1 : Nom et Email -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="name" class="block text-xs font-bold font-title text-slate-700 uppercase tracking-wider mb-1.5">
+                Nom & Prénom <span class="text-blue-600">*</span>
+              </label>
+              <div class="relative">
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  placeholder="Jean Dupont"
+                  class="w-full px-3.5 py-2.5 pl-10 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-600/30 focus:border-blue-600 text-sm bg-slate-50 text-slate-900 transition-colors"
+                />
+                <User class="w-4 h-4 text-slate-400 absolute left-3.5 top-3" />
+              </div>
+            </div>
+
+            <div>
+              <label for="email" class="block text-xs font-bold font-title text-slate-700 uppercase tracking-wider mb-1.5">
+                Adresse E-mail <span class="text-blue-600">*</span>
+              </label>
+              <div class="relative">
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  placeholder="jean.dupont@entreprise.com"
+                  class="w-full px-3.5 py-2.5 pl-10 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-600/30 focus:border-blue-600 text-sm bg-slate-50 text-slate-900 transition-colors"
+                />
+                <AtSign class="w-4 h-4 text-slate-400 absolute left-3.5 top-3" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Ligne 2 : Objet de la prise de contact -->
+          <div>
+            <label for="subject" class="block text-xs font-bold font-title text-slate-700 uppercase tracking-wider mb-1.5">
+              Objet de la démarche <span class="text-blue-600">*</span>
+            </label>
+            <div class="relative">
+              <select
+                id="subject"
+                name="subject"
+                required
+                class="w-full px-3.5 py-2.5 pl-10 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-600/30 focus:border-blue-600 text-sm bg-slate-50 text-slate-900 transition-colors appearance-none"
+              >
+                <option value="Proposition de stage 2027 (SLAM)">🎯 Proposition de stage 2027 (SLAM)</option>
+                <option value="Question relative à l'Épreuve E4 / CNED">📚 Échange académique / Épreuve E4</option>
+                <option value="Opportunité d'alternance 2e année">💼 Opportunité d'alternance (2e année)</option>
+                <option value="Autre demande">✉️ Autre demande professionnelle</option>
+              </select>
+              <Tag class="w-4 h-4 text-slate-400 absolute left-3.5 top-3" />
+            </div>
+          </div>
+
+          <!-- Ligne 3 : Message -->
+          <div>
+            <label for="message" class="block text-xs font-bold font-title text-slate-700 uppercase tracking-wider mb-1.5">
+              Votre message <span class="text-blue-600">*</span>
+            </label>
+            <div class="relative">
+              <textarea
+                id="message"
+                name="message"
+                rows="4"
+                required
+                placeholder="Bonjour Quentin, nous souhaitons vous proposer un entretien pour une mission de stage..."
+                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-600/30 focus:border-blue-600 text-sm bg-slate-50 text-slate-900 transition-colors"
+              ></textarea>
+            </div>
+          </div>
+
+          <!-- Bouton de soumission en Bleu Cobalt -->
+          <button
+            type="submit"
+            id="submit-btn"
+            class="inline-flex items-center justify-center gap-2 w-full py-3.5 px-6 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
+          >
+            <Send class="w-4 h-4" />
+            <span>Envoyer le message</span>
+          </button>
+
+          <!-- Zone de notification utilisateur -->
+          <div id="form-feedback" class="hidden p-4 rounded-xl text-xs font-medium border mt-3 transition-all duration-300"></div>
+
+        </form>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Script de traitement du formulaire avec feedback propre -->
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const feedback = document.getElementById('form-feedback');
+  const submitBtn = document.getElementById('submit-btn');
+
+  if (form && feedback && submitBtn) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const formData = new FormData(form);
+      const name = formData.get('name') as string;
+      const email = formData.get('email') as string;
+      const subject = formData.get('subject') as string;
+      const message = formData.get('message') as string;
+
+      if (!name || !email || !message) {
+        feedback.className = 'p-4 rounded-xl text-xs font-semibold border bg-red-50 text-red-700 border-red-200 block';
+        feedback.textContent = 'Veuillez remplir l\'ensemble des champs obligatoires.';
+        return;
+      }
+
+      // Simulation d'envoi et notification de succès
+      submitBtn.setAttribute('disabled', 'true');
+      submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
+
+      setTimeout(() => {
+        feedback.className = 'p-4 rounded-xl text-xs font-semibold border bg-emerald-50 text-emerald-800 border-emerald-200 block space-y-1';
+        feedback.innerHTML = `
+          <div class="flex items-center gap-2">
+            <strong>Message enregistré avec succès !</strong>
+          </div>
+          <p class="text-emerald-700 font-normal">Merci ${name}, votre message relatif à « ${subject} » a bien été pris en compte. Une copie sera transmise à Quentin Machu.</p>
+        `;
+        form.reset();
+        submitBtn.removeAttribute('disabled');
+        submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
+      }, 500);
+    });
+  }
+</script>

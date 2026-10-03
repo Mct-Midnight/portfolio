@@ -1,0 +1,121 @@
+---
+// Section 1 : Hero / Accueil
+import { ArrowDownRight, FileText, Mail, MapPin, GraduationCap } from 'lucide-astro';
+import profileData from '../content/data/profile.json';
+
+const { identity, contact, internshipSearch } = profileData;
+const initials = `${identity.firstName[0] || 'Q'}${identity.lastName[0] || 'M'}`;
+---
+
+<section id="hero" class="pt-6 pb-14 lg:pt-12 lg:pb-20 scroll-mt-20">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+    
+    <!-- Colonne Gauche : Présentation claire et Call-to-Actions -->
+    <div class="lg:col-span-8 space-y-6">
+      
+      <!-- Titre principal H1 & Sous-titre hiérarchisé -->
+      <div class="space-y-3">
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black font-title text-slate-900 tracking-tight leading-tight">
+          {identity.firstName} <span class="text-blue-600">{identity.lastName}</span>
+        </h1>
+        
+        <p class="text-xl sm:text-2xl font-bold text-slate-800">
+          Étudiant en informatique <span class="text-slate-400 font-normal">·</span> BTS SIO SLAM
+        </p>
+
+        <!-- Métadonnées clés condensées et faciles à lire -->
+        <div class="flex items-center gap-3 text-xs sm:text-sm text-slate-600 flex-wrap pt-1">
+          <span class="inline-flex items-center gap-1.5 font-medium">
+            <GraduationCap class="w-4 h-4 text-blue-600 shrink-0" />
+            CNED
+          </span>
+          <span class="text-slate-300">·</span>
+          <span class="inline-flex items-center gap-1.5 font-medium">
+            <MapPin class="w-4 h-4 text-blue-600 shrink-0" />
+            Cambrai (59)
+          </span>
+          <span class="text-slate-300">·</span>
+          <span class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold">
+            <span class="flex h-2 w-2 relative">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            Stage {internshipSearch.duration} ({internshipSearch.period})
+          </span>
+        </div>
+      </div>
+
+      <!-- Phrase d'accroche valorisant les compétences -->
+      <p class="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl">
+        {identity.tagline}
+      </p>
+
+      <!-- Groupe de boutons d'action (CTA) directs -->
+      <div class="flex flex-wrap items-center gap-3.5 pt-1">
+        
+        <!-- CTA Primaire : Voir les projets -->
+        <a
+          href="#projets"
+          class="inline-flex items-center gap-2 px-5 sm:px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm shadow-md hover:shadow-lg transition-all duration-200 transform hover:-translate-y-0.5"
+        >
+          <span>Voir les projets</span>
+          <ArrowDownRight class="w-4 h-4" />
+        </a>
+
+        <!-- CTA Secondaire : Télécharger / Voir mon CV -->
+        <a
+          href={identity.cvDownloadUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white hover:bg-slate-50 text-slate-800 border border-slate-300 font-semibold text-sm shadow-sm hover:shadow transition-all duration-200 transform hover:-translate-y-0.5 group"
+        >
+          <FileText class="w-4 h-4 text-blue-600 group-hover:text-blue-700 transition-colors" />
+          <span>Voir mon CV (PDF)</span>
+        </a>
+
+        <!-- CTA Tertiaire : Me contacter -->
+        <a
+          href="#contact"
+          class="inline-flex items-center gap-2 px-4 py-3 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100 font-medium text-sm transition-all duration-200"
+        >
+          <Mail class="w-4 h-4 text-slate-400" />
+          <span>Me contacter</span>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Colonne Droite : Visuel portrait & Carte badge avec bordure bleue soignée -->
+    <div class="lg:col-span-4 flex justify-center">
+      <div class="relative w-64 h-64 sm:w-72 sm:h-72">
+        
+        <!-- Cercle de fond décoratif aux teintes Cobalt subtiles -->
+        <div class="absolute inset-0 rounded-3xl bg-gradient-to-tr from-blue-600/20 via-blue-400/10 to-transparent transform -rotate-3 transition-transform hover:rotate-0 duration-300"></div>
+
+        <!-- Conteneur d'image avec ombre douce et bordure bleue soignée -->
+        <div class="relative w-full h-full rounded-3xl overflow-hidden bg-white p-3 shadow-soft border-2 border-blue-500/30 hover:border-blue-500/60 transition-colors flex flex-col items-center justify-center">
+          <div class="w-full h-full rounded-2xl overflow-hidden bg-slate-900 flex items-center justify-center relative">
+            <img
+              src={identity.avatarUrl}
+              alt={`${identity.firstName} ${identity.lastName}`}
+              class="w-full h-full object-cover"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+            />
+            <div class="hidden w-full h-full bg-slate-900 flex-col items-center justify-center text-white">
+              <span class="text-5xl font-bold font-title text-blue-400">{initials}</span>
+              <span class="text-xs uppercase tracking-widest mt-2 text-slate-300 font-title">SLAM CNED</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pastille flottante SLAM Développeur -->
+        <div class="absolute -bottom-3 -right-3 bg-white px-4 py-2 rounded-xl shadow-lg border border-slate-200 flex items-center gap-2">
+          <div class="w-2.5 h-2.5 rounded-full bg-blue-600"></div>
+          <span class="text-xs font-bold text-slate-900 font-title">Option SLAM</span>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>

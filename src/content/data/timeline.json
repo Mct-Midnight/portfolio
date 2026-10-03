@@ -1,0 +1,97 @@
+{
+  "education": [
+    {
+      "id": "bts-sio-slam",
+      "period": "2026 - En cours",
+      "degree": "BTS Services Informatiques aux Organisations (Option SLAM)",
+      "institution": "CNED",
+      "location": "Formation à distance",
+      "description": "Conception et développement d'applications logicielles, modélisation de bases de données relationnelles et intégration des bonnes pratiques de sécurité.",
+      "status": "en_cours"
+    },
+    {
+      "id": "service-civique-rues-des-vignes",
+      "period": "2025 - 2026",
+      "degree": "Mission de Service Civique",
+      "institution": "École primaire (Les Rues-des-Vignes)",
+      "location": "Les Rues-des-Vignes (59580)",
+      "description": "Accompagnement pédagogique et encadrement citoyen auprès des élèves. Consolidation de la rigueur personnelle, du travail en équipe et du sens de l'écoute.",
+      "status": "effectue"
+    },
+    {
+      "id": "bts-cg-saint-luc",
+      "period": "2023 - 2024",
+      "degree": "1re année BTS Comptabilité et Gestion",
+      "institution": "Lycée Saint-Luc",
+      "location": "Cambrai (59400)",
+      "description": "Acquisition des méthodes de gestion financière et de la logique d'analyse de flux, avant réorientation choisie vers l'informatique.",
+      "status": "effectue"
+    },
+    {
+      "id": "bac-pro-mcva",
+      "period": "2022 - 2023",
+      "degree": "Baccalauréat Professionnel Métiers du Commerce et de la Vente (Option A)",
+      "institution": "Lycée Saint-Luc",
+      "location": "Cambrai (59400)",
+      "description": "Formation axée sur la communication professionnelle, la négociation et la gestion de la relation client.",
+      "status": "obtenu"
+    }
+  ],
+  "certifications": [
+    {
+      "id": "anssi-secnumacademie",
+      "category": "tech",
+      "title": "SecNumacadémie — Mooc Cybersécurité",
+      "issuer": "ANSSI",
+      "date": "Session 2026",
+      "status": "En préparation",
+      "badge": "badge-secnum.svg",
+      "credentialUrl": "https://secnumacademie.gouv.fr/",
+      "summary": "Validation du socle de compétences en cybersécurité pour le BTS SIO : sécurisation des postes, protocoles réseau, mécanismes d'authentification et hygiène informatique."
+    },
+    {
+      "id": "rgpd-atelier-cnil",
+      "category": "tech",
+      "title": "Atelier RGPD — Certificat CNIL",
+      "issuer": "CNIL",
+      "date": "Session 2026",
+      "status": "En préparation",
+      "badge": "badge-cnil.svg",
+      "credentialUrl": "https://atelier-rgpd.cnil.fr/",
+      "summary": "Sensibilisation réglementaire à la protection des données personnelles : conformité des traitements, respect de la vie privée et obligations juridiques des développeurs."
+    },
+    {
+      "id": "secourisme-psc1",
+      "category": "citoyen",
+      "title": "Formation Premier Secours Citoyen (PSC1)",
+      "issuer": "Sécurité Civile",
+      "date": "2025",
+      "status": "Délivrée",
+      "badge": "badge-psc1.svg",
+      "credentialUrl": "",
+      "summary": "Maîtrise des gestes de premiers secours et d'assistance d'urgence : protection, alerte efficace des secours et prise en charge de victimes."
+    },
+    {
+      "id": "education-nationale-accompagnateur-velo",
+      "category": "citoyen",
+      "title": "Agrément d'Accompagnateur Vélo",
+      "issuer": "Ministère de l'Éducation Nationale",
+      "date": "2025",
+      "status": "Délivrée",
+      "badge": "badge-velo.svg",
+      "credentialUrl": "",
+      "summary": "Habilitation officielle garantissant l'encadrement pédagogique, la sécurité collective et le respect des protocoles lors de déplacements scolaires."
+    },
+    {
+      "id": "formation-civique-citoyenne",
+      "category": "citoyen",
+      "title": "Formation Civique & Citoyenne",
+      "issuer": "Service Civique",
+      "date": "2025",
+      "status": "Délivrée",
+      "badge": "badge-civique.svg",
+      "credentialUrl": "",
+      "summary": "Sensibilisation aux principes républicains, aux valeurs de laïcité, d'égalité de traitement et à la prévention des discriminations."
+    }
+  ]
+}
