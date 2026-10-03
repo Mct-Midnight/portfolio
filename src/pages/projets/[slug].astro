@@ -9,9 +9,6 @@ import {
   Calendar,
   Github,
   ExternalLink,
-  BookOpen,
-  Briefcase,
-  Rocket,
   ShieldCheck,
   CheckCircle,
   FileCode,
@@ -93,21 +90,28 @@ const statusDetails = getStatusDetails(project.data.status);
           <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-4">
             
             <div class="flex items-center gap-2 flex-wrap">
-              <!-- Badge de Catégorie -->
+              <!-- Badge de Catégorie avec icônes pleines (Solid) -->
               <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-slate-900 text-white font-title">
                 {project.data.category === 'freelance' ? (
                   <>
-                    <Rocket class="w-3.5 h-3.5 text-amber-400" />
+                    <svg class="w-3.5 h-3.5 text-zinc-400 shrink-0" viewBox="0 0 512 512" fill="currentColor">
+                      <path d="M156.6 384.9L125.7 354c-8.5-8.5-11.5-20.8-7.7-32.2c3-8.9 7-20.5 11.8-33.8L24 288c-8.6 0-16.6-4.6-20.9-12.1s-4.2-16.7 .2-24.1l52.5-88.5c13-21.9 36.5-35.3 61.9-35.3l82.3 0c2.4-4 4.8-7.7 7.2-11.3C289.1-4.1 411.1-8.1 483.9 5.3c11.6 2.1 20.6 11.2 22.8 22.8c13.4 72.9 9.3 194.8-111.4 276.7c-3.5 2.4-7.3 4.8-11.3 7.2l0 82.3c0 25.4-13.4 49-35.3 61.9l-88.5 52.5c-7.4 4.4-16.6 4.5-24.1 .2s-12.1-12.2-12.1-20.9l0-107.2c-14.1 4.9-26.4 8.9-35.7 11.9c-11.2 3.6-23.4 .5-31.8-7.8zM384 168a40 40 0 1 0 0-80 40 40 0 1 0 0 80z"/>
+                    </svg>
                     <span>Freelance</span>
                   </>
                 ) : project.data.category === 'scolaire' ? (
                   <>
-                    <BookOpen class="w-3.5 h-3.5 text-zinc-400" />
+                    <svg class="w-3.5 h-3.5 text-zinc-400 shrink-0" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M11.25 4.533A9.707 9.707 0 0 0 6 3a9.735 9.735 0 0 0-3.25.555.75.75 0 0 0-.5.707v14.25a.75.75 0 0 0 1 .707A8.237 8.237 0 0 1 6 18c2.023 0 3.9.724 5.25 1.933V4.533Z" />
+                      <path d="M12.75 4.533A9.707 9.707 0 0 1 18 3c1.135 0 2.228.194 3.25.555a.75.75 0 0 1 .5.707v14.25a.75.75 0 0 1-1 .707A8.237 8.237 0 0 0 18 18c-2.023 0-3.9.724-5.25 1.933V4.533Z" />
+                    </svg>
                     <span>Scolaire</span>
                   </>
                 ) : (
                   <>
-                    <Briefcase class="w-3.5 h-3.5 text-zinc-400" />
+                    <svg class="w-3.5 h-3.5 text-zinc-400 shrink-0" viewBox="0 0 24 24" fill="currentColor">
+                      <path fill-rule="evenodd" d="M7.5 5.25a3 3 0 0 1 3-3h3a3 3 0 0 1 3 3v.75h3.75A2.25 2.25 0 0 1 22.5 8.25v9a2.25 2.25 0 0 1-2.25 2.25H3.75A2.25 2.25 0 0 1 1.5 17.25v-9A2.25 2.25 0 0 1 3.75 6H7.5v-.75Zm1.5.75h6v-.75a1.5 1.5 0 0 0-1.5-1.5h-3a1.5 1.5 0 0 0-1.5 1.5v.75Z" clip-rule="evenodd" />
+                    </svg>
                     <span>Professionnel</span>
                   </>
                 )}

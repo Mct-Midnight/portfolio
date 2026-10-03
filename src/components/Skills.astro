@@ -22,6 +22,9 @@ import {
   HardDrive,
   Table2,
   Network,
+  Rocket,
+  ClipboardCheck,
+  ShieldCheck,
   X,
 } from 'lucide-astro';
 import fs from 'node:fs';
@@ -71,6 +74,9 @@ const lucideMap: Record<string, any> = {
   HardDrive,
   Table2,
   Network,
+  Rocket,
+  ClipboardCheck,
+  ShieldCheck,
 };
 
 // Correspondance des icônes pour les en-têtes de catégories
@@ -89,7 +95,7 @@ const categoryIconMap: Record<string, any> = {
       Compétences & Technologies
     </h2>
     <p class="text-sm text-slate-600 mt-2 max-w-2xl">
-      Technologies, outils de développement et méthodologies d'ingénierie logicielle mobilisés dans le cadre du BTS SIO SLAM. Cliquez sur une carte pour en découvrir la description.
+      Technologies, outils d'ingénierie logicielle et méthodologies de gestion de projet mobilisés au quotidien. Cliquez sur une carte pour en découvrir la description.
     </p>
   </div>
 
@@ -101,7 +107,7 @@ const categoryIconMap: Record<string, any> = {
       return (
         <div class="space-y-4">
           <!-- Titre de catégorie avec icône thématique et compteur -->
-          <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
+          <div class="flex items-center justify-between">
             <h3 class="text-base font-bold font-title text-slate-900 flex items-center gap-2.5">
               <span class="w-8 h-8 rounded-lg bg-zinc-100 text-zinc-900 border border-zinc-200 flex items-center justify-center shrink-0">
                 <CatIcon class="w-4 h-4" />

@@ -1,7 +1,7 @@
 ---
 // Section 6 : Projets & Réalisations (Études de Cas pour l'Épreuve E4)
 import { getCollection } from 'astro:content';
-import { ArrowUpRight, Github, BookOpen, Briefcase, Rocket, Layers, ExternalLink, X, FileText } from 'lucide-astro';
+import { ArrowUpRight, Github, Layers, ExternalLink, X, FileText } from 'lucide-astro';
 
 // Récupération de tous les projets enregistrés dans Content Collections
 const allProjects = await getCollection('projects');
@@ -60,49 +60,49 @@ function getStatusBadge(status: string) {
         Projets & Réalisations
       </h2>
       <p class="text-sm text-slate-600 mt-2 max-w-2xl leading-relaxed">
-        Études de cas concrètes et projets techniques adossés aux compétences du référentiel officiel du BTS SIO SLAM.
+        Études de cas, applications logicielles et réalisations techniques développées en freelance, en entreprise et en formation.
       </p>
     </div>
 
-    <!-- Sélecteur d'onglets premium : Tous / Freelance / Professionnel / Scolaire -->
-    <div class="inline-flex p-1.5 rounded-2xl bg-slate-100/90 border border-slate-200/80 self-start flex-wrap gap-1 shadow-inner">
+    <!-- Sélecteur d'onglets épuré et premium : Tous / Freelance / Professionnel / Scolaire -->
+    <div class="inline-flex items-center p-1 rounded-xl bg-zinc-100 border border-zinc-200/80 self-start md:self-end shrink-0 gap-1 overflow-x-auto max-w-full shadow-xs">
       <button
         type="button"
         data-filter-btn="all"
-        class="project-filter-btn active-tab inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all duration-200 bg-white text-slate-900 shadow-sm"
+        class="project-filter-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200 bg-zinc-900 text-white shadow-sm cursor-pointer whitespace-nowrap"
       >
         <span>Tous</span>
-        <span class="count-badge px-2 py-0.5 rounded-full text-[10px] font-bold bg-zinc-900 text-white">
+        <span class="count-badge px-1.5 py-0.5 rounded-full text-[10px] font-semibold bg-white/20 text-white tabular-nums">
           {allProjects.length}
         </span>
       </button>
       <button
         type="button"
         data-filter-btn="freelance"
-        class="project-filter-btn inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-200/50 transition-all duration-200"
+        class="project-filter-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-zinc-600 hover:text-zinc-900 hover:bg-zinc-200/60 transition-all duration-200 cursor-pointer whitespace-nowrap"
       >
         <span>Freelance</span>
-        <span class="count-badge px-2 py-0.5 rounded-full text-[10px] font-semibold bg-slate-200/80 text-slate-600">
+        <span class="count-badge px-1.5 py-0.5 rounded-full text-[10px] font-semibold bg-zinc-200/80 text-zinc-600 tabular-nums">
           {allProjects.filter(p => p.data.category === 'freelance').length}
         </span>
       </button>
       <button
         type="button"
         data-filter-btn="professionnel"
-        class="project-filter-btn inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-200/50 transition-all duration-200"
+        class="project-filter-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-zinc-600 hover:text-zinc-900 hover:bg-zinc-200/60 transition-all duration-200 cursor-pointer whitespace-nowrap"
       >
         <span>Professionnel</span>
-        <span class="count-badge px-2 py-0.5 rounded-full text-[10px] font-semibold bg-slate-200/80 text-slate-600">
+        <span class="count-badge px-1.5 py-0.5 rounded-full text-[10px] font-semibold bg-zinc-200/80 text-zinc-600 tabular-nums">
           {allProjects.filter(p => p.data.category === 'professionnel').length}
         </span>
       </button>
       <button
         type="button"
         data-filter-btn="scolaire"
-        class="project-filter-btn inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-200/50 transition-all duration-200"
+        class="project-filter-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-zinc-600 hover:text-zinc-900 hover:bg-zinc-200/60 transition-all duration-200 cursor-pointer whitespace-nowrap"
       >
         <span>Scolaire</span>
-        <span class="count-badge px-2 py-0.5 rounded-full text-[10px] font-semibold bg-slate-200/80 text-slate-600">
+        <span class="count-badge px-1.5 py-0.5 rounded-full text-[10px] font-semibold bg-zinc-200/80 text-zinc-600 tabular-nums">
           {allProjects.filter(p => p.data.category === 'scolaire').length}
         </span>
       </button>
@@ -146,22 +146,29 @@ function getStatusBadge(status: string) {
                 </span>
               </div>
 
-              <!-- Badge de catégorie flottant (droite) : Freelance / Professionnel / Scolaire -->
+              <!-- Badge de catégorie flottant (droite) : Freelance / Professionnel / Scolaire avec icônes pleines (Solid) -->
               <div class="absolute top-3.5 right-3.5">
                 <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold bg-slate-950/80 text-white backdrop-blur-md border border-white/15 shadow-xs font-sans">
                   {project.data.category === 'freelance' ? (
                     <>
-                      <Rocket class="w-3.5 h-3.5 text-amber-400" />
+                      <svg class="w-3.5 h-3.5 text-zinc-400 shrink-0" viewBox="0 0 512 512" fill="currentColor">
+                        <path d="M156.6 384.9L125.7 354c-8.5-8.5-11.5-20.8-7.7-32.2c3-8.9 7-20.5 11.8-33.8L24 288c-8.6 0-16.6-4.6-20.9-12.1s-4.2-16.7 .2-24.1l52.5-88.5c13-21.9 36.5-35.3 61.9-35.3l82.3 0c2.4-4 4.8-7.7 7.2-11.3C289.1-4.1 411.1-8.1 483.9 5.3c11.6 2.1 20.6 11.2 22.8 22.8c13.4 72.9 9.3 194.8-111.4 276.7c-3.5 2.4-7.3 4.8-11.3 7.2l0 82.3c0 25.4-13.4 49-35.3 61.9l-88.5 52.5c-7.4 4.4-16.6 4.5-24.1 .2s-12.1-12.2-12.1-20.9l0-107.2c-14.1 4.9-26.4 8.9-35.7 11.9c-11.2 3.6-23.4 .5-31.8-7.8zM384 168a40 40 0 1 0 0-80 40 40 0 1 0 0 80z"/>
+                      </svg>
                       <span>Freelance</span>
                     </>
                   ) : project.data.category === 'professionnel' ? (
                     <>
-                      <Briefcase class="w-3.5 h-3.5 text-zinc-400" />
+                      <svg class="w-3.5 h-3.5 text-zinc-400 shrink-0" viewBox="0 0 24 24" fill="currentColor">
+                        <path fill-rule="evenodd" d="M7.5 5.25a3 3 0 0 1 3-3h3a3 3 0 0 1 3 3v.75h3.75A2.25 2.25 0 0 1 22.5 8.25v9a2.25 2.25 0 0 1-2.25 2.25H3.75A2.25 2.25 0 0 1 1.5 17.25v-9A2.25 2.25 0 0 1 3.75 6H7.5v-.75Zm1.5.75h6v-.75a1.5 1.5 0 0 0-1.5-1.5h-3a1.5 1.5 0 0 0-1.5 1.5v.75Z" clip-rule="evenodd" />
+                      </svg>
                       <span>Professionnel</span>
                     </>
                   ) : (
                     <>
-                      <BookOpen class="w-3.5 h-3.5 text-zinc-400" />
+                      <svg class="w-3.5 h-3.5 text-zinc-400 shrink-0" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M11.25 4.533A9.707 9.707 0 0 0 6 3a9.735 9.735 0 0 0-3.25.555.75.75 0 0 0-.5.707v14.25a.75.75 0 0 0 1 .707A8.237 8.237 0 0 1 6 18c2.023 0 3.9.724 5.25 1.933V4.533Z" />
+                        <path d="M12.75 4.533A9.707 9.707 0 0 1 18 3c1.135 0 2.228.194 3.25.555a.75.75 0 0 1 .5.707v14.25a.75.75 0 0 1-1 .707A8.237 8.237 0 0 0 18 18c-2.023 0-3.9.724-5.25 1.933V4.533Z" />
+                      </svg>
                       <span>Scolaire</span>
                     </>
                   )}
@@ -371,18 +378,18 @@ function getStatusBadge(status: string) {
         const countBadge = btn.querySelector('.count-badge');
         
         if (btnFilter === category) {
-          btn.classList.add('bg-white', 'text-slate-900', 'shadow-sm', 'font-semibold');
-          btn.classList.remove('text-slate-600', 'font-medium', 'hover:bg-slate-200/50');
+          btn.classList.add('bg-zinc-900', 'text-white', 'shadow-sm', 'font-semibold');
+          btn.classList.remove('text-zinc-600', 'font-medium', 'hover:bg-zinc-200/60', 'hover:text-zinc-900');
           if (countBadge) {
-            countBadge.classList.add('bg-zinc-900', 'text-white', 'font-bold');
-            countBadge.classList.remove('bg-slate-200/80', 'text-slate-600', 'font-semibold');
+            countBadge.classList.add('bg-white/20', 'text-white');
+            countBadge.classList.remove('bg-zinc-200/80', 'text-zinc-600');
           }
         } else {
-          btn.classList.remove('bg-white', 'text-slate-900', 'shadow-sm', 'font-semibold');
-          btn.classList.add('text-slate-600', 'font-medium', 'hover:bg-slate-200/50');
+          btn.classList.remove('bg-zinc-900', 'text-white', 'shadow-sm', 'font-semibold');
+          btn.classList.add('text-zinc-600', 'font-medium', 'hover:bg-zinc-200/60', 'hover:text-zinc-900');
           if (countBadge) {
-            countBadge.classList.remove('bg-zinc-900', 'text-white', 'font-bold');
-            countBadge.classList.add('bg-slate-200/80', 'text-slate-600', 'font-semibold');
+            countBadge.classList.remove('bg-white/20', 'text-white');
+            countBadge.classList.add('bg-zinc-200/80', 'text-zinc-600');
           }
         }
       });
