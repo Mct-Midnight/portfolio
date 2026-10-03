@@ -22,7 +22,7 @@
       "name": "Python",
       "category": "dev-ia",
       "customIcon": "/assets/icons/python.svg",
-      "iconKey": "devicon-python-plain",
+      "iconKey": "",
       "lucideFallback": "Terminal",
       "description": "Langage de programmation polyvalent et lisible, très populaire pour le développement applicatif, les scripts d'automatisation et l'intelligence artificielle."
     },
@@ -52,14 +52,13 @@
       "name": "JavaScript",
       "category": "dev-ia",
       "customIcon": "/assets/icons/javascript.svg",
-      "iconKey": "devicon-javascript-plain",
+      "iconKey": "",
       "lucideFallback": "FileCode",
       "description": "Langage incontournable du web pour dynamiser les interfaces, gérer les événements utilisateurs et interagir avec des services externes en direct."
     },
     {
       "name": "PostgreSQL",
       "category": "bases-de-donnees",
-      "customIcon": "/assets/icons/postgresql.svg",
       "iconKey": "devicon-postgresql-plain",
       "lucideFallback": "Database",
       "description": "Système de gestion de base de données relationnelle puissant et open-source, réputé pour sa robustesse, sa fiabilité et ses fonctions avancées."
@@ -67,7 +66,6 @@
     {
       "name": "MySQL",
       "category": "bases-de-donnees",
-      "customIcon": "/assets/icons/mysql.svg",
       "iconKey": "devicon-mysql-plain",
       "lucideFallback": "Database",
       "description": "Système de base de données relationnelle performant et très répandu, idéal pour le stockage et l'organisation des données d'applications."
@@ -75,7 +73,6 @@
     {
       "name": "SQLite",
       "category": "bases-de-donnees",
-      "customIcon": "/assets/icons/sqlite.svg",
       "iconKey": "devicon-sqlite-plain",
       "lucideFallback": "HardDrive",
       "description": "Moteur de base de données relationnelle léger et autonome, directement embarqué dans les applications sans nécessiter de serveur indépendant."
@@ -83,7 +80,6 @@
     {
       "name": "SQL",
       "category": "bases-de-donnees",
-      "customIcon": "/assets/icons/sql.svg",
       "iconKey": "devicon-sqldeveloper-plain",
       "lucideFallback": "Table2",
       "description": "Langage standardisé indispensable pour manipuler, filtrer, créer et interroger des bases de données relationnelles de façon structurée."
