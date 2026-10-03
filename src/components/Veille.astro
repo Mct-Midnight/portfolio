@@ -1,0 +1,316 @@
+---
+// Section 7 : Veille Technologique & Réglementaire (Format épuré avec modale descriptive)
+import {
+  ShieldCheck,
+  Cpu,
+  Radio,
+  Rss,
+  Bell,
+  ExternalLink,
+  CheckCircle2,
+  ArrowUpRight,
+  BookOpen,
+  X,
+} from 'lucide-astro';
+import veilleData from '../content/data/veille.json';
+
+const { title, subtitle, pearltreesUrl, methodology, axes } = veilleData;
+
+// Correspondance des icônes pour les en-têtes d'axes
+const axisIconMap: Record<string, any> = {
+  cybersecurite: ShieldCheck,
+  'ia-ingenierie': Cpu,
+};
+---
+
+<section id="veille" class="py-16 scroll-mt-20 border-t border-slate-200">
+  <!-- En-tête de section sobre (sans badge au-dessus du titre) -->
+  <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+    <div>
+      <h2 class="text-3xl font-bold font-title text-slate-900 tracking-tight">
+        {title}
+      </h2>
+      <p class="text-sm text-slate-600 mt-2 max-w-2xl leading-relaxed">
+        {subtitle}
+      </p>
+    </div>
+
+    <!-- Accès direct à l'espace complet Pearltrees -->
+    <a
+      href={pearltreesUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white hover:bg-slate-50 text-slate-700 hover:text-zinc-950 border border-slate-200 hover:border-zinc-400 text-xs font-semibold shadow-card transition-all shrink-0 group self-start sm:self-auto"
+    >
+      <span>Espace Pearltrees</span>
+      <ExternalLink class="w-3.5 h-3.5 text-slate-400 group-hover:text-zinc-950 transition-colors" />
+    </a>
+  </div>
+
+  <!-- Encadré compact de méthodologie Push & Pull -->
+  <div class="bg-white rounded-2xl p-5 sm:p-6 border border-slate-200 shadow-card mb-10 flex flex-col md:flex-row md:items-center justify-between gap-5">
+    <div class="flex items-start sm:items-center gap-4">
+      <div class="w-10 h-10 rounded-xl bg-zinc-100 text-zinc-900 flex items-center justify-center shrink-0 border border-zinc-200">
+        <Radio class="w-5 h-5" />
+      </div>
+      <div>
+        <h3 class="text-sm font-bold font-title text-slate-900">
+          Dispositif méthodologique bimodal (Push & Pull)
+        </h3>
+        <p class="text-xs text-slate-500 mt-0.5">
+          Combinaison d'alertes automatisées et d'agrégation ciblée pour capter les standards émergents.
+        </p>
+      </div>
+    </div>
+
+    <!-- Puces rapides des outils utilisés -->
+    <div class="flex flex-wrap items-center gap-2.5 text-xs">
+      <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-50 text-slate-700 border border-slate-200 font-medium">
+        <Bell class="w-3.5 h-3.5 text-zinc-900" />
+        <span><strong>Push :</strong> Google Alerts & Newsletters</span>
+      </span>
+      <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-50 text-slate-700 border border-slate-200 font-medium">
+        <Rss class="w-3.5 h-3.5 text-zinc-700" />
+        <span><strong>Pull :</strong> Flux RSS Feedly & Avis ANSSI</span>
+      </span>
+    </div>
+  </div>
+
+  <!-- Présentation structurée par catégories (2 axes majeurs) -->
+  <div class="space-y-12">
+    {axes.map((axis) => {
+      const AxisIcon = axisIconMap[axis.id] || Radio;
+      return (
+        <div class="space-y-4">
+          <!-- Titre d'axe avec icône et compteur (sans barre de séparation) -->
+          <div class="flex items-center justify-between pb-1">
+            <h3 class="text-base font-bold font-title text-slate-900 flex items-center gap-2.5">
+              <span class="w-8 h-8 rounded-lg bg-zinc-100 text-zinc-900 border border-zinc-200 flex items-center justify-center shrink-0">
+                <AxisIcon class="w-4 h-4" />
+              </span>
+              <span>{axis.name}</span>
+            </h3>
+            <span class="text-xs font-semibold text-slate-500 bg-slate-100 px-2.5 py-1 rounded-full border border-slate-200">
+              {axis.articles.length} fiches
+            </span>
+          </div>
+
+          <!-- Grille uniforme et parfaitement alignée de cartes cliquables -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
+            {axis.articles.map((article) => (
+              <button
+                type="button"
+                class="veille-card text-left bg-white rounded-2xl p-5 border border-slate-200 shadow-card hover:shadow-card-hover hover:border-zinc-400 hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between group cursor-pointer w-full focus:outline-none focus:ring-2 focus:ring-zinc-900/40 min-h-[160px]"
+                data-title={article.title}
+                data-source={article.source}
+                data-sourcetype={article.sourceType}
+                data-date={article.date}
+                data-summary={article.summary}
+                data-url={article.url}
+                data-keypoints={JSON.stringify(article.keyPoints)}
+                data-axis={axis.name}
+              >
+                <div class="space-y-3">
+                  <!-- En-tête de la carte : Source et Date entières -->
+                  <div class="flex items-center justify-between gap-2">
+                    <span class="text-[11px] font-bold text-zinc-900 bg-zinc-100 px-2.5 py-1 rounded-md border border-zinc-200 whitespace-nowrap">
+                      {article.source}
+                    </span>
+                    <span class="text-[11px] font-medium text-slate-400 shrink-0">
+                      {article.date}
+                    </span>
+                  </div>
+
+                  <!-- Titre de l'article complet et visible à 100% -->
+                  <h4 class="text-sm sm:text-[15px] font-bold font-title text-slate-900 group-hover:text-zinc-950 transition-colors leading-snug">
+                    {article.title}
+                  </h4>
+                </div>
+
+                <!-- Bas de carte : Bouton interactif discret -->
+                <div class="pt-3 border-t border-slate-100 mt-5 flex items-center justify-between text-xs text-zinc-900 font-semibold group-hover:text-black">
+                  <span>Consulter la fiche</span>
+                  <ArrowUpRight class="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+      );
+    })}
+  </div>
+
+  <!-- Fenêtre modale descriptive détaillée (Progressive disclosure) -->
+  <div
+    id="veille-modal-backdrop"
+    class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 hidden opacity-0 transition-opacity duration-200 flex items-center justify-center p-4"
+    aria-hidden="true"
+  >
+    <div
+      id="veille-modal-card"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="veille-modal-title"
+      class="bg-white rounded-3xl p-6 sm:p-8 max-w-xl w-full shadow-2xl border border-slate-200 transform scale-95 transition-all duration-200 relative text-left"
+    >
+      <!-- Bouton de fermeture instantanée -->
+      <button
+        id="veille-modal-close"
+        type="button"
+        aria-label="Fermer la fiche"
+        class="absolute top-5 right-5 p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors focus:outline-none cursor-pointer"
+      >
+        <X class="w-5 h-5" />
+      </button>
+
+      <!-- Métadonnées : Axe & Date -->
+      <div class="flex flex-wrap items-center gap-2 mb-3 pr-10">
+        <span id="veille-modal-axis" class="text-xs font-bold text-zinc-900 bg-zinc-100 px-2.5 py-1 rounded-md border border-zinc-200"></span>
+        <span id="veille-modal-date" class="text-xs font-semibold text-slate-500"></span>
+      </div>
+
+      <!-- Titre complet de l'article -->
+      <h3 id="veille-modal-title" class="text-lg sm:text-xl font-bold font-title text-slate-900 tracking-tight mb-2 leading-snug"></h3>
+
+      <!-- Source officielle et type de document -->
+      <div class="flex items-center gap-1.5 text-xs text-slate-500 mb-5 pb-3 border-b border-slate-100">
+        <BookOpen class="w-4 h-4 text-slate-400 shrink-0" />
+        <span id="veille-modal-source" class="font-semibold text-slate-700"></span>
+        <span class="text-slate-300">•</span>
+        <span id="veille-modal-sourcetype" class="text-slate-400"></span>
+      </div>
+
+      <!-- Résumé analytique -->
+      <div class="mb-5">
+        <h4 class="text-xs uppercase tracking-wider font-bold text-slate-400 mb-1.5 font-title">
+          Résumé analytique
+        </h4>
+        <p id="veille-modal-summary" class="text-xs sm:text-sm text-slate-600 leading-relaxed"></p>
+      </div>
+
+      <!-- Enjeux et retombées techniques pour le BTS -->
+      <div class="mb-6 bg-slate-50 rounded-2xl p-4 border border-slate-100">
+        <h4 class="text-xs uppercase tracking-wider font-bold text-slate-700 mb-2 font-title">
+          Enjeux & Retombées techniques (SLAM)
+        </h4>
+        <ul id="veille-modal-keypoints" class="space-y-1.5 text-xs text-slate-600"></ul>
+      </div>
+
+      <!-- Bouton d'action vers la source originale -->
+      <div class="flex items-center justify-end gap-3 pt-4 border-t border-slate-100">
+        <a
+          id="veille-modal-link"
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-zinc-900 hover:bg-black text-white font-semibold text-xs transition-colors shadow-sm"
+        >
+          <span>Consulter la source officielle</span>
+          <ExternalLink class="w-3.5 h-3.5" />
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Script interactif d'ouverture/fermeture de la modale descriptive -->
+<script>
+  // Gestion de la fenêtre modale de détail des fiches de veille
+  const cards = document.querySelectorAll('.veille-card');
+  const backdrop = document.getElementById('veille-modal-backdrop');
+  const modalCard = document.getElementById('veille-modal-card');
+  const closeBtn = document.getElementById('veille-modal-close');
+
+  const modalTitle = document.getElementById('veille-modal-title');
+  const modalAxis = document.getElementById('veille-modal-axis');
+  const modalDate = document.getElementById('veille-modal-date');
+  const modalSource = document.getElementById('veille-modal-source');
+  const modalSourceType = document.getElementById('veille-modal-sourcetype');
+  const modalSummary = document.getElementById('veille-modal-summary');
+  const modalKeyPoints = document.getElementById('veille-modal-keypoints');
+  const modalLink = document.getElementById('veille-modal-link') as HTMLAnchorElement;
+
+  function openModal(card: Element) {
+    if (!backdrop || !modalCard) return;
+
+    const title = card.getAttribute('data-title') || '';
+    const axis = card.getAttribute('data-axis') || '';
+    const date = card.getAttribute('data-date') || '';
+    const source = card.getAttribute('data-source') || '';
+    const sourceType = card.getAttribute('data-sourcetype') || '';
+    const summary = card.getAttribute('data-summary') || '';
+    const url = card.getAttribute('data-url') || '#';
+    const keypointsRaw = card.getAttribute('data-keypoints') || '[]';
+
+    // Remplissage dynamique des champs de la modale
+    if (modalTitle) modalTitle.textContent = title;
+    if (modalAxis) modalAxis.textContent = axis;
+    if (modalDate) modalDate.textContent = date;
+    if (modalSource) modalSource.textContent = source;
+    if (modalSourceType) modalSourceType.textContent = sourceType;
+    if (modalSummary) modalSummary.textContent = summary;
+    if (modalLink) modalLink.href = url;
+
+    // Remplissage des points clés
+    if (modalKeyPoints) {
+      modalKeyPoints.innerHTML = '';
+      try {
+        const points: string[] = JSON.parse(keypointsRaw);
+        points.forEach((point) => {
+          const li = document.createElement('li');
+          li.className = 'flex items-start gap-2';
+          li.innerHTML = `
+            <svg class="w-3.5 h-3.5 text-zinc-900 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <span>${point}</span>
+          `;
+          modalKeyPoints.appendChild(li);
+        });
+      } catch {
+        // En cas d'erreur de parse JSON silencieux
+      }
+    }
+
+    // Affichage avec transition fluide
+    backdrop.classList.remove('hidden');
+    setTimeout(() => {
+      backdrop.classList.add('opacity-100');
+      modalCard.classList.remove('scale-95');
+      modalCard.classList.add('scale-100');
+    }, 10);
+
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    if (!backdrop || !modalCard) return;
+
+    backdrop.classList.remove('opacity-100');
+    modalCard.classList.remove('scale-100');
+    modalCard.classList.add('scale-95');
+
+    setTimeout(() => {
+      backdrop.classList.add('hidden');
+    }, 200);
+
+    document.body.style.overflow = '';
+  }
+
+  // Écouteurs d'événements
+  cards.forEach((card) => {
+    card.addEventListener('click', () => openModal(card));
+  });
+
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+
+  if (backdrop) {
+    backdrop.addEventListener('click', (e) => {
+      if (e.target === backdrop) closeModal();
+    });
+  }
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+  });
+</script>

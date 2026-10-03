@@ -40,7 +40,7 @@ const { bio, internshipSearch } = profileData;
           <ul class="space-y-2.5">
             {bio.strengths.map((strength) => (
               <li class="flex items-start gap-3 text-sm text-slate-700 font-medium">
-                <CheckCircle2 class="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
+                <CheckCircle2 class="w-4 h-4 text-zinc-900 shrink-0 mt-0.5" />
                 <span>{strength}</span>
               </li>
             ))}
@@ -50,12 +50,12 @@ const { bio, internshipSearch } = profileData;
       </div>
     </div>
 
-    <!-- Colonne Droite : Encadré de Stage Blanc avec bandeau et liseré Bleu Cobalt -->
+    <!-- Colonne Droite : Encadré de Stage Blanc avec bandeau noir mat épuré -->
     <div class="lg:col-span-5 flex flex-col lg:h-full">
-      <div class="bg-white rounded-2xl shadow-card border-2 border-blue-600/30 overflow-hidden relative lg:h-full flex flex-col justify-between">
+      <div class="bg-white rounded-2xl shadow-card border-2 border-zinc-200 overflow-hidden relative lg:h-full flex flex-col justify-between">
         
-        <!-- Bandeau supérieur Bleu Cobalt épuré sans bulle superflue -->
-        <div class="bg-blue-600 px-6 py-4 text-white flex items-center gap-2.5">
+        <!-- Bandeau supérieur noir mat chic -->
+        <div class="bg-zinc-900 px-6 py-4 text-white flex items-center gap-2.5">
           <Target class="w-5 h-5 text-white shrink-0" />
           <h3 class="font-bold font-title text-base tracking-tight text-white">Recherche de stage 2027</h3>
         </div>
@@ -64,57 +64,57 @@ const { bio, internshipSearch } = profileData;
         <div class="p-6 space-y-5 flex-1 flex flex-col justify-between">
           <div class="space-y-3">
             
-            <div class="flex items-center gap-3 text-sm text-slate-700">
-              <div class="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600 shrink-0">
+            <div class="flex items-center gap-3 text-sm text-zinc-700">
+              <div class="w-8 h-8 rounded-lg bg-zinc-100 flex items-center justify-center text-zinc-900 shrink-0">
                 <Clock class="w-4 h-4" />
               </div>
               <div>
-                <span class="block text-xs text-slate-500 font-medium">Durée</span>
-                <span class="font-bold text-slate-900">{internshipSearch.duration}</span>
+                <span class="block text-xs text-zinc-500 font-medium">Durée</span>
+                <span class="font-bold text-zinc-900">{internshipSearch.duration}</span>
               </div>
             </div>
 
-            <div class="flex items-center gap-3 text-sm text-slate-700">
-              <div class="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600 shrink-0">
+            <div class="flex items-center gap-3 text-sm text-zinc-700">
+              <div class="w-8 h-8 rounded-lg bg-zinc-100 flex items-center justify-center text-zinc-900 shrink-0">
                 <Calendar class="w-4 h-4" />
               </div>
               <div>
-                <span class="block text-xs text-slate-500 font-medium">Période</span>
-                <span class="font-bold text-slate-900">{internshipSearch.period}</span>
+                <span class="block text-xs text-zinc-500 font-medium">Période</span>
+                <span class="font-bold text-zinc-900">{internshipSearch.period}</span>
               </div>
             </div>
 
-            <div class="flex items-center gap-3 text-sm text-slate-700">
-              <div class="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600 shrink-0">
+            <div class="flex items-center gap-3 text-sm text-zinc-700">
+              <div class="w-8 h-8 rounded-lg bg-zinc-100 flex items-center justify-center text-zinc-900 shrink-0">
                 <Award class="w-4 h-4" />
               </div>
               <div>
-                <span class="block text-xs text-slate-500 font-medium">Rôle visé</span>
-                <span class="font-bold text-slate-900">{internshipSearch.title}</span>
+                <span class="block text-xs text-zinc-500 font-medium">Rôle visé</span>
+                <span class="font-bold text-zinc-900">{internshipSearch.title}</span>
               </div>
             </div>
 
-            <div class="flex items-center gap-3 text-sm text-slate-700">
-              <div class="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600 shrink-0">
+            <div class="flex items-center gap-3 text-sm text-zinc-700">
+              <div class="w-8 h-8 rounded-lg bg-zinc-100 flex items-center justify-center text-zinc-900 shrink-0">
                 <MapPin class="w-4 h-4" />
               </div>
               <div>
-                <span class="block text-xs text-slate-500 font-medium">Localisation</span>
-                <span class="font-semibold text-slate-900">{internshipSearch.location}</span>
+                <span class="block text-xs text-zinc-500 font-medium">Localisation</span>
+                <span class="font-semibold text-zinc-900">{internshipSearch.location}</span>
               </div>
             </div>
 
           </div>
 
           <!-- Missions cibles -->
-          <div class="pt-3 border-t border-slate-100">
-            <span class="text-xs uppercase tracking-wider text-slate-400 font-bold block mb-2.5 font-title">
+          <div class="pt-3 border-t border-zinc-100">
+            <span class="text-xs uppercase tracking-wider text-zinc-400 font-bold block mb-2.5 font-title">
               Objectifs ciblés :
             </span>
-            <ul class="text-xs text-slate-600 space-y-2">
+            <ul class="text-xs text-zinc-600 space-y-2">
               {internshipSearch.objectifs.map((obj) => (
                 <li class="flex items-start gap-2">
-                  <span class="w-1.5 h-1.5 rounded-full bg-blue-600 shrink-0 mt-1.5"></span>
+                  <span class="w-1.5 h-1.5 rounded-full bg-zinc-900 shrink-0 mt-1.5"></span>
                   <span class="leading-relaxed">{obj}</span>
                 </li>
               ))}
@@ -124,7 +124,7 @@ const { bio, internshipSearch } = profileData;
           <!-- Bouton CTA vers le contact -->
           <a
             href="#contact"
-            class="flex items-center justify-center gap-2 w-full py-3.5 px-4 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm transition-all duration-200 shadow-sm hover:shadow"
+            class="flex items-center justify-center gap-2 w-full py-3.5 px-4 rounded-xl bg-zinc-900 hover:bg-black text-white font-semibold text-sm transition-all duration-200 shadow-sm hover:shadow"
           >
             <span>{internshipSearch.callToAction}</span>
             <ArrowRight class="w-4 h-4" />

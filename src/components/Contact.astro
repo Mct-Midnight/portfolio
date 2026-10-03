@@ -1,6 +1,6 @@
 ---
 // Section 7 : Contact & Prise de Décision Rapide
-import { MapPin, Phone, Mail, Github, Linkedin, Send, CheckCircle2, MessageSquare, User, AtSign, Tag } from 'lucide-astro';
+import { MapPin, Phone, Mail, Github, Linkedin, Send, CheckCircle2, MessageSquare, User, AtSign, Tag, ShieldCheck } from 'lucide-astro';
 import profileData from '../content/data/profile.json';
 
 const { identity, contact } = profileData;
@@ -24,8 +24,8 @@ const { identity, contact } = profileData;
     <div class="lg:col-span-5 flex flex-col gap-3.5 lg:h-full">
       
       <!-- Carte Localisation -->
-      <div class="flex-1 min-h-[76px] bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-card flex items-center gap-4 hover:border-blue-400 transition-colors">
-        <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+      <div class="flex-1 min-h-[76px] bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-card flex items-center gap-4 hover:border-zinc-400 transition-colors">
+        <div class="w-12 h-12 rounded-xl bg-zinc-100 text-zinc-900 border border-zinc-200 flex items-center justify-center shrink-0">
           <MapPin class="w-5 h-5" />
         </div>
         <div>
@@ -37,14 +37,14 @@ const { identity, contact } = profileData;
       <!-- Carte Email -->
       <a
         href={`mailto:${contact.email}`}
-        class="flex-1 min-h-[76px] bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-card flex items-center gap-4 hover:border-blue-400 group transition-all"
+        class="flex-1 min-h-[76px] bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-card flex items-center gap-4 hover:border-zinc-400 group transition-all"
       >
-        <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+        <div class="w-12 h-12 rounded-xl bg-zinc-100 text-zinc-900 border border-zinc-200 flex items-center justify-center shrink-0 group-hover:bg-zinc-900 group-hover:text-white group-hover:border-zinc-900 transition-colors">
           <Mail class="w-5 h-5" />
         </div>
         <div class="overflow-hidden">
           <span class="text-xs text-slate-500 font-medium block">Adresse électronique</span>
-          <span class="text-sm font-bold text-slate-900 group-hover:text-blue-600 transition-colors truncate block">
+          <span class="text-sm font-bold text-slate-900 group-hover:text-zinc-950 transition-colors truncate block">
             {contact.email}
           </span>
         </div>
@@ -53,14 +53,14 @@ const { identity, contact } = profileData;
       <!-- Carte Téléphone -->
       <a
         href={`tel:${contact.phone.replace(/\s+/g, '')}`}
-        class="flex-1 min-h-[76px] bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-card flex items-center gap-4 hover:border-blue-400 group transition-all"
+        class="flex-1 min-h-[76px] bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-card flex items-center gap-4 hover:border-zinc-400 group transition-all"
       >
-        <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+        <div class="w-12 h-12 rounded-xl bg-zinc-100 text-zinc-900 border border-zinc-200 flex items-center justify-center shrink-0 group-hover:bg-zinc-900 group-hover:text-white group-hover:border-zinc-900 transition-colors">
           <Phone class="w-5 h-5" />
         </div>
         <div>
           <span class="text-xs text-slate-500 font-medium block">Téléphone portable</span>
-          <span class="text-sm font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
+          <span class="text-sm font-bold text-slate-900 group-hover:text-zinc-950 transition-colors">
             {contact.phone}
           </span>
         </div>
@@ -71,14 +71,14 @@ const { identity, contact } = profileData;
         href={contact.linkedin}
         target="_blank"
         rel="noopener noreferrer"
-        class="flex-1 min-h-[76px] bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-card flex items-center gap-4 hover:border-blue-400 group transition-all"
+        class="flex-1 min-h-[76px] bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-card flex items-center gap-4 hover:border-zinc-400 group transition-all"
       >
-        <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+        <div class="w-12 h-12 rounded-xl bg-zinc-100 text-zinc-900 border border-zinc-200 flex items-center justify-center shrink-0 group-hover:bg-zinc-900 group-hover:text-white group-hover:border-zinc-900 transition-colors">
           <Linkedin class="w-5 h-5" />
         </div>
         <div>
           <span class="text-xs text-slate-500 font-medium block">Réseau professionnel</span>
-          <span class="text-sm font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
+          <span class="text-sm font-bold text-slate-900 group-hover:text-zinc-950 transition-colors">
             LinkedIn / {identity.firstName} {identity.lastName}
           </span>
         </div>
@@ -89,14 +89,14 @@ const { identity, contact } = profileData;
         href={contact.github}
         target="_blank"
         rel="noopener noreferrer"
-        class="flex-1 min-h-[76px] bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-card flex items-center gap-4 hover:border-blue-400 group transition-all"
+        class="flex-1 min-h-[76px] bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-card flex items-center gap-4 hover:border-zinc-400 group transition-all"
       >
-        <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+        <div class="w-12 h-12 rounded-xl bg-zinc-100 text-zinc-900 border border-zinc-200 flex items-center justify-center shrink-0 group-hover:bg-zinc-900 group-hover:text-white group-hover:border-zinc-900 transition-colors">
           <Github class="w-5 h-5" />
         </div>
         <div>
           <span class="text-xs text-slate-500 font-medium block">Dépôts & Code source</span>
-          <span class="text-sm font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
+          <span class="text-sm font-bold text-slate-900 group-hover:text-zinc-950 transition-colors">
             {contact.github.replace(/^https?:\/\//, '')}
           </span>
         </div>
@@ -119,7 +119,7 @@ const { identity, contact } = profileData;
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label for="name" class="block text-xs font-bold font-title text-slate-700 uppercase tracking-wider mb-1.5">
-                Nom & Prénom <span class="text-blue-600">*</span>
+                Nom & Prénom <span class="text-zinc-900">*</span>
               </label>
               <div class="relative">
                 <input
@@ -128,7 +128,7 @@ const { identity, contact } = profileData;
                   name="name"
                   required
                   placeholder="Jean Dupont"
-                  class="w-full px-3.5 py-2.5 pl-10 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-600/30 focus:border-blue-600 text-sm bg-slate-50 text-slate-900 transition-colors"
+                  class="w-full px-3.5 py-2.5 pl-10 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-zinc-900/20 focus:border-zinc-900 text-sm bg-slate-50 text-slate-900 transition-colors"
                 />
                 <User class="w-4 h-4 text-slate-400 absolute left-3.5 top-3" />
               </div>
@@ -136,7 +136,7 @@ const { identity, contact } = profileData;
 
             <div>
               <label for="email" class="block text-xs font-bold font-title text-slate-700 uppercase tracking-wider mb-1.5">
-                Adresse E-mail <span class="text-blue-600">*</span>
+                Adresse E-mail <span class="text-zinc-900">*</span>
               </label>
               <div class="relative">
                 <input
@@ -145,7 +145,7 @@ const { identity, contact } = profileData;
                   name="email"
                   required
                   placeholder="jean.dupont@entreprise.com"
-                  class="w-full px-3.5 py-2.5 pl-10 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-600/30 focus:border-blue-600 text-sm bg-slate-50 text-slate-900 transition-colors"
+                  class="w-full px-3.5 py-2.5 pl-10 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-zinc-900/20 focus:border-zinc-900 text-sm bg-slate-50 text-slate-900 transition-colors"
                 />
                 <AtSign class="w-4 h-4 text-slate-400 absolute left-3.5 top-3" />
               </div>
@@ -155,14 +155,14 @@ const { identity, contact } = profileData;
           <!-- Ligne 2 : Objet de la prise de contact -->
           <div>
             <label for="subject" class="block text-xs font-bold font-title text-slate-700 uppercase tracking-wider mb-1.5">
-              Objet de la démarche <span class="text-blue-600">*</span>
+              Objet de la démarche <span class="text-zinc-900">*</span>
             </label>
             <div class="relative">
               <select
                 id="subject"
                 name="subject"
                 required
-                class="w-full px-3.5 py-2.5 pl-10 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-600/30 focus:border-blue-600 text-sm bg-slate-50 text-slate-900 transition-colors appearance-none"
+                class="w-full px-3.5 py-2.5 pl-10 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-zinc-900/20 focus:border-zinc-900 text-sm bg-slate-50 text-slate-900 transition-colors appearance-none"
               >
                 <option value="Proposition de stage 2027 (SLAM)">🎯 Proposition de stage 2027 (SLAM)</option>
                 <option value="Question relative à l'Épreuve E4 / CNED">📚 Échange académique / Épreuve E4</option>
@@ -176,7 +176,7 @@ const { identity, contact } = profileData;
           <!-- Ligne 3 : Message -->
           <div>
             <label for="message" class="block text-xs font-bold font-title text-slate-700 uppercase tracking-wider mb-1.5">
-              Votre message <span class="text-blue-600">*</span>
+              Votre message <span class="text-zinc-900">*</span>
             </label>
             <div class="relative">
               <textarea
@@ -185,16 +185,16 @@ const { identity, contact } = profileData;
                 rows="4"
                 required
                 placeholder="Bonjour Quentin, nous souhaitons vous proposer un entretien pour une mission de stage..."
-                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-600/30 focus:border-blue-600 text-sm bg-slate-50 text-slate-900 transition-colors"
+                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-zinc-900/20 focus:border-zinc-900 text-sm bg-slate-50 text-slate-900 transition-colors"
               ></textarea>
             </div>
           </div>
 
-          <!-- Bouton de soumission en Bleu Cobalt -->
+          <!-- Bouton de soumission en Noir Mat -->
           <button
             type="submit"
             id="submit-btn"
-            class="inline-flex items-center justify-center gap-2 w-full py-3.5 px-6 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
+            class="inline-flex items-center justify-center gap-2 w-full py-3.5 px-6 rounded-xl bg-zinc-900 hover:bg-black text-white font-semibold text-sm transition-all duration-200 shadow-sm hover:shadow transform hover:-translate-y-0.5"
           >
             <Send class="w-4 h-4" />
             <span>Envoyer le message</span>
@@ -208,6 +208,37 @@ const { identity, contact } = profileData;
       </div>
     </div>
 
+  </div>
+
+  <!-- Bandeau pleine largeur : Coordonnées protégées (RGPD & CNIL) -->
+  <div class="mt-8 p-4 sm:p-5 rounded-2xl bg-white border border-slate-200 shadow-card flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+    <div class="flex items-start sm:items-center gap-3.5">
+      <div class="w-10 h-10 rounded-xl bg-zinc-100 text-zinc-900 flex items-center justify-center shrink-0 border border-zinc-200">
+        <ShieldCheck class="w-5 h-5" />
+      </div>
+      <div>
+        <h4 class="text-xs sm:text-sm font-bold font-title text-slate-900">Coordonnées protégées (RGPD & CNIL)</h4>
+        <p class="text-xs text-slate-500 mt-0.5">
+          Publiées dans le cadre de l'évaluation BTS SIO et de la recherche de stage. Tout démarchage ou collecte automatisée est strictement interdit.
+        </p>
+      </div>
+    </div>
+    <div class="flex items-center gap-2.5 shrink-0 self-end sm:self-center">
+      <a
+        href="/mentions-legales"
+        class="inline-flex items-center gap-1.5 text-xs font-semibold text-zinc-900 hover:text-black py-2 px-3 rounded-xl bg-zinc-100 hover:bg-zinc-200/70 border border-zinc-200 transition-colors"
+      >
+        <span>Mentions légales →</span>
+      </a>
+      <a
+        href="https://www.cnil.fr/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-1 text-xs font-medium text-slate-600 hover:text-slate-900 py-2 px-3 rounded-xl border border-slate-200 hover:bg-slate-50 transition-colors"
+      >
+        <span>Site officiel CNIL ↗</span>
+      </a>
+    </div>
   </div>
 </section>
 

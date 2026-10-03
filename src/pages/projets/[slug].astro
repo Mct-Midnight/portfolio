@@ -79,9 +79,9 @@ const statusDetails = getStatusDetails(project.data.status);
         <div class="mb-6">
           <a
             href="/#projets"
-            class="inline-flex items-center gap-2 text-xs font-bold font-title text-slate-900 hover:text-blue-600 transition-colors py-2 px-3 rounded-lg hover:bg-white border border-transparent hover:border-slate-200"
+            class="inline-flex items-center gap-2 text-xs font-bold font-title text-slate-900 hover:text-zinc-950 transition-colors py-2 px-3 rounded-lg hover:bg-white border border-transparent hover:border-slate-200"
           >
-            <ArrowLeft class="w-4 h-4 text-blue-600" />
+            <ArrowLeft class="w-4 h-4 text-zinc-900" />
             <span>Retour à la liste des réalisations</span>
           </a>
         </div>
@@ -102,12 +102,12 @@ const statusDetails = getStatusDetails(project.data.status);
                   </>
                 ) : project.data.category === 'scolaire' ? (
                   <>
-                    <BookOpen class="w-3.5 h-3.5 text-sky-400" />
+                    <BookOpen class="w-3.5 h-3.5 text-zinc-400" />
                     <span>Scolaire</span>
                   </>
                 ) : (
                   <>
-                    <Briefcase class="w-3.5 h-3.5 text-blue-400" />
+                    <Briefcase class="w-3.5 h-3.5 text-zinc-400" />
                     <span>Professionnel</span>
                   </>
                 )}
@@ -122,7 +122,7 @@ const statusDetails = getStatusDetails(project.data.status);
 
             <!-- Période de réalisation -->
             <div class="inline-flex items-center gap-1.5 text-xs font-medium text-slate-500">
-              <Calendar class="w-3.5 h-3.5 text-blue-600" />
+              <Calendar class="w-3.5 h-3.5 text-zinc-900" />
               <span>Du {project.data.dateStart} au {project.data.dateEnd}</span>
             </div>
 
@@ -133,14 +133,14 @@ const statusDetails = getStatusDetails(project.data.status);
             {project.data.title}
           </h1>
 
-          <!-- Technologies mobilisées (Pastilles Bleu Feutré) -->
+          <!-- Technologies mobilisées (Pastilles Titane) -->
           <div class="space-y-2">
             <span class="text-xs uppercase tracking-wider text-slate-400 font-bold block font-title">
               Technologies & Outils Mobilisés :
             </span>
             <div class="flex flex-wrap gap-2">
               {project.data.tags.map((tag) => (
-                <span class="px-3 py-1 rounded-lg bg-blue-50 text-blue-800 text-xs font-medium border border-blue-100">
+                <span class="px-3 py-1 rounded-lg bg-zinc-100 text-zinc-800 text-xs font-medium border border-zinc-200">
                   {tag}
                 </span>
               ))}
@@ -157,7 +157,7 @@ const statusDetails = getStatusDetails(project.data.status);
                   rel="noopener noreferrer"
                   class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold shadow-sm transition-colors border border-slate-800 group"
                 >
-                  <Github class="w-4 h-4 text-blue-400" />
+                  <Github class="w-4 h-4 text-zinc-400" />
                   <span>Dépôt GitHub du projet</span>
                   <ExternalLink class="w-3 h-3 opacity-60 group-hover:opacity-100" />
                 </a>
@@ -168,7 +168,7 @@ const statusDetails = getStatusDetails(project.data.status);
                   href={project.data.demoUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold shadow-sm transition-colors"
+                  class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-zinc-900 hover:bg-black text-white text-xs font-semibold shadow-sm transition-colors"
                 >
                   <ExternalLink class="w-4 h-4" />
                   <span>Démonstration en direct</span>
@@ -178,8 +178,8 @@ const statusDetails = getStatusDetails(project.data.status);
           )}
 
           <!-- Badge Référentiel Officiel E4 -->
-          <div class="bg-blue-50/60 p-3 rounded-xl border border-blue-100 flex items-center gap-3 text-xs text-slate-700">
-            <ShieldCheck class="w-5 h-5 text-blue-600 shrink-0" />
+          <div class="bg-zinc-50 p-3 rounded-xl border border-zinc-200 flex items-center gap-3 text-xs text-slate-700">
+            <ShieldCheck class="w-5 h-5 text-zinc-900 shrink-0" />
             <span>
               <strong>Document certifié pour l'Épreuve E4 :</strong> Les compétences justifiées en fin d'étude de cas correspondent à la nomenclature officielle du Bloc 1 (BTS SIO SLAM).
             </span>
@@ -207,7 +207,7 @@ const statusDetails = getStatusDetails(project.data.status);
             </a>
             <a
               href="/#contact"
-              class="px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold transition-colors"
+              class="px-4 py-2.5 rounded-xl bg-zinc-900 hover:bg-black text-white text-xs font-semibold transition-colors"
             >
               Me contacter
             </a>
@@ -215,7 +215,7 @@ const statusDetails = getStatusDetails(project.data.status);
         </div>
 
         <!-- Footer -->
-        <Footer />
+        <Footer currentPath={`/projets/${project.slug}`} />
 
       </main>
 

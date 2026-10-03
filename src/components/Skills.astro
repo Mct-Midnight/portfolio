@@ -103,7 +103,7 @@ const categoryIconMap: Record<string, any> = {
           <!-- Titre de catégorie avec icône thématique et compteur -->
           <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
             <h3 class="text-base font-bold font-title text-slate-900 flex items-center gap-2.5">
-              <span class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+              <span class="w-8 h-8 rounded-lg bg-zinc-100 text-zinc-900 border border-zinc-200 flex items-center justify-center shrink-0">
                 <CatIcon class="w-4 h-4" />
               </span>
               <span>{cat.title}</span>
@@ -120,14 +120,14 @@ const categoryIconMap: Record<string, any> = {
               return (
                 <button
                   type="button"
-                  class="skill-card bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-card hover:shadow-card-hover hover:-translate-y-1 hover:border-blue-400 transition-all duration-200 flex flex-col items-center justify-center text-center gap-3 group min-h-[120px] cursor-pointer w-full focus:outline-none focus:ring-2 focus:ring-blue-600/40"
+                  class="skill-card bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-card hover:shadow-card-hover hover:-translate-y-1 hover:border-zinc-400 transition-all duration-200 flex flex-col items-center justify-center text-center gap-3 group min-h-[120px] cursor-pointer w-full focus:outline-none focus:ring-2 focus:ring-zinc-900/40"
                   data-name={skill.name}
                   data-description={skill.description}
                   title={`Cliquer pour voir la description de ${skill.name}`}
                 >
                   
                   <!-- Conteneur d'icône plus spacieux -->
-                  <div class="skill-icon-source w-14 h-14 rounded-xl bg-slate-50 group-hover:bg-blue-50 flex items-center justify-center text-slate-700 group-hover:text-blue-600 transition-colors">
+                  <div class="skill-icon-source w-14 h-14 rounded-xl bg-slate-50 group-hover:bg-zinc-100 flex items-center justify-center text-slate-700 group-hover:text-zinc-900 transition-colors">
                     {skill.iconKey ? (
                       <i
                         class={`${skill.iconKey} colored text-3xl transition-transform group-hover:scale-110`}
@@ -151,7 +151,7 @@ const categoryIconMap: Record<string, any> = {
                   </div>
 
                   <!-- Nom clair et lisible de la compétence -->
-                  <span class="text-sm font-semibold text-slate-700 group-hover:text-blue-600 transition-colors leading-snug">
+                  <span class="text-sm font-semibold text-slate-700 group-hover:text-zinc-900 transition-colors leading-snug">
                     {skill.name}
                   </span>
 
@@ -182,7 +182,7 @@ const categoryIconMap: Record<string, any> = {
         id="skill-modal-close"
         type="button"
         aria-label="Fermer la fiche"
-        class="absolute top-4 right-4 p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-600 cursor-pointer"
+        class="absolute top-4 right-4 p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors focus:outline-none focus:ring-2 focus:ring-zinc-900 cursor-pointer"
       >
         <X class="w-5 h-5" />
       </button>

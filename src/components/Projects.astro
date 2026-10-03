@@ -1,7 +1,7 @@
 ---
 // Section 6 : Projets & Réalisations (Études de Cas pour l'Épreuve E4)
 import { getCollection } from 'astro:content';
-import { ArrowUpRight, Github, BookOpen, Briefcase, Rocket, Layers, ExternalLink } from 'lucide-astro';
+import { ArrowUpRight, Github, BookOpen, Briefcase, Rocket, Layers, ExternalLink, X, FileText } from 'lucide-astro';
 
 // Récupération de tous les projets enregistrés dans Content Collections
 const allProjects = await getCollection('projects');
@@ -72,7 +72,7 @@ function getStatusBadge(status: string) {
         class="project-filter-btn active-tab inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all duration-200 bg-white text-slate-900 shadow-sm"
       >
         <span>Tous</span>
-        <span class="count-badge px-2 py-0.5 rounded-full text-[10px] font-bold bg-blue-50 text-blue-700 border border-blue-100/80">
+        <span class="count-badge px-2 py-0.5 rounded-full text-[10px] font-bold bg-zinc-900 text-white">
           {allProjects.length}
         </span>
       </button>
@@ -131,7 +131,7 @@ function getStatusBadge(status: string) {
                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
               />
               <div class="hidden w-full h-full bg-slate-900 text-slate-200 flex-col items-center justify-center p-4 text-center">
-                <Layers class="w-8 h-8 text-blue-400 mb-2" />
+                <Layers class="w-8 h-8 text-zinc-400 mb-2" />
                 <span class="text-xs font-semibold font-title">{project.data.title}</span>
               </div>
 
@@ -156,12 +156,12 @@ function getStatusBadge(status: string) {
                     </>
                   ) : project.data.category === 'professionnel' ? (
                     <>
-                      <Briefcase class="w-3.5 h-3.5 text-blue-400" />
+                      <Briefcase class="w-3.5 h-3.5 text-zinc-400" />
                       <span>Professionnel</span>
                     </>
                   ) : (
                     <>
-                      <BookOpen class="w-3.5 h-3.5 text-sky-400" />
+                      <BookOpen class="w-3.5 h-3.5 text-zinc-400" />
                       <span>Scolaire</span>
                     </>
                   )}
@@ -172,8 +172,12 @@ function getStatusBadge(status: string) {
             <!-- Contenu textuel de la carte -->
             <div class="p-6 space-y-3">
               <!-- Titre du projet -->
-              <h3 class="text-lg font-bold font-title text-slate-900 group-hover:text-blue-600 transition-colors leading-snug tracking-tight">
-                <a href={`/projets/${project.slug}`}>
+              <h3 class="text-lg font-bold font-title text-slate-900 group-hover:text-zinc-950 transition-colors leading-snug tracking-tight">
+                <a
+                  href={`/projets/${project.slug}`}
+                  class="project-modal-trigger cursor-pointer"
+                  data-project-title={project.data.title}
+                >
                   {project.data.title}
                 </a>
               </h3>
@@ -196,10 +200,11 @@ function getStatusBadge(status: string) {
 
           <!-- Pied de carte épuré : action principale et liens secondaires -->
           <div class="px-6 py-4 bg-slate-50/60 border-t border-slate-100 flex items-center justify-between gap-3 mt-auto">
-            <!-- Bouton principal : Consulter l'étude de cas -->
+            <!-- Bouton principal : Consulter l'étude de cas (Ouvre la modale d'information) -->
             <a
               href={`/projets/${project.slug}`}
-              class="inline-flex items-center gap-1.5 text-xs font-bold text-blue-600 hover:text-blue-700 transition-colors group/link py-1"
+              class="project-modal-trigger inline-flex items-center gap-1.5 text-xs font-bold text-zinc-900 hover:text-black transition-colors group/link py-1 cursor-pointer"
+              data-project-title={project.data.title}
             >
               <span>Consulter l'étude de cas</span>
               <ArrowUpRight class="w-3.5 h-3.5 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
@@ -212,7 +217,8 @@ function getStatusBadge(status: string) {
                   href={project.data.repoUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-500 hover:text-slate-900 hover:bg-white hover:border-slate-200 border border-transparent hover:shadow-xs transition-all"
+                  class="repo-modal-trigger inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-500 hover:text-slate-900 hover:bg-white hover:border-slate-200 border border-transparent hover:shadow-xs transition-all cursor-pointer"
+                  data-project-title={project.data.title}
                   title="Code source sur GitHub"
                 >
                   <Github class="w-3.5 h-3.5" />
@@ -238,9 +244,121 @@ function getStatusBadge(status: string) {
       );
     })}
   </div>
+
+  <!-- Fenêtre modale d'information : Étude de cas en cours de rédaction -->
+  <div
+    id="project-wip-modal-backdrop"
+    class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 hidden opacity-0 transition-opacity duration-200 flex items-center justify-center p-4"
+    aria-hidden="true"
+  >
+    <div
+      id="project-wip-modal-card"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="project-wip-modal-title"
+      class="bg-white rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl border border-slate-200 transform scale-95 transition-all duration-200 relative flex flex-col items-center text-center"
+    >
+      <!-- Bouton de fermeture instantanée avec croix -->
+      <button
+        id="project-wip-modal-close"
+        type="button"
+        aria-label="Fermer la fenêtre d'information"
+        class="absolute top-4 right-4 p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors focus:outline-none focus:ring-2 focus:ring-zinc-900 cursor-pointer"
+      >
+        <X class="w-5 h-5" />
+      </button>
+
+      <!-- Icône thématique centrale sobre et professionnelle (Fiche documentaire) -->
+      <div class="w-20 h-20 rounded-2xl bg-zinc-100 border border-zinc-200 flex items-center justify-center mb-5 text-zinc-900 shadow-inner">
+        <FileText class="w-9 h-9 text-zinc-900" />
+      </div>
+
+      <!-- Titre principal de la modale -->
+      <h3 id="project-wip-modal-title" class="text-2xl font-black font-title text-slate-900 tracking-tight mb-2">
+        Étude de cas bientôt disponible
+      </h3>
+
+      <!-- Nom du projet sélectionné -->
+      <div class="mb-4 px-3.5 py-1.5 rounded-xl bg-slate-100/90 text-slate-800 text-xs font-semibold max-w-full border border-slate-200/80">
+        <span id="project-wip-modal-name"></span>
+      </div>
+
+      <!-- Explication pédagogique et professionnelle -->
+      <p class="text-sm text-slate-600 leading-relaxed font-normal mb-6">
+        La fiche descriptive complète ainsi que l'analyse technique détaillée de cette réalisation sont actuellement en cours d'écriture et de consolidation.
+        <br class="hidden sm:inline" />
+        Cette documentation sera accessible très prochainement.
+      </p>
+
+      <!-- Bouton de confirmation pour fermer la fenêtre -->
+      <button
+        id="project-wip-modal-btn"
+        type="button"
+        class="w-full py-3 px-5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition-all shadow-sm focus:outline-none focus:ring-2 focus:ring-zinc-900 cursor-pointer"
+      >
+        Compris
+      </button>
+    </div>
+  </div>
+
+  <!-- Fenêtre modale d'information : Code source / Dépôt GitHub -->
+  <div
+    id="repo-wip-modal-backdrop"
+    class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 hidden opacity-0 transition-opacity duration-200 flex items-center justify-center p-4"
+    aria-hidden="true"
+  >
+    <div
+      id="repo-wip-modal-card"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="repo-wip-modal-title"
+      class="bg-white rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl border border-slate-200 transform scale-95 transition-all duration-200 relative flex flex-col items-center text-center"
+    >
+      <!-- Bouton de fermeture instantanée avec croix -->
+      <button
+        id="repo-wip-modal-close"
+        type="button"
+        aria-label="Fermer la fenêtre d'information"
+        class="absolute top-4 right-4 p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-600 cursor-pointer"
+      >
+        <X class="w-5 h-5" />
+      </button>
+
+      <!-- Icône officielle GitHub dans un écrin sobre et moderne -->
+      <div class="w-20 h-20 rounded-2xl bg-slate-100 border border-slate-200/80 flex items-center justify-center mb-5 text-slate-800 shadow-inner">
+        <Github class="w-9 h-9 text-slate-900" />
+      </div>
+
+      <!-- Titre principal de la modale -->
+      <h3 id="repo-wip-modal-title" class="text-2xl font-black font-title text-slate-900 tracking-tight mb-2">
+        Code source bientôt accessible
+      </h3>
+
+      <!-- Nom du projet sélectionné -->
+      <div class="mb-4 px-3.5 py-1.5 rounded-xl bg-slate-100/90 text-slate-800 text-xs font-semibold max-w-full border border-slate-200/80">
+        <span id="repo-wip-modal-name"></span>
+      </div>
+
+      <!-- Explication professionnelle et soignée -->
+      <p class="text-sm text-slate-600 leading-relaxed font-normal mb-6">
+        Le dépôt GitHub associé à cette réalisation est actuellement en cours de préparation, de nettoyage ou maintenu en accès privé pour des raisons de confidentialité.
+        <br class="hidden sm:inline" />
+        Le code sera consultable publiquement dès son officialisation.
+      </p>
+
+      <!-- Bouton de confirmation pour fermer la fenêtre -->
+      <button
+        id="repo-wip-modal-btn"
+        type="button"
+        class="w-full py-3 px-5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition-all shadow-sm focus:outline-none focus:ring-2 focus:ring-slate-600 cursor-pointer"
+      >
+        Compris
+      </button>
+    </div>
+  </div>
 </section>
 
-<!-- Script interactif de filtrage des projets (Onglets & Navigation globale) -->
+<!-- Script interactif de filtrage des projets et gestion de la modale -->
 <script>
   function setupProjectFilters() {
     const buttons = document.querySelectorAll<HTMLButtonElement>('.project-filter-btn');
@@ -256,14 +374,14 @@ function getStatusBadge(status: string) {
           btn.classList.add('bg-white', 'text-slate-900', 'shadow-sm', 'font-semibold');
           btn.classList.remove('text-slate-600', 'font-medium', 'hover:bg-slate-200/50');
           if (countBadge) {
-            countBadge.classList.add('bg-blue-50', 'text-blue-700', 'border', 'border-blue-100/80', 'font-bold');
+            countBadge.classList.add('bg-zinc-900', 'text-white', 'font-bold');
             countBadge.classList.remove('bg-slate-200/80', 'text-slate-600', 'font-semibold');
           }
         } else {
           btn.classList.remove('bg-white', 'text-slate-900', 'shadow-sm', 'font-semibold');
           btn.classList.add('text-slate-600', 'font-medium', 'hover:bg-slate-200/50');
           if (countBadge) {
-            countBadge.classList.remove('bg-blue-50', 'text-blue-700', 'border', 'border-blue-100/80', 'font-bold');
+            countBadge.classList.remove('bg-zinc-900', 'text-white', 'font-bold');
             countBadge.classList.add('bg-slate-200/80', 'text-slate-600', 'font-semibold');
           }
         }
@@ -295,6 +413,136 @@ function getStatusBadge(status: string) {
     });
   }
 
+  // Gestion de la modale d'information pour les études de cas en cours d'écriture
+  function setupProjectModals() {
+    const wipModalBackdrop = document.getElementById('project-wip-modal-backdrop');
+    const wipModalCard = document.getElementById('project-wip-modal-card');
+    const wipModalClose = document.getElementById('project-wip-modal-close');
+    const wipModalBtn = document.getElementById('project-wip-modal-btn');
+    const wipModalName = document.getElementById('project-wip-modal-name');
+    const projectTriggers = document.querySelectorAll('.project-modal-trigger');
+
+    function openWipModal(projectName: string) {
+      if (!wipModalBackdrop || !wipModalCard || !wipModalName) return;
+
+      wipModalName.textContent = projectName;
+      wipModalBackdrop.classList.remove('hidden');
+      setTimeout(() => {
+        wipModalBackdrop.classList.add('opacity-100');
+        wipModalCard.classList.remove('scale-95');
+        wipModalCard.classList.add('scale-100');
+      }, 10);
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeWipModal() {
+      if (!wipModalBackdrop || !wipModalCard) return;
+      wipModalBackdrop.classList.remove('opacity-100');
+      wipModalCard.classList.remove('scale-100');
+      wipModalCard.classList.add('scale-95');
+      setTimeout(() => {
+        wipModalBackdrop.classList.add('hidden');
+      }, 200);
+      document.body.style.overflow = '';
+    }
+
+    projectTriggers.forEach((trigger) => {
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        const title = trigger.getAttribute('data-project-title') || 'Projet sélectionné';
+        openWipModal(title);
+      });
+    });
+
+    if (wipModalClose) {
+      wipModalClose.addEventListener('click', closeWipModal);
+    }
+
+    if (wipModalBtn) {
+      wipModalBtn.addEventListener('click', closeWipModal);
+    }
+
+    if (wipModalBackdrop) {
+      wipModalBackdrop.addEventListener('click', (e) => {
+        if (e.target === wipModalBackdrop) {
+          closeWipModal();
+        }
+      });
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && wipModalBackdrop && !wipModalBackdrop.classList.contains('hidden')) {
+        closeWipModal();
+      }
+    });
+  }
+
+  // Gestion de la modale pour le code source GitHub
+  function setupRepoModals() {
+    const repoModalBackdrop = document.getElementById('repo-wip-modal-backdrop');
+    const repoModalCard = document.getElementById('repo-wip-modal-card');
+    const repoModalClose = document.getElementById('repo-wip-modal-close');
+    const repoModalBtn = document.getElementById('repo-wip-modal-btn');
+    const repoModalName = document.getElementById('repo-wip-modal-name');
+    const repoTriggers = document.querySelectorAll('.repo-modal-trigger');
+
+    function openRepoModal(projectName: string) {
+      if (!repoModalBackdrop || !repoModalCard || !repoModalName) return;
+
+      repoModalName.textContent = projectName;
+      repoModalBackdrop.classList.remove('hidden');
+      setTimeout(() => {
+        repoModalBackdrop.classList.add('opacity-100');
+        repoModalCard.classList.remove('scale-95');
+        repoModalCard.classList.add('scale-100');
+      }, 10);
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeRepoModal() {
+      if (!repoModalBackdrop || !repoModalCard) return;
+      repoModalBackdrop.classList.remove('opacity-100');
+      repoModalCard.classList.remove('scale-100');
+      repoModalCard.classList.add('scale-95');
+      setTimeout(() => {
+        repoModalBackdrop.classList.add('hidden');
+      }, 200);
+      document.body.style.overflow = '';
+    }
+
+    repoTriggers.forEach((trigger) => {
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        const title = trigger.getAttribute('data-project-title') || 'Projet sélectionné';
+        openRepoModal(title);
+      });
+    });
+
+    if (repoModalClose) {
+      repoModalClose.addEventListener('click', closeRepoModal);
+    }
+
+    if (repoModalBtn) {
+      repoModalBtn.addEventListener('click', closeRepoModal);
+    }
+
+    if (repoModalBackdrop) {
+      repoModalBackdrop.addEventListener('click', (e) => {
+        if (e.target === repoModalBackdrop) {
+          closeRepoModal();
+        }
+      });
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && repoModalBackdrop && !repoModalBackdrop.classList.contains('hidden')) {
+        closeRepoModal();
+      }
+    });
+  }
+
   // Initialisation lors du chargement de la page
   setupProjectFilters();
+  setupProjectModals();
+  setupRepoModals();
 </script>
