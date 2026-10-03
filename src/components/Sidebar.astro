@@ -352,7 +352,7 @@ const basePath = isHome ? '' : '/';
     });
   });
 
-  // Détection et mise en surbrillance automatique de l'onglet actif (Bleu Cobalt)
+  // Détection et mise en surbrillance automatique de l'onglet actif (Monochrome Mat)
   const sections = document.querySelectorAll('section[id]');
   const mainNavLinks = document.querySelectorAll('.nav-link');
 
@@ -370,7 +370,7 @@ const basePath = isHome ? '' : '/';
             link.classList.remove('text-zinc-400', 'hover:bg-zinc-800/80', 'hover:text-white');
             const icon = link.querySelector('svg');
             if (icon) {
-              icon.classList.remove('text-zinc-400');
+              icon.classList.remove('text-zinc-400', 'group-hover:text-white');
               icon.classList.add('text-zinc-950');
             }
           } else {
@@ -378,7 +378,7 @@ const basePath = isHome ? '' : '/';
             link.classList.add('text-zinc-400', 'hover:bg-zinc-800/80', 'hover:text-white');
             const icon = link.querySelector('svg');
             if (icon) {
-              icon.classList.add('text-zinc-400');
+              icon.classList.add('text-zinc-400', 'group-hover:text-white');
               icon.classList.remove('text-zinc-950');
             }
           }
@@ -390,3 +390,11 @@ const basePath = isHome ? '' : '/';
   window.addEventListener('scroll', highlightActiveNav, { passive: true });
   highlightActiveNav();
 </script>
+
+<style>
+  /* Maintien strict de la couleur noire de l'icône sur l'onglet actif, même au survol de la souris */
+  :global(.nav-link.bg-white svg),
+  :global(.nav-link.bg-white:hover svg) {
+    color: #09090b !important;
+  }
+</style>
