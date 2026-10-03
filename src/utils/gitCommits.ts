@@ -157,12 +157,13 @@ function parseCommitMessage(message: string): {
   };
 }
 
-// Récupération des commits via le dépôt Git local
+// Récupération de l'ensemble des commits via le dépôt Git local (historique complet sans limite)
 function getLocalGitCommits(): GitCommit[] {
   try {
     // Délimiteur unique pour séparer les champs en toute fiabilité
     const delimiter = '___DELIMITER___';
-    const command = `git log -n 50 --pretty=format:%H${delimiter}%h${delimiter}%ad${delimiter}%an${delimiter}%s --date=iso`;
+    // Extraction de la totalité de l'historique pour des statistiques 100% fidèles
+    const command = `git log --pretty=format:%H${delimiter}%h${delimiter}%ad${delimiter}%an${delimiter}%s --date=iso`;
     const output = execSync(command, { encoding: 'utf-8', stdio: ['pipe', 'pipe', 'pipe'] });
 
     const lines = output.trim().split('\n').filter(Boolean);
@@ -204,7 +205,7 @@ function getLocalGitCommits(): GitCommit[] {
 async function getRemoteGithubCommits(): Promise<GitCommit[]> {
   try {
     const response = await fetch(
-      'https://api.github.com/repos/Mct-Midnight/portfolio/commits?per_page=50',
+      'https://api.github.com/repos/Mct-Midnight/portfolio/commits?per_page=100',
       {
         headers: {
           'User-Agent': 'Portfolio-Astro-App',

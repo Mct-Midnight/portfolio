@@ -16,7 +16,9 @@ import {
   Layers,
   Sparkles,
   ShieldCheck,
-  Tag
+  Tag,
+  ChevronDown,
+  History
 } from 'lucide-astro';
 
 // Récupération asynchrone des commits lors de la génération de la page Astro
@@ -63,7 +65,7 @@ const latestCommit = commits[0];
                 <GitBranch class="w-5 h-5" />
               </span>
               <span class="text-xs font-bold text-zinc-900 uppercase tracking-widest font-title">
-                Bloc 1 BTS SIO · Gestion du Patrimoine Informatique
+                Traçabilité & Gestion du Patrimoine Informatique
               </span>
             </div>
 
@@ -231,6 +233,22 @@ const latestCommit = commits[0];
           ))}
         </div>
 
+        <!-- Bouton interactif pour dérouler l'intégralité des commits -->
+        {totalCommits > 10 && (
+          <div class="pt-6 flex justify-center" id="show-more-container">
+            <button
+              type="button"
+              id="toggle-all-commits-btn"
+              class="inline-flex items-center gap-2.5 px-6 py-3 rounded-xl bg-white hover:bg-zinc-50 text-zinc-900 font-semibold text-xs border border-zinc-200 shadow-sm hover:shadow transition-all group active:scale-[0.98]"
+              title="Afficher la totalité des commits enregistrés depuis le début"
+            >
+              <History class="w-4 h-4 text-zinc-600 group-hover:scale-110 transition-transform" />
+              <span id="toggle-commits-text">Afficher l'ensemble des livraisons (+{totalCommits - 10} commits)</span>
+              <ChevronDown id="toggle-commits-icon" class="w-4 h-4 text-zinc-400 group-hover:text-zinc-900 transition-transform duration-300" />
+            </button>
+          </div>
+        )}
+
         <!-- Encadré méthodologique et pédagogique pour le jury BTS SIO -->
         <section class="mt-12 bg-zinc-50 rounded-2xl p-6 sm:p-7 border border-zinc-200 shadow-soft">
           <div class="flex items-start gap-4">
@@ -239,11 +257,10 @@ const latestCommit = commits[0];
             </span>
             <div class="space-y-2">
               <h2 class="text-base font-bold text-slate-900 font-title">
-                Démarche de Gestion de Configuration & Qualité Logicielle (Épreuve E4)
+                Gestion de Configuration, Versioning & Démarche Qualité
               </h2>
               <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Ce journal de bord témoigne de la régularité et de la rigueur appliquées dans le cadre du
-                <strong>Bloc 1 du BTS SIO</strong>. Chaque livraison suit un protocole strict :
+                Ce journal de bord témoigne de la régularité et de la rigueur appliquées dans la gestion de version et l'assurance qualité logicielle. Chaque livraison suit un protocole strict :
               </p>
               <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-2 text-xs text-slate-700">
                 <li class="flex items-center gap-2">
@@ -275,16 +292,79 @@ const latestCommit = commits[0];
   </div>
 </Layout>
 
-<!-- Script interactif de filtrage des commits côté client -->
+<!-- Script interactif de filtrage et d'extension complète de l'historique -->
 <script>
   const filterButtons = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
   const commitCards = document.querySelectorAll<HTMLElement>('.commit-card');
+  const toggleBtn = document.getElementById('toggle-all-commits-btn') as HTMLButtonElement | null;
+  const toggleText = document.getElementById('toggle-commits-text');
+  const toggleIcon = document.getElementById('toggle-commits-icon');
+  const showMoreContainer = document.getElementById('show-more-container');
 
+  // Limite initiale d'affichage pour conserver une page épurée
+  const INITIAL_LIMIT = 10;
+  const totalCards = commitCards.length;
+  let isExpanded = false;
+  let currentFilter = 'all';
+
+  // Fonction centrale de rafraîchissement de la visibilité des commits
+  function renderView() {
+    let visibleMatchCount = 0;
+
+    commitCards.forEach((card) => {
+      const type = card.getAttribute('data-type');
+      const matchesFilter =
+        currentFilter === 'all' ||
+        (currentFilter === 'other' && type !== 'feat' && type !== 'fix' && type !== 'chore') ||
+        type === currentFilter;
+
+      if (!matchesFilter) {
+        card.style.display = 'none';
+        return;
+      }
+
+      // Si un filtre thématique précis est actif OU si l'utilisateur a demandé tout l'historique
+      if (currentFilter !== 'all' || isExpanded) {
+        card.style.display = 'flex';
+        visibleMatchCount++;
+      } else {
+        // En mode 'all' non étendu : afficher seulement les 10 plus récents
+        if (visibleMatchCount < INITIAL_LIMIT) {
+          card.style.display = 'flex';
+          visibleMatchCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      }
+    });
+
+    // Mise à jour de l'état du bouton 'Afficher tout'
+    if (showMoreContainer && toggleBtn && toggleText && toggleIcon) {
+      if (currentFilter !== 'all') {
+        // En mode catégorie ciblée, tous les éléments pertinents sont déjà visibles
+        showMoreContainer.style.display = 'none';
+      } else if (totalCards <= INITIAL_LIMIT) {
+        showMoreContainer.style.display = 'none';
+      } else {
+        showMoreContainer.style.display = 'flex';
+        if (isExpanded) {
+          toggleText.textContent = 'Réduire aux 10 livraisons récentes';
+          toggleIcon.style.transform = 'rotate(180deg)';
+        } else {
+          const remaining = totalCards - INITIAL_LIMIT;
+          toggleText.textContent = `Afficher l'ensemble des livraisons (+${remaining} commits)`;
+          toggleIcon.style.transform = 'rotate(0deg)';
+        }
+      }
+    }
+  }
+
+  // Écoute des filtres thématiques
   filterButtons.forEach((btn) => {
     btn.addEventListener('click', () => {
-      const filter = btn.getAttribute('data-filter');
+      currentFilter = btn.getAttribute('data-filter') || 'all';
 
-      // Mise à jour de l'apparence des boutons de filtre
+      // Mise à jour de l'apparence des onglets
       filterButtons.forEach((b) => {
         b.classList.remove('bg-zinc-900', 'text-white');
         b.classList.add('bg-white', 'text-slate-600', 'border', 'border-slate-200');
@@ -292,23 +372,18 @@ const latestCommit = commits[0];
       btn.classList.add('bg-zinc-900', 'text-white');
       btn.classList.remove('bg-white', 'text-slate-600', 'border', 'border-slate-200');
 
-      // Filtrage des cartes
-      commitCards.forEach((card) => {
-        const type = card.getAttribute('data-type');
-        if (filter === 'all') {
-          card.style.display = 'flex';
-        } else if (filter === 'other') {
-          if (type !== 'feat' && type !== 'fix' && type !== 'chore') {
-            card.style.display = 'flex';
-          } else {
-            card.style.display = 'none';
-          }
-        } else if (type === filter) {
-          card.style.display = 'flex';
-        } else {
-          card.style.display = 'none';
-        }
-      });
+      renderView();
     });
   });
+
+  // Écoute du clic sur le bouton d'extension de l'historique complet
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', () => {
+      isExpanded = !isExpanded;
+      renderView();
+    });
+  }
+
+  // Initialisation immédiate au chargement du composant
+  renderView();
 </script>
