@@ -56,6 +56,19 @@
   }
 }
 
+/* Verrouillage strict de la barre latérale sur écran large (Desktop) pour empêcher tout défilement */
+@media (min-width: 1024px) {
+  #sidebar-pane {
+    position: fixed !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    z-index: 50 !important;
+  }
+}
+
 /* Personnalisation de la barre de défilement aux teintes ardoise modernes */
 ::-webkit-scrollbar {
   width: 8px;
