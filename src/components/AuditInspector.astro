@@ -312,11 +312,14 @@ import { Terminal, Cpu, Leaf, Activity, ShieldCheck, X, Copy, Check, Layers, Cod
     text-overflow: ellipsis;
   }
 
-  /* Positionnement soigné spécifique pour la barre latérale fixe */
+  /* Positionnement soigné et centré pour la barre latérale fixe */
   #sidebar-pane .blueprint-tag {
     top: 12px;
-    right: 12px;
-    max-width: 256px;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    max-width: 250px;
+    white-space: nowrap;
   }
 
   .blueprint-tag::before {
@@ -356,7 +359,7 @@ import { Terminal, Cpu, Leaf, Activity, ShieldCheck, X, Copy, Check, Layers, Cod
 
     // Définition des cartographies d'architecture à inspecter sur la page
     const BLUEPRINT_MAP = [
-      { selector: '#sidebar-pane', label: 'COMPOSANT: Sidebar.astro | Menu de navigation' },
+      { selector: '#sidebar-pane', label: 'COMPOSANT: Sidebar.astro' },
       { selector: '#hero', label: 'COMPOSANT: Hero.astro | Présentation & Objectifs' },
       { selector: '#profil', label: 'COMPOSANT: AboutStage.astro | Recherche de Stage 2027' },
       { selector: '#parcours', label: 'DONNÉES: timeline.json | Parcours & Formations' },
