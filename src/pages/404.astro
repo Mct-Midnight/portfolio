@@ -1,5 +1,5 @@
 ---
-// Page d'erreur HTTP 404 épurée et sans défilement (One-Screen Layout)
+// Page d'erreur HTTP 404 sur mesure - Version équilibrée et pleine page sans défilement
 import Layout from '../layouts/Layout.astro';
 import Sidebar from '../components/Sidebar.astro';
 import Footer from '../components/Footer.astro';
@@ -13,76 +13,71 @@ const { identity } = profileData;
   title={`404 — Page Introuvable | ${identity.firstName} ${identity.lastName}`}
   description="La page demandée est introuvable sur l'infrastructure Vercel du portfolio de Quentin Machu, étudiant en BTS SIO SLAM."
 >
-  <!-- Conteneur global verrouillé en pleine hauteur sur écran large pour éliminer tout défilement vertical -->
+  <!-- Conteneur global occupant la pleine hauteur d'écran sans défilement sur ordinateur -->
   <div class="flex min-h-screen lg:h-screen lg:max-h-screen lg:overflow-hidden bg-slate-50 dark:bg-[#09090b] transition-colors duration-200">
     
     <!-- Barre latérale fixe (Desktop 260px + Tiroir Mobile réactif) -->
     <Sidebar currentPath="/404" />
 
-    <!-- Zone principale de contenu occupant exactement la hauteur disponible -->
+    <!-- Zone principale occupant exactement l'espace restant -->
     <div class="flex-1 w-full lg:pl-[280px] flex flex-col h-full lg:max-h-screen min-w-0">
       
-      <main class="flex-1 max-w-3xl w-full mx-auto px-5 sm:px-8 lg:px-10 pt-16 lg:pt-8 pb-3 sm:pb-4 flex flex-col justify-between h-full">
+      <!-- Conteneur principal équilibré avec respiration en haut et en bas -->
+      <main class="flex-1 max-w-4xl w-full mx-auto px-6 sm:px-10 lg:px-12 pt-16 lg:pt-10 pb-6 sm:pb-8 lg:pb-8 flex flex-col justify-between h-full">
         
-        <!-- Bloc central équilibré et centré verticalement -->
+        <!-- Bloc central valorisé prenant une présence généreuse et harmonieuse -->
         <div class="my-auto py-2 sm:py-4 flex flex-col items-center text-center">
           
-          <!-- 1. En-tête de statut avec voyant ambré feutré -->
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/10 text-amber-800 dark:text-amber-400 border border-amber-500/20 shadow-sm mb-3 sm:mb-4">
-            <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse" aria-hidden="true"></span>
-            <span>Erreur HTTP 404 • Ressource Introuvable</span>
-          </div>
-
-          <!-- 2. Impact visuel exécutif : Grand 404 Montserrat pur et épuré (sans icône incrustée) -->
+          <!-- 1. Grand 404 Montserrat imposant et affirmé (sans bulle supérieure) -->
           <div class="select-none mb-1 sm:mb-2">
-            <span class="font-title font-black text-7xl sm:text-8xl lg:text-9xl tracking-tighter text-zinc-300 dark:text-zinc-800 leading-none block">
+            <span class="font-title font-black text-8xl sm:text-9xl lg:text-[10rem] xl:text-[11rem] tracking-tighter text-zinc-300 dark:text-zinc-800/80 leading-none block">
               404
             </span>
           </div>
 
-          <!-- Titre principal clair et direct -->
-          <h1 class="text-xl sm:text-2xl lg:text-3xl font-extrabold font-title text-slate-900 dark:text-zinc-100 tracking-tight max-w-xl mb-2 sm:mb-2.5">
+          <!-- 2. Titre principal exécutif de belle stature -->
+          <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-title text-slate-900 dark:text-zinc-100 tracking-tight max-w-2xl mb-3">
             Cette page n'existe pas ou a été déplacée
           </h1>
 
-          <!-- Sous-titre pédagogique sobre -->
-          <p class="text-xs sm:text-sm text-slate-600 dark:text-zinc-400 leading-relaxed max-w-lg mx-auto mb-4 sm:mb-5">
+          <!-- 3. Sous-titre pédagogique équilibré -->
+          <p class="text-sm sm:text-base text-slate-600 dark:text-zinc-400 leading-relaxed max-w-xl mx-auto mb-6">
             L'URL demandée n'a pas été trouvée sur l'infrastructure Vercel hébergeant ce portfolio statique. Le lien est peut-être erroné, obsolète ou a fait l'objet d'une réorganisation d'arborescence.
           </p>
 
-          <!-- 3. Cartouche de diagnostic technique compact au format terminal -->
-          <div class="w-full max-w-md bg-[#18181B] dark:bg-[#121215] border border-zinc-800 rounded-xl overflow-hidden shadow-card text-left mb-5 sm:mb-6">
-            <!-- Barre supérieure du terminal -->
-            <div class="px-3.5 py-2 bg-zinc-900/90 border-b border-zinc-800 flex items-center justify-between">
-              <div class="flex items-center gap-1.5">
-                <span class="w-2 h-2 rounded-full bg-zinc-700"></span>
-                <span class="w-2 h-2 rounded-full bg-zinc-700"></span>
-                <span class="w-2 h-2 rounded-full bg-zinc-700"></span>
-                <span class="ml-2 text-[10px] font-mono text-zinc-400">diagnostic-route.log</span>
+          <!-- 4. Cartouche de diagnostic technique élargi au format terminal -->
+          <div class="w-full max-w-xl bg-[#18181B] dark:bg-[#121215] border border-zinc-800 rounded-2xl overflow-hidden shadow-card text-left mb-7">
+            <!-- Barre supérieure de fenêtre terminal -->
+            <div class="px-4 py-2.5 bg-zinc-900/90 border-b border-zinc-800 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-zinc-700"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-zinc-700"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-zinc-700"></span>
+                <span class="ml-2 text-xs font-mono text-zinc-400">diagnostic-route.log</span>
               </div>
               <div class="flex items-center gap-1.5 text-zinc-500">
-                <Terminal class="w-3 h-3" />
-                <span class="text-[9px] font-mono uppercase tracking-wider">SSG Edge</span>
+                <Terminal class="w-3.5 h-3.5" />
+                <span class="text-[10px] font-mono uppercase tracking-wider">SSG Edge</span>
               </div>
             </div>
 
-            <!-- Lignes de logs du diagnostic -->
-            <div class="p-3 sm:p-3.5 font-mono text-[11px] sm:text-xs space-y-1.5 text-zinc-300">
-              <div class="flex items-start gap-2">
+            <!-- Lignes de logs du diagnostic avec lisibilité accrue -->
+            <div class="p-4 sm:p-5 font-mono text-xs sm:text-sm space-y-2 text-zinc-300">
+              <div class="flex items-start gap-2.5">
                 <span class="text-zinc-500 select-none shrink-0">$</span>
                 <div class="flex flex-col sm:flex-row sm:gap-2">
                   <span class="text-zinc-400">Code statut :</span>
                   <span class="text-amber-400 font-semibold">404 Not Found</span>
                 </div>
               </div>
-              <div class="flex items-start gap-2">
+              <div class="flex items-start gap-2.5">
                 <span class="text-zinc-500 select-none shrink-0">$</span>
                 <div class="flex flex-col sm:flex-row sm:gap-2">
                   <span class="text-zinc-400">Routage :</span>
                   <span class="text-zinc-200">Astro 5 SSG / Vercel Edge Network</span>
                 </div>
               </div>
-              <div class="flex items-start gap-2">
+              <div class="flex items-start gap-2.5">
                 <span class="text-zinc-500 select-none shrink-0">$</span>
                 <div class="flex flex-col sm:flex-row sm:gap-2">
                   <span class="text-zinc-400">Action recommandée :</span>
@@ -92,11 +87,11 @@ const { identity } = profileData;
             </div>
           </div>
 
-          <!-- 4. Unique bouton d'action principal : Retour à l'accueil -->
+          <!-- 5. Bouton d'action principal bien proportionné -->
           <div class="flex items-center justify-center">
             <a
               href="/"
-              class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-zinc-900 hover:bg-black text-white dark:bg-zinc-100 dark:hover:bg-white dark:text-zinc-950 font-semibold text-xs sm:text-sm transition-all shadow-sm group"
+              class="inline-flex items-center justify-center gap-2.5 px-6 py-3 rounded-xl bg-zinc-900 hover:bg-black text-white dark:bg-zinc-100 dark:hover:bg-white dark:text-zinc-950 font-semibold text-sm transition-all shadow-sm hover:shadow-md group"
             >
               <ArrowLeft class="w-4 h-4 transition-transform group-hover:-translate-x-1" />
               <span>Revenir à l'accueil</span>
@@ -105,8 +100,8 @@ const { identity } = profileData;
 
         </div>
 
-        <!-- 5. Pied de page compacté (surcharge du mt-20 pour supprimer tout débordement vertical) -->
-        <div class="shrink-0 [&>footer]:mt-0 [&>footer]:py-3 [&>footer]:border-t [&>footer]:border-slate-200 dark:[&>footer]:border-zinc-800/80">
+        <!-- 6. Pied de page aéré avec marge de respiration inférieure -->
+        <div class="shrink-0 w-full mt-4 lg:mt-6 pt-2 border-t border-slate-200/80 dark:border-zinc-800/80 [&>footer]:mt-0 [&>footer]:py-2.5 [&>footer]:border-t-0">
           <Footer currentPath="/404" />
         </div>
 
