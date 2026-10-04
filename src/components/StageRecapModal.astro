@@ -150,19 +150,16 @@ const { identity, contact, internshipSearch } = profileData;
         </div>
       </div>
 
-      <!-- Section B : Compétences & Missions Opérationnelles avec icônes vectorielles nettes -->
+      <!-- Section B : Compétences & Missions Opérationnelles épurées -->
       <div>
-        <div class="flex items-center justify-between mb-3">
-          <span class="text-[11px] font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 font-title">
-            Missions & Compétences Directes (1re Année SLAM)
-          </span>
-          <span class="text-[11px] text-zinc-500 font-mono hidden sm:inline">Prêt à intervenir</span>
+        <div class="text-[11px] font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 font-title mb-3">
+          Missions & Compétences Directes (1re Année SLAM)
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           
           <!-- Compétence 1 : Front-End -->
-          <div class="p-4 rounded-xl bg-white dark:bg-zinc-900/30 border border-zinc-200/80 dark:border-zinc-800 space-y-2 hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors">
+          <div class="p-4 rounded-xl bg-white dark:bg-zinc-900/30 border border-zinc-200/80 dark:border-zinc-800 space-y-1.5 hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors">
             <div class="flex items-center gap-2.5">
               <div class="w-7 h-7 rounded-lg bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center text-zinc-900 dark:text-zinc-100 shrink-0">
                 <Laptop class="w-4 h-4" />
@@ -174,16 +171,10 @@ const { identity, contact, internshipSearch } = profileData;
             <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
               Création et refonte d'interfaces utilisateur modernes et responsives, respect scrupuleux des maquettes et accessibilité.
             </p>
-            <div class="flex items-center gap-1.5 flex-wrap pt-1">
-              <span class="px-2 py-0.5 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 text-[10px] font-mono font-medium">HTML5</span>
-              <span class="px-2 py-0.5 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 text-[10px] font-mono font-medium">Tailwind CSS</span>
-              <span class="px-2 py-0.5 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 text-[10px] font-mono font-medium">JavaScript</span>
-              <span class="px-2 py-0.5 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 text-[10px] font-mono font-medium">TypeScript</span>
-            </div>
           </div>
 
           <!-- Compétence 2 : Bases de données -->
-          <div class="p-4 rounded-xl bg-white dark:bg-zinc-900/30 border border-zinc-200/80 dark:border-zinc-800 space-y-2 hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors">
+          <div class="p-4 rounded-xl bg-white dark:bg-zinc-900/30 border border-zinc-200/80 dark:border-zinc-800 space-y-1.5 hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors">
             <div class="flex items-center gap-2.5">
               <div class="w-7 h-7 rounded-lg bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center text-zinc-900 dark:text-zinc-100 shrink-0">
                 <Database class="w-4 h-4" />
@@ -195,16 +186,10 @@ const { identity, contact, internshipSearch } = profileData;
             <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
               Modélisation relationnelle (MCD/MLD), écriture de requêtes SQL (jointures, filtres), contrôle et intégrité des données.
             </p>
-            <div class="flex items-center gap-1.5 flex-wrap pt-1">
-              <span class="px-2 py-0.5 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 text-[10px] font-mono font-medium">SQL</span>
-              <span class="px-2 py-0.5 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 text-[10px] font-mono font-medium">PostgreSQL</span>
-              <span class="px-2 py-0.5 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 text-[10px] font-mono font-medium">MySQL</span>
-              <span class="px-2 py-0.5 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 text-[10px] font-mono font-medium">MCD/MLD</span>
-            </div>
           </div>
 
           <!-- Compétence 3 : Automatisation & Python -->
-          <div class="p-4 rounded-xl bg-white dark:bg-zinc-900/30 border border-zinc-200/80 dark:border-zinc-800 space-y-2 hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors">
+          <div class="p-4 rounded-xl bg-white dark:bg-zinc-900/30 border border-zinc-200/80 dark:border-zinc-800 space-y-1.5 hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors">
             <div class="flex items-center gap-2.5">
               <div class="w-7 h-7 rounded-lg bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center text-zinc-900 dark:text-zinc-100 shrink-0">
                 <Workflow class="w-4 h-4" />
@@ -216,15 +201,10 @@ const { identity, contact, internshipSearch } = profileData;
             <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
               Développement de petits scripts d'automatisation, parsing de flux de données (JSON/CSV) et intégration d'APIs REST.
             </p>
-            <div class="flex items-center gap-1.5 flex-wrap pt-1">
-              <span class="px-2 py-0.5 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 text-[10px] font-mono font-medium">Python</span>
-              <span class="px-2 py-0.5 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 text-[10px] font-mono font-medium">APIs REST</span>
-              <span class="px-2 py-0.5 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 text-[10px] font-mono font-medium">JSON / CSV</span>
-            </div>
           </div>
 
           <!-- Compétence 4 : Recette & Tests -->
-          <div class="p-4 rounded-xl bg-white dark:bg-zinc-900/30 border border-zinc-200/80 dark:border-zinc-800 space-y-2 hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors">
+          <div class="p-4 rounded-xl bg-white dark:bg-zinc-900/30 border border-zinc-200/80 dark:border-zinc-800 space-y-1.5 hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors">
             <div class="flex items-center gap-2.5">
               <div class="w-7 h-7 rounded-lg bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center text-zinc-900 dark:text-zinc-100 shrink-0">
                 <ClipboardCheck class="w-4 h-4" />
@@ -236,23 +216,19 @@ const { identity, contact, internshipSearch } = profileData;
             <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
               Déroulement de plans de tests fonctionnels, recette des écrans, rédaction de guides utilisateurs et documentation technique.
             </p>
-            <div class="flex items-center gap-1.5 flex-wrap pt-1">
-              <span class="px-2 py-0.5 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 text-[10px] font-mono font-medium">Tests fonctionnels</span>
-              <span class="px-2 py-0.5 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 text-[10px] font-mono font-medium">Recette</span>
-              <span class="px-2 py-0.5 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 text-[10px] font-mono font-medium">Documentation</span>
-            </div>
           </div>
 
         </div>
       </div>
 
-      <!-- Section C : Modalités de travail sur une seule ligne continue -->
-      <div class="p-3.5 rounded-xl bg-zinc-50 dark:bg-zinc-900/40 border border-zinc-200/70 dark:border-zinc-800/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+      <!-- Section C : Modalités de travail centrées harmonieusement -->
+      <div class="p-3.5 rounded-xl bg-zinc-50 dark:bg-zinc-900/40 border border-zinc-200/70 dark:border-zinc-800/80 flex flex-col sm:flex-row sm:items-center justify-center gap-4 sm:gap-8 text-xs">
         <div class="flex items-center gap-2 text-zinc-700 dark:text-zinc-300">
           <MapPin class="w-4 h-4 text-zinc-900 dark:text-zinc-100 shrink-0" />
           <span><strong>Présentiel :</strong> Cambrai (Hauts-de-France)</span>
         </div>
-        <div class="flex items-center gap-2 text-zinc-700 dark:text-zinc-300 shrink-0">
+        <div class="hidden sm:block w-px h-3.5 bg-zinc-300 dark:bg-zinc-700" aria-hidden="true"></div>
+        <div class="flex items-center gap-2 text-zinc-700 dark:text-zinc-300">
           <Laptop class="w-4 h-4 text-zinc-900 dark:text-zinc-100 shrink-0" />
           <span><strong>Télétravail :</strong> Total ou hybride (autonomie CNED)</span>
         </div>
