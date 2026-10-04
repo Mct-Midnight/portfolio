@@ -1,7 +1,7 @@
 ---
 // Composant Easter Egg : Mode Audit & Architecture Technique (Vue Blueprint + Télémétrie Éco-conception)
 // Conçu pour le Portfolio BTS SIO SLAM de Quentin Machu
-import { Terminal, Cpu, Leaf, Activity, ShieldCheck, X, Copy, Check, Layers, Sparkles, GripVertical } from 'lucide-astro';
+import { Terminal, Cpu, Leaf, Activity, ShieldCheck, X, Copy, Check, Layers, Code2, GripVertical } from 'lucide-astro';
 ---
 
 <!-- Calque Grille Blueprint Millimétrée (Affiché uniquement quand le mode audit est activé) -->
@@ -178,34 +178,34 @@ import { Terminal, Cpu, Leaf, Activity, ShieldCheck, X, Copy, Check, Layers, Spa
     <div id="tab-content-perf" class="hud-tab-pane space-y-3 hidden">
       <div class="space-y-2">
         <div class="flex items-center justify-between text-[11px] py-1 border-b border-zinc-800">
-          <span class="text-zinc-400 font-mono">Framework & Moteur</span>
-          <span class="text-zinc-100 font-semibold font-mono">Astro 5 (SSG Pur)</span>
+          <span class="text-zinc-400 font-mono">Générateur Statique</span>
+          <span class="text-zinc-100 font-semibold font-mono">Astro 5 (Rendu HTML pur)</span>
         </div>
         <div class="flex items-center justify-between text-[11px] py-1 border-b border-zinc-800">
-          <span class="text-zinc-400 font-mono">Design System</span>
+          <span class="text-zinc-400 font-mono">Mise en page & Styles</span>
           <span class="text-zinc-100 font-semibold font-mono">Tailwind CSS (Monochrome)</span>
         </div>
         <div class="flex items-center justify-between text-[11px] py-1 border-b border-zinc-800">
-          <span class="text-zinc-400 font-mono">Poids JavaScript Client</span>
-          <span class="text-emerald-400 font-semibold font-mono">&lt; 6 Ko (Zero Framework)</span>
+          <span class="text-zinc-400 font-mono">Code JavaScript Client</span>
+          <span class="text-emerald-400 font-semibold font-mono">&lt; 6 Ko (Ultra-léger)</span>
         </div>
         <div class="flex items-center justify-between text-[11px] py-1 border-b border-zinc-800">
-          <span class="text-zinc-400 font-mono">Schémas & Contrats</span>
-          <span class="text-zinc-100 font-semibold font-mono">TypeScript + Zod Collections</span>
+          <span class="text-zinc-400 font-mono">Structure des Données</span>
+          <span class="text-zinc-100 font-semibold font-mono">Fichiers JSON & Markdown</span>
         </div>
         <div class="flex items-center justify-between text-[11px] py-1 border-b border-zinc-800">
-          <span class="text-zinc-400 font-mono">Temps First Contentful Paint</span>
+          <span class="text-zinc-400 font-mono">Temps d'affichage</span>
           <span class="text-emerald-400 font-semibold font-mono">&lt; 300 ms (Immédiat)</span>
         </div>
         <div class="flex items-center justify-between text-[11px] py-1">
           <span class="text-zinc-400 font-mono">Hébergement & Déploiement</span>
-          <span class="text-zinc-100 font-semibold font-mono">Vercel / Réseau Edge mondial</span>
+          <span class="text-zinc-100 font-semibold font-mono">Vercel (Déploiement auto)</span>
         </div>
       </div>
 
       <div class="p-2.5 rounded-lg bg-zinc-900/60 border border-zinc-800/80 text-[11px] text-zinc-300">
-        <span class="font-semibold text-white block mb-1">Architecture sans serveur (Serverless)</span>
-        Le pré-rendu HTML à la compilation garantit une tolérance de charge maximale avec des coûts d'infrastructure nuls et une sécurité étanche contre les failles d'injection.
+        <span class="font-semibold text-white block mb-1">Avantage de la compilation statique (SSG)</span>
+        Les pages sont pré-générées en fichiers HTML simples avant mise en ligne. Le site ne sollicite aucun serveur lourd, charge instantanément et ne présente aucun risque de piratage de base de données.
       </div>
     </div>
 
@@ -214,31 +214,31 @@ import { Terminal, Cpu, Leaf, Activity, ShieldCheck, X, Copy, Check, Layers, Spa
       <div class="space-y-2 text-[11px]">
         <div class="p-2.5 rounded-lg bg-zinc-900/60 border border-zinc-800/80 space-y-1">
           <div class="flex items-center justify-between">
-            <span class="font-bold text-white">Bloc 1 — Support & Patrimoine</span>
+            <span class="font-bold text-white">Bloc 1 — Support & Patrimoine Informatique</span>
             <span class="text-emerald-400 font-mono text-[10px]">100% Couvert</span>
           </div>
           <p class="text-zinc-400 text-[10px] leading-relaxed">
-            Gestion du versioning (Git/GitHub), maintien en condition opérationnelle, documentation technique et veille réglementaire.
+            Gestion des versions du code avec Git, maintenance opérationnelle du site, documentation technique et veille technologique régulière.
           </p>
         </div>
 
         <div class="p-2.5 rounded-lg bg-zinc-900/60 border border-zinc-800/80 space-y-1">
           <div class="flex items-center justify-between">
-            <span class="font-bold text-white">Réalisations Validées</span>
+            <span class="font-bold text-white">5 Réalisations Concrètes (Épreuve E4)</span>
             <span class="text-zinc-300 font-mono text-[10px]">5 Fiches E4</span>
           </div>
           <p class="text-zinc-400 text-[10px] leading-relaxed">
-            Constellation Lab's (Freelance Python/Docker), Gestionnaire de Contacts (Desktop Python/Tkinter), Portfolio Web (SSG Astro), Atelier Pro 2 (PHP/PostgreSQL) & Stage 1re année.
+            Constellation Lab's (Freelance Python/Docker), Gestionnaire de Contacts (Desktop Python/Tkinter), Portfolio Web (Astro), Atelier Pro 2 (PHP/PostgreSQL) et Stage 1re année.
           </p>
         </div>
 
         <div class="p-2.5 rounded-lg bg-zinc-900/60 border border-zinc-800/80 space-y-1">
           <div class="flex items-center justify-between">
-            <span class="font-bold text-white">Méthodologie Projet</span>
-            <span class="text-zinc-300 font-mono text-[10px]">Approche Manager</span>
+            <span class="font-bold text-white">Travail en Mode Projet (Compétence B1.4)</span>
+            <span class="text-zinc-300 font-mono text-[10px]">Méthode & Suivi Git</span>
           </div>
           <p class="text-zinc-400 text-[10px] leading-relaxed">
-            Spécifications fonctionnelles, contrats de données stricts, architecture modulaire et orientation B2B/B2C.
+            Découpage des tâches étape par étape, rédaction d'un cahier des charges, et suivi régulier de l'historique avec des commits Git clairs en français.
           </p>
         </div>
       </div>
@@ -249,7 +249,7 @@ import { Terminal, Cpu, Leaf, Activity, ShieldCheck, X, Copy, Check, Layers, Spa
   <!-- Pied de page du HUD -->
   <div class="px-4 py-2.5 bg-[#121214] border-t border-[#27272A] flex items-center justify-between text-[11px] text-zinc-400">
     <div class="flex items-center gap-1.5">
-      <Sparkles class="w-3.5 h-3.5 text-zinc-400" />
+      <Code2 class="w-3.5 h-3.5 text-zinc-400" />
       <span>Mode Développeur</span>
     </div>
 
@@ -356,16 +356,16 @@ import { Terminal, Cpu, Leaf, Activity, ShieldCheck, X, Copy, Check, Layers, Spa
 
     // Définition des cartographies d'architecture à inspecter sur la page
     const BLUEPRINT_MAP = [
-      { selector: '#sidebar-pane', label: 'COMPOSANT: Sidebar.astro | Statique SSG' },
-      { selector: '#hero', label: 'COMPOSANT: Hero.astro | Rendu Serveur Statique | Identité & SEO' },
-      { selector: '#profil', label: 'COMPOSANT: AboutStage.astro | Recherche de Stage SLAM 2027' },
-      { selector: '#parcours', label: 'DONNÉES: timeline.json | Contrat TypeScript | Évolutions' },
-      { selector: '#competences', label: 'DONNÉES: skills.json | Référentiel BTS SIO SLAM (4 Domaines)' },
-      { selector: '#certifications', label: 'COMPOSANT: Certifications.astro | Justificatifs Académiques' },
-      { selector: '#projets', label: 'COLLECTIONS: Content Collections (Zod) | 5 Réalisations E4' },
-      { selector: '#veille', label: 'DONNÉES: veille.json | Protocole de Veille & Flux RSS' },
-      { selector: '#contact', label: 'COMPOSANT: Contact.astro | Formulaire Strict Sans Cookies' },
-      { selector: 'footer', label: 'COMPOSANT: Footer.astro | Conformité RGPD & Journal Git' }
+      { selector: '#sidebar-pane', label: 'COMPOSANT: Sidebar.astro | Menu de navigation' },
+      { selector: '#hero', label: 'COMPOSANT: Hero.astro | Présentation & Objectifs' },
+      { selector: '#profil', label: 'COMPOSANT: AboutStage.astro | Recherche de Stage 2027' },
+      { selector: '#parcours', label: 'DONNÉES: timeline.json | Parcours & Formations' },
+      { selector: '#competences', label: 'DONNÉES: skills.json | 4 Domaines de compétences' },
+      { selector: '#certifications', label: 'COMPOSANT: Certifications.astro | Certificats officiels' },
+      { selector: '#projets', label: 'FICHES PROJETS: Markdown | 5 Réalisations BTS SIO' },
+      { selector: '#veille', label: 'DONNÉES: veille.json | Veille technologique & flux RSS' },
+      { selector: '#contact', label: 'COMPOSANT: Contact.astro | Formulaire de contact' },
+      { selector: 'footer', label: 'COMPOSANT: Footer.astro | Mentions légales & Journal Git' }
     ];
 
     let isAuditActive = false;
@@ -566,22 +566,23 @@ import { Terminal, Cpu, Leaf, Activity, ShieldCheck, X, Copy, Check, Layers, Spa
           'Projet : Portfolio BTS SIO SLAM — Quentin Machu',
           'Date : ' + new Date().toLocaleDateString('fr-FR'),
           '',
-          '[ÉCO-CONCEPTION & GREEN IT]',
-          '- Score EcoIndex : A (88/100)',
-          '- Émissions CO2 estimées : ~0.08 g CO2e / vue',
+          '[ÉCO-CONCEPTION & SOBRIÉTÉ NUMÉRIQUE]',
+          '- Score EcoIndex : A (88/100) — Haute performance environnementale',
+          '- Émissions carbone estimées : ~0.08 g CO2e / consultation',
           '- Consommation eau estimée : ~0.12 cL',
-          `- Nœuds DOM inspectés : ${domCount} nœuds`,
-          '- Traçabilité & Confidentialité : 0 cookie, 100% conforme RGPD',
+          `- Nombre d'éléments HTML inspectés : ${domCount} nœuds`,
+          '- Respect de la vie privée : 0 traceur, conforme CNIL / RGPD',
           '',
-          '[ARCHITECTURE LOGICIELLE]',
-          '- Moteur : Astro 5 (Static Site Generation)',
-          '- Poids JavaScript client : < 6 Ko',
-          '- Design System : Tailwind CSS monochrome titane',
-          '- Validations : Schémas stricts TypeScript / Zod',
-          '- Hébergement & Déploiement : Vercel / Réseau Edge mondial',
+          '[ARCHITECTURE TECHNIQUE]',
+          '- Générateur de site : Astro 5 (Compilation statique SSG)',
+          '- Poids JavaScript : Inférieur à 6 Ko envoyé au navigateur',
+          '- Styles : Tailwind CSS (Charte monochrome mat & titane)',
+          '- Données : Fichiers JSON et fiches projets Markdown',
+          '- Hébergement : Vercel (Déploiement continu automatisé)',
           '',
-          '[CONFORMITÉ RÉFÉRENTIEL]',
-          '- Épreuve E4 / Bloc 1 BTS SIO couvert'
+          '[RÉFÉRENTIEL OFFICIEL BTS SIO SLAM]',
+          '- Épreuve E4 / Bloc 1 : Support et mise à disposition de services',
+          '- 5 réalisations logicielles documentées et traçables sur GitHub'
         ].join('\n');
 
         try {
