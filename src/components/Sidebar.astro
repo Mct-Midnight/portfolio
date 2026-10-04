@@ -104,7 +104,7 @@ const basePath = isHome ? '' : '/';
   </div>
 
   <!-- Navigation Principale avec icônes pleines (Solid) modernes -->
-  <nav class="flex-1 px-3.5 py-5 space-y-2 lg:space-y-2.5 overflow-y-auto" id="sidebar-nav">
+  <nav class="flex-1 px-3.5 py-5 space-y-2 lg:space-y-2.5 overflow-y-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden" id="sidebar-nav">
     
     <!-- Accueil -->
     <a
@@ -275,11 +275,8 @@ const basePath = isHome ? '' : '/';
     </a>
   </nav>
 
-  <!-- Partie Inférieure : Sélecteur de thème, Téléchargement CV et Footer Sidebar bien aérés -->
+  <!-- Partie Inférieure : Téléchargement CV et Mention académique bien aérés -->
   <div class="px-4 pt-4 pb-6 border-t border-[#27272A] space-y-3">
-    <!-- Bascule de thème clair / sombre -->
-    <ThemeToggle variant="full" />
-
     <!-- Bouton rapide CV avec icône pleine et espacement soigné -->
     <a
       href={identity.cvDownloadUrl}

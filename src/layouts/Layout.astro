@@ -1,6 +1,7 @@
 ---
 // Layout principal du Portfolio BTS SIO SLAM
 import '../styles/global.css';
+import ThemeToggle from '../components/ThemeToggle.astro';
 
 interface Props {
   title?: string;
@@ -65,6 +66,11 @@ const {
     </script>
   </head>
   <body class="bg-slate-50 dark:bg-[#09090b] text-slate-700 dark:text-zinc-300 antialiased selection:bg-zinc-900 selection:text-white dark:selection:bg-zinc-100 dark:selection:text-zinc-950 font-sans transition-colors duration-200">
+    <!-- Sélecteur de thème flottant monochrome mat & titane (Desktop - coin supérieur droit) -->
+    <aside class="fixed top-4 right-5 sm:top-5 sm:right-7 z-40 hidden lg:block" aria-label="Préférences d'affichage">
+      <ThemeToggle variant="floating" />
+    </aside>
+
     <slot />
   </body>
 </html>
