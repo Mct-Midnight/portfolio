@@ -53,14 +53,14 @@ for (const [key, filename] of Object.entries(sourceFiles)) {
 const totalArticles = axes.reduce((acc, axis) => acc + axis.articles.length, 0);
 ---
 
-<section id="veille" class="py-16 scroll-mt-20 border-t border-slate-200">
+<section id="veille" class="py-16 scroll-mt-20 border-t border-slate-200 dark:border-zinc-800">
   <!-- En-tête de section sobre -->
   <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
     <div>
-      <h2 class="text-3xl font-bold font-title text-slate-900 tracking-tight">
+      <h2 class="text-3xl font-bold font-title text-slate-900 dark:text-zinc-100 tracking-tight">
         {title}
       </h2>
-      <p class="text-sm text-slate-600 mt-2 max-w-2xl leading-relaxed">
+      <p class="text-sm text-slate-600 dark:text-zinc-400 mt-2 max-w-2xl leading-relaxed">
         {subtitle}
       </p>
     </div>
@@ -70,24 +70,24 @@ const totalArticles = axes.reduce((acc, axis) => acc + axis.articles.length, 0);
       href={pearltreesUrl}
       target="_blank"
       rel="noopener noreferrer"
-      class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white hover:bg-slate-50 text-slate-700 hover:text-zinc-950 border border-slate-200 hover:border-zinc-400 text-xs font-semibold shadow-card transition-all shrink-0 group self-start sm:self-auto"
+      class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white dark:bg-zinc-900 hover:bg-slate-50 dark:hover:bg-zinc-800 text-slate-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white border border-slate-200 dark:border-zinc-700 hover:border-zinc-400 dark:hover:border-zinc-500 text-xs font-semibold shadow-card transition-all shrink-0 group self-start sm:self-auto"
     >
       <span>Espace Pearltrees</span>
-      <ExternalLink class="w-3.5 h-3.5 text-slate-400 group-hover:text-zinc-950 transition-colors" />
+      <ExternalLink class="w-3.5 h-3.5 text-slate-400 dark:text-zinc-400 group-hover:text-zinc-950 dark:group-hover:text-white transition-colors" />
     </a>
   </div>
 
   <!-- Encadré compact de méthodologie Push & Pull (Design épuré et lisible) -->
-  <div class="bg-white rounded-2xl p-5 sm:p-6 border border-slate-200 shadow-card mb-8 flex flex-col md:flex-row md:items-center justify-between gap-5">
+  <div class="bg-white dark:bg-[#18181B] rounded-2xl p-5 sm:p-6 border border-slate-200 dark:border-[#27272A] shadow-card mb-8 flex flex-col md:flex-row md:items-center justify-between gap-5">
     <div class="flex items-start sm:items-center gap-4">
-      <div class="w-10 h-10 rounded-xl bg-zinc-100 text-zinc-900 flex items-center justify-center shrink-0 border border-zinc-200">
+      <div class="w-10 h-10 rounded-xl bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 flex items-center justify-center shrink-0 border border-zinc-200 dark:border-zinc-700">
         <Radio class="w-5 h-5" />
       </div>
       <div>
-        <h3 class="text-sm font-bold font-title text-slate-900">
+        <h3 class="text-sm font-bold font-title text-slate-900 dark:text-zinc-100">
           Dispositif méthodologique bimodal (Push & Pull)
         </h3>
-        <p class="text-xs text-slate-500 mt-0.5">
+        <p class="text-xs text-slate-500 dark:text-zinc-400 mt-0.5">
           Combinaison d'alertes automatisées et d'agrégation ciblée pour capter les standards émergents.
         </p>
       </div>
@@ -95,12 +95,12 @@ const totalArticles = axes.reduce((acc, axis) => acc + axis.articles.length, 0);
 
     <!-- Puces rapides des outils utilisés -->
     <div class="flex flex-wrap items-center gap-2.5 text-xs">
-      <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-50 text-slate-700 border border-slate-200 font-medium">
-        <Bell class="w-3.5 h-3.5 text-zinc-900" />
+      <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-50 dark:bg-zinc-900 text-slate-700 dark:text-zinc-300 border border-slate-200 dark:border-zinc-700 font-medium">
+        <Bell class="w-3.5 h-3.5 text-zinc-900 dark:text-zinc-100" />
         <span><strong>Push :</strong> Google Alerts & Newsletters</span>
       </span>
-      <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-50 text-slate-700 border border-slate-200 font-medium">
-        <Rss class="w-3.5 h-3.5 text-zinc-700" />
+      <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-50 dark:bg-zinc-900 text-slate-700 dark:text-zinc-300 border border-slate-200 dark:border-zinc-700 font-medium">
+        <Rss class="w-3.5 h-3.5 text-zinc-700 dark:text-zinc-300" />
         <span><strong>Pull :</strong> Flux RSS Feedly & Avis ANSSI</span>
       </span>
     </div>
@@ -108,10 +108,10 @@ const totalArticles = axes.reduce((acc, axis) => acc + axis.articles.length, 0);
 
   <!-- Système de rangement / filtrage interactif par axe (Sobre et épuré) -->
   <div class="flex items-center mb-8">
-    <div class="inline-flex items-center p-1 rounded-2xl bg-slate-100 border border-slate-200 text-xs">
+    <div class="inline-flex items-center p-1 rounded-2xl bg-slate-100 dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 text-xs">
       <button
         type="button"
-        class="veille-filter-btn px-4 py-2 rounded-xl font-semibold transition-all cursor-pointer bg-zinc-900 text-white shadow-sm"
+        class="veille-filter-btn px-4 py-2 rounded-xl font-semibold transition-all cursor-pointer bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-950 shadow-sm"
         data-filter="all"
       >
         Toutes les fiches ({totalArticles})
@@ -119,7 +119,7 @@ const totalArticles = axes.reduce((acc, axis) => acc + axis.articles.length, 0);
       {axes.map((axis) => (
         <button
           type="button"
-          class="veille-filter-btn px-4 py-2 rounded-xl font-medium text-slate-600 hover:text-zinc-950 transition-all cursor-pointer"
+          class="veille-filter-btn px-4 py-2 rounded-xl font-medium text-slate-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-all cursor-pointer"
           data-filter={axis.id}
         >
           {axis.name} ({axis.articles.length})
@@ -136,13 +136,13 @@ const totalArticles = axes.reduce((acc, axis) => acc + axis.articles.length, 0);
         <div class="veille-axis-block space-y-4" data-axis-id={axis.id}>
           <!-- Titre d'axe avec icône et compteur -->
           <div class="flex items-center justify-between pb-1">
-            <h3 class="text-base font-bold font-title text-slate-900 flex items-center gap-2.5">
-              <span class="w-8 h-8 rounded-lg bg-zinc-100 text-zinc-900 border border-zinc-200 flex items-center justify-center shrink-0">
+            <h3 class="text-base font-bold font-title text-slate-900 dark:text-zinc-100 flex items-center gap-2.5">
+              <span class="w-8 h-8 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-700 flex items-center justify-center shrink-0">
                 <AxisIcon class="w-4 h-4" />
               </span>
               <span>{axis.name}</span>
             </h3>
-            <span class="text-xs font-semibold text-slate-500 bg-slate-100 px-2.5 py-1 rounded-full border border-slate-200">
+            <span class="text-xs font-semibold text-slate-500 dark:text-zinc-400 bg-slate-100 dark:bg-zinc-800 px-2.5 py-1 rounded-full border border-slate-200 dark:border-zinc-700">
               {axis.articles.length} fiches
             </span>
           </div>
@@ -154,7 +154,7 @@ const totalArticles = axes.reduce((acc, axis) => acc + axis.articles.length, 0);
               return (
                 <button
                   type="button"
-                  class="veille-card text-left bg-white rounded-2xl p-5 sm:p-6 border border-slate-200 shadow-card hover:shadow-card-hover hover:border-zinc-400 hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between group cursor-pointer w-full focus:outline-none focus:ring-2 focus:ring-zinc-900/40 min-h-[175px]"
+                  class="veille-card text-left bg-white dark:bg-[#18181B] rounded-2xl p-5 sm:p-6 border border-slate-200 dark:border-[#27272A] shadow-card hover:shadow-card-hover hover:border-zinc-400 dark:hover:border-zinc-500 hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between group cursor-pointer w-full focus:outline-none focus:ring-2 focus:ring-zinc-900/40 min-h-[175px]"
                   data-title={article.title}
                   data-source={article.source}
                   data-sourcetype={article.sourceType}
@@ -176,29 +176,29 @@ const totalArticles = axes.reduce((acc, axis) => acc + axis.articles.length, 0);
 
                       <!-- Nom complet de la source + Date sur 2 lignes pour garantir 100% de lisibilité -->
                       <div class="min-w-0 flex-1">
-                        <span class="text-xs font-bold text-slate-900 block leading-tight">
+                        <span class="text-xs font-bold text-slate-900 dark:text-zinc-200 block leading-tight">
                           {article.source}
                         </span>
-                        <span class="text-[11px] font-medium text-slate-400 block mt-0.5">
+                        <span class="text-[11px] font-medium text-slate-400 dark:text-zinc-500 block mt-0.5">
                           {article.date}
                         </span>
                       </div>
                     </div>
 
                     <!-- Titre complet de l'article (100% lisible, sans aucune troncature) -->
-                    <h4 class="text-sm sm:text-[14.5px] font-bold font-title text-slate-900 group-hover:text-black transition-colors leading-snug">
+                    <h4 class="text-sm sm:text-[14.5px] font-bold font-title text-slate-900 dark:text-zinc-100 group-hover:text-black dark:group-hover:text-white transition-colors leading-snug">
                       {article.title}
                     </h4>
                   </div>
 
                   <!-- Bas de carte : Temps de lecture + Action consultative -->
-                  <div class="pt-3.5 border-t border-slate-100 mt-5 flex items-center justify-between text-xs">
-                    <span class="text-[11px] font-medium text-slate-400 flex items-center gap-1.5">
-                      <Clock class="w-3.5 h-3.5 text-slate-400" />
+                  <div class="pt-3.5 border-t border-slate-100 dark:border-zinc-800 mt-5 flex items-center justify-between text-xs">
+                    <span class="text-[11px] font-medium text-slate-400 dark:text-zinc-500 flex items-center gap-1.5">
+                      <Clock class="w-3.5 h-3.5 text-slate-400 dark:text-zinc-500" />
                       <span>{article.readTime}</span>
                     </span>
 
-                    <div class="inline-flex items-center gap-1 font-semibold text-zinc-900 group-hover:text-black transition-colors">
+                    <div class="inline-flex items-center gap-1 font-semibold text-zinc-900 dark:text-zinc-300 group-hover:text-black dark:group-hover:text-white transition-colors">
                       <span>Consulter la fiche</span>
                       <ArrowUpRight class="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                     </div>
@@ -227,7 +227,7 @@ const totalArticles = axes.reduce((acc, axis) => acc + axis.articles.length, 0);
         type="button"
         aria-label="Fiche précédente"
         title="Fiche précédente (Flèche gauche)"
-        class="hidden sm:flex pointer-events-auto absolute -left-14 md:-left-20 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white text-zinc-800 hover:text-black hover:bg-white border border-slate-200/90 shadow-xl hover:shadow-2xl hover:scale-110 active:scale-95 transition-all duration-200 items-center justify-center cursor-pointer z-50 disabled:opacity-0 disabled:pointer-events-none group"
+        class="hidden sm:flex pointer-events-auto absolute -left-14 md:-left-20 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white dark:bg-[#18181B] text-zinc-800 dark:text-zinc-200 hover:text-black dark:hover:text-white hover:bg-white dark:hover:bg-zinc-800 border border-slate-200/90 dark:border-[#27272A] shadow-xl hover:shadow-2xl hover:scale-110 active:scale-95 transition-all duration-200 items-center justify-center cursor-pointer z-50 disabled:opacity-0 disabled:pointer-events-none group"
       >
         <ChevronLeft class="w-6 h-6 transition-transform group-hover:-translate-x-0.5" />
       </button>
@@ -238,10 +238,10 @@ const totalArticles = axes.reduce((acc, axis) => acc + axis.articles.length, 0);
         role="dialog"
         aria-modal="true"
         aria-labelledby="veille-modal-title"
-        class="pointer-events-auto bg-white rounded-3xl p-6 sm:p-8 w-full shadow-2xl border border-slate-200 transform scale-95 transition-all duration-200 relative text-left max-h-[88vh] overflow-y-auto"
+        class="pointer-events-auto bg-white dark:bg-[#18181B] rounded-3xl p-6 sm:p-8 w-full shadow-2xl border border-slate-200 dark:border-[#27272A] transform scale-95 transition-all duration-200 relative text-left max-h-[88vh] overflow-y-auto"
       >
         <!-- En-tête épuré : Source + Identité à gauche, Compteur + Croix à droite -->
-        <div class="flex items-center justify-between gap-4 pb-4 mb-4 border-b border-slate-100">
+        <div class="flex items-center justify-between gap-4 pb-4 mb-4 border-b border-slate-100 dark:border-zinc-800">
           <!-- En-tête source : Logo + Nom + Axe + Date -->
           <div class="flex items-center gap-3 min-w-0">
             <div
@@ -251,13 +251,13 @@ const totalArticles = axes.reduce((acc, axis) => acc + axis.articles.length, 0);
 
             <div class="min-w-0">
               <div class="flex items-center gap-2 flex-wrap">
-                <span id="veille-modal-source" class="text-sm font-bold text-slate-900 leading-tight"></span>
-                <span id="veille-modal-axis" class="text-[11px] font-semibold text-zinc-800 bg-zinc-100 px-2.5 py-0.5 rounded-md border border-zinc-200"></span>
+                <span id="veille-modal-source" class="text-sm font-bold text-slate-900 dark:text-zinc-100 leading-tight"></span>
+                <span id="veille-modal-axis" class="text-[11px] font-semibold text-zinc-800 dark:text-zinc-200 bg-zinc-100 dark:bg-zinc-800 px-2.5 py-0.5 rounded-md border border-zinc-200 dark:border-zinc-700"></span>
               </div>
-              <div class="flex items-center gap-2 text-xs text-slate-500 mt-1 flex-wrap">
-                <span id="veille-modal-date" class="font-medium text-slate-600"></span>
-                <span class="text-slate-300">•</span>
-                <span id="veille-modal-sourcetype" class="text-slate-500 font-medium"></span>
+              <div class="flex items-center gap-2 text-xs text-slate-500 dark:text-zinc-400 mt-1 flex-wrap">
+                <span id="veille-modal-date" class="font-medium text-slate-600 dark:text-zinc-300"></span>
+                <span class="text-slate-300 dark:text-zinc-600">•</span>
+                <span id="veille-modal-sourcetype" class="text-slate-500 dark:text-zinc-400 font-medium"></span>
               </div>
             </div>
           </div>
@@ -266,7 +266,7 @@ const totalArticles = axes.reduce((acc, axis) => acc + axis.articles.length, 0);
           <div class="flex items-center gap-2.5 shrink-0">
             <span
               id="veille-modal-counter"
-              class="text-xs font-semibold text-slate-500 bg-slate-100 px-3 py-1 rounded-full border border-slate-200 select-none whitespace-nowrap"
+              class="text-xs font-semibold text-slate-500 dark:text-zinc-400 bg-slate-100 dark:bg-zinc-800 px-3 py-1 rounded-full border border-slate-200 dark:border-zinc-700 select-none whitespace-nowrap"
             >
               1 / 6
             </span>
@@ -276,7 +276,7 @@ const totalArticles = axes.reduce((acc, axis) => acc + axis.articles.length, 0);
               type="button"
               aria-label="Fermer la fiche"
               title="Fermer (Échap)"
-              class="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors focus:outline-none cursor-pointer"
+              class="p-2 rounded-xl text-slate-400 hover:text-slate-700 dark:hover:text-zinc-200 hover:bg-slate-100 dark:hover:bg-zinc-800 transition-colors focus:outline-none cursor-pointer"
             >
               <X class="w-5 h-5" />
             </button>
@@ -284,22 +284,22 @@ const totalArticles = axes.reduce((acc, axis) => acc + axis.articles.length, 0);
         </div>
 
         <!-- Titre complet de l'article -->
-        <h3 id="veille-modal-title" class="text-xl sm:text-2xl font-bold font-title text-slate-900 tracking-tight leading-snug mb-4"></h3>
+        <h3 id="veille-modal-title" class="text-xl sm:text-2xl font-bold font-title text-slate-900 dark:text-zinc-100 tracking-tight leading-snug mb-4"></h3>
 
         <!-- Bandeau de métriques de qualification (3 badges équilibrés) -->
-        <div class="flex flex-wrap items-center gap-2 mb-6 pb-4 border-b border-slate-100">
-          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-50 text-slate-700 border border-slate-200/80 text-xs font-medium">
-            <Clock class="w-3.5 h-3.5 text-slate-500" />
+        <div class="flex flex-wrap items-center gap-2 mb-6 pb-4 border-b border-slate-100 dark:border-zinc-800">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-50 dark:bg-zinc-900 text-slate-700 dark:text-zinc-300 border border-slate-200/80 dark:border-zinc-800 text-xs font-medium">
+            <Clock class="w-3.5 h-3.5 text-slate-500 dark:text-zinc-400" />
             <span id="veille-modal-readtime"></span>
           </span>
 
-          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-50 text-slate-700 border border-slate-200/80 text-xs font-medium">
-            <ShieldCheck class="w-3.5 h-3.5 text-zinc-900" />
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-50 dark:bg-zinc-900 text-slate-700 dark:text-zinc-300 border border-slate-200/80 dark:border-zinc-800 text-xs font-medium">
+            <ShieldCheck class="w-3.5 h-3.5 text-zinc-900 dark:text-zinc-100" />
             <span>Épreuve E4 (Option SLAM)</span>
           </span>
 
-          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-50 text-slate-700 border border-slate-200/80 text-xs font-medium">
-            <BookOpen class="w-3.5 h-3.5 text-slate-500" />
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-50 dark:bg-zinc-900 text-slate-700 dark:text-zinc-300 border border-slate-200/80 dark:border-zinc-800 text-xs font-medium">
+            <BookOpen class="w-3.5 h-3.5 text-slate-500 dark:text-zinc-400" />
             <span>Source certifiée</span>
           </span>
         </div>
@@ -307,13 +307,13 @@ const totalArticles = axes.reduce((acc, axis) => acc + axis.articles.length, 0);
         <!-- Section 1 : Résumé analytique dans un encadré teinté et soigné -->
         <div class="mb-6">
           <div class="flex items-center gap-2 mb-2.5">
-            <div class="w-1.5 h-4 bg-zinc-900 rounded-full"></div>
-            <h4 class="text-xs uppercase tracking-wider font-bold text-slate-500 font-title">
+            <div class="w-1.5 h-4 bg-zinc-900 dark:bg-zinc-100 rounded-full"></div>
+            <h4 class="text-xs uppercase tracking-wider font-bold text-slate-500 dark:text-zinc-400 font-title">
               Résumé analytique
             </h4>
           </div>
-          <div class="bg-slate-50/80 rounded-2xl p-4 sm:p-5 border border-slate-200/70">
-            <p id="veille-modal-summary" class="text-xs sm:text-sm text-slate-700 leading-relaxed"></p>
+          <div class="bg-slate-50/80 dark:bg-zinc-900/80 rounded-2xl p-4 sm:p-5 border border-slate-200/70 dark:border-zinc-800">
+            <p id="veille-modal-summary" class="text-xs sm:text-sm text-slate-700 dark:text-zinc-300 leading-relaxed"></p>
           </div>
         </div>
 
@@ -321,36 +321,36 @@ const totalArticles = axes.reduce((acc, axis) => acc + axis.articles.length, 0);
         <div class="mb-6">
           <div class="flex items-center justify-between mb-2.5">
             <div class="flex items-center gap-2">
-              <div class="w-1.5 h-4 bg-zinc-900 rounded-full"></div>
-              <h4 class="text-xs uppercase tracking-wider font-bold text-slate-500 font-title">
+              <div class="w-1.5 h-4 bg-zinc-900 dark:bg-zinc-100 rounded-full"></div>
+              <h4 class="text-xs uppercase tracking-wider font-bold text-slate-500 dark:text-zinc-400 font-title">
                 Enjeux & Retombées techniques (BTS SIO SLAM)
               </h4>
             </div>
-            <span class="text-[11px] font-semibold text-slate-500 bg-slate-100 px-2.5 py-0.5 rounded-md border border-slate-200">
+            <span class="text-[11px] font-semibold text-slate-500 dark:text-zinc-400 bg-slate-100 dark:bg-zinc-800 px-2.5 py-0.5 rounded-md border border-slate-200 dark:border-zinc-700">
               3 points clés
             </span>
           </div>
-          <div class="bg-slate-50/80 rounded-2xl p-4 sm:p-5 border border-slate-200/70">
+          <div class="bg-slate-50/80 dark:bg-zinc-900/80 rounded-2xl p-4 sm:p-5 border border-slate-200/70 dark:border-zinc-800">
             <ul id="veille-modal-keypoints" class="space-y-3"></ul>
           </div>
         </div>
 
         <!-- Section 3 : Mots-clés & Normes associés (Tags) -->
         <div class="mb-6">
-          <h4 class="text-xs uppercase tracking-wider font-bold text-slate-400 font-title mb-2">
+          <h4 class="text-xs uppercase tracking-wider font-bold text-slate-400 dark:text-zinc-400 font-title mb-2">
             Mots-clés & Normes associés
           </h4>
           <div id="veille-modal-tags" class="flex flex-wrap items-center gap-1.5"></div>
         </div>
 
         <!-- Actions de pied de modale : Fermer + Bouton source officielle (et navigation mobile compacte) -->
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-4 border-t border-slate-100">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-4 border-t border-slate-100 dark:border-zinc-800">
           <div class="flex items-center gap-2">
             <!-- Bouton Fermer sur desktop -->
             <button
               id="veille-modal-close-footer"
               type="button"
-              class="px-4 py-2.5 rounded-xl bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 text-xs font-semibold transition-colors cursor-pointer"
+              class="px-4 py-2.5 rounded-xl bg-white dark:bg-zinc-800 hover:bg-slate-50 dark:hover:bg-zinc-700 text-slate-700 dark:text-zinc-300 border border-slate-200 dark:border-zinc-700 text-xs font-semibold transition-colors cursor-pointer"
             >
               Fermer
             </button>
@@ -361,7 +361,7 @@ const totalArticles = axes.reduce((acc, axis) => acc + axis.articles.length, 0);
                 id="veille-modal-prev-mobile"
                 type="button"
                 aria-label="Fiche précédente"
-                class="px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold disabled:opacity-30 disabled:pointer-events-none"
+                class="px-3 py-2 rounded-xl bg-slate-100 dark:bg-zinc-800 hover:bg-slate-200 dark:hover:bg-zinc-700 text-slate-700 dark:text-zinc-300 text-xs font-semibold disabled:opacity-30 disabled:pointer-events-none"
               >
                 ←
               </button>
@@ -369,7 +369,7 @@ const totalArticles = axes.reduce((acc, axis) => acc + axis.articles.length, 0);
                 id="veille-modal-next-mobile"
                 type="button"
                 aria-label="Fiche suivante"
-                class="px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold disabled:opacity-30 disabled:pointer-events-none"
+                class="px-3 py-2 rounded-xl bg-slate-100 dark:bg-zinc-800 hover:bg-slate-200 dark:hover:bg-zinc-700 text-slate-700 dark:text-zinc-300 text-xs font-semibold disabled:opacity-30 disabled:pointer-events-none"
               >
                 →
               </button>
@@ -382,7 +382,7 @@ const totalArticles = axes.reduce((acc, axis) => acc + axis.articles.length, 0);
             href="#"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-zinc-900 hover:bg-black text-white font-semibold text-xs transition-colors shadow-sm cursor-pointer"
+            class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-zinc-900 hover:bg-black dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-950 font-semibold text-xs transition-colors shadow-sm cursor-pointer"
           >
             <span>Consulter la source officielle</span>
             <ExternalLink class="w-3.5 h-3.5" />
@@ -396,7 +396,7 @@ const totalArticles = axes.reduce((acc, axis) => acc + axis.articles.length, 0);
         type="button"
         aria-label="Fiche suivante"
         title="Fiche suivante (Flèche droite)"
-        class="hidden sm:flex pointer-events-auto absolute -right-14 md:-right-20 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white text-zinc-800 hover:text-black hover:bg-white border border-slate-200/90 shadow-xl hover:shadow-2xl hover:scale-110 active:scale-95 transition-all duration-200 items-center justify-center cursor-pointer z-50 disabled:opacity-0 disabled:pointer-events-none group"
+        class="hidden sm:flex pointer-events-auto absolute -right-14 md:-right-20 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white dark:bg-[#18181B] text-zinc-800 dark:text-zinc-200 hover:text-black dark:hover:text-white hover:bg-white dark:hover:bg-zinc-800 border border-slate-200/90 dark:border-[#27272A] shadow-xl hover:shadow-2xl hover:scale-110 active:scale-95 transition-all duration-200 items-center justify-center cursor-pointer z-50 disabled:opacity-0 disabled:pointer-events-none group"
       >
         <ChevronRight class="w-6 h-6 transition-transform group-hover:translate-x-0.5" />
       </button>

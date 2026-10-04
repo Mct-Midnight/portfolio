@@ -11,13 +11,13 @@ const { currentPath = '' } = Astro.props;
 const { identity } = profileData;
 ---
 
-<footer class="mt-20 py-8 border-t border-slate-200 text-xs text-slate-500">
+<footer class="mt-20 py-8 border-t border-slate-200 dark:border-zinc-800 text-xs text-slate-500 dark:text-zinc-400">
   <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
     <div class="space-y-1 text-center sm:text-left">
-      <p class="font-semibold text-slate-900 font-title">
+      <p class="font-semibold text-slate-900 dark:text-zinc-100 font-title">
         Portfolio {identity.firstName} {identity.lastName} · BTS SIO Option SLAM
       </p>
-      <p class="text-slate-400">
+      <p class="text-slate-400 dark:text-zinc-500">
         Formation préparée avec le CNED · Référentiel national du BTS SIO (Session 2026-2028)
       </p>
     </div>
@@ -27,10 +27,10 @@ const { identity } = profileData;
       {currentPath !== '/journal' && (
         <a
           href="/journal"
-          class="inline-flex items-center gap-1.5 font-medium text-slate-600 hover:text-zinc-950 transition-colors py-1.5 px-2.5 rounded-lg hover:bg-slate-100"
+          class="inline-flex items-center gap-1.5 font-medium text-slate-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors py-1.5 px-2.5 rounded-lg hover:bg-slate-100 dark:hover:bg-zinc-800"
           title="Consulter l'historique des livraisons Git et de maintenance du portfolio"
         >
-          <GitBranch class="w-3.5 h-3.5 text-slate-400" />
+          <GitBranch class="w-3.5 h-3.5 text-slate-400 dark:text-zinc-500" />
           <span>Journal Git</span>
         </a>
       )}
@@ -38,15 +38,15 @@ const { identity } = profileData;
       {currentPath !== '/mentions-legales' ? (
         <a
           href="/mentions-legales"
-          class="inline-flex items-center gap-1.5 font-medium text-slate-600 hover:text-zinc-950 transition-colors py-1.5 px-2.5 rounded-lg hover:bg-slate-100"
+          class="inline-flex items-center gap-1.5 font-medium text-slate-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors py-1.5 px-2.5 rounded-lg hover:bg-slate-100 dark:hover:bg-zinc-800"
         >
-          <Scale class="w-3.5 h-3.5 text-slate-400" />
+          <Scale class="w-3.5 h-3.5 text-slate-400 dark:text-zinc-500" />
           <span>Mentions Légales</span>
         </a>
       ) : (
         <a
           href="/"
-          class="inline-flex items-center gap-1.5 font-medium text-slate-600 hover:text-zinc-950 transition-colors py-1.5 px-2.5 rounded-lg hover:bg-slate-100"
+          class="inline-flex items-center gap-1.5 font-medium text-slate-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors py-1.5 px-2.5 rounded-lg hover:bg-slate-100 dark:hover:bg-zinc-800"
         >
           <span>← Accueil du portfolio</span>
         </a>
