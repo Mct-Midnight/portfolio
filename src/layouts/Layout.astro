@@ -46,8 +46,25 @@ const {
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
     />
+
+    <!-- Initialisation immédiate du thème pour bloquer tout scintillement blanc (Anti-FOUC) -->
+    <script is:inline>
+      (function() {
+        try {
+          const storedTheme = localStorage.getItem('portfolio-theme');
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (storedTheme === 'dark' || (!storedTheme && prefersDark)) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (err) {
+          console.error('Erreur lors de la lecture du thème local :', err);
+        }
+      })();
+    </script>
   </head>
-  <body class="bg-slate-50 text-slate-700 antialiased selection:bg-zinc-900 selection:text-white font-sans">
+  <body class="bg-slate-50 dark:bg-[#09090b] text-slate-700 dark:text-zinc-300 antialiased selection:bg-zinc-900 selection:text-white dark:selection:bg-zinc-100 dark:selection:text-zinc-950 font-sans transition-colors duration-200">
     <slot />
   </body>
 </html>

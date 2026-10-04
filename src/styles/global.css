@@ -10,6 +10,11 @@
     background-color: #F8FAFC;
   }
 
+  html.dark {
+    color: #cbd5e1;
+    background-color: #09090b;
+  }
+
   body {
     @apply font-sans;
     min-height: 100vh;
@@ -20,17 +25,34 @@
     @apply font-title font-black tracking-tight text-slate-900;
   }
 
+  html.dark h1 {
+    @apply text-zinc-100;
+  }
+
   h2 {
     @apply font-title font-extrabold tracking-tight text-slate-900;
+  }
+
+  html.dark h2 {
+    @apply text-zinc-100;
   }
 
   h3, h4 {
     @apply font-title font-bold text-slate-800;
   }
 
+  html.dark h3, html.dark h4 {
+    @apply text-zinc-200;
+  }
+
   ::selection {
     background-color: #18181B;
     color: #FFFFFF;
+  }
+
+  html.dark ::selection {
+    background-color: #FFFFFF;
+    color: #09090B;
   }
 }
 
@@ -44,13 +66,25 @@
   background: #F1F5F9;
 }
 
+html.dark ::-webkit-scrollbar-track {
+  background: #18181B;
+}
+
 ::-webkit-scrollbar-thumb {
   background: #CBD5E1;
   border-radius: 4px;
 }
 
+html.dark ::-webkit-scrollbar-thumb {
+  background: #3F3F46;
+}
+
 ::-webkit-scrollbar-thumb:hover {
   background: #94A3B8;
+}
+
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: #52525B;
 }
 
 /* Styles dédiés au rendu du Markdown des études de cas (Épreuve E4) */
@@ -220,4 +254,80 @@
   color: inherit;
   border: none;
   padding: 0;
+}
+
+/* Déclinaisons mode sombre pour le contenu Markdown */
+html.dark .markdown-content h2 {
+  color: #F4F4F5;
+  border-bottom-color: #27272A;
+}
+
+html.dark .markdown-content h3 {
+  color: #E4E4E7;
+}
+
+html.dark .markdown-content h4 {
+  color: #F4F4F5;
+}
+
+html.dark .markdown-content p {
+  color: #D4D4D8;
+}
+
+html.dark .markdown-content strong {
+  color: #FFFFFF;
+}
+
+html.dark .markdown-content ul,
+html.dark .markdown-content ol {
+  color: #D4D4D8;
+}
+
+html.dark .markdown-content blockquote {
+  background-color: #18181B;
+  border-left-color: #71717A;
+  color: #A1A1AA;
+}
+
+html.dark .markdown-content hr {
+  border-top-color: #27272A;
+}
+
+html.dark .markdown-content table {
+  background-color: #18181B;
+  border-color: #27272A;
+}
+
+html.dark .markdown-content th {
+  background-color: #09090B;
+  color: #FFFFFF;
+  border-bottom-color: #27272A;
+}
+
+html.dark .markdown-content td {
+  color: #D4D4D8;
+  border-bottom-color: #27272A;
+}
+
+html.dark .markdown-content tr:nth-child(even) td {
+  background-color: #121214;
+}
+
+html.dark .markdown-content tr:hover td {
+  background-color: #1F1F23;
+}
+
+html.dark .markdown-content img {
+  border-color: #27272A;
+}
+
+html.dark .markdown-content code {
+  background-color: #27272A;
+  color: #F4F4F5;
+  border-color: #3F3F46;
+}
+
+html.dark .markdown-content pre {
+  background-color: #121214;
+  border-color: #27272A;
 }
