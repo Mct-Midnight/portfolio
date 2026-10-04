@@ -7,18 +7,18 @@ const { certifications } = timelineData;
 const techCerts = certifications.filter((c) => c.category === 'tech');
 const citizenCerts = certifications.filter((c) => c.category === 'citoyen');
 
-// Style des badges de statut avec couleurs subtiles (jaune pour en préparation, vert pour délivrée)
+// Style des badges de statut avec couleurs allégées et modernes (ambre pour en préparation, émeraude pour délivrée)
 function getStatusBadgeStyle(status: string) {
   const s = status.toLowerCase();
   if (s.includes('délivr') || s.includes('obten')) {
     return {
-      badgeClass: 'bg-emerald-50 dark:bg-emerald-950/50 text-emerald-800 dark:text-emerald-300 border-emerald-200/80 dark:border-emerald-800/80',
-      dotClass: 'bg-emerald-500',
+      badgeClass: 'bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-500/30',
+      dotClass: 'bg-emerald-500 dark:bg-emerald-400',
     };
   }
   return {
-    badgeClass: 'bg-amber-50 dark:bg-amber-950/50 text-amber-800 dark:text-amber-300 border-amber-200/80 dark:border-amber-800/80',
-    dotClass: 'bg-amber-500',
+    badgeClass: 'bg-amber-50 dark:bg-amber-500/10 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-500/30',
+    dotClass: 'bg-amber-500 dark:bg-amber-400',
   };
 }
 ---
