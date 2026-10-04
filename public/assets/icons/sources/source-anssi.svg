@@ -1,10 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="100%" height="100%" fill="none">
-  <!-- Fond blanc pur avec coins arrondis -->
-  <rect width="48" height="48" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1" />
   <!-- Drapeau français officiel tricolore -->
-  <rect x="15" y="6" width="6" height="4" fill="#000091" />
-  <rect x="21" y="6" width="6" height="4" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="0.5" />
-  <rect x="27" y="6" width="6" height="4" fill="#E1000F" />
+  <rect x="15" y="6" width="6" height="4" rx="0.5" fill="#000091" />
+  <rect x="21" y="6" width="6" height="4" rx="0.5" fill="#F8FAFC" />
+  <rect x="27" y="6" width="6" height="4" rx="0.5" fill="#E1000F" />
   <!-- Bouclier officiel ANSSI en bleu marine institutionnel -->
   <path d="M24 14L35 18V27C35 34.5 30 40.5 24 42C18 40.5 13 34.5 13 27V18L24 14Z" fill="#002B54" />
   <!-- Monogramme ANSSI blanc -->
