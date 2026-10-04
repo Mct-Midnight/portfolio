@@ -6,9 +6,10 @@ import { GitBranch, Scale, ArrowLeft, FileText } from 'lucide-astro';
 interface Props {
   currentPath?: string;
   hideHomeLink?: boolean;
+  hideStageLink?: boolean;
 }
 
-const { currentPath = '', hideHomeLink = false } = Astro.props;
+const { currentPath = '', hideHomeLink = false, hideStageLink = false } = Astro.props;
 const { identity } = profileData;
 const currentYear = new Date().getFullYear();
 ---
@@ -37,7 +38,7 @@ const currentYear = new Date().getFullYear();
         </a>
       )}
 
-      {currentPath !== '/fiche-synthese-stage' && (
+      {!hideStageLink && currentPath !== '/fiche-synthese-stage' && currentPath !== '/404' && (
         <a
           href="/fiche-synthese-stage"
           class="inline-flex items-center gap-1.5 text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white transition-colors group"

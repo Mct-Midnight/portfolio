@@ -22,31 +22,31 @@ const { identity } = profileData;
     <!-- Zone principale occupant exactement l'espace restant -->
     <div class="flex-1 w-full lg:pl-[280px] flex flex-col h-full lg:max-h-screen min-w-0">
       
-      <!-- Conteneur principal équilibré avec respiration en haut et en bas -->
-      <main class="flex-1 max-w-4xl w-full mx-auto px-6 sm:px-10 lg:px-12 pt-16 lg:pt-10 pb-6 sm:pb-8 lg:pb-8 flex flex-col justify-between h-full">
+      <!-- Conteneur principal harmonisé sur la grille de la page d'accueil (max-w-5xl) -->
+      <main class="flex-1 max-w-5xl w-full mx-auto px-5 sm:px-8 lg:px-12 pt-14 lg:pt-8 pb-6 sm:pb-8 flex flex-col justify-between h-full">
         
         <!-- Bloc central valorisé prenant une présence généreuse et harmonieuse -->
-        <div class="my-auto py-2 sm:py-4 flex flex-col items-center text-center">
+        <div class="my-auto py-2 sm:py-3 flex flex-col items-center text-center">
           
-          <!-- 1. Grand 404 Montserrat imposant et affirmé (avec un contraste gris titane plus soutenu) -->
-          <div class="select-none mb-1 sm:mb-2">
-            <span class="font-title font-black text-8xl sm:text-9xl lg:text-[10rem] xl:text-[11rem] tracking-tighter text-zinc-400 dark:text-zinc-700 leading-none block">
-              404
-            </span>
+          <!-- 1. Grand 404 Montserrat imposant avec espacement symétrique calibré entre chaque chiffre -->
+          <div class="select-none mb-2 sm:mb-3 flex items-center justify-center gap-2 sm:gap-4 lg:gap-5 font-title font-black text-8xl sm:text-9xl lg:text-[10rem] xl:text-[11rem] text-zinc-400 dark:text-zinc-700 leading-none">
+            <span>4</span>
+            <span>0</span>
+            <span>4</span>
           </div>
 
           <!-- 2. Titre principal exécutif de belle stature -->
-          <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-title text-slate-900 dark:text-zinc-100 tracking-tight max-w-2xl mb-3">
+          <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-title text-slate-900 dark:text-zinc-100 tracking-tight max-w-2xl mb-2.5 sm:mb-3">
             Cette page n'existe pas ou a été déplacée
           </h1>
 
           <!-- 3. Sous-titre pédagogique équilibré -->
-          <p class="text-sm sm:text-base text-slate-600 dark:text-zinc-400 leading-relaxed max-w-xl mx-auto mb-6">
+          <p class="text-sm sm:text-base text-slate-600 dark:text-zinc-400 leading-relaxed max-w-xl mx-auto mb-5 sm:mb-6">
             L'URL demandée n'a pas été trouvée sur l'infrastructure Vercel hébergeant ce portfolio statique. Le lien est peut-être erroné, obsolète ou a fait l'objet d'une réorganisation d'arborescence.
           </p>
 
           <!-- 4. Cartouche de diagnostic technique élargi au format terminal -->
-          <div class="w-full max-w-xl bg-[#18181B] dark:bg-[#121215] border border-zinc-800 rounded-2xl overflow-hidden shadow-card text-left mb-7">
+          <div class="w-full max-w-xl bg-[#18181B] dark:bg-[#121215] border border-zinc-800 rounded-2xl overflow-hidden shadow-card text-left mb-6 sm:mb-7">
             <!-- Barre supérieure de fenêtre terminal -->
             <div class="px-4 py-2.5 bg-zinc-900/90 border-b border-zinc-800 flex items-center justify-between">
               <div class="flex items-center gap-2">
@@ -87,8 +87,8 @@ const { identity } = profileData;
             </div>
           </div>
 
-          <!-- 5. Bouton d'action principal bien proportionné -->
-          <div class="flex items-center justify-center">
+          <!-- 5. Bouton d'action principal bien proportionné avec marge inférieure de confort -->
+          <div class="flex items-center justify-center pb-2">
             <a
               href="/"
               class="inline-flex items-center justify-center gap-2.5 px-6 py-3 rounded-xl bg-zinc-900 hover:bg-black text-white dark:bg-zinc-100 dark:hover:bg-white dark:text-zinc-950 font-semibold text-sm transition-all shadow-sm hover:shadow-md group"
@@ -100,9 +100,9 @@ const { identity } = profileData;
 
         </div>
 
-        <!-- 6. Pied de page aéré avec marge de respiration inférieure -->
-        <div class="shrink-0 w-full mt-4 lg:mt-6 pt-2 border-t border-slate-200/80 dark:border-zinc-800/80 [&>footer]:mt-0 [&>footer]:py-2.5 [&>footer]:border-t-0">
-          <Footer currentPath="/404" hideHomeLink={true} />
+        <!-- 6. Pied de page aéré avec marge de respiration et largeur identique à l'accueil -->
+        <div class="shrink-0 w-full mt-6 lg:mt-8 pt-3 border-t border-slate-200/80 dark:border-zinc-800/80 [&>footer]:mt-0 [&>footer]:py-3 [&>footer]:border-t-0">
+          <Footer currentPath="/404" hideHomeLink={true} hideStageLink={true} />
         </div>
 
       </main>
