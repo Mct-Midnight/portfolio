@@ -114,6 +114,7 @@ function getStatusBadge(status: string) {
     {sortedProjects.map((project) => {
       const statusBadge = getStatusBadge(project.data.status);
       const summary = extractSummary(project.body);
+      const isPortfolio = project.slug === 'portfolio-plateforme-web';
 
       return (
         <article
@@ -182,7 +183,10 @@ function getStatusBadge(status: string) {
               <h3 class="text-lg font-bold font-title text-slate-900 dark:text-zinc-100 group-hover:text-zinc-950 dark:group-hover:text-white transition-colors leading-snug tracking-tight">
                 <a
                   href={`/projets/${project.slug}`}
-                  class="project-modal-trigger cursor-pointer"
+                  class:list={[
+                    "cursor-pointer",
+                    !isPortfolio && "project-modal-trigger"
+                  ]}
                   data-project-title={project.data.title}
                 >
                   {project.data.title}
@@ -207,10 +211,13 @@ function getStatusBadge(status: string) {
 
           <!-- Pied de carte épuré : action principale et liens secondaires -->
           <div class="px-6 py-4 bg-slate-50/60 dark:bg-zinc-900/60 border-t border-slate-100 dark:border-zinc-800 flex items-center justify-between gap-3 mt-auto">
-            <!-- Bouton principal : Consulter l'étude de cas (Ouvre la modale d'information) -->
+            <!-- Bouton principal : Consulter l'étude de cas -->
             <a
               href={`/projets/${project.slug}`}
-              class="project-modal-trigger inline-flex items-center gap-1.5 text-xs font-bold text-zinc-900 dark:text-zinc-100 hover:text-black dark:hover:text-white transition-colors group/link py-1 cursor-pointer"
+              class:list={[
+                "inline-flex items-center gap-1.5 text-xs font-bold text-zinc-900 dark:text-zinc-100 hover:text-black dark:hover:text-white transition-colors group/link py-1 cursor-pointer",
+                !isPortfolio && "project-modal-trigger"
+              ]}
               data-project-title={project.data.title}
             >
               <span>Consulter l'étude de cas</span>
@@ -224,7 +231,10 @@ function getStatusBadge(status: string) {
                   href={project.data.repoUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="repo-modal-trigger inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white hover:bg-white dark:hover:bg-zinc-800 hover:border-slate-200 dark:hover:border-zinc-700 border border-transparent hover:shadow-xs transition-all cursor-pointer"
+                  class:list={[
+                    "inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white hover:bg-white dark:hover:bg-zinc-800 hover:border-slate-200 dark:hover:border-zinc-700 border border-transparent hover:shadow-xs transition-all cursor-pointer",
+                    !isPortfolio && "repo-modal-trigger"
+                  ]}
                   data-project-title={project.data.title}
                   title="Code source sur GitHub"
                 >
