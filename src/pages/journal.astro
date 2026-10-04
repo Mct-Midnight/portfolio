@@ -111,7 +111,12 @@ const latestCommit = commits[0];
 
             <div class="p-3 bg-slate-50 dark:bg-zinc-900/60 rounded-xl border border-slate-100 dark:border-zinc-800">
               <span class="text-xs text-slate-500 dark:text-zinc-400 font-medium block">Dernière mise à jour</span>
-              <span class="text-xs font-bold text-zinc-900 dark:text-zinc-100 font-title truncate block mt-1" title={latestCommit ? latestCommit.formattedDate : ''}>
+              <span
+                id="kpi-latest-date"
+                data-iso-date={latestCommit ? latestCommit.date : ''}
+                class="text-xs font-bold text-zinc-900 dark:text-zinc-100 font-title truncate block mt-1"
+                title={latestCommit ? latestCommit.formattedDate : ''}
+              >
                 {latestCommit ? latestCommit.relativeDate : 'Récemment'}
               </span>
             </div>
@@ -235,7 +240,12 @@ const latestCommit = commits[0];
                     <Calendar class="w-3.5 h-3.5 text-slate-400 dark:text-zinc-500" />
                     <span class="font-medium text-slate-600 dark:text-zinc-300">{commit.formattedDate}</span>
                     <span class="w-1 h-1 rounded-full bg-zinc-300 dark:bg-zinc-600 shrink-0 select-none" aria-hidden="true"></span>
-                    <span class="text-slate-500 dark:text-zinc-400 font-medium">{commit.relativeDate}</span>
+                    <span
+                      class="text-slate-500 dark:text-zinc-400 font-medium js-relative-date"
+                      data-iso-date={commit.date}
+                    >
+                      {commit.relativeDate}
+                    </span>
                   </span>
 
                   <span class="text-slate-500 dark:text-zinc-400">
@@ -429,6 +439,47 @@ const latestCommit = commits[0];
     });
   }
 
+  // Actualisation dynamique des dates relatives en direct dans le navigateur du visiteur
+  function refreshRelativeDates() {
+    function computeRelative(isoString: string | null): string {
+      if (!isoString) return '';
+      const date = new Date(isoString);
+      if (isNaN(date.getTime())) return '';
+      const diffMs = Date.now() - date.getTime();
+      if (diffMs < 0) return "À l'instant";
+
+      const diffMins = Math.floor(diffMs / (1000 * 60));
+      const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+      const diffDays = Math.floor(diffHours / 24);
+
+      if (diffMins < 5) return "À l'instant";
+      if (diffMins < 60) return `Il y a ${diffMins} min`;
+      if (diffHours < 24) return `Il y a ${diffHours} h`;
+      if (diffDays === 1) return 'Hier';
+      if (diffDays < 30) return `Il y a ${diffDays} jours`;
+      const diffMonths = Math.floor(diffDays / 30);
+      return `Il y a ${diffMonths} mois`;
+    }
+
+    // Mise à jour du KPI de dernière mise à jour
+    const kpiElement = document.getElementById('kpi-latest-date');
+    if (kpiElement) {
+      const iso = kpiElement.getAttribute('data-iso-date');
+      const rel = computeRelative(iso);
+      if (rel) kpiElement.textContent = rel;
+    }
+
+    // Mise à jour de chaque carte de commit
+    const relativeElements = document.querySelectorAll<HTMLElement>('.js-relative-date');
+    relativeElements.forEach((el) => {
+      const iso = el.getAttribute('data-iso-date');
+      const rel = computeRelative(iso);
+      if (rel) el.textContent = rel;
+    });
+  }
+
   // Initialisation immédiate au chargement du composant
   renderView();
+  refreshRelativeDates();
+  setInterval(refreshRelativeDates, 60000);
 </script>
