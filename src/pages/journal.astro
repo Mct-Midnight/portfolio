@@ -44,7 +44,7 @@ const latestCommit = commits[0];
     <Sidebar currentPath="/journal" />
 
     <!-- Zone principale -->
-    <div class="flex-1 w-full lg:pl-[260px] flex flex-col min-w-0">
+    <div class="flex-1 w-full lg:pl-[280px] flex flex-col min-w-0">
       <main class="flex-1 max-w-4xl w-full mx-auto px-5 sm:px-8 lg:px-10 pt-20 lg:pt-10 pb-16">
         
         <!-- Bouton retour vers l'accueil -->
@@ -234,7 +234,7 @@ const latestCommit = commits[0];
                   <span class="flex items-center gap-1.5">
                     <Calendar class="w-3.5 h-3.5 text-slate-400 dark:text-zinc-500" />
                     <span class="font-medium text-slate-600 dark:text-zinc-300">{commit.formattedDate}</span>
-                    <span class="text-zinc-600 dark:text-zinc-500 font-bold select-none text-sm leading-none">·</span>
+                    <span class="w-1 h-1 rounded-full bg-zinc-300 dark:bg-zinc-600 shrink-0 select-none" aria-hidden="true"></span>
                     <span class="text-slate-500 dark:text-zinc-400 font-medium">{commit.relativeDate}</span>
                   </span>
 

@@ -1,5 +1,5 @@
 ---
-// Page dynamique pour les études de cas de projets (Oral E4 · Bloc 1)
+// Page dynamique pour les études de cas de projets (Oral E4 - Bloc 1)
 import { getCollection, type CollectionEntry } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import Sidebar from '../../components/Sidebar.astro';
@@ -68,7 +68,7 @@ const statusDetails = getStatusDetails(project.data.status);
     <Sidebar currentPath={`/projets/${project.slug}`} />
 
     <!-- Zone principale -->
-    <div class="flex-1 w-full lg:pl-[260px] flex flex-col min-w-0">
+    <div class="flex-1 w-full lg:pl-[280px] flex flex-col min-w-0">
       
       <main class="flex-1 max-w-4xl w-full mx-auto px-5 sm:px-8 lg:px-10 pt-20 lg:pt-10 pb-16">
         

@@ -32,7 +32,11 @@ const basePath = isHome ? '' : '/';
     </div>
     <div>
       <span class="text-white font-bold text-sm block font-title">{identity.firstName} {identity.lastName}</span>
-      <span class="text-xs text-zinc-400 block font-medium">BTS SIO SLAM · CNED</span>
+      <span class="text-xs text-zinc-400 font-medium flex items-center gap-1.5">
+        <span>BTS SIO SLAM</span>
+        <span class="w-1 h-1 rounded-full bg-zinc-500 shrink-0" aria-hidden="true"></span>
+        <span>CNED</span>
+      </span>
     </div>
   </a>
 
@@ -60,7 +64,7 @@ const basePath = isHome ? '' : '/';
 <!-- Volet latéral fixe (Sidebar Desktop & Drawer Mobile) -->
 <aside
   id="sidebar-pane"
-  class="fixed top-0 bottom-0 left-0 w-[260px] bg-[#18181B] text-zinc-300 border-r border-[#27272A] z-50 flex flex-col justify-between transition-transform duration-300 ease-in-out -translate-x-full lg:translate-x-0 shadow-lg"
+  class="fixed top-0 bottom-0 left-0 w-[280px] bg-[#18181B] text-zinc-300 border-r border-[#27272A] z-50 flex flex-col justify-between transition-transform duration-300 ease-in-out -translate-x-full lg:translate-x-0 shadow-lg"
 >
   <!-- Partie Supérieure : En-tête Profil épuré -->
   <div class="p-6 border-b border-[#27272A]">
@@ -98,13 +102,17 @@ const basePath = isHome ? '' : '/';
       <h1 class="text-white font-extrabold text-lg tracking-tight font-title">{identity.firstName} {identity.lastName}</h1>
       
       <!-- Intitulé épuré et professionnel -->
-      <p class="text-xs text-zinc-300 font-medium mt-1 tracking-wide">1re année BTS SIO · Option SLAM</p>
+      <p class="text-xs text-zinc-300 font-medium mt-1 tracking-wide flex items-center justify-center gap-1.5">
+        <span>1re année BTS SIO</span>
+        <span class="w-1 h-1 rounded-full bg-zinc-500 shrink-0" aria-hidden="true"></span>
+        <span>Option SLAM</span>
+      </p>
       <p class="text-[11px] text-zinc-500 mt-0.5 font-medium">CNED</p>
     </div>
   </div>
 
   <!-- Navigation Principale avec icônes pleines (Solid) modernes -->
-  <nav class="flex-1 px-3.5 py-5 space-y-2 lg:space-y-2.5 overflow-y-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden" id="sidebar-nav">
+  <nav class="flex-1 px-4 py-5 space-y-2 lg:space-y-2.5 overflow-y-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden" id="sidebar-nav">
     
     <!-- Accueil -->
     <a
@@ -120,7 +128,7 @@ const basePath = isHome ? '' : '/';
       <span>Accueil</span>
     </a>
 
-    <!-- Profil & Stage 2027 -->
+    <!-- Profil -->
     <a
       href={`${basePath}#profil`}
       class="nav-link flex items-center gap-3 px-3.5 py-3 rounded-xl text-sm font-medium text-zinc-400 hover:text-white hover:bg-zinc-800/80 transition-all duration-200 group"
@@ -130,10 +138,10 @@ const basePath = isHome ? '' : '/';
       <svg class="w-5 h-5 text-zinc-400 group-hover:text-white shrink-0 transition-colors" viewBox="0 0 24 24" fill="currentColor">
         <path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 21.75c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z" clip-rule="evenodd" />
       </svg>
-      <span>Profil & Stage 2027</span>
+      <span>Profil</span>
     </a>
 
-    <!-- Parcours & Cursus -->
+    <!-- Parcours -->
     <a
       href={`${basePath}#parcours`}
       class="nav-link flex items-center gap-3 px-3.5 py-3 rounded-xl text-sm font-medium text-zinc-400 hover:text-white hover:bg-zinc-800/80 transition-all duration-200 group"
@@ -145,20 +153,22 @@ const basePath = isHome ? '' : '/';
         <path d="M13.06 15.473a48.45 48.45 0 0 1 7.666-3.282c.134 1.414.22 2.843.255 4.284a.75.75 0 0 1-.456.711l-7.75 3.875a.75.75 0 0 1-.67 0l-7.75-3.875a.75.75 0 0 1-.456-.711c.035-1.441.121-2.87.255-4.284a48.455 48.455 0 0 1 7.666 3.282.75.75 0 0 0 .75 0l.49-.245Z" />
         <path d="M5.25 15.75a.75.75 0 0 1 .75.75v3.18a3.001 3.001 0 0 0 1.5 2.598V17.25a.75.75 0 0 1 1.5 0v5.5a.75.75 0 0 1-1.125.65A4.5 4.5 0 0 1 4.5 19.68v-3.18a.75.75 0 0 1 .75-.75Z" />
       </svg>
-      <span>Parcours & Cursus</span>
+      <span>Parcours</span>
     </a>
 
-    <!-- Compétences Tech -->
+    <!-- Compétences -->
     <a
       href={`${basePath}#competences`}
       class="nav-link flex items-center gap-3 px-3.5 py-3 rounded-xl text-sm font-medium text-zinc-400 hover:text-white hover:bg-zinc-800/80 transition-all duration-200 group"
       data-section="competences"
     >
-      <!-- Molette / Roue crantée pleine et symétrique (Heroicons solid cog-6-tooth) -->
-      <svg class="w-5 h-5 text-zinc-400 group-hover:text-white shrink-0 transition-colors" viewBox="0 0 24 24" fill="currentColor">
-        <path fill-rule="evenodd" d="M11.078 2.25c-.917 0-1.699.663-1.85 1.567L9.05 4.889c-.02.12-.115.26-.297.348a7.493 7.493 0 0 0-.986.57c-.166.114-.335.126-.45.083L6.3 5.508a1.875 1.875 0 0 0-2.282.819l-.922 1.597a1.875 1.875 0 0 0 .432 2.385l.84.692c.095.078.17.23.154.43a7.848 7.848 0 0 0 0 1.138c.015.201-.06.353-.154.43l-.84.693a1.875 1.875 0 0 0-.433 2.385l.922 1.597a1.875 1.875 0 0 0 2.282.818l1.019-.382c.115-.043.284-.031.45.083.312.214.641.405.985.57.182.088.277.228.297.349l.179 1.071c.151.905.933 1.568 1.85 1.568h1.844c.916 0 1.699-.663 1.85-1.568l.178-1.071c.02-.12.115-.26.297-.349.344-.165.673-.356.985-.57.167-.114.335-.125.45-.082l1.02.382a1.875 1.875 0 0 0 2.28-.818l.923-1.597a1.875 1.875 0 0 0-.432-2.385l-.84-.693c-.095-.078-.17-.23-.155-.43a7.9 7.9 0 0 0 0-1.138c-.015-.201.06-.352.155-.43l.84-.692a1.875 1.875 0 0 0 .432-2.385l-.922-1.597a1.875 1.875 0 0 0-2.282-.818l-1.02.381c-.114.043-.283.032-.45-.082a7.49 7.49 0 0 0-.985-.57c-.182-.088-.277-.229-.297-.349l-.179-1.071c-.151-.904-.933-1.567-1.85-1.567h-1.844ZM12 15.75a3.75 3.75 0 1 0 0-7.5 3.75 3.75 0 0 0 0 7.5Z" clip-rule="evenodd" />
+      <!-- Icône de code développeur (Code2) -->
+      <svg class="w-5 h-5 text-zinc-400 group-hover:text-white shrink-0 transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m18 16 4-4-4-4" />
+        <path d="m6 8-4 4 4 4" />
+        <path d="m14.5 4-5 16" />
       </svg>
-      <span>Compétences Tech</span>
+      <span>Compétences</span>
     </a>
 
     <!-- Certifications -->
@@ -257,7 +267,7 @@ const basePath = isHome ? '' : '/';
         <circle cx="6" cy="18" r="3" fill="currentColor"></circle>
         <path d="M18 9a9 9 0 0 1-9 9"></path>
       </svg>
-      <span>Activité & Journal Git</span>
+      <span>Journal GitHub</span>
     </a>
 
     <!-- Contact -->
@@ -297,8 +307,10 @@ const basePath = isHome ? '' : '/';
     </a>
 
     <!-- Mention académique aérée avec marge confortable -->
-    <div class="text-[11px] text-zinc-500 text-center tracking-wide font-medium pt-1">
-      <span>BTS SIO SLAM · Session 2026-2028</span>
+    <div class="text-[11px] text-zinc-500 text-center tracking-wide font-medium pt-1 flex items-center justify-center gap-1.5">
+      <span>BTS SIO SLAM</span>
+      <span class="w-1 h-1 rounded-full bg-zinc-600 shrink-0" aria-hidden="true"></span>
+      <span>Session 2026-2028</span>
     </div>
   </div>
 </aside>
