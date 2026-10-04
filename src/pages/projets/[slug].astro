@@ -14,7 +14,6 @@ import {
   FileCode,
   FileText,
 } from 'lucide-astro';
-import StageRecapModal from '../../components/StageRecapModal.astro';
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
@@ -157,14 +156,13 @@ const statusDetails = getStatusDetails(project.data.status);
           {(project.data.repoUrl || project.data.demoUrl || project.slug === 'stage-premiere-annee') && (
             <div class="pt-2 flex flex-wrap items-center gap-3">
               {project.slug === 'stage-premiere-annee' && (
-                <button
-                  type="button"
-                  data-open-stage-modal
-                  class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-zinc-900 hover:bg-black dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-950 text-xs font-semibold shadow-sm transition-colors cursor-pointer"
+                <a
+                  href="/fiche-synthese-stage"
+                  class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-zinc-900 hover:bg-black dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-950 text-xs font-semibold shadow-sm transition-colors"
                 >
                   <FileText class="w-4 h-4" />
                   <span>Fiche Synthèse RH & Tuteur</span>
-                </button>
+                </a>
               )}
 
               {project.data.repoUrl && (
@@ -239,7 +237,4 @@ const statusDetails = getStatusDetails(project.data.status);
     </div>
 
   </div>
-
-  <!-- Modale Fiche Synthèse RH & Tuteur (exclusive au projet de stage) -->
-  {project.slug === 'stage-premiere-annee' && <StageRecapModal />}
 </Layout>
