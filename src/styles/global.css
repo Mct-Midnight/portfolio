@@ -331,3 +331,10 @@ html.dark .markdown-content pre {
   background-color: #121214;
   border-color: #27272A;
 }
+
+/* Lisibilité du logo officiel GitHub en mode sombre */
+html.dark .devicon-github-original,
+html.dark .devicon-github-original.colored {
+  color: #FFFFFF !important;
+}
+
