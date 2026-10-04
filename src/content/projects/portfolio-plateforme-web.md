@@ -4,7 +4,7 @@ status: "réalisé"
 category: "professionnel"
 dateStart: "2026-09-01"
 dateEnd: "2026-10-04"
-tags: ["Astro 4", "Tailwind CSS", "TypeScript", "CI/CD GitHub Actions", "SEO & Performance", "Gestion de Projet"]
+tags: ["Astro 5", "Tailwind CSS", "TypeScript", "Déploiement Vercel", "SEO & Performance", "Gestion de Projet"]
 demoUrl: ""
 repoUrl: "https://github.com/Mct-Midnight/portfolio"
 thumbnail: "/assets/images/projets/portfolio-cover.png"
@@ -57,10 +57,10 @@ featured: true
 ## 3. Solutions Apportées & Démarche d'Ingénierie
 
 ### 3.1. Architecture logicielle & Choix technologiques
-- **Framework applicatif :** **Astro 4**, sélectionné pour son modèle de rendu statique optimisé (Island Architecture) éliminant l'overhead des frameworks SPA traditionnels.
+- **Framework applicatif :** **Astro 5**, sélectionné pour son modèle de rendu statique optimisé (Island Architecture) éliminant l'overhead des frameworks SPA traditionnels.
 - **Framework de style :** **Tailwind CSS**, configuré selon une palette monochrome mat et titane (anthracite mat `#18181B`, bordures `#27272A`, studio neutre `#FAFAFA`).
 - **Langage de développement :** **TypeScript**, garantissant un typage strict et prévenant les anomalies de manipulation des données dès la phase de compilation.
-- **Automatisation & CI/CD :** Pipeline **GitHub Actions** automatisant la compilation statique et le déploiement sécurisé sur GitHub Pages à chaque commit sur la branche principale.
+- **Automatisation & CI/CD :** Pipeline de déploiement continu **Vercel** connecté au dépôt GitHub, automatisant la compilation statique et la distribution sur réseau Edge mondial à chaque commit sur la branche principale.
 
 ### 3.2. Méthodologie et suivi des développements
 - Élaboration d'un cahier des charges fonctionnel et ergonomique complet (`CAHIER_DES_CHARGES.md`).
@@ -90,7 +90,7 @@ featured: true
 | Pipeline de Déploiement Continu (CI/CD) | Audit de Performance Google Lighthouse |
 | :-------------------------------------: | :-------------------------------------: |
 | ![Pipeline CI/CD](/assets/images/projets/portfolio-cicd.png) | ![Performance Lighthouse](/assets/images/projets/portfolio-lighthouse.png) |
-| *Workflow automatisé GitHub Actions (Build, Audit & Déploiement)* | *Métriques optimales : 100 % Performance, SEO et Accessibilité* |
+| *Workflow automatisé Vercel & GitHub (Build, Audit & Déploiement Edge)* | *Métriques optimales : 100 % Performance, SEO et Accessibilité* |
 
 ---
 
