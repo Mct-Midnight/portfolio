@@ -126,14 +126,14 @@ const { identity, contact } = profileData;
 
     <!-- Colonne Droite : Formulaire de Contact Interactif -->
     <div class="lg:col-span-7 lg:h-full flex flex-col">
-      <div class="bg-white dark:bg-[#18181B] p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-[#27272A] shadow-card lg:h-full flex flex-col justify-between">
+      <div class="bg-white dark:bg-[#18181B] p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-[#27272A] shadow-card lg:h-full flex flex-col">
         
-        <div class="mb-6">
+        <div class="mb-5">
           <h3 class="text-lg font-bold font-title text-slate-900 dark:text-zinc-100">Formulaire de Prise de Contact</h3>
           <p class="text-xs text-slate-500 dark:text-zinc-400 mt-1">Tous les champs sont requis pour assurer un suivi personnalisé de votre demande.</p>
         </div>
 
-        <form id="contact-form" class="space-y-4">
+        <form id="contact-form" class="flex-1 flex flex-col justify-between gap-4">
           
           <!-- Ligne 1 : Nom et Email -->
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -195,18 +195,17 @@ const { identity, contact } = profileData;
           </div>
 
           <!-- Ligne 3 : Message -->
-          <div>
+          <div class="flex-1 flex flex-col min-h-[130px]">
             <label for="message" class="block text-xs font-bold font-title text-slate-700 dark:text-zinc-300 uppercase tracking-wider mb-1.5">
               Votre message <span class="text-zinc-900 dark:text-zinc-100">*</span>
             </label>
-            <div class="relative">
+            <div class="relative flex-1 flex flex-col">
               <textarea
                 id="message"
                 name="message"
-                rows="4"
                 required
                 placeholder="Bonjour Quentin, nous souhaitons vous proposer un entretien pour une mission de stage..."
-                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-zinc-700 focus:outline-none focus:ring-2 focus:ring-zinc-900/20 dark:focus:ring-zinc-100/20 focus:border-zinc-900 dark:focus:border-zinc-400 text-sm bg-slate-50 dark:bg-zinc-900 text-slate-900 dark:text-zinc-100 placeholder:text-slate-400 dark:placeholder:text-zinc-500 transition-colors"
+                class="w-full flex-1 min-h-[130px] px-3.5 py-2.5 rounded-xl border border-slate-300 dark:border-zinc-700 focus:outline-none focus:ring-2 focus:ring-zinc-900/20 dark:focus:ring-zinc-100/20 focus:border-zinc-900 dark:focus:border-zinc-400 text-sm bg-slate-50 dark:bg-zinc-900 text-slate-900 dark:text-zinc-100 placeholder:text-slate-400 dark:placeholder:text-zinc-500 transition-colors resize-y"
               ></textarea>
             </div>
           </div>
