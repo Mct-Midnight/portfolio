@@ -39,7 +39,7 @@ const latestCommit = commits[0];
   title={`Journal des Évolutions & Activité Git — ${identity.firstName} ${identity.lastName}`}
   description="Historique des livraisons Git, commits conventionnels et suivi de version du portfolio BTS SIO SLAM de Quentin Machu."
 >
-  <div class="flex min-h-screen bg-slate-50">
+  <div class="flex min-h-screen bg-slate-50 dark:bg-[#09090b] transition-colors duration-200">
     <!-- Barre latérale fixe -->
     <Sidebar currentPath="/journal" />
 
@@ -51,21 +51,21 @@ const latestCommit = commits[0];
         <div class="mb-6">
           <a
             href="/"
-            class="inline-flex items-center gap-2 text-xs font-bold font-title text-slate-900 hover:text-zinc-950 transition-colors py-2 px-3 rounded-lg hover:bg-white border border-transparent hover:border-slate-200"
+            class="inline-flex items-center gap-2 text-xs font-bold font-title text-slate-900 dark:text-zinc-100 hover:text-zinc-950 dark:hover:text-white transition-colors py-2 px-3 rounded-lg hover:bg-white dark:hover:bg-zinc-900 border border-transparent hover:border-slate-200 dark:hover:border-zinc-800"
           >
-            <ArrowLeft class="w-4 h-4 text-zinc-900" />
+            <ArrowLeft class="w-4 h-4 text-zinc-900 dark:text-zinc-100" />
             <span>Retour à l'accueil du portfolio</span>
           </a>
         </div>
 
         <!-- En-tête principal : Contexte BTS SIO et Traçabilité -->
-        <header class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-card mb-8 space-y-4">
+        <header class="bg-white dark:bg-[#18181B] rounded-2xl p-6 sm:p-8 border border-slate-200 dark:border-[#27272A] shadow-card mb-8 space-y-4">
           <div class="flex flex-wrap items-center justify-between gap-3">
             <div class="flex items-center gap-2.5">
-              <span class="p-2 bg-zinc-100 text-zinc-900 rounded-xl border border-zinc-200">
+              <span class="p-2 bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded-xl border border-zinc-200 dark:border-zinc-700">
                 <GitBranch class="w-5 h-5" />
               </span>
-              <span class="text-xs font-bold text-zinc-900 uppercase tracking-widest font-title">
+              <span class="text-xs font-bold text-zinc-900 dark:text-zinc-100 uppercase tracking-widest font-title">
                 Traçabilité & Gestion du Patrimoine Informatique
               </span>
             </div>
@@ -75,43 +75,43 @@ const latestCommit = commits[0];
               href={contact.github + '/portfolio'}
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold shadow-sm transition-colors"
+              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-950 text-xs font-semibold shadow-sm transition-colors"
             >
               <span>Dépôt sur GitHub</span>
               <ExternalLink class="w-3.5 h-3.5 opacity-80" />
             </a>
           </div>
 
-          <h1 class="text-2xl sm:text-3xl font-extrabold font-title text-slate-900 tracking-tight">
+          <h1 class="text-2xl sm:text-3xl font-extrabold font-title text-slate-900 dark:text-zinc-100 tracking-tight">
             Journal de Bord & Traçabilité Git
           </h1>
 
-          <p class="text-sm text-slate-600 leading-relaxed">
+          <p class="text-sm text-slate-600 dark:text-zinc-400 leading-relaxed">
             Ce journal retrace en toute transparence l'historique des modifications apportées au portfolio.
             Chaque mise à jour respecte une méthodologie professionnelle : vérification de la compilation,
             découpage atomique des commits et messages conventionnels rédigés en français.
           </p>
 
           <!-- Bandeau de statistiques clés (KPI) -->
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-3 border-t border-slate-100">
-            <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
-              <span class="text-xs text-slate-500 font-medium block">Total livraisons</span>
-              <span class="text-xl font-extrabold text-slate-900 font-title">{totalCommits} commits</span>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-3 border-t border-slate-100 dark:border-zinc-800">
+            <div class="p-3 bg-slate-50 dark:bg-zinc-900/60 rounded-xl border border-slate-100 dark:border-zinc-800">
+              <span class="text-xs text-slate-500 dark:text-zinc-400 font-medium block">Total livraisons</span>
+              <span class="text-xl font-extrabold text-slate-900 dark:text-zinc-100 font-title">{totalCommits} commits</span>
             </div>
 
-            <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
-              <span class="text-xs text-slate-500 font-medium block">Fonctionnalités</span>
-              <span class="text-xl font-extrabold text-emerald-600 font-title">{featCount} ajouts</span>
+            <div class="p-3 bg-slate-50 dark:bg-zinc-900/60 rounded-xl border border-slate-100 dark:border-zinc-800">
+              <span class="text-xs text-slate-500 dark:text-zinc-400 font-medium block">Fonctionnalités</span>
+              <span class="text-xl font-extrabold text-emerald-600 dark:text-emerald-400 font-title">{featCount} ajouts</span>
             </div>
 
-            <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
-              <span class="text-xs text-slate-500 font-medium block">Correctifs</span>
-              <span class="text-xl font-extrabold text-amber-600 font-title">{fixCount} correctifs</span>
+            <div class="p-3 bg-slate-50 dark:bg-zinc-900/60 rounded-xl border border-slate-100 dark:border-zinc-800">
+              <span class="text-xs text-slate-500 dark:text-zinc-400 font-medium block">Correctifs</span>
+              <span class="text-xl font-extrabold text-amber-600 dark:text-amber-400 font-title">{fixCount} correctifs</span>
             </div>
 
-            <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
-              <span class="text-xs text-slate-500 font-medium block">Dernière mise à jour</span>
-              <span class="text-xs font-bold text-zinc-900 font-title truncate block mt-1" title={latestCommit ? latestCommit.formattedDate : ''}>
+            <div class="p-3 bg-slate-50 dark:bg-zinc-900/60 rounded-xl border border-slate-100 dark:border-zinc-800">
+              <span class="text-xs text-slate-500 dark:text-zinc-400 font-medium block">Dernière mise à jour</span>
+              <span class="text-xs font-bold text-zinc-900 dark:text-zinc-100 font-title truncate block mt-1" title={latestCommit ? latestCommit.formattedDate : ''}>
                 {latestCommit ? latestCommit.relativeDate : 'Récemment'}
               </span>
             </div>
@@ -123,28 +123,28 @@ const latestCommit = commits[0];
           <button
             type="button"
             data-filter="all"
-            class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-zinc-900 text-white shadow-sm transition-all"
+            class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-950 shadow-sm border border-transparent transition-all"
           >
             Tous ({totalCommits})
           </button>
           <button
             type="button"
             data-filter="feat"
-            class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-white text-slate-600 hover:text-slate-900 border border-slate-200 hover:border-slate-300 transition-all"
+            class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-white dark:bg-zinc-900 text-zinc-600 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white border border-zinc-200 dark:border-zinc-700 hover:border-zinc-300 dark:hover:border-zinc-600 transition-all"
           >
             Fonctionnalités ({featCount})
           </button>
           <button
             type="button"
             data-filter="fix"
-            class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-white text-slate-600 hover:text-slate-900 border border-slate-200 hover:border-slate-300 transition-all"
+            class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-white dark:bg-zinc-900 text-zinc-600 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white border border-zinc-200 dark:border-zinc-700 hover:border-zinc-300 dark:hover:border-zinc-600 transition-all"
           >
             Correctifs ({fixCount})
           </button>
           <button
             type="button"
             data-filter="chore"
-            class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-white text-slate-600 hover:text-slate-900 border border-slate-200 hover:border-slate-300 transition-all"
+            class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-white dark:bg-zinc-900 text-zinc-600 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white border border-zinc-200 dark:border-zinc-700 hover:border-zinc-300 dark:hover:border-zinc-600 transition-all"
           >
             Maintenance ({choreCount})
           </button>
@@ -152,7 +152,7 @@ const latestCommit = commits[0];
             <button
               type="button"
               data-filter="style"
-              class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-white text-slate-600 hover:text-slate-900 border border-slate-200 hover:border-slate-300 transition-all"
+              class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-white dark:bg-zinc-900 text-zinc-600 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white border border-zinc-200 dark:border-zinc-700 hover:border-zinc-300 dark:hover:border-zinc-600 transition-all"
             >
               Design & Ergonomie ({styleCount})
             </button>
@@ -161,7 +161,7 @@ const latestCommit = commits[0];
             <button
               type="button"
               data-filter="other"
-              class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-white text-slate-600 hover:text-slate-900 border border-slate-200 hover:border-slate-300 transition-all"
+              class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-white dark:bg-zinc-900 text-zinc-600 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white border border-zinc-200 dark:border-zinc-700 hover:border-zinc-300 dark:hover:border-zinc-600 transition-all"
             >
               Autres ({otherCount})
             </button>
@@ -169,19 +169,23 @@ const latestCommit = commits[0];
         </div>
 
         <!-- Liste chronologique des commits -->
-        <div class="space-y-4 relative before:absolute before:inset-0 before:left-4 sm:before:left-5 before:w-0.5 before:bg-slate-200 before:pointer-events-none" id="commits-container">
+        <div
+          class="space-y-4 relative before:absolute before:inset-0 before:left-4 sm:before:left-5 before:w-0.5 before:bg-slate-200 dark:before:bg-zinc-800 before:pointer-events-none"
+          id="commits-container"
+          style="overflow-anchor: none;"
+        >
           {commits.map((commit, index) => (
             <div
               class="commit-card relative flex items-start gap-4 sm:gap-5 pl-1"
               data-type={commit.type}
             >
               <!-- Puce d'étape sur la ligne chronologique -->
-              <div class="relative z-10 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white border-2 border-slate-300 flex items-center justify-center shrink-0 shadow-sm mt-1">
+              <div class="relative z-10 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white dark:bg-[#18181B] border-2 border-slate-300 dark:border-zinc-700 flex items-center justify-center shrink-0 shadow-sm mt-1">
                 <span class={`w-2.5 h-2.5 rounded-full ${commit.typeDot}`}></span>
               </div>
 
               <!-- Carte détaillée du commit -->
-              <div class="flex-1 bg-white rounded-xl p-4 sm:p-5 border border-slate-200 shadow-card hover:border-zinc-300 transition-all">
+              <div class="flex-1 bg-white dark:bg-[#18181B] rounded-xl p-4 sm:p-5 border border-slate-200 dark:border-[#27272A] shadow-card hover:border-zinc-300 dark:hover:border-zinc-600 transition-all">
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 mb-2.5">
                   
                   <!-- Badges : Type et Domaine -->
@@ -191,14 +195,14 @@ const latestCommit = commits[0];
                     </span>
 
                     {commit.scope && (
-                      <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-semibold bg-slate-100 text-slate-700 border border-slate-200">
-                        <Tag class="w-3 h-3 text-slate-400" />
+                      <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-semibold bg-slate-100 dark:bg-zinc-800 text-slate-700 dark:text-zinc-300 border border-slate-200 dark:border-zinc-700">
+                        <Tag class="w-3 h-3 text-slate-400 dark:text-zinc-500" />
                         <span>{commit.scope}</span>
                       </span>
                     )}
 
                     <!-- Indicateur de branche -->
-                    <span class="text-[10px] text-slate-400 font-mono flex items-center gap-1">
+                    <span class="text-[10px] text-slate-400 dark:text-zinc-500 font-mono flex items-center gap-1">
                       <GitBranch class="w-3 h-3" />
                       main
                     </span>
@@ -210,10 +214,10 @@ const latestCommit = commits[0];
                       href={commit.commitUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      class="inline-flex items-center gap-1.5 px-2 py-1 rounded bg-slate-100 hover:bg-zinc-100 text-slate-700 hover:text-zinc-950 font-mono text-xs transition-colors group"
+                      class="inline-flex items-center gap-1.5 px-2 py-1 rounded bg-slate-100 dark:bg-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-700 text-slate-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white font-mono text-xs transition-colors group"
                       title="Consulter ce commit sur GitHub"
                     >
-                      <GitCommit class="w-3.5 h-3.5 text-slate-400 group-hover:text-zinc-950" />
+                      <GitCommit class="w-3.5 h-3.5 text-slate-400 dark:text-zinc-500 group-hover:text-zinc-950 dark:group-hover:text-white" />
                       <span>{commit.hash}</span>
                       <ExternalLink class="w-3 h-3 opacity-60 group-hover:opacity-100" />
                     </a>
@@ -221,21 +225,21 @@ const latestCommit = commits[0];
                 </div>
 
                 <!-- Description explicite du commit en français -->
-                <p class="text-sm font-semibold text-slate-900 leading-snug">
+                <p class="text-sm font-semibold text-slate-900 dark:text-zinc-100 leading-snug">
                   {commit.description}
                 </p>
 
                 <!-- Pied de carte : Date et auteur -->
-                <div class="flex items-center justify-between flex-wrap gap-2 pt-3 mt-3 border-t border-slate-100 text-xs text-slate-400">
+                <div class="flex items-center justify-between flex-wrap gap-2 pt-3 mt-3 border-t border-slate-100 dark:border-zinc-800 text-xs text-slate-400 dark:text-zinc-500">
                   <span class="flex items-center gap-1.5">
-                    <Calendar class="w-3.5 h-3.5 text-slate-400" />
-                    <span class="font-medium text-slate-600">{commit.formattedDate}</span>
-                    <span class="text-zinc-600 font-bold select-none text-sm leading-none">·</span>
-                    <span class="text-slate-500 font-medium">{commit.relativeDate}</span>
+                    <Calendar class="w-3.5 h-3.5 text-slate-400 dark:text-zinc-500" />
+                    <span class="font-medium text-slate-600 dark:text-zinc-300">{commit.formattedDate}</span>
+                    <span class="text-zinc-600 dark:text-zinc-500 font-bold select-none text-sm leading-none">·</span>
+                    <span class="text-slate-500 dark:text-zinc-400 font-medium">{commit.relativeDate}</span>
                   </span>
 
-                  <span class="text-slate-500">
-                    Auteur : <span class="font-semibold text-slate-700">{commit.author}</span>
+                  <span class="text-slate-500 dark:text-zinc-400">
+                    Auteur : <span class="font-semibold text-slate-700 dark:text-zinc-300">{commit.author}</span>
                   </span>
                 </div>
               </div>
@@ -249,44 +253,45 @@ const latestCommit = commits[0];
             <button
               type="button"
               id="toggle-all-commits-btn"
-              class="inline-flex items-center gap-2.5 px-6 py-3 rounded-xl bg-white hover:bg-zinc-50 text-zinc-900 font-semibold text-xs border border-zinc-200 shadow-sm hover:shadow transition-all group active:scale-[0.98]"
+              class="inline-flex items-center gap-2.5 px-6 py-3 h-[42px] rounded-xl bg-white dark:bg-[#18181B] hover:bg-zinc-50 dark:hover:bg-zinc-800 text-zinc-900 dark:text-zinc-100 font-semibold text-xs border border-zinc-200 dark:border-zinc-700 shadow-sm hover:shadow transition-all group active:scale-[0.98]"
               title="Afficher la totalité des commits enregistrés depuis le début"
             >
-              <History class="w-4 h-4 text-zinc-600 group-hover:scale-110 transition-transform" />
+              <History class="w-4 h-4 text-zinc-600 dark:text-zinc-400 group-hover:scale-110 transition-transform" />
               <span id="toggle-commits-text">Afficher l'ensemble des livraisons (+{totalCommits - 10} commits)</span>
-              <ChevronDown id="toggle-commits-icon" class="w-4 h-4 text-zinc-400 group-hover:text-zinc-900 transition-transform duration-300" />
+              <ChevronDown id="toggle-commits-icon" class="w-4 h-4 text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-white transition-transform duration-300" />
             </button>
           </div>
         )}
 
         <!-- Encadré méthodologique et pédagogique pour le jury BTS SIO -->
-        <section class="mt-12 bg-zinc-50 rounded-2xl p-6 sm:p-7 border border-zinc-200 shadow-soft">
+        <section class="mt-12 bg-zinc-50 dark:bg-[#18181B] rounded-2xl p-6 sm:p-7 border border-zinc-200 dark:border-[#27272A] shadow-soft">
           <div class="flex items-start gap-4">
-            <span class="p-2.5 bg-zinc-900 text-white rounded-xl shadow-sm shrink-0">
-              <ShieldCheck class="w-6 h-6" />
-            </span>
-            <div class="space-y-2">
-              <h2 class="text-base font-bold text-slate-900 font-title">
+            <!-- Conteneur fixe et parfaitement centré pour l'icône de bouclier -->
+            <div class="w-12 h-12 rounded-xl bg-zinc-900 text-white flex items-center justify-center shrink-0 shadow-sm">
+              <ShieldCheck class="w-6 h-6 shrink-0" />
+            </div>
+            <div class="space-y-2 flex-1 min-w-0">
+              <h2 class="text-base font-bold text-slate-900 dark:text-zinc-100 font-title leading-snug">
                 Gestion de Configuration, Versioning & Démarche Qualité
               </h2>
-              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              <p class="text-xs sm:text-sm text-slate-600 dark:text-zinc-400 leading-relaxed">
                 Ce journal de bord témoigne de la régularité et de la rigueur appliquées dans la gestion de version et l'assurance qualité logicielle. Chaque livraison suit un protocole strict :
               </p>
-              <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-2 text-xs text-slate-700">
+              <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-2 text-xs text-slate-700 dark:text-zinc-300">
                 <li class="flex items-center gap-2">
-                  <CheckCircle2 class="w-4 h-4 text-emerald-600 shrink-0" />
+                  <CheckCircle2 class="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
                   <span>Validation systématique de la compilation (Build Astro)</span>
                 </li>
                 <li class="flex items-center gap-2">
-                  <CheckCircle2 class="w-4 h-4 text-emerald-600 shrink-0" />
+                  <CheckCircle2 class="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
                   <span>Commits atomiques groupés par domaine fonctionnel</span>
                 </li>
                 <li class="flex items-center gap-2">
-                  <CheckCircle2 class="w-4 h-4 text-emerald-600 shrink-0" />
+                  <CheckCircle2 class="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
                   <span>Messages normalisés en français (Conventional Commits)</span>
                 </li>
                 <li class="flex items-center gap-2">
-                  <CheckCircle2 class="w-4 h-4 text-emerald-600 shrink-0" />
+                  <CheckCircle2 class="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
                   <span>Traçabilité complète sur dépôt distant GitHub</span>
                 </li>
               </ul>
@@ -374,13 +379,33 @@ const latestCommit = commits[0];
     btn.addEventListener('click', () => {
       currentFilter = btn.getAttribute('data-filter') || 'all';
 
-      // Mise à jour de l'apparence des onglets
+      // Mise à jour de l'apparence des onglets sans conflit de survol
       filterButtons.forEach((b) => {
-        b.classList.remove('bg-zinc-900', 'text-white');
-        b.classList.add('bg-white', 'text-slate-600', 'border', 'border-slate-200');
+        if (b === btn) {
+          b.classList.remove(
+            'bg-white',
+            'text-zinc-600',
+            'text-slate-600',
+            'border-zinc-200',
+            'border-slate-200',
+            'hover:text-zinc-950',
+            'hover:text-slate-900',
+            'hover:border-zinc-300',
+            'hover:border-slate-300'
+          );
+          b.classList.add('bg-zinc-900', 'text-white', 'border-transparent', 'shadow-sm');
+        } else {
+          b.classList.remove('bg-zinc-900', 'text-white', 'border-transparent', 'shadow-sm');
+          b.classList.add(
+            'bg-white',
+            'text-zinc-600',
+            'border',
+            'border-zinc-200',
+            'hover:text-zinc-950',
+            'hover:border-zinc-300'
+          );
+        }
       });
-      btn.classList.add('bg-zinc-900', 'text-white');
-      btn.classList.remove('bg-white', 'text-slate-600', 'border', 'border-slate-200');
 
       renderView();
     });
@@ -389,8 +414,18 @@ const latestCommit = commits[0];
   // Écoute du clic sur le bouton d'extension de l'historique complet
   if (toggleBtn) {
     toggleBtn.addEventListener('click', () => {
+      // Mémoriser la position exacte du bouton par rapport au haut de l'écran
+      const initialTop = toggleBtn.getBoundingClientRect().top;
+
       isExpanded = !isExpanded;
       renderView();
+
+      // Compenser tout décalage sous-pixel ou saut d'ancrage pour maintenir l'élément parfaitement immobile
+      const newTop = toggleBtn.getBoundingClientRect().top;
+      const deltaY = newTop - initialTop;
+      if (Math.abs(deltaY) > 0.5) {
+        window.scrollBy({ top: deltaY, behavior: 'instant' });
+      }
     });
   }
 

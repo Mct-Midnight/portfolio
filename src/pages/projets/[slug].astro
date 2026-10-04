@@ -29,28 +29,28 @@ interface Props {
 const { project } = Astro.props;
 const { Content } = await project.render();
 
-// Libellé et couleur du statut selon Midnight & Cobalt
+// Libellé et couleur du statut selon la charte monochrome mat & titane
 function getStatusDetails(status: string) {
   switch (status) {
     case 'réalisé':
       return {
         label: 'Projet Réalisé & Validé',
-        class: 'bg-emerald-50 text-emerald-800 border-emerald-200',
+        class: 'bg-emerald-50 text-emerald-800 border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-400 dark:border-emerald-800/50',
       };
     case 'en cours':
       return {
         label: 'Projet En Cours de Réalisation',
-        class: 'bg-amber-50 text-amber-800 border-amber-200',
+        class: 'bg-amber-50 text-amber-800 border-amber-200 dark:bg-amber-950/40 dark:text-amber-400 dark:border-amber-800/50',
       };
     case 'à venir':
       return {
         label: 'Projet Planifié',
-        class: 'bg-slate-100 text-slate-700 border-slate-200',
+        class: 'bg-slate-100 text-slate-700 border-slate-200 dark:bg-zinc-800 dark:text-zinc-300 dark:border-zinc-700',
       };
     default:
       return {
         label: status,
-        class: 'bg-slate-50 text-slate-700 border-slate-200',
+        class: 'bg-slate-50 text-slate-700 border-slate-200 dark:bg-zinc-800 dark:text-zinc-300 dark:border-zinc-700',
       };
   }
 }
@@ -62,7 +62,7 @@ const statusDetails = getStatusDetails(project.data.status);
   title={`${project.data.title} — Étude de Cas BTS SIO SLAM`}
   description={`Fiche d'étude de cas officielle pour le projet « ${project.data.title} », adossé au Bloc 1 du BTS SIO SLAM.`}
 >
-  <div class="flex min-h-screen bg-slate-50">
+  <div class="flex min-h-screen bg-slate-50 dark:bg-[#09090b] transition-colors duration-200">
     
     <!-- Sidebar fixe -->
     <Sidebar currentPath={`/projets/${project.slug}`} />
@@ -76,22 +76,22 @@ const statusDetails = getStatusDetails(project.data.status);
         <div class="mb-6">
           <a
             href="/#projets"
-            class="inline-flex items-center gap-2 text-xs font-bold font-title text-slate-900 hover:text-zinc-950 transition-colors py-2 px-3 rounded-lg hover:bg-white border border-transparent hover:border-slate-200"
+            class="inline-flex items-center gap-2 text-xs font-bold font-title text-slate-900 dark:text-zinc-100 hover:text-zinc-950 dark:hover:text-white transition-colors py-2 px-3 rounded-lg hover:bg-white dark:hover:bg-zinc-900 border border-transparent hover:border-slate-200 dark:hover:border-zinc-800"
           >
-            <ArrowLeft class="w-4 h-4 text-zinc-900" />
+            <ArrowLeft class="w-4 h-4 text-zinc-900 dark:text-zinc-100" />
             <span>Retour à la liste des réalisations</span>
           </a>
         </div>
 
         <!-- En-tête de l'étude de cas (Hero de projet) -->
-        <header class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-card mb-10 space-y-5">
+        <header class="bg-white dark:bg-[#18181B] rounded-2xl p-6 sm:p-8 border border-slate-200 dark:border-[#27272A] shadow-card mb-10 space-y-5">
           
           <!-- Ligne de métadonnées supérieures -->
-          <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-4">
+          <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 dark:border-zinc-800 pb-4">
             
             <div class="flex items-center gap-2 flex-wrap">
               <!-- Badge de Catégorie avec icônes pleines (Solid) -->
-              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-slate-900 text-white font-title">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-slate-900 dark:bg-zinc-800 text-white dark:text-zinc-200 border dark:border-zinc-700 font-title">
                 {project.data.category === 'freelance' ? (
                   <>
                     <svg class="w-3.5 h-3.5 text-zinc-400 shrink-0" viewBox="0 0 512 512" fill="currentColor">
@@ -125,26 +125,26 @@ const statusDetails = getStatusDetails(project.data.status);
             </div>
 
             <!-- Période de réalisation -->
-            <div class="inline-flex items-center gap-1.5 text-xs font-medium text-slate-500">
-              <Calendar class="w-3.5 h-3.5 text-zinc-900" />
+            <div class="inline-flex items-center gap-1.5 text-xs font-medium text-slate-500 dark:text-zinc-400">
+              <Calendar class="w-3.5 h-3.5 text-zinc-900 dark:text-zinc-300" />
               <span>Du {project.data.dateStart} au {project.data.dateEnd}</span>
             </div>
 
           </div>
 
           <!-- Titre principal -->
-          <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold font-title text-slate-900 tracking-tight leading-tight">
+          <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold font-title text-slate-900 dark:text-white tracking-tight leading-tight">
             {project.data.title}
           </h1>
 
           <!-- Technologies mobilisées (Pastilles Titane) -->
           <div class="space-y-2">
-            <span class="text-xs uppercase tracking-wider text-slate-400 font-bold block font-title">
+            <span class="text-xs uppercase tracking-wider text-slate-400 dark:text-zinc-500 font-bold block font-title">
               Technologies & Outils Mobilisés :
             </span>
             <div class="flex flex-wrap gap-2">
               {project.data.tags.map((tag) => (
-                <span class="px-3 py-1 rounded-lg bg-zinc-100 text-zinc-800 text-xs font-medium border border-zinc-200">
+                <span class="px-3 py-1 rounded-lg bg-zinc-100 dark:bg-zinc-800/80 text-zinc-800 dark:text-zinc-300 text-xs font-medium border border-zinc-200 dark:border-zinc-700">
                   {tag}
                 </span>
               ))}
@@ -159,7 +159,7 @@ const statusDetails = getStatusDetails(project.data.status);
                   href={project.data.repoUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold shadow-sm transition-colors border border-slate-800 group"
+                  class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 dark:bg-zinc-800 hover:bg-slate-800 dark:hover:bg-zinc-700 text-white text-xs font-semibold shadow-sm transition-colors border border-slate-800 dark:border-zinc-700 group"
                 >
                   <Github class="w-4 h-4 text-zinc-400" />
                   <span>Dépôt GitHub du projet</span>
@@ -172,7 +172,7 @@ const statusDetails = getStatusDetails(project.data.status);
                   href={project.data.demoUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-zinc-900 hover:bg-black text-white text-xs font-semibold shadow-sm transition-colors"
+                  class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-zinc-900 hover:bg-black dark:bg-white dark:hover:bg-zinc-200 text-white dark:text-zinc-950 text-xs font-semibold shadow-sm transition-colors"
                 >
                   <ExternalLink class="w-4 h-4" />
                   <span>Démonstration en direct</span>
@@ -182,8 +182,8 @@ const statusDetails = getStatusDetails(project.data.status);
           )}
 
           <!-- Badge Référentiel Officiel E4 -->
-          <div class="bg-zinc-50 p-3 rounded-xl border border-zinc-200 flex items-center gap-3 text-xs text-slate-700">
-            <ShieldCheck class="w-5 h-5 text-zinc-900 shrink-0" />
+          <div class="bg-zinc-50 dark:bg-zinc-900/60 p-3 rounded-xl border border-zinc-200 dark:border-zinc-800 flex items-center gap-3 text-xs text-slate-700 dark:text-zinc-300">
+            <ShieldCheck class="w-5 h-5 text-zinc-900 dark:text-zinc-100 shrink-0" />
             <span>
               <strong>Document certifié pour l'Épreuve E4 :</strong> Les compétences justifiées en fin d'étude de cas correspondent à la nomenclature officielle du Bloc 1 (BTS SIO SLAM).
             </span>
@@ -192,26 +192,26 @@ const statusDetails = getStatusDetails(project.data.status);
         </header>
 
         <!-- Corps de l'étude de cas (Rendu Markdown) -->
-        <article class="markdown-content bg-white rounded-2xl p-6 sm:p-10 border border-slate-200 shadow-card">
+        <article class="markdown-content bg-white dark:bg-[#18181B] rounded-2xl p-6 sm:p-10 border border-slate-200 dark:border-[#27272A] shadow-card">
           <Content />
         </article>
 
         <!-- Navigation de fin de page -->
-        <div class="mt-10 flex flex-col sm:flex-row items-center justify-between gap-4 p-6 bg-white rounded-2xl border border-slate-200 shadow-card">
+        <div class="mt-10 flex flex-col sm:flex-row items-center justify-between gap-4 p-6 bg-white dark:bg-[#18181B] rounded-2xl border border-slate-200 dark:border-[#27272A] shadow-card">
           <div>
-            <h4 class="font-bold font-title text-slate-900 text-sm">Fin de l'étude de cas</h4>
-            <p class="text-xs text-slate-500">Consultez les autres projets ou contactez le candidat.</p>
+            <h4 class="font-bold font-title text-slate-900 dark:text-white text-sm">Fin de l'étude de cas</h4>
+            <p class="text-xs text-slate-500 dark:text-zinc-400">Consultez les autres projets ou contactez le candidat.</p>
           </div>
           <div class="flex items-center gap-3">
             <a
               href="/#projets"
-              class="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"
+              class="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-slate-800 dark:text-zinc-200 text-xs font-semibold transition-colors"
             >
               Tous les projets
             </a>
             <a
               href="/#contact"
-              class="px-4 py-2.5 rounded-xl bg-zinc-900 hover:bg-black text-white text-xs font-semibold transition-colors"
+              class="px-4 py-2.5 rounded-xl bg-zinc-900 hover:bg-black dark:bg-white dark:hover:bg-zinc-200 text-white dark:text-zinc-950 text-xs font-semibold transition-colors"
             >
               Me contacter
             </a>

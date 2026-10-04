@@ -24,7 +24,7 @@ const { identity, contact } = profileData;
   title={`Mentions Légales & Confidentialité — ${identity.firstName} ${identity.lastName}`}
   description="Mentions légales, politique de confidentialité RGPD et clause de protection des coordonnées personnelles du portfolio de Quentin Machu."
 >
-  <div class="flex min-h-screen bg-slate-50">
+  <div class="flex min-h-screen bg-slate-50 dark:bg-[#09090b] transition-colors duration-200">
     
     <!-- Barre latérale fixe -->
     <Sidebar currentPath="/mentions-legales" />
@@ -38,38 +38,38 @@ const { identity, contact } = profileData;
         <div class="mb-6">
           <a
             href="/"
-            class="inline-flex items-center gap-2 text-xs font-bold font-title text-slate-900 hover:text-zinc-950 transition-colors py-2 px-3 rounded-lg hover:bg-white border border-transparent hover:border-slate-200"
+            class="inline-flex items-center gap-2 text-xs font-bold font-title text-slate-900 dark:text-zinc-100 hover:text-zinc-950 dark:hover:text-white transition-colors py-2 px-3 rounded-lg hover:bg-white dark:hover:bg-zinc-900 border border-transparent hover:border-slate-200 dark:hover:border-zinc-800"
           >
-            <ArrowLeft class="w-4 h-4 text-zinc-900" />
+            <ArrowLeft class="w-4 h-4 text-zinc-900 dark:text-zinc-100" />
             <span>Retour à l'accueil du portfolio</span>
           </a>
         </div>
 
         <!-- En-tête de la page -->
-        <header class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-card mb-8 space-y-4">
+        <header class="bg-white dark:bg-[#18181B] rounded-2xl p-6 sm:p-8 border border-slate-200 dark:border-[#27272A] shadow-card mb-8 space-y-4">
           <div class="flex items-center gap-2.5">
-            <span class="p-2 bg-zinc-100 text-zinc-900 rounded-xl border border-zinc-200">
+            <span class="p-2 bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded-xl border border-zinc-200 dark:border-zinc-700">
               <Scale class="w-5 h-5" />
             </span>
-            <span class="text-xs font-bold text-zinc-900 uppercase tracking-widest font-title">
+            <span class="text-xs font-bold text-zinc-900 dark:text-zinc-100 uppercase tracking-widest font-title">
               Cadre Juridique & Conformité RGPD
             </span>
           </div>
           
-          <h1 class="text-2xl sm:text-3xl font-extrabold font-title text-slate-900 tracking-tight">
+          <h1 class="text-2xl sm:text-3xl font-extrabold font-title text-slate-900 dark:text-zinc-100 tracking-tight">
             Mentions Légales & Protection des Données
           </h1>
 
-          <p class="text-sm text-slate-600 leading-relaxed max-w-3xl">
+          <p class="text-sm text-slate-600 dark:text-zinc-400 leading-relaxed max-w-3xl">
             Ce site est un portfolio numérique personnel conçu et administré par <strong>{identity.firstName} {identity.lastName}</strong> dans le cadre officiel de la préparation du <strong>BTS Services Informatiques aux Organisations (BTS SIO · Option SLAM)</strong> auprès du CNED.
           </p>
 
           <!-- Avertissement dissuasif anti-scraping / anti-nuisance -->
-          <div class="bg-amber-50/70 border border-amber-200 rounded-xl p-4 flex items-start gap-3 text-xs text-amber-900">
-            <AlertTriangle class="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
+          <div class="bg-amber-50/70 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-900/60 rounded-xl p-4 flex items-start gap-3 text-xs text-amber-900 dark:text-amber-200">
+            <AlertTriangle class="w-5 h-5 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
             <div class="space-y-1">
               <strong class="font-semibold block">Avertissement contre la collecte non autorisée (Anti-Spam / Anti-Scraping) :</strong>
-              <p class="text-amber-800 leading-relaxed">
+              <p class="text-amber-800 dark:text-amber-300 leading-relaxed">
                 Les coordonnées publiées sur ce portfolio (numéro de téléphone, adresse e-mail, liens de réseaux) sont strictement réservées à l'évaluation académique par le jury d'examen et aux échanges de recrutement (stages et opportunités professionnelles). Tout démarchage commercial, téléprospection ou aspiration automatisée de données est formellement interdit (Art. L. 34-5 du CPCE).
               </p>
             </div>
@@ -80,12 +80,12 @@ const { identity, contact } = profileData;
         <div class="space-y-6">
 
           <!-- Section 1 : Éditeur du site -->
-          <section class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-card space-y-3">
-            <div class="flex items-center gap-2 text-slate-900 font-title font-bold text-base">
-              <UserCheck class="w-5 h-5 text-zinc-900" />
+          <section class="bg-white dark:bg-[#18181B] rounded-2xl p-6 sm:p-8 border border-slate-200 dark:border-[#27272A] shadow-card space-y-3">
+            <div class="flex items-center gap-2 text-slate-900 dark:text-zinc-100 font-title font-bold text-base">
+              <UserCheck class="w-5 h-5 text-zinc-900 dark:text-zinc-100" />
               <h2>1. Éditeur et Responsable de la Publication</h2>
             </div>
-            <ul class="text-sm text-slate-600 space-y-2 pl-2">
+            <ul class="text-sm text-slate-600 dark:text-zinc-400 space-y-2 pl-2">
               <li><strong>Nom et prénom :</strong> {identity.firstName} {identity.lastName}</li>
               <li><strong>Statut :</strong> Étudiant en 1re année de BTS SIO (Option SLAM)</li>
               <li><strong>Établissement de formation :</strong> {identity.institution}</li>
@@ -96,39 +96,39 @@ const { identity, contact } = profileData;
           </section>
 
           <!-- Section 2 : Hébergement du site -->
-          <section class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-card space-y-3">
-            <div class="flex items-center gap-2 text-slate-900 font-title font-bold text-base">
-              <Server class="w-5 h-5 text-zinc-900" />
+          <section class="bg-white dark:bg-[#18181B] rounded-2xl p-6 sm:p-8 border border-slate-200 dark:border-[#27272A] shadow-card space-y-3">
+            <div class="flex items-center gap-2 text-slate-900 dark:text-zinc-100 font-title font-bold text-base">
+              <Server class="w-5 h-5 text-zinc-900 dark:text-zinc-100" />
               <h2>2. Hébergement de la Plateforme</h2>
             </div>
-            <div class="text-sm text-slate-600 leading-relaxed space-y-2">
+            <div class="text-sm text-slate-600 dark:text-zinc-400 leading-relaxed space-y-2">
               <p>
                 Le site est déployé et hébergé sous forme de site statique sécurisé sur une infrastructure d'hébergement web moderne :
               </p>
               <ul class="list-disc pl-5 space-y-1">
                 <li><strong>Plateforme :</strong> GitHub Pages (GitHub Inc.) / Hébergement Cloud sécurisé avec chiffrement SSL (HTTPS).</li>
                 <li><strong>Adresse de l'hébergeur :</strong> 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis.</li>
-                <li><strong>Site web :</strong> <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="text-zinc-900 underline hover:text-black">github.com</a></li>
+                <li><strong>Site web :</strong> <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="text-zinc-900 dark:text-zinc-100 underline hover:text-black dark:hover:text-white">github.com</a></li>
               </ul>
             </div>
           </section>
 
           <!-- Section 3 : Protection des Données Personnelles de l'Étudiant (Clause protectrice) -->
-          <section class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-card space-y-4">
-            <div class="flex items-center gap-2 text-slate-900 font-title font-bold text-base">
-              <EyeOff class="w-5 h-5 text-zinc-900" />
+          <section class="bg-white dark:bg-[#18181B] rounded-2xl p-6 sm:p-8 border border-slate-200 dark:border-[#27272A] shadow-card space-y-4">
+            <div class="flex items-center gap-2 text-slate-900 dark:text-zinc-100 font-title font-bold text-base">
+              <EyeOff class="w-5 h-5 text-zinc-900 dark:text-zinc-100" />
               <h2>3. Protection des Coordonnées Personnelles et Lutte contre les Abus</h2>
             </div>
-            <div class="text-sm text-slate-600 leading-relaxed space-y-3">
+            <div class="text-sm text-slate-600 dark:text-zinc-400 leading-relaxed space-y-3">
               <p>
                 Conformément aux directives pédagogiques du <strong>CNED</strong> et aux attendus du référentiel du <strong>BTS SIO</strong>, certaines informations d'identification (nom, cursus, parcours, téléphone, e-mail, CV) sont rendues consultables afin de garantir l'authenticité de la candidature et la vérification des épreuves officielles.
               </p>
               
-              <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
-                <h3 class="font-bold text-slate-900 font-title text-xs uppercase tracking-wider">
+              <div class="p-4 rounded-xl bg-slate-50 dark:bg-zinc-900/60 border border-slate-200 dark:border-zinc-800 space-y-2">
+                <h3 class="font-bold text-slate-900 dark:text-zinc-100 font-title text-xs uppercase tracking-wider">
                   Clauses de Non-Autorisation & Sanctions Applicables :
                 </h3>
-                <ul class="list-disc pl-5 space-y-1.5 text-xs text-slate-600">
+                <ul class="list-disc pl-5 space-y-1.5 text-xs text-slate-600 dark:text-zinc-400">
                   <li><strong>Interdiction de collecte et de scraping :</strong> Il est strictement interdit d'extraire, d'indexer, de scraper ou de moissonner de manière automatisée (via scripts, robots ou bots d'IA) les coordonnées figurant sur ce site ou dans le CV joint.</li>
                   <li><strong>Interdiction de démarchage commercial :</strong> Les coordonnées ne peuvent en aucun cas être utilisées pour de la prospection téléphonique, par SMS ou par courriel, ni intégrées dans des annuaires de prospection ou des bases de données tierces.</li>
                   <li><strong>Protection juridique :</strong> Tout démarchage non sollicité constitue une infraction punie par l'article L. 34-5 du Code des postes et des communications électroniques et par le Règlement Général sur la Protection des Données (RGPD). Tout appel frauduleux ou usurpation d'identité fera l'objet d'un signalement immédiat sur les plateformes officielles (Bloctel, CNIL, Pharos).</li>
@@ -138,12 +138,12 @@ const { identity, contact } = profileData;
           </section>
 
           <!-- Section 4 : Formulaire de contact et Données des Visiteurs -->
-          <section class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-card space-y-3">
-            <div class="flex items-center gap-2 text-slate-900 font-title font-bold text-base">
-              <Lock class="w-5 h-5 text-zinc-900" />
+          <section class="bg-white dark:bg-[#18181B] rounded-2xl p-6 sm:p-8 border border-slate-200 dark:border-[#27272A] shadow-card space-y-3">
+            <div class="flex items-center gap-2 text-slate-900 dark:text-zinc-100 font-title font-bold text-base">
+              <Lock class="w-5 h-5 text-zinc-900 dark:text-zinc-100" />
               <h2>4. Données Collectées via le Formulaire de Contact</h2>
             </div>
-            <div class="text-sm text-slate-600 leading-relaxed space-y-2">
+            <div class="text-sm text-slate-600 dark:text-zinc-400 leading-relaxed space-y-2">
               <p>
                 Lorsque vous utilisez le formulaire de prise de contact (Nom, Adresse électronique, Objet, Message), ces informations sont recueillies exclusivement pour :
               </p>
@@ -158,12 +158,12 @@ const { identity, contact } = profileData;
           </section>
 
           <!-- Section 5 : Propriété intellectuelle -->
-          <section class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-card space-y-3">
-            <div class="flex items-center gap-2 text-slate-900 font-title font-bold text-base">
-              <FileText class="w-5 h-5 text-zinc-900" />
+          <section class="bg-white dark:bg-[#18181B] rounded-2xl p-6 sm:p-8 border border-slate-200 dark:border-[#27272A] shadow-card space-y-3">
+            <div class="flex items-center gap-2 text-slate-900 dark:text-zinc-100 font-title font-bold text-base">
+              <FileText class="w-5 h-5 text-zinc-900 dark:text-zinc-100" />
               <h2>5. Propriété Intellectuelle & Droits d'Auteur</h2>
             </div>
-            <p class="text-sm text-slate-600 leading-relaxed">
+            <p class="text-sm text-slate-600 dark:text-zinc-400 leading-relaxed">
               L'ensemble des réalisations, fiches d'études de cas, schémas de bases de données, architectures logicielles et codes sources développés par Quentin Machu restent sa propriété intellectuelle exclusive, au titre des articles L. 111-1 et suivants du Code de la Propriété Intellectuelle. Toute reproduction ou utilisation commerciale non autorisée est prohibée.
             </p>
           </section>
