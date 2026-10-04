@@ -1,58 +1,73 @@
 ---
-// Pied de page épuré du portfolio avec copyright officiel et liens de navigation sobres
+// Pied de page épuré du portfolio avec copyright, description de projet et liens légaux
 import profileData from '../content/data/profile.json';
+import { GitBranch, Scale, ArrowLeft, FileText } from 'lucide-astro';
 
 interface Props {
   currentPath?: string;
+  hideHomeLink?: boolean;
 }
 
-const { currentPath = '' } = Astro.props;
+const { currentPath = '', hideHomeLink = false } = Astro.props;
 const { identity } = profileData;
 const currentYear = new Date().getFullYear();
 ---
 
 <footer class="mt-20 py-8 border-t border-slate-200 dark:border-zinc-800 text-xs text-slate-500 dark:text-zinc-400">
-  <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
-    <!-- Mention légale de copyright et filière -->
-    <div class="flex flex-col sm:flex-row items-center gap-1.5 sm:gap-3">
-      <span class="font-medium text-slate-700 dark:text-zinc-300">
-        &copy; {currentYear} {identity.firstName} {identity.lastName}. Tous droits réservés.
-      </span>
-      <span class="hidden sm:inline-block w-1 h-1 rounded-full bg-slate-300 dark:bg-zinc-700" aria-hidden="true"></span>
-      <span class="text-slate-400 dark:text-zinc-500">
-        BTS SIO SLAM
-      </span>
+  <div class="flex flex-col sm:flex-row items-center sm:items-start justify-between gap-6 text-center sm:text-left">
+    <!-- Copyright et description de vocation du portfolio -->
+    <div class="space-y-1.5">
+      <p class="font-medium text-slate-800 dark:text-zinc-200">
+        &copy; {currentYear} {identity.firstName} {identity.lastName} — Tous droits réservés.
+      </p>
+      <p class="text-xs text-slate-500 dark:text-zinc-400 leading-relaxed max-w-md">
+        Portfolio développé comme support officiel d'évaluation pour mon cursus en BTS SIO (option SLAM), tout en constituant une vitrine professionnelle dédiée à la présentation de mes projets personnels et réalisations applicatives.
+      </p>
     </div>
 
-    <!-- Liens de navigation épurés -->
-    <nav class="flex flex-wrap items-center justify-center gap-6" aria-label="Liens secondaires de pied de page">
-      {currentPath !== '/' && currentPath !== '' && (
+    <!-- Liens de navigation avec icônes sobres -->
+    <nav class="flex flex-wrap items-center justify-center sm:justify-end gap-5 shrink-0 pt-1" aria-label="Liens secondaires de pied de page">
+      {!hideHomeLink && currentPath !== '/' && currentPath !== '' && currentPath !== '/404' && (
         <a
           href="/"
-          class="hover:text-slate-900 dark:hover:text-white transition-colors"
+          class="inline-flex items-center gap-1.5 text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white transition-colors group"
         >
-          Accueil
+          <ArrowLeft class="w-3.5 h-3.5 text-slate-400 dark:text-zinc-500 group-hover:text-slate-900 dark:group-hover:text-white transition-colors" />
+          <span>Accueil</span>
+        </a>
+      )}
+
+      {currentPath !== '/fiche-synthese-stage' && (
+        <a
+          href="/fiche-synthese-stage"
+          class="inline-flex items-center gap-1.5 text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white transition-colors group"
+        >
+          <FileText class="w-3.5 h-3.5 text-slate-400 dark:text-zinc-500 group-hover:text-slate-900 dark:group-hover:text-white transition-colors" />
+          <span>Fiche Synthèse Stage</span>
         </a>
       )}
 
       {currentPath !== '/journal' && (
         <a
           href="/journal"
-          class="hover:text-slate-900 dark:hover:text-white transition-colors"
+          class="inline-flex items-center gap-1.5 text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white transition-colors group"
         >
-          Journal Git
+          <GitBranch class="w-3.5 h-3.5 text-slate-400 dark:text-zinc-500 group-hover:text-slate-900 dark:group-hover:text-white transition-colors" />
+          <span>Journal Git</span>
         </a>
       )}
 
       {currentPath !== '/mentions-legales' && (
         <a
           href="/mentions-legales"
-          class="hover:text-slate-900 dark:hover:text-white transition-colors"
+          class="inline-flex items-center gap-1.5 text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white transition-colors group"
         >
-          Mentions Légales
+          <Scale class="w-3.5 h-3.5 text-slate-400 dark:text-zinc-500 group-hover:text-slate-900 dark:group-hover:text-white transition-colors" />
+          <span>Mentions Légales</span>
         </a>
       )}
     </nav>
   </div>
 </footer>
+
 

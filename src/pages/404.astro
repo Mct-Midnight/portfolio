@@ -28,9 +28,9 @@ const { identity } = profileData;
         <!-- Bloc central valorisé prenant une présence généreuse et harmonieuse -->
         <div class="my-auto py-2 sm:py-4 flex flex-col items-center text-center">
           
-          <!-- 1. Grand 404 Montserrat imposant et affirmé (sans bulle supérieure) -->
+          <!-- 1. Grand 404 Montserrat imposant et affirmé (avec un contraste gris titane plus soutenu) -->
           <div class="select-none mb-1 sm:mb-2">
-            <span class="font-title font-black text-8xl sm:text-9xl lg:text-[10rem] xl:text-[11rem] tracking-tighter text-zinc-300 dark:text-zinc-800/80 leading-none block">
+            <span class="font-title font-black text-8xl sm:text-9xl lg:text-[10rem] xl:text-[11rem] tracking-tighter text-zinc-400 dark:text-zinc-700 leading-none block">
               404
             </span>
           </div>
@@ -102,7 +102,7 @@ const { identity } = profileData;
 
         <!-- 6. Pied de page aéré avec marge de respiration inférieure -->
         <div class="shrink-0 w-full mt-4 lg:mt-6 pt-2 border-t border-slate-200/80 dark:border-zinc-800/80 [&>footer]:mt-0 [&>footer]:py-2.5 [&>footer]:border-t-0">
-          <Footer currentPath="/404" />
+          <Footer currentPath="/404" hideHomeLink={true} />
         </div>
 
       </main>
