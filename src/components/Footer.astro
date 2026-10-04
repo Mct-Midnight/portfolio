@@ -1,7 +1,6 @@
 ---
-// Pied de page du Portfolio BTS SIO SLAM avec liens juridiques et conformité CNIL
+// Pied de page épuré du portfolio avec copyright officiel et liens de navigation sobres
 import profileData from '../content/data/profile.json';
-import { Scale, GitBranch, Terminal } from 'lucide-astro';
 
 interface Props {
   currentPath?: string;
@@ -9,64 +8,51 @@ interface Props {
 
 const { currentPath = '' } = Astro.props;
 const { identity } = profileData;
+const currentYear = new Date().getFullYear();
 ---
 
 <footer class="mt-20 py-8 border-t border-slate-200 dark:border-zinc-800 text-xs text-slate-500 dark:text-zinc-400">
-  <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
-    <div class="space-y-1 text-center sm:text-left">
-      <p class="font-semibold text-slate-900 dark:text-zinc-100 font-title flex items-center justify-center sm:justify-start gap-2 flex-wrap">
-        <span>Portfolio {identity.firstName} {identity.lastName}</span>
-        <span class="w-1 h-1 rounded-full bg-zinc-300 dark:bg-zinc-600 shrink-0" aria-hidden="true"></span>
-        <span>BTS SIO Option SLAM</span>
-      </p>
-      <p class="text-slate-400 dark:text-zinc-500 flex items-center justify-center sm:justify-start gap-2 flex-wrap">
-        <span>Formation préparée avec le CNED</span>
-        <span class="w-1 h-1 rounded-full bg-zinc-300 dark:bg-zinc-600 shrink-0" aria-hidden="true"></span>
-        <span>Référentiel national du BTS SIO (Session 2026-2028)</span>
-      </p>
+  <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+    <!-- Mention légale de copyright et filière -->
+    <div class="flex flex-col sm:flex-row items-center gap-1.5 sm:gap-3">
+      <span class="font-medium text-slate-700 dark:text-zinc-300">
+        &copy; {currentYear} {identity.firstName} {identity.lastName}. Tous droits réservés.
+      </span>
+      <span class="hidden sm:inline-block w-1 h-1 rounded-full bg-slate-300 dark:bg-zinc-700" aria-hidden="true"></span>
+      <span class="text-slate-400 dark:text-zinc-500">
+        BTS SIO SLAM
+      </span>
     </div>
 
-    <!-- Liens juridiques et traçabilité Git -->
-    <div class="flex items-center flex-wrap justify-center sm:justify-end gap-2.5 shrink-0">
+    <!-- Liens de navigation épurés -->
+    <nav class="flex flex-wrap items-center justify-center gap-6" aria-label="Liens secondaires de pied de page">
+      {currentPath !== '/' && currentPath !== '' && (
+        <a
+          href="/"
+          class="hover:text-slate-900 dark:hover:text-white transition-colors"
+        >
+          Accueil
+        </a>
+      )}
+
       {currentPath !== '/journal' && (
         <a
           href="/journal"
-          class="inline-flex items-center gap-1.5 font-medium text-slate-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors py-1.5 px-2.5 rounded-lg hover:bg-slate-100 dark:hover:bg-zinc-800"
-          title="Consulter l'historique des livraisons Git et de maintenance du portfolio"
+          class="hover:text-slate-900 dark:hover:text-white transition-colors"
         >
-          <GitBranch class="w-3.5 h-3.5 text-slate-400 dark:text-zinc-500" />
-          <span>Journal Git</span>
+          Journal Git
         </a>
       )}
 
-      {currentPath !== '/mentions-legales' ? (
+      {currentPath !== '/mentions-legales' && (
         <a
           href="/mentions-legales"
-          class="inline-flex items-center gap-1.5 font-medium text-slate-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors py-1.5 px-2.5 rounded-lg hover:bg-slate-100 dark:hover:bg-zinc-800"
+          class="hover:text-slate-900 dark:hover:text-white transition-colors"
         >
-          <Scale class="w-3.5 h-3.5 text-slate-400 dark:text-zinc-500" />
-          <span>Mentions Légales</span>
-        </a>
-      ) : (
-        <a
-          href="/"
-          class="inline-flex items-center gap-1.5 font-medium text-slate-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-colors py-1.5 px-2.5 rounded-lg hover:bg-slate-100 dark:hover:bg-zinc-800"
-        >
-          <span>← Accueil du portfolio</span>
+          Mentions Légales
         </a>
       )}
-
-      <!-- Déclencheur discret du Mode Audit & Architecture (Easter Egg) -->
-      <button
-        type="button"
-        id="footer-audit-trigger"
-        class="inline-flex items-center gap-1.5 font-medium text-slate-500 dark:text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors py-1.5 px-2.5 rounded-lg hover:bg-slate-100 dark:hover:bg-zinc-800 cursor-pointer"
-        title="Mode Audit & Architecture (Konami Code ou Ctrl+Shift+D)"
-        aria-label="Ouvrir la console d'audit et télémétrie"
-      >
-        <Terminal class="w-3.5 h-3.5 text-slate-400 dark:text-zinc-500" />
-        <span>Audit & Télémétrie</span>
-      </button>
-    </div>
+    </nav>
   </div>
 </footer>
+
