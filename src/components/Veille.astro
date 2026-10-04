@@ -1,5 +1,5 @@
 ---
-// Section 7 : Veille Technologique & Réglementaire (Format épuré avec navigation intégrée et fiches standardisées)
+// Section 7 : Veille Technologique & Réglementaire (Format épuré avec navigation latérale centrée)
 import {
   ShieldCheck,
   Cpu,
@@ -169,7 +169,7 @@ const totalArticles = axes.reduce((acc, axis) => acc + axis.articles.length, 0);
                   <div class="space-y-3.5">
                     <!-- En-tête : Logo officiel net + Nom complet de la source et Date (empilés proprement, zéro coupure) -->
                     <div class="flex items-center gap-3">
-                      <!-- Vrai logo coloré officiel de la source (sans double contour parasite) -->
+                      <!-- Vrai logo coloré officiel de la source (sans contour parasite) -->
                       <div class="veille-card-logo w-8 h-8 rounded-lg overflow-hidden shrink-0 flex items-center justify-center shadow-2xs">
                         <div class="w-full h-full flex items-center justify-center [&>svg]:w-full [&>svg]:h-full" set:html={svgLogo} />
                       </div>
@@ -212,176 +212,195 @@ const totalArticles = axes.reduce((acc, axis) => acc + axis.articles.length, 0);
     })}
   </div>
 
-  <!-- Fenêtre modale descriptive détaillée (Format Dossier Exécutif avec navigation fluide) -->
+  <!-- Fenêtre modale descriptive détaillée (Format Dossier Exécutif avec navigation latérale centrée) -->
   <div
     id="veille-modal-backdrop"
-    class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 hidden opacity-0 transition-opacity duration-200 flex items-center justify-center p-4"
+    class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 hidden opacity-0 transition-opacity duration-200 flex items-center justify-center p-4 sm:p-6"
     aria-hidden="true"
   >
-    <div
-      id="veille-modal-card"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="veille-modal-title"
-      class="bg-white rounded-3xl p-6 sm:p-8 max-w-2xl w-full shadow-2xl border border-slate-200 transform scale-95 transition-all duration-200 relative text-left max-h-[88vh] overflow-y-auto"
-    >
-      <!-- Barre d'action supérieure : Navigation Précédent/Suivant + Compteur + Fermeture -->
-      <div class="flex items-center justify-between gap-4 pb-4 mb-4 border-b border-slate-100">
-        <!-- En-tête source : Logo + Nom + Axe + Date -->
-        <div class="flex items-center gap-3 min-w-0">
-          <div
-            id="veille-modal-logo"
-            class="w-10 h-10 rounded-xl overflow-hidden shrink-0 flex items-center justify-center [&>svg]:w-full [&>svg]:h-full shadow-2xs"
-          ></div>
+    <!-- Conteneur relatif pour positionner les flèches flottantes dans le vide de chaque côté -->
+    <div class="relative w-full max-w-2xl flex items-center justify-center pointer-events-none">
 
-          <div class="min-w-0">
-            <div class="flex items-center gap-2 flex-wrap">
-              <span id="veille-modal-source" class="text-sm font-bold text-slate-900 leading-tight"></span>
-              <span id="veille-modal-axis" class="text-[11px] font-semibold text-zinc-800 bg-zinc-100 px-2.5 py-0.5 rounded-md border border-zinc-200"></span>
+      <!-- Flèche flottante Gauche (centrée verticalement dans le vide à gauche) -->
+      <button
+        id="veille-modal-prev-float"
+        type="button"
+        aria-label="Fiche précédente"
+        title="Fiche précédente (Flèche gauche)"
+        class="hidden sm:flex pointer-events-auto absolute -left-14 md:-left-20 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white text-zinc-800 hover:text-black hover:bg-white border border-slate-200/90 shadow-xl hover:shadow-2xl hover:scale-110 active:scale-95 transition-all duration-200 items-center justify-center cursor-pointer z-50 disabled:opacity-0 disabled:pointer-events-none group"
+      >
+        <ChevronLeft class="w-6 h-6 transition-transform group-hover:-translate-x-0.5" />
+      </button>
+
+      <!-- Carte principale de la modale -->
+      <div
+        id="veille-modal-card"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="veille-modal-title"
+        class="pointer-events-auto bg-white rounded-3xl p-6 sm:p-8 w-full shadow-2xl border border-slate-200 transform scale-95 transition-all duration-200 relative text-left max-h-[88vh] overflow-y-auto"
+      >
+        <!-- En-tête épuré : Source + Identité à gauche, Compteur + Croix à droite -->
+        <div class="flex items-center justify-between gap-4 pb-4 mb-4 border-b border-slate-100">
+          <!-- En-tête source : Logo + Nom + Axe + Date -->
+          <div class="flex items-center gap-3 min-w-0">
+            <div
+              id="veille-modal-logo"
+              class="w-10 h-10 rounded-xl overflow-hidden shrink-0 flex items-center justify-center [&>svg]:w-full [&>svg]:h-full shadow-2xs"
+            ></div>
+
+            <div class="min-w-0">
+              <div class="flex items-center gap-2 flex-wrap">
+                <span id="veille-modal-source" class="text-sm font-bold text-slate-900 leading-tight"></span>
+                <span id="veille-modal-axis" class="text-[11px] font-semibold text-zinc-800 bg-zinc-100 px-2.5 py-0.5 rounded-md border border-zinc-200"></span>
+              </div>
+              <div class="flex items-center gap-2 text-xs text-slate-500 mt-1 flex-wrap">
+                <span id="veille-modal-date" class="font-medium text-slate-600"></span>
+                <span class="text-slate-300">•</span>
+                <span id="veille-modal-sourcetype" class="text-slate-500 font-medium"></span>
+              </div>
             </div>
-            <div class="flex items-center gap-2 text-xs text-slate-500 mt-1 flex-wrap">
-              <span id="veille-modal-date" class="font-medium text-slate-600"></span>
-              <span class="text-slate-300">•</span>
-              <span id="veille-modal-sourcetype" class="text-slate-500 font-medium"></span>
-            </div>
+          </div>
+
+          <!-- Indicateur d'avancement discret + Bouton de fermeture -->
+          <div class="flex items-center gap-2.5 shrink-0">
+            <span
+              id="veille-modal-counter"
+              class="text-xs font-semibold text-slate-500 bg-slate-100 px-3 py-1 rounded-full border border-slate-200 select-none whitespace-nowrap"
+            >
+              1 / 6
+            </span>
+
+            <button
+              id="veille-modal-close"
+              type="button"
+              aria-label="Fermer la fiche"
+              title="Fermer (Échap)"
+              class="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors focus:outline-none cursor-pointer"
+            >
+              <X class="w-5 h-5" />
+            </button>
           </div>
         </div>
 
-        <!-- Contrôles de navigation supérieure : Flèche gauche, Compteur, Flèche droite, Croix -->
-        <div class="flex items-center gap-1 shrink-0">
-          <button
-            id="veille-modal-prev-top"
-            type="button"
-            aria-label="Fiche précédente"
-            title="Fiche précédente (Flèche gauche)"
-            class="p-2 rounded-xl text-slate-500 hover:text-zinc-950 hover:bg-slate-100 transition-colors disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
-          >
-            <ChevronLeft class="w-4 h-4" />
-          </button>
+        <!-- Titre complet de l'article -->
+        <h3 id="veille-modal-title" class="text-xl sm:text-2xl font-bold font-title text-slate-900 tracking-tight leading-snug mb-4"></h3>
 
-          <span id="veille-modal-counter" class="text-xs font-semibold text-slate-500 px-1 select-none whitespace-nowrap">
-            1 / 6
+        <!-- Bandeau de métriques de qualification (3 badges équilibrés) -->
+        <div class="flex flex-wrap items-center gap-2 mb-6 pb-4 border-b border-slate-100">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-50 text-slate-700 border border-slate-200/80 text-xs font-medium">
+            <Clock class="w-3.5 h-3.5 text-slate-500" />
+            <span id="veille-modal-readtime"></span>
           </span>
 
-          <button
-            id="veille-modal-next-top"
-            type="button"
-            aria-label="Fiche suivante"
-            title="Fiche suivante (Flèche droite)"
-            class="p-2 rounded-xl text-slate-500 hover:text-zinc-950 hover:bg-slate-100 transition-colors disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
-          >
-            <ChevronRight class="w-4 h-4" />
-          </button>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-50 text-slate-700 border border-slate-200/80 text-xs font-medium">
+            <ShieldCheck class="w-3.5 h-3.5 text-zinc-900" />
+            <span>Épreuve E4 (Option SLAM)</span>
+          </span>
 
-          <div class="w-px h-5 bg-slate-200 mx-1"></div>
-
-          <button
-            id="veille-modal-close"
-            type="button"
-            aria-label="Fermer la fiche"
-            title="Fermer (Échap)"
-            class="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors focus:outline-none cursor-pointer"
-          >
-            <X class="w-5 h-5" />
-          </button>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-50 text-slate-700 border border-slate-200/80 text-xs font-medium">
+            <BookOpen class="w-3.5 h-3.5 text-slate-500" />
+            <span>Source certifiée</span>
+          </span>
         </div>
-      </div>
 
-      <!-- Titre complet de l'article -->
-      <h3 id="veille-modal-title" class="text-xl sm:text-2xl font-bold font-title text-slate-900 tracking-tight leading-snug mb-4"></h3>
-
-      <!-- Bandeau de métriques de qualification (3 badges équilibrés) -->
-      <div class="flex flex-wrap items-center gap-2 mb-6 pb-4 border-b border-slate-100">
-        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-50 text-slate-700 border border-slate-200/80 text-xs font-medium">
-          <Clock class="w-3.5 h-3.5 text-slate-500" />
-          <span id="veille-modal-readtime"></span>
-        </span>
-
-        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-50 text-slate-700 border border-slate-200/80 text-xs font-medium">
-          <ShieldCheck class="w-3.5 h-3.5 text-zinc-900" />
-          <span>Épreuve E4 (Option SLAM)</span>
-        </span>
-
-        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-50 text-slate-700 border border-slate-200/80 text-xs font-medium">
-          <BookOpen class="w-3.5 h-3.5 text-slate-500" />
-          <span>Source certifiée</span>
-        </span>
-      </div>
-
-      <!-- Section 1 : Résumé analytique dans un encadré teinté et soigné -->
-      <div class="mb-6">
-        <div class="flex items-center gap-2 mb-2.5">
-          <div class="w-1.5 h-4 bg-zinc-900 rounded-full"></div>
-          <h4 class="text-xs uppercase tracking-wider font-bold text-slate-500 font-title">
-            Résumé analytique
-          </h4>
-        </div>
-        <div class="bg-slate-50/80 rounded-2xl p-4 sm:p-5 border border-slate-200/70">
-          <p id="veille-modal-summary" class="text-xs sm:text-sm text-slate-700 leading-relaxed"></p>
-        </div>
-      </div>
-
-      <!-- Section 2 : Enjeux & Retombées techniques (Présentation unifiée et aérée) -->
-      <div class="mb-6">
-        <div class="flex items-center justify-between mb-2.5">
-          <div class="flex items-center gap-2">
+        <!-- Section 1 : Résumé analytique dans un encadré teinté et soigné -->
+        <div class="mb-6">
+          <div class="flex items-center gap-2 mb-2.5">
             <div class="w-1.5 h-4 bg-zinc-900 rounded-full"></div>
             <h4 class="text-xs uppercase tracking-wider font-bold text-slate-500 font-title">
-              Enjeux & Retombées techniques (BTS SIO SLAM)
+              Résumé analytique
             </h4>
           </div>
-          <span class="text-[11px] font-semibold text-slate-500 bg-slate-100 px-2.5 py-0.5 rounded-md border border-slate-200">
-            3 points clés
-          </span>
+          <div class="bg-slate-50/80 rounded-2xl p-4 sm:p-5 border border-slate-200/70">
+            <p id="veille-modal-summary" class="text-xs sm:text-sm text-slate-700 leading-relaxed"></p>
+          </div>
         </div>
-        <div class="bg-slate-50/80 rounded-2xl p-4 sm:p-5 border border-slate-200/70">
-          <ul id="veille-modal-keypoints" class="space-y-3"></ul>
+
+        <!-- Section 2 : Enjeux & Retombées techniques (Présentation unifiée et aérée) -->
+        <div class="mb-6">
+          <div class="flex items-center justify-between mb-2.5">
+            <div class="flex items-center gap-2">
+              <div class="w-1.5 h-4 bg-zinc-900 rounded-full"></div>
+              <h4 class="text-xs uppercase tracking-wider font-bold text-slate-500 font-title">
+                Enjeux & Retombées techniques (BTS SIO SLAM)
+              </h4>
+            </div>
+            <span class="text-[11px] font-semibold text-slate-500 bg-slate-100 px-2.5 py-0.5 rounded-md border border-slate-200">
+              3 points clés
+            </span>
+          </div>
+          <div class="bg-slate-50/80 rounded-2xl p-4 sm:p-5 border border-slate-200/70">
+            <ul id="veille-modal-keypoints" class="space-y-3"></ul>
+          </div>
         </div>
-      </div>
 
-      <!-- Section 3 : Mots-clés & Normes associés (Tags) -->
-      <div class="mb-6">
-        <h4 class="text-xs uppercase tracking-wider font-bold text-slate-400 font-title mb-2">
-          Mots-clés & Normes associés
-        </h4>
-        <div id="veille-modal-tags" class="flex flex-wrap items-center gap-1.5"></div>
-      </div>
+        <!-- Section 3 : Mots-clés & Normes associés (Tags) -->
+        <div class="mb-6">
+          <h4 class="text-xs uppercase tracking-wider font-bold text-slate-400 font-title mb-2">
+            Mots-clés & Normes associés
+          </h4>
+          <div id="veille-modal-tags" class="flex flex-wrap items-center gap-1.5"></div>
+        </div>
 
-      <!-- Actions de pied de modale : Navigation Précédent/Suivant + Bouton source officielle -->
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-4 border-t border-slate-100">
-        <!-- Boutons de navigation en bas -->
-        <div class="flex items-center gap-2">
-          <button
-            id="veille-modal-prev-footer"
-            type="button"
-            class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 text-xs font-semibold transition-colors disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+        <!-- Actions de pied de modale : Fermer + Bouton source officielle (et navigation mobile compacte) -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-4 border-t border-slate-100">
+          <div class="flex items-center gap-2">
+            <!-- Bouton Fermer sur desktop -->
+            <button
+              id="veille-modal-close-footer"
+              type="button"
+              class="px-4 py-2.5 rounded-xl bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 text-xs font-semibold transition-colors cursor-pointer"
+            >
+              Fermer
+            </button>
+
+            <!-- Navigation mobile compacte (visible uniquement sur petit écran) -->
+            <div class="sm:hidden flex items-center gap-1.5">
+              <button
+                id="veille-modal-prev-mobile"
+                type="button"
+                aria-label="Fiche précédente"
+                class="px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold disabled:opacity-30 disabled:pointer-events-none"
+              >
+                ←
+              </button>
+              <button
+                id="veille-modal-next-mobile"
+                type="button"
+                aria-label="Fiche suivante"
+                class="px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold disabled:opacity-30 disabled:pointer-events-none"
+              >
+                →
+              </button>
+            </div>
+          </div>
+
+          <!-- Bouton d'action vers la source originale -->
+          <a
+            id="veille-modal-link"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-zinc-900 hover:bg-black text-white font-semibold text-xs transition-colors shadow-sm cursor-pointer"
           >
-            <ChevronLeft class="w-3.5 h-3.5" />
-            <span>Précédente</span>
-          </button>
-
-          <button
-            id="veille-modal-next-footer"
-            type="button"
-            class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 text-xs font-semibold transition-colors disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
-          >
-            <span>Suivante</span>
-            <ChevronRight class="w-3.5 h-3.5" />
-          </button>
+            <span>Consulter la source officielle</span>
+            <ExternalLink class="w-3.5 h-3.5" />
+          </a>
         </div>
-
-        <!-- Bouton d'action vers la source originale -->
-        <a
-          id="veille-modal-link"
-          href="#"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-zinc-900 hover:bg-black text-white font-semibold text-xs transition-colors shadow-sm cursor-pointer"
-        >
-          <span>Consulter la source officielle</span>
-          <ExternalLink class="w-3.5 h-3.5" />
-        </a>
       </div>
+
+      <!-- Flèche flottante Droite (centrée verticalement dans le vide à droite) -->
+      <button
+        id="veille-modal-next-float"
+        type="button"
+        aria-label="Fiche suivante"
+        title="Fiche suivante (Flèche droite)"
+        class="hidden sm:flex pointer-events-auto absolute -right-14 md:-right-20 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white text-zinc-800 hover:text-black hover:bg-white border border-slate-200/90 shadow-xl hover:shadow-2xl hover:scale-110 active:scale-95 transition-all duration-200 items-center justify-center cursor-pointer z-50 disabled:opacity-0 disabled:pointer-events-none group"
+      >
+        <ChevronRight class="w-6 h-6 transition-transform group-hover:translate-x-0.5" />
+      </button>
+
     </div>
   </div>
 </section>
@@ -421,13 +440,17 @@ const totalArticles = axes.reduce((acc, axis) => acc + axis.articles.length, 0);
   const backdrop = document.getElementById('veille-modal-backdrop');
   const modalCard = document.getElementById('veille-modal-card');
   const closeBtn = document.getElementById('veille-modal-close');
+  const closeFooterBtn = document.getElementById('veille-modal-close-footer');
 
-  const prevBtnTop = document.getElementById('veille-modal-prev-top') as HTMLButtonElement | null;
-  const nextBtnTop = document.getElementById('veille-modal-next-top') as HTMLButtonElement | null;
-  const prevBtnFooter = document.getElementById('veille-modal-prev-footer') as HTMLButtonElement | null;
-  const nextBtnFooter = document.getElementById('veille-modal-next-footer') as HTMLButtonElement | null;
+  // Boutons flottants latéraux au centre de l'écran
+  const prevBtnFloat = document.getElementById('veille-modal-prev-float') as HTMLButtonElement | null;
+  const nextBtnFloat = document.getElementById('veille-modal-next-float') as HTMLButtonElement | null;
+
+  // Boutons mobiles compacts de secours
+  const prevBtnMobile = document.getElementById('veille-modal-prev-mobile') as HTMLButtonElement | null;
+  const nextBtnMobile = document.getElementById('veille-modal-next-mobile') as HTMLButtonElement | null;
+
   const modalCounter = document.getElementById('veille-modal-counter');
-
   const modalTitle = document.getElementById('veille-modal-title');
   const modalAxis = document.getElementById('veille-modal-axis');
   const modalDate = document.getElementById('veille-modal-date');
@@ -463,10 +486,10 @@ const totalArticles = axes.reduce((acc, axis) => acc + axis.articles.length, 0);
     const isFirst = currentCardIndex <= 0;
     const isLast = currentCardIndex >= total - 1;
 
-    if (prevBtnTop) prevBtnTop.disabled = isFirst;
-    if (prevBtnFooter) prevBtnFooter.disabled = isFirst;
-    if (nextBtnTop) nextBtnTop.disabled = isLast;
-    if (nextBtnFooter) nextBtnFooter.disabled = isLast;
+    if (prevBtnFloat) prevBtnFloat.disabled = isFirst;
+    if (nextBtnFloat) nextBtnFloat.disabled = isLast;
+    if (prevBtnMobile) prevBtnMobile.disabled = isFirst;
+    if (nextBtnMobile) nextBtnMobile.disabled = isLast;
   }
 
   function renderCardData(card: HTMLElement) {
@@ -591,13 +614,16 @@ const totalArticles = axes.reduce((acc, axis) => acc + axis.articles.length, 0);
     card.addEventListener('click', () => openModal(card, true));
   });
 
-  // Écouteurs de navigation Suivant / Précédent
-  if (prevBtnTop) prevBtnTop.addEventListener('click', () => navigateTo(-1));
-  if (nextBtnTop) nextBtnTop.addEventListener('click', () => navigateTo(1));
-  if (prevBtnFooter) prevBtnFooter.addEventListener('click', () => navigateTo(-1));
-  if (nextBtnFooter) nextBtnFooter.addEventListener('click', () => navigateTo(1));
+  // Écouteurs de navigation sur les flèches flottantes latérales
+  if (prevBtnFloat) prevBtnFloat.addEventListener('click', () => navigateTo(-1));
+  if (nextBtnFloat) nextBtnFloat.addEventListener('click', () => navigateTo(1));
+
+  // Écouteurs mobiles de secours
+  if (prevBtnMobile) prevBtnMobile.addEventListener('click', () => navigateTo(-1));
+  if (nextBtnMobile) nextBtnMobile.addEventListener('click', () => navigateTo(1));
 
   if (closeBtn) closeBtn.addEventListener('click', closeModal);
+  if (closeFooterBtn) closeFooterBtn.addEventListener('click', closeModal);
 
   if (backdrop) {
     backdrop.addEventListener('click', (e) => {
@@ -605,7 +631,7 @@ const totalArticles = axes.reduce((acc, axis) => acc + axis.articles.length, 0);
     });
   }
 
-  // Navigation pratique au clavier
+  // Navigation au clavier
   window.addEventListener('keydown', (e) => {
     if (!backdrop || backdrop.classList.contains('hidden')) return;
 
