@@ -1,0 +1,99 @@
+---
+// Composant réutilisable de bascule de thème (Clair / Sombre)
+// Conforme au design monochrome mat et titane du portfolio
+import { Sun, Moon } from 'lucide-astro';
+
+interface Props {
+  // 'compact' pour les barres d'outils mobiles ou réduites, 'full' avec libellé textuel pour la sidebar
+  variant?: 'compact' | 'full';
+  className?: string;
+}
+
+const { variant = 'compact', className = '' } = Astro.props;
+---
+
+{variant === 'compact' ? (
+  <button
+    type="button"
+    class={`theme-toggle-btn p-2 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors focus:outline-none focus:ring-2 focus:ring-zinc-600 ${className}`}
+    aria-label="Basculer entre le mode clair et le mode sombre"
+    title="Changer de thème"
+  >
+    <!-- Icône Soleil (affichée en mode sombre pour repasser en clair) -->
+    <span class="dark:inline hidden">
+      <Sun class="w-5 h-5 text-zinc-300 hover:text-white transition-colors" />
+    </span>
+    <!-- Icône Lune (affichée en mode clair pour passer en sombre) -->
+    <span class="dark:hidden inline">
+      <Moon class="w-5 h-5 text-zinc-400 hover:text-white transition-colors" />
+    </span>
+  </button>
+) : (
+  <button
+    type="button"
+    class={`theme-toggle-btn group flex items-center justify-between w-full py-2 px-3 rounded-xl bg-zinc-800/60 hover:bg-zinc-800 text-zinc-300 hover:text-white text-xs font-semibold border border-zinc-700/60 transition-all duration-200 active:scale-[0.99] focus:outline-none focus:ring-2 focus:ring-zinc-600 ${className}`}
+    aria-label="Basculer entre le mode clair et le mode sombre"
+    title="Changer de thème"
+  >
+    <div class="flex items-center gap-2.5">
+      <!-- Icône Soleil en mode sombre -->
+      <span class="dark:inline hidden">
+        <Sun class="w-4 h-4 text-zinc-300 shrink-0" />
+      </span>
+      <!-- Icône Lune en mode clair -->
+      <span class="dark:hidden inline">
+        <Moon class="w-4 h-4 text-zinc-400 group-hover:text-white shrink-0 transition-colors" />
+      </span>
+      
+      <!-- Texte descriptif selon le mode actif -->
+      <span class="dark:hidden inline">Mode sombre</span>
+      <span class="dark:inline hidden">Mode clair</span>
+    </div>
+
+    <!-- Indicateur visuel de statut de thème -->
+    <span class="text-[10px] font-mono uppercase px-1.5 py-0.5 rounded bg-zinc-900 border border-zinc-700 text-zinc-400 group-hover:text-zinc-200">
+      <span class="dark:hidden inline">Clair</span>
+      <span class="dark:inline hidden">Sombre</span>
+    </span>
+  </button>
+)}
+
+<script>
+  // Initialisation et attachement des écouteurs sur tous les boutons de thème de la page
+  function setupThemeToggles() {
+    try {
+      const toggleButtons = document.querySelectorAll('.theme-toggle-btn');
+      
+      toggleButtons.forEach((btn) => {
+        // Suppression d'un écouteur antérieur éventuel pour éviter les doublons lors des rechargements
+        btn.replaceWith(btn.cloneNode(true));
+      });
+
+      const refreshedButtons = document.querySelectorAll('.theme-toggle-btn');
+      refreshedButtons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          try {
+            const isCurrentlyDark = document.documentElement.classList.contains('dark');
+            const targetTheme = isCurrentlyDark ? 'light' : 'dark';
+
+            if (targetTheme === 'dark') {
+              document.documentElement.classList.add('dark');
+            } else {
+              document.documentElement.classList.remove('dark');
+            }
+
+            localStorage.setItem('portfolio-theme', targetTheme);
+          } catch (storageError) {
+            console.error('Erreur lors de la sauvegarde du thème utilisateur dans le localStorage :', storageError);
+          }
+        });
+      });
+    } catch (globalError) {
+      console.error('Erreur lors de la configuration des déclencheurs de thème :', globalError);
+    }
+  }
+
+  // Exécution au chargement du DOM et lors des navigations Astro
+  setupThemeToggles();
+  document.addEventListener('astro:page-load', setupThemeToggles);
+</script>

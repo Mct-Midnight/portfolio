@@ -2,6 +2,7 @@
 // Composant Sidebar pour le Layout Dual-Pane (Desktop fixe 260px + Tiroir Mobile réactif)
 import { Menu, X } from 'lucide-astro';
 import profileData from '../content/data/profile.json';
+import ThemeToggle from './ThemeToggle.astro';
 
 const { identity } = profileData;
 const initials = `${identity.firstName[0] || 'Q'}${identity.lastName[0] || 'M'}`;
@@ -35,14 +36,18 @@ const basePath = isHome ? '' : '/';
     </div>
   </a>
 
-  <!-- Bouton déclencheur du Drawer Mobile -->
-  <button
-    id="mobile-menu-open-btn"
-    aria-label="Ouvrir le menu de navigation"
-    class="p-2 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors focus:outline-none focus:ring-2 focus:ring-zinc-600"
-  >
-    <Menu class="w-6 h-6" />
-  </button>
+  <!-- Commandes mobiles : Changement de thème et ouverture du tiroir -->
+  <div class="flex items-center gap-1.5">
+    <ThemeToggle variant="compact" />
+
+    <button
+      id="mobile-menu-open-btn"
+      aria-label="Ouvrir le menu de navigation"
+      class="p-2 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors focus:outline-none focus:ring-2 focus:ring-zinc-600"
+    >
+      <Menu class="w-6 h-6" />
+    </button>
+  </div>
 </header>
 
 <!-- Volet d'arrière-plan semi-transparent (Backdrop Mobile) -->
@@ -270,8 +275,11 @@ const basePath = isHome ? '' : '/';
     </a>
   </nav>
 
-  <!-- Partie Inférieure : Téléchargement CV et Footer Sidebar bien aérés avec barre de séparation surélevée -->
-  <div class="px-4 pt-6 pb-6 border-t border-[#27272A] space-y-4">
+  <!-- Partie Inférieure : Sélecteur de thème, Téléchargement CV et Footer Sidebar bien aérés -->
+  <div class="px-4 pt-4 pb-6 border-t border-[#27272A] space-y-3">
+    <!-- Bascule de thème clair / sombre -->
+    <ThemeToggle variant="full" />
+
     <!-- Bouton rapide CV avec icône pleine et espacement soigné -->
     <a
       href={identity.cvDownloadUrl}
