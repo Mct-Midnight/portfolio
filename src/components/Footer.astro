@@ -14,11 +14,15 @@ const { identity } = profileData;
 <footer class="mt-20 py-8 border-t border-slate-200 dark:border-zinc-800 text-xs text-slate-500 dark:text-zinc-400">
   <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
     <div class="space-y-1 text-center sm:text-left">
-      <p class="font-semibold text-slate-900 dark:text-zinc-100 font-title">
-        Portfolio {identity.firstName} {identity.lastName} · BTS SIO Option SLAM
+      <p class="font-semibold text-slate-900 dark:text-zinc-100 font-title flex items-center justify-center sm:justify-start gap-2 flex-wrap">
+        <span>Portfolio {identity.firstName} {identity.lastName}</span>
+        <span class="w-1 h-1 rounded-full bg-zinc-300 dark:bg-zinc-600 shrink-0" aria-hidden="true"></span>
+        <span>BTS SIO Option SLAM</span>
       </p>
-      <p class="text-slate-400 dark:text-zinc-500">
-        Formation préparée avec le CNED · Référentiel national du BTS SIO (Session 2026-2028)
+      <p class="text-slate-400 dark:text-zinc-500 flex items-center justify-center sm:justify-start gap-2 flex-wrap">
+        <span>Formation préparée avec le CNED</span>
+        <span class="w-1 h-1 rounded-full bg-zinc-300 dark:bg-zinc-600 shrink-0" aria-hidden="true"></span>
+        <span>Référentiel national du BTS SIO (Session 2026-2028)</span>
       </p>
     </div>
 

@@ -1,13 +1,10 @@
 ---
 // Section 1 : Hero / Accueil
-import { ArrowDownRight, FileText, Mail, MapPin, GraduationCap, GitBranch } from 'lucide-astro';
+import { ArrowDownRight, FileText, Mail, MapPin, GraduationCap, Code2 } from 'lucide-astro';
 import profileData from '../content/data/profile.json';
-import { getGitCommits } from '../utils/gitCommits';
 
 const { identity, contact, internshipSearch } = profileData;
 const initials = `${identity.firstName[0] || 'Q'}${identity.lastName[0] || 'M'}`;
-const commits = await getGitCommits();
-const totalCommits = commits.length;
 ---
 
 <section id="hero" class="pt-6 pb-14 lg:pt-12 lg:pb-20 scroll-mt-20">
@@ -23,7 +20,7 @@ const totalCommits = commits.length;
         </h1>
         
         <p class="text-xl sm:text-2xl font-bold text-zinc-700 dark:text-zinc-300">
-          Étudiant en informatique <span class="text-zinc-600 dark:text-zinc-400 font-bold select-none text-sm leading-none">·</span> BTS SIO SLAM
+          Étudiant en informatique <span class="text-zinc-400 dark:text-zinc-500 font-normal select-none">-</span> BTS SIO SLAM
         </p>
 
         <!-- Métadonnées clés condensées et faciles à lire -->
@@ -32,12 +29,12 @@ const totalCommits = commits.length;
             <GraduationCap class="w-4 h-4 text-zinc-700 dark:text-zinc-300 shrink-0" />
             CNED
           </span>
-          <span class="text-zinc-600 dark:text-zinc-500 font-bold select-none text-sm leading-none">·</span>
+          <span class="w-1 h-1 rounded-full bg-zinc-300 dark:bg-zinc-600 shrink-0 select-none" aria-hidden="true"></span>
           <span class="inline-flex items-center gap-1.5 font-medium">
             <MapPin class="w-4 h-4 text-zinc-700 dark:text-zinc-300 shrink-0" />
             Cambrai (59)
           </span>
-          <span class="text-zinc-600 dark:text-zinc-500 font-bold select-none text-sm leading-none">·</span>
+          <span class="w-1 h-1 rounded-full bg-zinc-300 dark:bg-zinc-600 shrink-0 select-none" aria-hidden="true"></span>
           <span class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300 text-xs font-semibold">
             <span class="flex h-2 w-2 relative">
               <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -45,17 +42,6 @@ const totalCommits = commits.length;
             </span>
             Stage {internshipSearch.duration} ({internshipSearch.period})
           </span>
-          <span class="text-zinc-600 dark:text-zinc-500 font-bold select-none text-sm leading-none">·</span>
-          <!-- Badge vers le Journal de bord Git -->
-          <a
-            href="/journal"
-            class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 border border-zinc-200 dark:border-zinc-700 text-zinc-800 dark:text-zinc-200 text-xs font-semibold transition-colors group"
-            title="Consulter le journal de bord et l'activité Git du portfolio"
-          >
-            <GitBranch class="w-3.5 h-3.5 text-zinc-700 dark:text-zinc-300 group-hover:scale-110 transition-transform" />
-            <span>Activité Git</span>
-            <span class="text-[11px] text-zinc-600 dark:text-zinc-400 font-mono">({totalCommits} commits)</span>
-          </a>
         </div>
       </div>
 
@@ -123,8 +109,9 @@ const totalCommits = commits.length;
         </div>
 
         <!-- Pastille flottante SLAM Développeur -->
-        <div class="absolute -bottom-3 -right-3 bg-white dark:bg-zinc-900 px-4 py-2 rounded-xl shadow-lg border border-zinc-200 dark:border-zinc-700 flex items-center gap-2">
-          <div class="w-2.5 h-2.5 rounded-full bg-zinc-900 dark:bg-zinc-100"></div>
+        <div class="absolute -bottom-3 -right-3 bg-white dark:bg-zinc-900 px-3.5 py-1.5 rounded-xl shadow-lg border border-zinc-200 dark:border-zinc-700 flex items-center gap-2">
+          <!-- Icône de code pour l'option développement SLAM -->
+          <Code2 class="w-3.5 h-3.5 text-zinc-900 dark:text-zinc-100 shrink-0" />
           <span class="text-xs font-bold text-zinc-900 dark:text-zinc-100 font-title">Option SLAM</span>
         </div>
 
