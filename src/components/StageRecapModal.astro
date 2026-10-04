@@ -1,6 +1,6 @@
 ---
 // Composant : Fiche Synthèse Entreprise & RH (Stage SLAM 2027)
-// Design Executive Briefing haut de gamme : aéré, lisible en 10 secondes et orienté décideurs B2B.
+// Design Executive Briefing haut de gamme : épuré, typographique, sans éléments redondants.
 import {
   Printer,
   X,
@@ -13,7 +13,10 @@ import {
   Calendar,
   Coins,
   MapPin,
-  Laptop
+  Laptop,
+  Database,
+  Workflow,
+  ClipboardCheck
 } from 'lucide-astro';
 import profileData from '../content/data/profile.json';
 
@@ -41,22 +44,13 @@ const { identity, contact, internshipSearch } = profileData;
     class="modal-container relative w-full max-w-3xl bg-white dark:bg-[#151518] text-zinc-900 dark:text-zinc-100 rounded-2xl shadow-2xl border border-zinc-200 dark:border-zinc-800 overflow-hidden my-auto flex flex-col max-h-[92vh] z-10 transition-all duration-200 scale-95"
     id="stage-modal-box"
   >
-    <!-- 1. En-tête épuré et distinctif -->
-    <header class="px-6 sm:px-8 pt-7 pb-5 border-b border-zinc-100 dark:border-zinc-800/80 flex items-start justify-between gap-4 shrink-0 bg-white dark:bg-[#151518]">
-      <div class="space-y-1">
-        <div class="flex items-center gap-2 flex-wrap">
-          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-zinc-900 text-white dark:bg-white dark:text-zinc-950">
-            Stage 2027 • 1re Année SLAM
-          </span>
-          <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20">
-            Gratification : 0 € requis
-          </span>
-        </div>
-
-        <h2 id="stage-modal-title" class="text-xl sm:text-2xl font-bold font-title tracking-tight text-zinc-950 dark:text-white pt-1">
+    <!-- 1. En-tête épuré et direct (sans bulles redondantes) -->
+    <header class="px-6 sm:px-8 pt-6 pb-5 border-b border-zinc-100 dark:border-zinc-800/80 flex items-start justify-between gap-4 shrink-0 bg-white dark:bg-[#151518]">
+      <div>
+        <h2 id="stage-modal-title" class="text-xl sm:text-2xl font-bold font-title tracking-tight text-zinc-950 dark:text-white">
           Fiche Synthèse — Tuteur & Recruteur RH
         </h2>
-        <p class="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400">
+        <p class="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 mt-1">
           Candidature de <strong>{identity.firstName} {identity.lastName}</strong> • BTS SIO option SLAM au CNED
         </p>
       </div>
@@ -86,7 +80,7 @@ const { identity, contact, internshipSearch } = profileData;
     </header>
 
     <!-- 2. Corps du Memo : 3 piliers capitaux + Compétences concrètes -->
-    <div class="modal-scroll-area overflow-y-auto px-6 sm:px-8 py-6 space-y-7 flex-1">
+    <div class="modal-scroll-area overflow-y-auto px-6 sm:px-8 py-6 space-y-6 flex-1">
 
       <!-- Section A : Les 3 Piliers Capitaux (Lecture immédiate en 5 secondes) -->
       <div>
@@ -156,7 +150,7 @@ const { identity, contact, internshipSearch } = profileData;
         </div>
       </div>
 
-      <!-- Section B : Ce que je peux concrètement apporter à votre équipe (Compétences opérationnelles) -->
+      <!-- Section B : Compétences & Missions Opérationnelles avec icônes vectorielles nettes -->
       <div>
         <div class="flex items-center justify-between mb-3">
           <span class="text-[11px] font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 font-title">
@@ -170,7 +164,9 @@ const { identity, contact, internshipSearch } = profileData;
           <!-- Compétence 1 : Front-End -->
           <div class="p-4 rounded-xl bg-white dark:bg-zinc-900/30 border border-zinc-200/80 dark:border-zinc-800 space-y-2 hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors">
             <div class="flex items-center gap-2.5">
-              <span class="text-base select-none">💻</span>
+              <div class="w-7 h-7 rounded-lg bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center text-zinc-900 dark:text-zinc-100 shrink-0">
+                <Laptop class="w-4 h-4" />
+              </div>
               <h3 class="font-bold text-xs sm:text-sm text-zinc-900 dark:text-zinc-100 font-title">
                 Front-End & Intégration Web
               </h3>
@@ -189,7 +185,9 @@ const { identity, contact, internshipSearch } = profileData;
           <!-- Compétence 2 : Bases de données -->
           <div class="p-4 rounded-xl bg-white dark:bg-zinc-900/30 border border-zinc-200/80 dark:border-zinc-800 space-y-2 hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors">
             <div class="flex items-center gap-2.5">
-              <span class="text-base select-none">🗄️</span>
+              <div class="w-7 h-7 rounded-lg bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center text-zinc-900 dark:text-zinc-100 shrink-0">
+                <Database class="w-4 h-4" />
+              </div>
               <h3 class="font-bold text-xs sm:text-sm text-zinc-900 dark:text-zinc-100 font-title">
                 Bases de Données & Requêtes SQL
               </h3>
@@ -208,7 +206,9 @@ const { identity, contact, internshipSearch } = profileData;
           <!-- Compétence 3 : Automatisation & Python -->
           <div class="p-4 rounded-xl bg-white dark:bg-zinc-900/30 border border-zinc-200/80 dark:border-zinc-800 space-y-2 hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors">
             <div class="flex items-center gap-2.5">
-              <span class="text-base select-none">⚡</span>
+              <div class="w-7 h-7 rounded-lg bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center text-zinc-900 dark:text-zinc-100 shrink-0">
+                <Workflow class="w-4 h-4" />
+              </div>
               <h3 class="font-bold text-xs sm:text-sm text-zinc-900 dark:text-zinc-100 font-title">
                 Automatisation & Scripts Utilitaires
               </h3>
@@ -226,7 +226,9 @@ const { identity, contact, internshipSearch } = profileData;
           <!-- Compétence 4 : Recette & Tests -->
           <div class="p-4 rounded-xl bg-white dark:bg-zinc-900/30 border border-zinc-200/80 dark:border-zinc-800 space-y-2 hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors">
             <div class="flex items-center gap-2.5">
-              <span class="text-base select-none">📋</span>
+              <div class="w-7 h-7 rounded-lg bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center text-zinc-900 dark:text-zinc-100 shrink-0">
+                <ClipboardCheck class="w-4 h-4" />
+              </div>
               <h3 class="font-bold text-xs sm:text-sm text-zinc-900 dark:text-zinc-100 font-title">
                 Recette, Tests & Documentation
               </h3>
@@ -244,15 +246,15 @@ const { identity, contact, internshipSearch } = profileData;
         </div>
       </div>
 
-      <!-- Section C : Modalités de travail & Mobilité (Ligne sobre) -->
+      <!-- Section C : Modalités de travail sur une seule ligne continue -->
       <div class="p-3.5 rounded-xl bg-zinc-50 dark:bg-zinc-900/40 border border-zinc-200/70 dark:border-zinc-800/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
         <div class="flex items-center gap-2 text-zinc-700 dark:text-zinc-300">
           <MapPin class="w-4 h-4 text-zinc-900 dark:text-zinc-100 shrink-0" />
-          <span><strong>Présentiel :</strong> Cambrai, Valenciennes, Douai, Métropole lilloise (Hauts-de-France)</span>
+          <span><strong>Présentiel :</strong> Cambrai (Hauts-de-France)</span>
         </div>
-        <div class="flex items-center gap-2 text-zinc-700 dark:text-zinc-300">
+        <div class="flex items-center gap-2 text-zinc-700 dark:text-zinc-300 shrink-0">
           <Laptop class="w-4 h-4 text-zinc-900 dark:text-zinc-100 shrink-0" />
-          <span><strong>Télétravail :</strong> Total ou hybride (autonomie éprouvée au CNED)</span>
+          <span><strong>Télétravail :</strong> Total ou hybride (autonomie CNED)</span>
         </div>
       </div>
 
