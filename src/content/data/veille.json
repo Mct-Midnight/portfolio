@@ -3,36 +3,63 @@
   "subtitle": "Surveillance active des évolutions technologiques, sécuritaires et réglementaires appliquées au génie logiciel (BTS SIO SLAM).",
   "pearltreesUrl": "https://www.pearltrees.com/quentin2311/veille-technologique-bts-slam/id108912144",
   "methodology": {
-    "title": "Démarche et méthodologie de veille",
-    "description": "Mise en place d'un dispositif combinant surveillance continue automatisée (Push) et recherche active ciblée (Pull) pour capter les signaux faibles et les standards émergents.",
+    "title": "Dispositif méthodologique bimodal (Push & Pull)",
+    "subtitle": "Organisation et flux de surveillance appliquée au génie logiciel",
+    "description": "Combinaison d'une surveillance continue automatisée (Push) et d'une investigation active ciblée (Pull) pour anticiper les évolutions normatives et technologiques.",
     "push": {
       "title": "Flux Push (Veille Automatisée)",
-      "description": "L'information est transmise automatiquement dès sa parution.",
+      "badge": "Surveillance continue",
+      "role": "Flux continu entrant — L'information est captée et transmise automatiquement dès sa parution.",
+      "frequency": "Temps réel & Hebdomadaire",
       "tools": [
-        "Google Alerts ciblées (mots-clés : DevSecOps, SBOM, IA générative code, OWASP 2025)",
-        "Abonnements aux newsletters spécialisées (ANSSI CERT-FR, ZDNet, LeMagIT)"
+        {
+          "name": "Google Alerts ciblées",
+          "detail": "Mots-clés ciblés : DevSecOps, SBOM, IA générative code, OWASP 2025"
+        },
+        {
+          "name": "Newsletters spécialisées",
+          "detail": "Abonnements aux bulletins CERT-FR (ANSSI), ZDNet Tech et LeMagIT"
+        }
       ]
     },
     "pull": {
-      "title": "Flux Pull (Veille Ciblée & Extraction)",
-      "description": "Recherche d'information active et structurée par l'étudiant.",
+      "title": "Flux Pull (Recherche Active & Audit)",
+      "badge": "Extraction ciblée",
+      "role": "Recherche ciblée d'investigation — Exploration et qualification structurée par l'étudiant.",
+      "frequency": "Revues bimensuelles",
       "tools": [
-        "Agrégateur RSS Feedly pour centraliser les flux des blogs d'ingénierie et de sécurité",
-        "Consultation régulière des avis de sécurité officiels (ANSSI, BSI, OWASP Foundation)"
+        {
+          "name": "Agrégateur RSS Feedly",
+          "detail": "Centralisation des flux de blogs d'ingénierie logicielle et de recherche"
+        },
+        {
+          "name": "Référentiels & Portails officiels",
+          "detail": "Consultation régulière des avis de sécurité (ANSSI, BSI, OWASP Foundation)"
+        }
       ]
+    },
+    "restitution": {
+      "title": "Restitution & Capitalisation",
+      "detail": "Centralisation sur l'Espace Pearltrees & Fiches de synthèse analytiques pour l'Épreuve E4."
     }
   },
   "axes": [
     {
       "id": "cybersecurite",
       "name": "Cybersécurité applicative",
+      "shortDescription": "Standards d'hygiène de code, sécurisation de la supply chain logicielle et conformité réglementaire européenne.",
       "articles": [
         {
           "id": "devsecops-anssi-wavestone",
+          "sourceId": "solutions-numeriques",
           "title": "DevSecOps : automatisation des tests de sécurité (SAST/DAST) et état des lieux européen",
           "date": "23 avril 2026",
           "source": "Solutions Numériques",
           "sourceType": "Étude officielle ANSSI & Wavestone",
+          "badgeType": "Étude européenne ANSSI",
+          "readTime": "4 min",
+          "teaser": "Industrialisation des tests de sécurité automatisés dans les pipelines CI/CD et mise en conformité avec les réglementations NIS2 et CRA.",
+          "tags": ["DevSecOps", "SAST / DAST", "NIS2 & CRA"],
           "url": "https://www.solutions-numeriques.com/devsecops-europeen-bien-outille-mais-encore-domine/",
           "summary": "Analyse d'une étude européenne portée par l'ANSSI et Wavestone sur le déploiement du DevSecOps dans le cycle de développement logiciel. L'article met en lumière l'industrialisation des tests de sécurité automatisés (SAST, DAST, inventaire SBOM) pour intégrer la sécurité dès la conception (Security by Design), tout en soulignant les défis opérationnels liés aux faux positifs et aux nouvelles exigences réglementaires européennes (NIS2, Cyber Resilience Act).",
           "keyPoints": [
@@ -43,10 +70,15 @@
         },
         {
           "id": "anssi-supply-chain",
+          "sourceId": "anssi",
           "title": "Recommandations pour la sécurisation de la chaîne d'approvisionnement logicielle",
           "date": "15 janvier 2024",
           "source": "ANSSI",
           "sourceType": "Portail officiel cyber.gouv.fr",
+          "badgeType": "Guide officiel ANSSI",
+          "readTime": "5 min",
+          "teaser": "Sécurisation de la supply chain applicative : contrôle d'intégrité des composants open-source, inventaire SBOM et intégration S-SDLC.",
+          "tags": ["Supply Chain", "SBOM", "S-SDLC"],
           "url": "https://cyber.gouv.fr/actualites/s-sdlc-et-devsecops-enjeux-et-perspectives/",
           "summary": "Guide officiel de l'ANSSI traitant des cyberattaques ciblant les dépendances et bibliothèques tierces au sein des projets logiciels. Il formalise les pratiques recommandées pour les développeurs : gestion de l'inventaire des composants (SBOM), contrôle d'intégrité des paquets et vérification systématique des vulnérabilités connues (CVE) avant intégration.",
           "keyPoints": [
@@ -57,10 +89,15 @@
         },
         {
           "id": "owasp-top-10-2025",
+          "sourceId": "owasp",
           "title": "Le Top 10 de l'OWASP : standard de sécurité des applications web",
           "date": "Janvier 2026",
           "source": "OWASP Foundation",
           "sourceType": "Standard international de sécurité",
+          "badgeType": "Standard mondial OWASP",
+          "readTime": "6 min",
+          "teaser": "Référentiel des risques applicatifs critiques : Broken Access Control au 1er rang, gestion de la supply chain et Security by Design.",
+          "tags": ["OWASP Top 10", "Security by Design", "Web"],
           "url": "https://top10.owasp.org/2025/",
           "summary": "Le Top 10 de l'OWASP recense les risques de sécurité les plus critiques affectant les applications logicielles et web (contrôle d'accès défaillant, supply chain, injections). Actualisé pour intégrer les menaces modernes, ce référentiel est incontournable en programmation SLAM pour appliquer le principe de Security by Design et concevoir des architectures applicatives hautement résilientes.",
           "keyPoints": [
@@ -74,13 +111,19 @@
     {
       "id": "ia-ingenierie",
       "name": "IA et ingénierie logicielle",
+      "shortDescription": "Impact des grands modèles de langage (LLM), agents autonomes et gouvernance humaine dans le cycle de dev.",
       "articles": [
         {
           "id": "github-copilot-productivity",
+          "sourceId": "github",
           "title": "Quantification de l'impact de GitHub Copilot sur la productivité et le bien-être des développeurs",
           "date": "21 mai 2024",
           "source": "GitHub Blog",
           "sourceType": "Étude empirique de recherche",
+          "badgeType": "Recherche empirique R&D",
+          "readTime": "4 min",
+          "teaser": "Gain mesuré de +55 % sur la complétion des tâches de code et bascule du rôle de développeur vers l'architecture et la revue critique.",
+          "tags": ["Copilot", "Productivité LLM", "+55% Vitesse"],
           "url": "https://github.blog/news-insights/research/research-quantifying-github-copilots-impact-on-developer-productivity-and-happiness/",
           "summary": "Étude empirique menée par GitHub analysant l'impact des assistants de code basés sur les LLM dans les flux d'ingénierie logicielle. Les résultats mettent en évidence une accélération de la rédaction de code répétitif et des tests unitaires (+55 % de rapidité), tout en soulignant le déplacement de l'effort cognitif du développeur vers la relecture critique et la validation logique.",
           "keyPoints": [
@@ -91,10 +134,15 @@
         },
         {
           "id": "lemagit-ia-agentique",
+          "sourceId": "lemagit",
           "title": "Agents IA et IA agentique : le guide pour tout comprendre",
           "date": "14 mars 2025",
           "source": "LeMagIT",
           "sourceType": "Dossier d'analyse tech",
+          "badgeType": "Dossier d'analyse tech",
+          "readTime": "5 min",
+          "teaser": "Émergence des flux multi-agents autonomes pour l'orchestration du refactoring, des tests automatisés et le cadrage métier.",
+          "tags": ["IA Agentique", "Multi-Agents", "Refactoring"],
           "url": "https://www.lemagit.fr/essentialguide/Agents-IA-et-IA-agentique-le-guide-pour-tout-comprendre",
           "summary": "Dossier d'analyse sur l'émergence des agents autonomes et de l'IA agentique au sein des flux applicatifs. Il examine comment le développement évolue au-delà de la simple autocomplétion : orchestration d'agents spécialisés (refactorisation, tests automatisés, débogage) et transition du rôle de développeur vers des fonctions d'architecture et de cadrage des besoins métier.",
           "keyPoints": [
@@ -105,10 +153,15 @@
         },
         {
           "id": "anssi-bsi-ai-coding",
+          "sourceId": "solutions-numeriques",
           "title": "Sécurisation du code généré par IA : recommandations officielles de l'ANSSI et du BSI",
           "date": "7 octobre 2024",
           "source": "Solutions Numériques",
           "sourceType": "Guide officiel ANSSI & BSI",
+          "badgeType": "Recommandations officielles",
+          "readTime": "4 min",
+          "teaser": "Recommandations conjointes franco-allemandes : lutte contre le code fantôme, fuites de données et impératif du Human-in-the-loop.",
+          "tags": ["Sécurité IA", "Human-in-the-loop", "Anti-Hallucination"],
           "url": "https://www.solutions-numeriques.com/anssi-et-le-bsi-publient-des-bonnes-pratiques-sur-la-securite-sur-la-generation-de-code-par-lia/",
           "summary": "Synthèse des recommandations officielles publiées par l'ANSSI et son homologue allemand le BSI encadrant l'usage des assistants de programmation par IA dans les flux de développement. Le document alerte sur les risques d'introduction involontaire de vulnérabilités, de « code fantôme » et de fuites de données sensibles via les requêtes. Il formalise l'obligation d'un contrôle humain systématique (Human-in-the-loop) et de tests rigoureux avant toute mise en production de code assisté par IA.",
           "keyPoints": [
