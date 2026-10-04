@@ -30,7 +30,8 @@ const totalCommits = commits.length;
 const featCount = commits.filter((c) => c.type === 'feat').length;
 const fixCount = commits.filter((c) => c.type === 'fix').length;
 const choreCount = commits.filter((c) => c.type === 'chore').length;
-const otherCount = totalCommits - (featCount + fixCount + choreCount);
+const styleCount = commits.filter((c) => c.type === 'style').length;
+const otherCount = totalCommits - (featCount + fixCount + choreCount + styleCount);
 const latestCommit = commits[0];
 ---
 
@@ -147,6 +148,15 @@ const latestCommit = commits[0];
           >
             Maintenance ({choreCount})
           </button>
+          {styleCount > 0 && (
+            <button
+              type="button"
+              data-filter="style"
+              class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-white text-slate-600 hover:text-slate-900 border border-slate-200 hover:border-slate-300 transition-all"
+            >
+              Design & Ergonomie ({styleCount})
+            </button>
+          )}
           {otherCount > 0 && (
             <button
               type="button"
@@ -315,7 +325,7 @@ const latestCommit = commits[0];
       const type = card.getAttribute('data-type');
       const matchesFilter =
         currentFilter === 'all' ||
-        (currentFilter === 'other' && type !== 'feat' && type !== 'fix' && type !== 'chore') ||
+        (currentFilter === 'other' && type !== 'feat' && type !== 'fix' && type !== 'chore' && type !== 'style') ||
         type === currentFilter;
 
       if (!matchesFilter) {
