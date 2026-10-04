@@ -1,6 +1,5 @@
 ---
-// Section 7 : Contact & Prise de Décision Rapide
-import { MapPin, Phone, Mail, Github, Linkedin, Send, CheckCircle2, MessageSquare, User, AtSign, Tag, ShieldCheck } from 'lucide-astro';
+import { MapPin, Phone, Mail, Github, Linkedin, Send, CheckCircle2, MessageSquare, User, AtSign, Tag, ShieldCheck, ChevronDown } from 'lucide-astro';
 import profileData from '../content/data/profile.json';
 
 const { identity, contact } = profileData;
@@ -162,14 +161,15 @@ const { identity, contact } = profileData;
                 id="subject"
                 name="subject"
                 required
-                class="w-full px-3.5 py-2.5 pl-10 rounded-xl border border-slate-300 dark:border-zinc-700 focus:outline-none focus:ring-2 focus:ring-zinc-900/20 dark:focus:ring-zinc-100/20 focus:border-zinc-900 dark:focus:border-zinc-400 text-sm bg-slate-50 dark:bg-zinc-900 text-slate-900 dark:text-zinc-100 transition-colors appearance-none"
+                class="w-full px-3.5 py-2.5 pl-10 pr-10 rounded-xl border border-slate-300 dark:border-zinc-700 focus:outline-none focus:ring-2 focus:ring-zinc-900/20 dark:focus:ring-zinc-100/20 focus:border-zinc-900 dark:focus:border-zinc-400 text-sm bg-slate-50 dark:bg-zinc-900 text-slate-900 dark:text-zinc-100 transition-colors appearance-none cursor-pointer"
               >
                 <option value="Proposition de stage 2027 (SLAM)">🎯 Proposition de stage 2027 (SLAM)</option>
-                <option value="Échange académique / Formation">🎓 Échange académique / Formation</option>
-                <option value="Opportunité d'alternance 2e année">💼 Opportunité d'alternance (2e année)</option>
-                <option value="Autre demande">✉️ Autre demande professionnelle</option>
+                <option value="Collaboration technique">🔨 Collaboration technique</option>
+                <option value="Échange académique">🎒 Échange académique</option>
+                <option value="Autre demande professionnelle">✉️ Autre demande professionnelle</option>
               </select>
-              <Tag class="w-4 h-4 text-slate-400 dark:text-zinc-500 absolute left-3.5 top-3" />
+              <Tag class="w-4 h-4 text-slate-400 dark:text-zinc-500 absolute left-3.5 top-3 pointer-events-none" />
+              <ChevronDown class="w-4 h-4 text-slate-400 dark:text-zinc-500 absolute right-3.5 top-3 pointer-events-none" />
             </div>
           </div>
 
@@ -247,6 +247,25 @@ const { identity, contact } = profileData;
   const form = document.getElementById('contact-form') as HTMLFormElement;
   const feedback = document.getElementById('form-feedback');
   const submitBtn = document.getElementById('submit-btn');
+  const subjectSelect = document.getElementById('subject') as HTMLSelectElement | null;
+  const messageInput = document.getElementById('message') as HTMLTextAreaElement | null;
+
+  // Adaptation du texte indicatif selon l'objet sélectionné
+  const placeholders: Record<string, string> = {
+    'Proposition de stage 2027 (SLAM)': 'Bonjour Quentin, nous souhaitons vous proposer un entretien pour une mission de stage...',
+    'Collaboration technique': 'Bonjour Quentin, nous souhaitons échanger avec vous au sujet d\'une collaboration technique...',
+    'Échange académique': 'Bonjour Quentin, je vous contacte dans le cadre d\'un échange académique...',
+    'Autre demande professionnelle': 'Bonjour Quentin, je vous contacte afin d\'échanger au sujet de...'
+  };
+
+  if (subjectSelect && messageInput) {
+    subjectSelect.addEventListener('change', () => {
+      const selectedVal = subjectSelect.value;
+      if (placeholders[selectedVal]) {
+        messageInput.placeholder = placeholders[selectedVal];
+      }
+    });
+  }
 
   if (form && feedback && submitBtn) {
     form.addEventListener('submit', (e) => {
