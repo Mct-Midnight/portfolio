@@ -55,22 +55,60 @@ _Note : Si plusieurs pages ou blocs majeurs sont modifiés indépendamment, sép
 
 ---
 
-### Étape 4 : Exécution des Commits Groupés Atomiques
+### Étape 4 : Exécution des Commits Groupés Atomiques & Arbitrage des Types
 
-Pour chaque groupe logique identifié à l'Étape 3 :
+#### 4.1. Arbre de Décision Strict des Types (Conventional Commits)
+
+Pour éviter toute mauvaise catégorisation, l'agent **doit impérativement** appliquer cet arbre de décision logique avant de formuler le type :
+
+1. **S'agit-il d'une réparation d'un bogue ou d'un dysfonctionnement technique ?**
+   ➔ **`fix`** (Correctif) :
+   - *Critère :* Un élément ne marchait pas, était cassé, provoquait une erreur de script, un lien mort, un chevauchement non intentionnel ou un affichage dégradé sur mobile.
+   - *Règle :* Ne jamais utiliser `fix` pour un simple choix esthétique si l'élément fonctionnait normalement.
+   - *Exemple :* `fix(ui): correction du débordement du texte dans la modale mobile`
+
+2. **S'agit-il d'une NOUVELLE capacité ou section inexistante auparavant ?**
+   ➔ **`feat`** (Fonctionnalité) :
+   - *Critère :* Le visiteur peut faire une action totalement nouvelle (ex : naviguer entre fiches, filtrer un tableau, ouvrir une modale), ou une nouvelle page/section entière a été créée.
+   - *Règle d'or :* Un simple déplacement, changement de place ou ajustement d'une fonctionnalité **déjà existante** n'est **JAMAIS** un `feat`.
+   - *Exemple :* `feat(veille): ajout de la navigation inter-fiches suivant/précédent`
+
+3. **S'agit-il d'un repositionnement, d'une amélioration ergonomique ou de style visuel ?**
+   ➔ **`style`** (Design, Ergonomie & Présentation) :
+   - *Critère :* La fonctionnalité existe déjà et marche, mais on change sa disposition spatiale, son ergonomie, son confort de clic, son alignement, ses marges, couleurs, contrastes ou polices CSS.
+   - *Exemple type :* `style(ui): repositionnement des flèches en boutons flottants latéraux pour un confort de clic accru`
+   - *Autre exemple :* `style(theme): harmonisation des contrastes et arrondis des badges`
+
+4. **S'agit-il de maintenance, de fichiers statiques, de dépendances ou d'outillage ?**
+   ➔ **`chore`** (Maintenance & Intendance) :
+   - *Critère :* Ajout ou optimisation d'assets (`public/assets/images`, logos SVG, badges, CV PDF), scripts d'audit, configuration Node/Astro/Tailwind, mise à jour des dépendances.
+   - *Exemple :* `chore(assets): ajout des logos vectoriels des sources de veille`
+   - *Exemple :* `chore(config): configuration des scripts d'audit qualité`
+
+5. **S'agit-il d'une simple retouche de texte éditorial ou de documentation ?**
+   ➔ **`docs`** (Documentation & Contenu rédactionnel simple) :
+   - *Critère :* Modification de texte dans le README, guides de révision, ou simple reformulation d'un paragraphe/titre dans les données statiques sans logique logicielle.
+   - *Exemple :* `docs(profile): précision de l'intitulé du cursus CNED dans les mentions`
+
+6. **S'agit-il d'une restructuration de code interne sans changement visuel ?**
+   ➔ **`refactor`** (Refactorisation) :
+   - *Critère :* Nettoyage de code, découpage de fonctions, typage TypeScript propre, sans modifier ce que voit ou utilise le visiteur.
+   - *Exemple :* `refactor(utils): factorisation de la logique de calcul des dates relatives`
+
+---
+
+#### 4.2. Exécution du Commit
+
+Pour chaque lot logique identifié :
 
 1. Indexation stricte des fichiers du lot :
    ```bash
    git add chemin/fichier1 chemin/fichier2 ...
    ```
-2. Création du commit avec un message explicite en français au format Conventional Commits :
-
+2. Création du commit avec le message validé au format :
    ```bash
    git commit -m "<type>(<domaine>): <description claire et concise en minuscules>"
    ```
-
-   - Types autorisés : `feat` (nouvelle fonctionnalité ou section), `fix` (correctif de bug ou affichage), `refactor` (restructuration de code propre), `chore` (maintenance, configuration, assets), `docs` (documentation), `style` (mise en page CSS pure).
-
 3. Répéter l'opération pour chaque lot jusqu'à ce que `git status` indique :
    `nothing to commit, working tree clean`.
 
