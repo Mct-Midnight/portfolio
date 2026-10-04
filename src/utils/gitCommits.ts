@@ -256,15 +256,39 @@ async function getRemoteGithubCommits(): Promise<GitCommit[]> {
   }
 }
 
-// Fonction principale exportée : priorité au local (instantané), secours sur l'API GitHub
+// Vérifie si le dépôt Git est un clone superficiel (comme sur Vercel qui clone avec une limite de 10 commits)
+function isShallowRepository(): boolean {
+  try {
+    const isShallow = execSync('git rev-parse --is-shallow-repository', {
+      encoding: 'utf-8',
+      stdio: ['pipe', 'pipe', 'pipe'],
+    }).trim();
+    return isShallow === 'true';
+  } catch {
+    return false;
+  }
+}
+
+// Fonction principale exportée : priorité au local complet, bascule automatique sur l'API GitHub sur Vercel
 export async function getGitCommits(): Promise<GitCommit[]> {
-  // Tentative en local
+  const isShallow = isShallowRepository() || process.env.VERCEL === '1' || Boolean(process.env.CI);
+
+  // Si nous sommes sur Vercel ou dans un clone tronqué, on interroge en priorité l'API GitHub pour avoir tous les commits
+  if (isShallow) {
+    console.info('Environnement Vercel détecté : extraction de l\'historique complet via l\'API GitHub...');
+    const remoteCommits = await getRemoteGithubCommits();
+    if (remoteCommits.length > 0) {
+      return remoteCommits;
+    }
+  }
+
+  // Tentative en local (dépôt complet sur la machine de développement)
   const localCommits = getLocalGitCommits();
   if (localCommits.length > 0) {
     return localCommits;
   }
 
-  // Secours via GitHub API
+  // Secours via GitHub API si local a échoué
   console.info('Commits locaux indisponibles, tentative via l\'API GitHub...');
   const remoteCommits = await getRemoteGithubCommits();
   if (remoteCommits.length > 0) {
