@@ -172,7 +172,7 @@ import { Terminal, Cpu, Leaf, Activity, ShieldCheck, X, Copy, Check, Layers, Spa
       <div class="space-y-2">
         <div class="flex items-center justify-between text-[11px] py-1 border-b border-zinc-800">
           <span class="text-zinc-400 font-mono">Framework & Moteur</span>
-          <span class="text-zinc-100 font-semibold font-mono">Astro 4 (SSG Pur)</span>
+          <span class="text-zinc-100 font-semibold font-mono">Astro 5 (SSG Pur)</span>
         </div>
         <div class="flex items-center justify-between text-[11px] py-1 border-b border-zinc-800">
           <span class="text-zinc-400 font-mono">Design System</span>
@@ -192,7 +192,7 @@ import { Terminal, Cpu, Leaf, Activity, ShieldCheck, X, Copy, Check, Layers, Spa
         </div>
         <div class="flex items-center justify-between text-[11px] py-1">
           <span class="text-zinc-400 font-mono">Hébergement & Déploiement</span>
-          <span class="text-zinc-100 font-semibold font-mono">GitHub Pages / Actions CI</span>
+          <span class="text-zinc-100 font-semibold font-mono">Vercel / Réseau Edge mondial</span>
         </div>
       </div>
 
@@ -221,7 +221,7 @@ import { Terminal, Cpu, Leaf, Activity, ShieldCheck, X, Copy, Check, Layers, Spa
             <span class="text-zinc-300 font-mono text-[10px]">5 Fiches E4</span>
           </div>
           <p class="text-zinc-400 text-[10px] leading-relaxed">
-            Constellation Labs (Freelance), Gestionnaire de Contacts (Desktop C#), Portfolio Web (SSG), Atelier Pro 2 & Stage 1re année.
+            Constellation Lab's (Freelance Python/Docker), Gestionnaire de Contacts (Desktop Python/Tkinter), Portfolio Web (SSG Astro), Atelier Pro 2 (PHP/PostgreSQL) & Stage 1re année.
           </p>
         </div>
 
@@ -265,9 +265,14 @@ import { Terminal, Cpu, Leaf, Activity, ShieldCheck, X, Copy, Check, Layers, Spa
 
   /* Cadre technique subtil sur les sections principales lors du mode audit */
   html.audit-mode-active section,
-  html.audit-mode-active main > div,
-  html.audit-mode-active aside#sidebar-pane {
+  html.audit-mode-active footer {
     position: relative;
+    outline: 1px dashed rgba(113, 113, 122, 0.35);
+    outline-offset: -1px;
+  }
+
+  /* Pour la sidebar : préserver STRICTEMENT position: fixed sans jamais altérer son ancrage */
+  html.audit-mode-active aside#sidebar-pane {
     outline: 1px dashed rgba(113, 113, 122, 0.35);
     outline-offset: -1px;
   }
@@ -335,9 +340,9 @@ import { Terminal, Cpu, Leaf, Activity, ShieldCheck, X, Copy, Check, Layers, Spa
     const BLUEPRINT_MAP = [
       { selector: '#sidebar-pane', label: 'COMPOSANT: Sidebar.astro | Statique SSG | Navigation Latérale' },
       { selector: '#hero', label: 'COMPOSANT: Hero.astro | Rendu Serveur Statique | Identité & SEO' },
-      { selector: '#stage', label: 'COMPOSANT: AboutStage.astro | Recherche de Stage SLAM 2027' },
+      { selector: '#profil', label: 'COMPOSANT: AboutStage.astro | Recherche de Stage SLAM 2027' },
       { selector: '#parcours', label: 'DONNÉES: timeline.json | Contrat TypeScript | Évolutions' },
-      { selector: '#competences', label: 'DONNÉES: skills.json | Référentiel BTS SIO SLAM (5 Domaines)' },
+      { selector: '#competences', label: 'DONNÉES: skills.json | Référentiel BTS SIO SLAM (4 Domaines)' },
       { selector: '#certifications', label: 'COMPOSANT: Certifications.astro | Justificatifs Académiques' },
       { selector: '#projets', label: 'COLLECTIONS: Content Collections (Zod) | 5 Réalisations E4' },
       { selector: '#veille', label: 'DONNÉES: veille.json | Protocole de Veille & Flux RSS' },
@@ -385,7 +390,6 @@ import { Terminal, Cpu, Leaf, Activity, ShieldCheck, X, Copy, Check, Layers, Spa
           const tag = document.createElement('div');
           tag.className = 'blueprint-tag';
           tag.textContent = label;
-          target.style.position = 'relative';
           target.appendChild(tag);
         }
       });
@@ -539,10 +543,11 @@ import { Terminal, Cpu, Leaf, Activity, ShieldCheck, X, Copy, Check, Layers, Spa
           '- Traçabilité & Confidentialité : 0 cookie, 100% conforme RGPD',
           '',
           '[ARCHITECTURE LOGICIELLE]',
-          '- Moteur : Astro 4 (Static Site Generation)',
+          '- Moteur : Astro 5 (Static Site Generation)',
           '- Poids JavaScript client : < 6 Ko',
           '- Design System : Tailwind CSS monochrome titane',
           '- Validations : Schémas stricts TypeScript / Zod',
+          '- Hébergement & Déploiement : Vercel / Réseau Edge mondial',
           '',
           '[CONFORMITÉ RÉFÉRENTIEL]',
           '- Épreuve E4 / Bloc 1 BTS SIO couvert'
