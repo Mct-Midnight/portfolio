@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="100%" height="100%" fill="none">
+  <!-- Fond rouge officiel LeMagIT -->
+  <rect width="48" height="48" rx="8" fill="#B91C1C" />
+  <!-- Capsule IT blanche avec texte rouge bordeaux -->
+  <rect x="25" y="14" width="16" height="20" rx="3" fill="#FFFFFF" />
+  <text x="33" y="29" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="900" fill="#B91C1C" text-anchor="middle">IT</text>
+  <!-- MAG en blanc -->
+  <text x="14" y="28" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="8.5" font-weight="800" fill="#FFFFFF" text-anchor="middle">MAG</text>
+  <text x="14" y="19" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="5" font-weight="700" fill="#FCA5A5" text-anchor="middle">LE</text>
+</svg>
