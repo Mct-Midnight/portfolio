@@ -19,13 +19,7 @@ export default {
           dark: '#09090B',
           border: '#27272A',
         },
-        cobalt: {
-          DEFAULT: '#2563EB', // Bleu Cobalt électrique
-          hover: '#1D4ED8',   // Bleu Cobalt soutenu au survol
-          electric: '#3B82F6',// Bleu électrique lumineux
-          light: '#EFF6FF',   // Bleu très clair pour fond des badges
-          dark: '#1E40AF',    // Bleu foncé pour le texte des badges
-        },
+        // Fond et bordures de base
         ice: {
           DEFAULT: '#FAFAFA', // Fond de page principal (Zinc 50 studio épuré)
           card: '#FFFFFF',    // Fond blanc pur des cartes
@@ -42,7 +36,8 @@ export default {
       boxShadow: {
         soft: '0 4px 20px -2px rgba(9, 13, 22, 0.04)',
         card: '0 1px 3px 0 rgba(9, 13, 22, 0.05), 0 1px 2px -1px rgba(9, 13, 22, 0.05)',
-        'card-hover': '0 12px 28px -4px rgba(37, 99, 235, 0.12), 0 4px 8px -2px rgba(9, 13, 22, 0.04)',
+        // Ombre portée au survol feutrée et monochrome (zéro reflet bleu)
+        'card-hover': '0 12px 28px -4px rgba(0, 0, 0, 0.12), 0 4px 8px -2px rgba(0, 0, 0, 0.04)',
       },
       borderRadius: {
         '2xl': '1rem',
