@@ -91,10 +91,11 @@ const basePath = isHome ? '' : '/';
           />
           <span class="hidden font-bold text-white text-2xl font-title">{initials}</span>
         </div>
-        <!-- Indicateur de recherche de stage actif -->
+        <!-- Indicateur de recherche de stage actif (Triple-clic : Déclencheur Mode Audit) -->
         <span
-          class="absolute bottom-1 right-1 w-4 h-4 bg-emerald-500 border-2 border-[#18181B] rounded-full ring-2 ring-emerald-500/20 animate-pulse"
-          title="En recherche de stage SLAM (Mai-Août 2027)"
+          class="absolute bottom-1 right-1 w-4 h-4 bg-emerald-500 border-2 border-[#18181B] rounded-full ring-2 ring-emerald-500/20 animate-pulse cursor-pointer"
+          title="En recherche de stage SLAM (Mai-Août 2027) • [Triple-clic : Mode Audit & Architecture]"
+          data-audit-trigger="true"
         ></span>
       </div>
 

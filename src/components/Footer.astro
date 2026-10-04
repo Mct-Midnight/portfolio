@@ -1,7 +1,7 @@
 ---
 // Pied de page du Portfolio BTS SIO SLAM avec liens juridiques et conformité CNIL
 import profileData from '../content/data/profile.json';
-import { Scale, GitBranch } from 'lucide-astro';
+import { Scale, GitBranch, Terminal } from 'lucide-astro';
 
 interface Props {
   currentPath?: string;
@@ -55,6 +55,18 @@ const { identity } = profileData;
           <span>← Accueil du portfolio</span>
         </a>
       )}
+
+      <!-- Déclencheur discret du Mode Audit & Architecture (Easter Egg) -->
+      <button
+        type="button"
+        id="footer-audit-trigger"
+        class="inline-flex items-center gap-1.5 font-medium text-slate-500 dark:text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors py-1.5 px-2.5 rounded-lg hover:bg-slate-100 dark:hover:bg-zinc-800 cursor-pointer"
+        title="Mode Audit & Architecture (Konami Code ou Ctrl+Shift+D)"
+        aria-label="Ouvrir la console d'audit et télémétrie"
+      >
+        <Terminal class="w-3.5 h-3.5 text-slate-400 dark:text-zinc-500" />
+        <span>Audit & Télémétrie</span>
+      </button>
     </div>
   </div>
 </footer>
