@@ -183,10 +183,7 @@ function getStatusBadge(status: string) {
               <h3 class="text-lg font-bold font-title text-slate-900 dark:text-zinc-100 group-hover:text-zinc-950 dark:group-hover:text-white transition-colors leading-snug tracking-tight">
                 <a
                   href={`/projets/${project.slug}`}
-                  class:list={[
-                    "cursor-pointer",
-                    !isPortfolio && "project-modal-trigger"
-                  ]}
+                  class="project-modal-trigger cursor-pointer"
                   data-project-title={project.data.title}
                 >
                   {project.data.title}
@@ -211,13 +208,10 @@ function getStatusBadge(status: string) {
 
           <!-- Pied de carte épuré : action principale et liens secondaires -->
           <div class="px-6 py-4 bg-slate-50/60 dark:bg-zinc-900/60 border-t border-slate-100 dark:border-zinc-800 flex items-center justify-between gap-3 mt-auto">
-            <!-- Bouton principal : Consulter l'étude de cas -->
+            <!-- Bouton principal : Consulter l'étude de cas (Ouvre la modale d'information) -->
             <a
               href={`/projets/${project.slug}`}
-              class:list={[
-                "inline-flex items-center gap-1.5 text-xs font-bold text-zinc-900 dark:text-zinc-100 hover:text-black dark:hover:text-white transition-colors group/link py-1 cursor-pointer",
-                !isPortfolio && "project-modal-trigger"
-              ]}
+              class="project-modal-trigger inline-flex items-center gap-1.5 text-xs font-bold text-zinc-900 dark:text-zinc-100 hover:text-black dark:hover:text-white transition-colors group/link py-1 cursor-pointer"
               data-project-title={project.data.title}
             >
               <span>Consulter l'étude de cas</span>
@@ -381,6 +375,37 @@ function getStatusBadge(status: string) {
     const buttons = document.querySelectorAll<HTMLButtonElement>('.project-filter-btn');
     const cards = document.querySelectorAll<HTMLElement>('.project-card');
 
+    const activeBtnClasses = [
+      'bg-zinc-900',
+      'dark:bg-zinc-100',
+      'text-white',
+      'dark:text-zinc-950',
+      'shadow-sm',
+      'font-semibold',
+    ];
+    const inactiveBtnClasses = [
+      'text-zinc-600',
+      'dark:text-zinc-400',
+      'font-medium',
+      'hover:text-zinc-900',
+      'dark:hover:text-white',
+      'hover:bg-zinc-200/60',
+      'dark:hover:bg-zinc-800',
+    ];
+
+    const activeBadgeClasses = [
+      'bg-white/20',
+      'dark:bg-zinc-900/30',
+      'text-white',
+      'dark:text-zinc-950',
+    ];
+    const inactiveBadgeClasses = [
+      'bg-zinc-200/80',
+      'dark:bg-zinc-800',
+      'text-zinc-600',
+      'dark:text-zinc-400',
+    ];
+
     function applyFilter(category: string) {
       // Mise à jour de l'état visuel des boutons et de leurs puces de comptage
       buttons.forEach((btn) => {
@@ -388,18 +413,18 @@ function getStatusBadge(status: string) {
         const countBadge = btn.querySelector('.count-badge');
         
         if (btnFilter === category) {
-          btn.classList.add('bg-zinc-900', 'text-white', 'shadow-sm', 'font-semibold');
-          btn.classList.remove('text-zinc-600', 'font-medium', 'hover:bg-zinc-200/60', 'hover:text-zinc-900');
+          btn.classList.remove(...inactiveBtnClasses);
+          btn.classList.add(...activeBtnClasses);
           if (countBadge) {
-            countBadge.classList.add('bg-white/20', 'text-white');
-            countBadge.classList.remove('bg-zinc-200/80', 'text-zinc-600');
+            countBadge.classList.remove(...inactiveBadgeClasses);
+            countBadge.classList.add(...activeBadgeClasses);
           }
         } else {
-          btn.classList.remove('bg-zinc-900', 'text-white', 'shadow-sm', 'font-semibold');
-          btn.classList.add('text-zinc-600', 'font-medium', 'hover:bg-zinc-200/60', 'hover:text-zinc-900');
+          btn.classList.remove(...activeBtnClasses);
+          btn.classList.add(...inactiveBtnClasses);
           if (countBadge) {
-            countBadge.classList.remove('bg-white/20', 'text-white');
-            countBadge.classList.add('bg-zinc-200/80', 'text-zinc-600');
+            countBadge.classList.remove(...activeBadgeClasses);
+            countBadge.classList.add(...inactiveBadgeClasses);
           }
         }
       });

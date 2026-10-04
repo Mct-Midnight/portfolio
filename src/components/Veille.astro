@@ -106,30 +106,36 @@ const totalArticles = axes.reduce((acc, axis) => acc + axis.articles.length, 0);
     </div>
   </div>
 
-  <!-- Système de rangement / filtrage interactif par axe (Sobre et épuré) -->
+  <!-- Système de rangement / filtrage interactif par axe (Format identique à Projets & Réalisations) -->
   <div class="flex items-center mb-8">
-    <div class="inline-flex items-center p-1 rounded-2xl bg-slate-100 dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 text-xs">
+    <div class="inline-flex items-center p-1 rounded-xl bg-zinc-100 dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 shrink-0 gap-1 overflow-x-auto max-w-full shadow-xs">
       <button
         type="button"
-        class="veille-filter-btn px-4 py-2 rounded-xl font-semibold transition-all cursor-pointer bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-950 shadow-sm"
         data-filter="all"
+        class="veille-filter-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-950 shadow-sm cursor-pointer whitespace-nowrap"
       >
-        Toutes les fiches ({totalArticles})
+        <span>Toutes les fiches</span>
+        <span class="count-badge px-1.5 py-0.5 rounded-full text-[10px] font-semibold bg-white/20 dark:bg-zinc-900/30 text-white dark:text-zinc-950 tabular-nums">
+          {totalArticles}
+        </span>
       </button>
       {axes.map((axis) => (
         <button
           type="button"
-          class="veille-filter-btn px-4 py-2 rounded-xl font-medium text-slate-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white transition-all cursor-pointer"
           data-filter={axis.id}
+          class="veille-filter-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-200/60 dark:hover:bg-zinc-800 transition-all duration-200 cursor-pointer whitespace-nowrap"
         >
-          {axis.name} ({axis.articles.length})
+          <span>{axis.name}</span>
+          <span class="count-badge px-1.5 py-0.5 rounded-full text-[10px] font-semibold bg-zinc-200/80 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 tabular-nums">
+            {axis.articles.length}
+          </span>
         </button>
       ))}
     </div>
   </div>
 
-  <!-- Présentation structurée par catégories (Axes filtrables) -->
-  <div class="space-y-12">
+  <!-- Présentation structurée par catégories (Axes filtrables alignés au même niveau) -->
+  <div class="flex flex-col gap-12">
     {axes.map((axis) => {
       const AxisIcon = axisIconMap[axis.id] || Radio;
       return (
@@ -407,6 +413,38 @@ const totalArticles = axes.reduce((acc, axis) => acc + axis.articles.length, 0);
 
 <!-- Script interactif de filtrage d'axes, d'ouverture et de navigation séquentielle de la modale -->
 <script>
+  // Classes visuelles pour l'état actif et inactif (identiques à la section Projets)
+  const activeBtnClasses = [
+    'bg-zinc-900',
+    'dark:bg-zinc-100',
+    'text-white',
+    'dark:text-zinc-950',
+    'shadow-sm',
+    'font-semibold',
+  ];
+  const inactiveBtnClasses = [
+    'text-zinc-600',
+    'dark:text-zinc-400',
+    'font-medium',
+    'hover:text-zinc-900',
+    'dark:hover:text-white',
+    'hover:bg-zinc-200/60',
+    'dark:hover:bg-zinc-800',
+  ];
+
+  const activeBadgeClasses = [
+    'bg-white/20',
+    'dark:bg-zinc-900/30',
+    'text-white',
+    'dark:text-zinc-950',
+  ];
+  const inactiveBadgeClasses = [
+    'bg-zinc-200/80',
+    'dark:bg-zinc-800',
+    'text-zinc-600',
+    'dark:text-zinc-400',
+  ];
+
   // Gestion des filtres interactifs par axe
   const filterBtns = document.querySelectorAll('.veille-filter-btn');
   const axisBlocks = document.querySelectorAll('.veille-axis-block');
@@ -415,13 +453,25 @@ const totalArticles = axes.reduce((acc, axis) => acc + axis.articles.length, 0);
     btn.addEventListener('click', () => {
       const filter = btn.getAttribute('data-filter');
 
-      // Mise à jour de l'apparence des onglets
+      // Mise à jour complète de l'apparence des onglets et de leurs pastilles de comptage
       filterBtns.forEach((b) => {
-        b.classList.remove('bg-zinc-900', 'text-white', 'shadow-sm', 'font-semibold');
-        b.classList.add('text-slate-600', 'font-medium');
+        const countBadge = b.querySelector('.count-badge');
+        if (b === btn) {
+          b.classList.remove(...inactiveBtnClasses);
+          b.classList.add(...activeBtnClasses);
+          if (countBadge) {
+            countBadge.classList.remove(...inactiveBadgeClasses);
+            countBadge.classList.add(...activeBadgeClasses);
+          }
+        } else {
+          b.classList.remove(...activeBtnClasses);
+          b.classList.add(...inactiveBtnClasses);
+          if (countBadge) {
+            countBadge.classList.remove(...activeBadgeClasses);
+            countBadge.classList.add(...inactiveBadgeClasses);
+          }
+        }
       });
-      btn.classList.add('bg-zinc-900', 'text-white', 'shadow-sm', 'font-semibold');
-      btn.classList.remove('text-slate-600', 'font-medium');
 
       // Affichage ou masquage des blocs d'axes
       axisBlocks.forEach((block) => {
@@ -528,12 +578,12 @@ const totalArticles = axes.reduce((acc, axis) => acc + axis.articles.length, 0);
         const points: string[] = JSON.parse(keypointsRaw);
         points.forEach((point, index) => {
           const li = document.createElement('li');
-          li.className = 'flex items-start gap-3 pb-3 border-b border-slate-200/60 last:border-0 last:pb-0';
+          li.className = 'flex items-start gap-3 pb-3 border-b border-slate-200/60 dark:border-zinc-800 last:border-0 last:pb-0';
           li.innerHTML = `
-            <span class="w-5 h-5 rounded-md bg-white border border-slate-200/90 text-zinc-900 flex items-center justify-center shrink-0 mt-0.5 text-[11px] font-bold shadow-2xs">
+            <span class="w-5 h-5 rounded-md bg-white dark:bg-zinc-800 border border-slate-200/90 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 flex items-center justify-center shrink-0 mt-0.5 text-[11px] font-bold shadow-2xs">
               ${index + 1}
             </span>
-            <span class="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">${point}</span>
+            <span class="text-xs sm:text-sm text-slate-700 dark:text-zinc-300 leading-relaxed font-medium">${point}</span>
           `;
           modalKeyPoints.appendChild(li);
         });
@@ -549,7 +599,7 @@ const totalArticles = axes.reduce((acc, axis) => acc + axis.articles.length, 0);
         const tags: string[] = JSON.parse(tagsRaw);
         tags.forEach((tag) => {
           const span = document.createElement('span');
-          span.className = 'text-[11px] font-semibold text-zinc-700 bg-zinc-100 px-2.5 py-1 rounded-lg border border-zinc-200';
+          span.className = 'text-[11px] font-semibold text-zinc-700 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-800 px-2.5 py-1 rounded-lg border border-zinc-200 dark:border-zinc-700';
           span.textContent = `#${tag}`;
           modalTags.appendChild(span);
         });
