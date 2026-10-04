@@ -1,13 +1,10 @@
 ---
 // Composant : Fiche Synthèse Entreprise & RH (Recherche de Stage SLAM 2027)
-// Conçu pour lever tous les freins administratifs, juridiques et financiers auprès des tuteurs et recruteurs.
+// Format Executive One-Pager épuré, pensé pour une lecture instantanée par les tuteurs et services RH.
 import {
-  FileText,
   Printer,
   X,
-  CheckCircle2,
   ShieldCheck,
-  Coins,
   Calendar,
   Clock,
   MapPin,
@@ -22,7 +19,9 @@ import {
   Github,
   Download,
   Building2,
-  Check
+  Check,
+  Sparkles,
+  ArrowUpRight
 } from 'lucide-astro';
 import profileData from '../content/data/profile.json';
 
@@ -32,7 +31,7 @@ const { identity, contact, internshipSearch } = profileData;
 <!-- Conteneur Modale d'Information Entreprise & RH -->
 <div
   id="stage-recap-modal"
-  class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto hidden opacity-0 transition-opacity duration-200"
+  class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 overflow-y-auto hidden opacity-0 transition-opacity duration-200"
   role="dialog"
   aria-modal="true"
   aria-labelledby="stage-modal-title"
@@ -41,54 +40,53 @@ const { identity, contact, internshipSearch } = profileData;
   <!-- Arrière-plan semi-transparent avec flou d'ambiance (Backdrop) -->
   <div
     id="stage-modal-backdrop"
-    class="modal-backdrop fixed inset-0 bg-zinc-950/75 backdrop-blur-sm transition-opacity cursor-pointer"
+    class="modal-backdrop fixed inset-0 bg-zinc-950/70 backdrop-blur-sm transition-opacity cursor-pointer"
     aria-hidden="true"
   ></div>
 
-  <!-- Boîte de dialogue modale principale -->
+  <!-- Boîte modale exécutive épurée (Fact Sheet) -->
   <div
-    class="modal-container relative w-full max-w-4xl bg-white dark:bg-[#18181B] text-zinc-900 dark:text-zinc-100 rounded-2xl shadow-2xl border border-zinc-200 dark:border-[#27272A] overflow-hidden my-auto flex flex-col max-h-[92vh] z-10 transition-all duration-200 scale-95"
+    class="modal-container relative w-full max-w-3xl bg-white dark:bg-[#18181B] text-zinc-900 dark:text-zinc-100 rounded-2xl shadow-2xl border border-zinc-200/90 dark:border-[#27272A] overflow-hidden my-auto flex flex-col max-h-[94vh] z-10 transition-all duration-200 scale-95"
     id="stage-modal-box"
   >
-    <!-- En-tête de la modale -->
-    <header class="px-6 py-5 bg-zinc-50 dark:bg-zinc-900/80 border-b border-zinc-200 dark:border-zinc-800 flex items-start justify-between gap-4 shrink-0">
-      <div class="space-y-1.5">
-        <div class="flex items-center gap-2 flex-wrap">
-          <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-zinc-200/80 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-300 dark:border-zinc-700">
-            <Building2 class="w-3.5 h-3.5 text-zinc-900 dark:text-zinc-100" />
-            Espace Tuteur & Direction RH
-          </span>
-          <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20">
-            <Check class="w-3.5 h-3.5" />
-            Sans obligation de gratification
-          </span>
+    <!-- 1. En-tête minimaliste & statut exécutif -->
+    <header class="px-6 py-4 bg-white dark:bg-[#18181B] border-b border-zinc-100 dark:border-zinc-800/80 flex items-center justify-between gap-4 shrink-0">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center text-zinc-900 dark:text-zinc-100 shrink-0">
+          <Building2 class="w-4 h-4" />
         </div>
-
-        <h2 id="stage-modal-title" class="text-xl sm:text-2xl font-bold font-title tracking-tight text-zinc-900 dark:text-zinc-100">
-          Fiche Synthèse — Immersion Professionnelle & Stage 2027
-        </h2>
-        <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400">
-          {identity.firstName} {identity.lastName} • 1re Année BTS SIO (Option SLAM) • CNED
-        </p>
+        <div>
+          <div class="flex items-center gap-2">
+            <h2 id="stage-modal-title" class="text-base font-bold font-title tracking-tight text-zinc-900 dark:text-zinc-100">
+              Fiche Synthèse — Stage SLAM 2027
+            </h2>
+            <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20">
+              Gratification : 0 €
+            </span>
+          </div>
+          <p class="text-xs text-zinc-500 dark:text-zinc-400">
+            {identity.firstName} {identity.lastName} • 1re Année BTS SIO (SLAM) • CNED
+          </p>
+        </div>
       </div>
 
-      <!-- Boutons d'action : Impression et Fermeture -->
-      <div class="flex items-center gap-2 shrink-0 print-hide">
+      <!-- Boutons d'action : Imprimer / Fermer -->
+      <div class="flex items-center gap-1.5 print-hide">
         <button
           type="button"
           id="stage-modal-print-btn"
-          class="inline-flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold bg-white dark:bg-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-700 text-zinc-800 dark:text-zinc-200 border border-zinc-300 dark:border-zinc-700 shadow-sm transition-colors cursor-pointer"
-          title="Imprimer ou enregistrer la fiche au format PDF"
+          class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 text-zinc-700 dark:text-zinc-300 transition-colors cursor-pointer"
+          title="Imprimer ou exporter la fiche au format PDF"
         >
-          <Printer class="w-4 h-4 text-zinc-700 dark:text-zinc-300" />
-          <span class="hidden sm:inline">Imprimer / PDF</span>
+          <Printer class="w-3.5 h-3.5" />
+          <span class="hidden sm:inline">Imprimer PDF</span>
         </button>
 
         <button
           type="button"
           id="stage-modal-close-btn"
-          class="p-2 rounded-xl text-zinc-500 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-200/60 dark:hover:bg-zinc-800 transition-colors cursor-pointer"
-          aria-label="Fermer la fiche synthèse"
+          class="p-1.5 rounded-lg text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors cursor-pointer"
+          aria-label="Fermer la fiche"
           title="Fermer (Échap)"
         >
           <X class="w-5 h-5" />
@@ -96,285 +94,231 @@ const { identity, contact, internshipSearch } = profileData;
       </div>
     </header>
 
-    <!-- Corps défilable de la fiche synthétique -->
-    <div class="modal-scroll-area overflow-y-auto p-6 sm:p-8 space-y-6 text-sm text-zinc-700 dark:text-zinc-300 flex-1">
+    <!-- 2. Corps défilable : Métriques clés + Colonnes synthétiques -->
+    <div class="modal-scroll-area overflow-y-auto p-5 sm:p-6 space-y-5 flex-1">
       
-      <!-- Grille des volets 1 & 2 : Cadre Juridique et Volet Financier -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 print-grid">
+      <!-- Bandeau des 4 KPIs Stratégiques (Réponse instantanée aux questions RH) -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 print-kpi-grid">
         
-        <!-- Volet 1 : Cadre juridique & administratif -->
-        <div class="print-card bg-zinc-50/70 dark:bg-zinc-900/50 rounded-xl p-5 border border-zinc-200 dark:border-zinc-800 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center gap-2.5 mb-3 text-zinc-900 dark:text-zinc-100">
-              <div class="w-8 h-8 rounded-lg bg-zinc-200/80 dark:bg-zinc-800 flex items-center justify-center shrink-0">
-                <ShieldCheck class="w-4 h-4 text-zinc-900 dark:text-zinc-100" />
-              </div>
-              <h3 class="font-bold font-title text-base">Cadre Juridique & Administratif</h3>
+        <!-- KPI 1 : Gratification 0€ -->
+        <div class="p-3 rounded-xl bg-zinc-50 dark:bg-zinc-900/60 border border-zinc-200/70 dark:border-zinc-800">
+          <div class="flex items-center justify-between text-zinc-500 dark:text-zinc-400 mb-1">
+            <span class="text-[10px] font-bold uppercase tracking-wider font-title">Gratification</span>
+            <Check class="w-3 h-3 text-emerald-600 dark:text-emerald-400" />
+          </div>
+          <p class="text-lg font-bold font-title text-zinc-900 dark:text-zinc-100 leading-tight">0 € requis</p>
+          <p class="text-[10px] text-zinc-500 dark:text-zinc-400 mt-0.5">&lt; 308h (art. L124-6)</p>
+        </div>
+
+        <!-- KPI 2 : Durée opérationnelle -->
+        <div class="p-3 rounded-xl bg-zinc-50 dark:bg-zinc-900/60 border border-zinc-200/70 dark:border-zinc-800">
+          <div class="flex items-center justify-between text-zinc-500 dark:text-zinc-400 mb-1">
+            <span class="text-[10px] font-bold uppercase tracking-wider font-title">Durée</span>
+            <Clock class="w-3 h-3 text-zinc-400" />
+          </div>
+          <p class="text-lg font-bold font-title text-zinc-900 dark:text-zinc-100 leading-tight">4 à 5 sem.</p>
+          <p class="text-[10px] text-zinc-500 dark:text-zinc-400 mt-0.5">Temps plein (35h/sem.)</p>
+        </div>
+
+        <!-- KPI 3 : Période flexible -->
+        <div class="p-3 rounded-xl bg-zinc-50 dark:bg-zinc-900/60 border border-zinc-200/70 dark:border-zinc-800">
+          <div class="flex items-center justify-between text-zinc-500 dark:text-zinc-400 mb-1">
+            <span class="text-[10px] font-bold uppercase tracking-wider font-title">Période</span>
+            <Calendar class="w-3 h-3 text-zinc-400" />
+          </div>
+          <p class="text-lg font-bold font-title text-zinc-900 dark:text-zinc-100 leading-tight">Mai — Août</p>
+          <p class="text-[10px] text-zinc-500 dark:text-zinc-400 mt-0.5">2027 (dates modulables)</p>
+        </div>
+
+        <!-- KPI 4 : Convention & Sécurité -->
+        <div class="p-3 rounded-xl bg-zinc-50 dark:bg-zinc-900/60 border border-zinc-200/70 dark:border-zinc-800">
+          <div class="flex items-center justify-between text-zinc-500 dark:text-zinc-400 mb-1">
+            <span class="text-[10px] font-bold uppercase tracking-wider font-title">Sécurité</span>
+            <ShieldCheck class="w-3 h-3 text-zinc-400" />
+          </div>
+          <p class="text-lg font-bold font-title text-zinc-900 dark:text-zinc-100 leading-tight">CNED</p>
+          <p class="text-[10px] text-zinc-500 dark:text-zinc-400 mt-0.5">Convention + Assurance RC</p>
+        </div>
+
+      </div>
+
+      <!-- Grille à 2 colonnes aérées : Cadre de collaboration vs Compétences concrètes -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        
+        <!-- Colonne Gauche : Cadre Administratif, Financier & Mobilité -->
+        <div class="space-y-4">
+          
+          <!-- Bloc Cadre Légal & Gratification -->
+          <div class="p-4 rounded-xl bg-white dark:bg-zinc-900/40 border border-zinc-200/70 dark:border-zinc-800 space-y-3">
+            <div class="flex items-center gap-2">
+              <ShieldCheck class="w-4 h-4 text-zinc-900 dark:text-zinc-100" />
+              <h3 class="text-xs font-bold font-title uppercase tracking-wider text-zinc-900 dark:text-zinc-100">
+                Cadre Légal & Prise en Charge
+              </h3>
             </div>
-            
-            <ul class="space-y-2.5 text-xs sm:text-sm text-zinc-600 dark:text-zinc-400">
+
+            <ul class="space-y-2 text-xs text-zinc-600 dark:text-zinc-400">
               <li class="flex items-start gap-2">
-                <CheckCircle2 class="w-4 h-4 text-zinc-900 dark:text-zinc-100 shrink-0 mt-0.5" />
-                <div>
-                  <strong class="text-zinc-900 dark:text-zinc-200 font-semibold">Statut officiel :</strong>
-                  <span> Étudiant inscrit en 1re année de BTS SIO SLAM auprès du <em>CNED</em> (opérateur public sous tutelle du Ministère de l'Éducation Nationale).</span>
-                </div>
+                <span class="w-1.5 h-1.5 rounded-full bg-zinc-900 dark:bg-zinc-100 shrink-0 mt-1.5"></span>
+                <span><strong>Gratification facultative :</strong> Durée inférieure au seuil légal de 2 mois consécutifs (308h). Aucune obligation financière pour l'entreprise.</span>
               </li>
               <li class="flex items-start gap-2">
-                <CheckCircle2 class="w-4 h-4 text-zinc-900 dark:text-zinc-100 shrink-0 mt-0.5" />
-                <div>
-                  <strong class="text-zinc-900 dark:text-zinc-200 font-semibold">Convention tripartite :</strong>
-                  <span> Délivrée par le CNED et signée électroniquement par les trois parties (CNED, entreprise, étudiant).</span>
-                </div>
+                <span class="w-1.5 h-1.5 rounded-full bg-zinc-900 dark:bg-zinc-100 shrink-0 mt-1.5"></span>
+                <span><strong>Convention officielle :</strong> Convention tripartite dématérialisée délivrée par le CNED (signature électronique rapide).</span>
               </li>
               <li class="flex items-start gap-2">
-                <CheckCircle2 class="w-4 h-4 text-zinc-900 dark:text-zinc-100 shrink-0 mt-0.5" />
-                <div>
-                  <strong class="text-zinc-900 dark:text-zinc-200 font-semibold">Assurances & Couverture :</strong>
-                  <span> Couvert par l'assurance scolaire et la responsabilité civile étudiante durant toute la durée de la mission.</span>
-                </div>
+                <span class="w-1.5 h-1.5 rounded-full bg-zinc-900 dark:bg-zinc-100 shrink-0 mt-1.5"></span>
+                <span><strong>Couverture assurée :</strong> Étudiant protégé par l'assurance scolaire et la responsabilité civile tout au long du stage.</span>
               </li>
             </ul>
           </div>
 
-          <div class="mt-4 pt-3 border-t border-zinc-200 dark:border-zinc-800/80 text-[11px] text-zinc-500 dark:text-zinc-400">
-            Aucune démarche administrative complexe à la charge de l'entreprise.
-          </div>
-        </div>
+          <!-- Bloc Mobilité & Modalités -->
+          <div class="p-4 rounded-xl bg-white dark:bg-zinc-900/40 border border-zinc-200/70 dark:border-zinc-800 space-y-3">
+            <div class="flex items-center gap-2">
+              <MapPin class="w-4 h-4 text-zinc-900 dark:text-zinc-100" />
+              <h3 class="text-xs font-bold font-title uppercase tracking-wider text-zinc-900 dark:text-zinc-100">
+                Localisation & Modalités
+              </h3>
+            </div>
 
-        <!-- Volet 2 : Aspect financier & Gratification (Argument TPE/PME) -->
-        <div class="print-card bg-zinc-50/70 dark:bg-zinc-900/50 rounded-xl p-5 border border-zinc-200 dark:border-zinc-800 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center gap-2.5 mb-3 text-zinc-900 dark:text-zinc-100">
-              <div class="w-8 h-8 rounded-lg bg-zinc-200/80 dark:bg-zinc-800 flex items-center justify-center shrink-0">
-                <Coins class="w-4 h-4 text-zinc-900 dark:text-zinc-100" />
+            <div class="grid grid-cols-2 gap-2 text-xs">
+              <div class="p-2.5 rounded-lg bg-zinc-50 dark:bg-zinc-900/60 border border-zinc-200/60 dark:border-zinc-800">
+                <span class="block font-semibold text-zinc-900 dark:text-zinc-100 mb-0.5">Présentiel</span>
+                <span class="text-[11px] text-zinc-500 dark:text-zinc-400">Cambrai, Valenciennes, Douai, Métropole lilloise</span>
               </div>
-              <h3 class="font-bold font-title text-base">Financement & Gratification</h3>
+              <div class="p-2.5 rounded-lg bg-zinc-50 dark:bg-zinc-900/60 border border-zinc-200/60 dark:border-zinc-800">
+                <span class="block font-semibold text-zinc-900 dark:text-zinc-100 mb-0.5">Télétravail</span>
+                <span class="text-[11px] text-zinc-500 dark:text-zinc-400">Total ou hybride (autonomie & culture asynchrone CNED)</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Colonne Droite : Compétences & Missions Opérationnelles -->
+        <div class="p-4 rounded-xl bg-white dark:bg-zinc-900/40 border border-zinc-200/70 dark:border-zinc-800 space-y-3 flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <Code2 class="w-4 h-4 text-zinc-900 dark:text-zinc-100" />
+                <h3 class="text-xs font-bold font-title uppercase tracking-wider text-zinc-900 dark:text-zinc-100">
+                  Missions Opérationnelles Immédiates
+                </h3>
+              </div>
+              <span class="text-[10px] text-zinc-400 font-mono">1re année SLAM</span>
             </div>
 
-            <div class="p-3 mb-3 rounded-lg bg-white dark:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-700">
-              <span class="block text-xs font-bold uppercase tracking-wider text-zinc-900 dark:text-zinc-100">
-                Obligation légale de gratification : 0 €
-              </span>
-              <p class="text-xs text-zinc-600 dark:text-zinc-400 mt-1">
-                La durée du stage (4 à 5 semaines, soit ~140 à 175h) est inférieure au seuil légal de 2 mois consécutifs (308 heures).
-              </p>
-            </div>
-
-            <ul class="space-y-2 text-xs sm:text-sm text-zinc-600 dark:text-zinc-400">
-              <li class="flex items-start gap-2">
-                <CheckCircle2 class="w-4 h-4 text-zinc-900 dark:text-zinc-100 shrink-0 mt-0.5" />
-                <div>
-                  <strong class="text-zinc-900 dark:text-zinc-200 font-semibold">Code de l'Éducation (art. L124-6) :</strong>
-                  <span> La gratification financière n'est pas obligatoire en deçà de 308 heures effectives de présence.</span>
+            <!-- Liste des 4 champs techniques compacts -->
+            <div class="space-y-2">
+              <div class="p-2.5 rounded-lg bg-zinc-50 dark:bg-zinc-900/60 border border-zinc-200/60 dark:border-zinc-800">
+                <div class="flex items-center gap-2 font-semibold text-xs text-zinc-900 dark:text-zinc-100">
+                  <Laptop class="w-3.5 h-3.5 text-zinc-600 dark:text-zinc-400 shrink-0" />
+                  <span>Front-End & Intégration d'interfaces</span>
                 </div>
-              </li>
-              <li class="flex items-start gap-2">
-                <CheckCircle2 class="w-4 h-4 text-zinc-900 dark:text-zinc-100 shrink-0 mt-0.5" />
-                <div>
-                  <strong class="text-zinc-900 dark:text-zinc-200 font-semibold">Libre appréciation :</strong>
-                  <span> Toute gratification ou prime éventuelle est laissée à la discrétion de l'entreprise selon ses usages.</span>
+                <p class="text-[11px] text-zinc-500 dark:text-zinc-400 mt-1 leading-relaxed">
+                  HTML5 sémantique, Tailwind CSS, JavaScript / TypeScript, composants responsives et intégration de maquettes.
+                </p>
+              </div>
+
+              <div class="p-2.5 rounded-lg bg-zinc-50 dark:bg-zinc-900/60 border border-zinc-200/60 dark:border-zinc-800">
+                <div class="flex items-center gap-2 font-semibold text-xs text-zinc-900 dark:text-zinc-100">
+                  <Database class="w-3.5 h-3.5 text-zinc-600 dark:text-zinc-400 shrink-0" />
+                  <span>Bases de Données & Requêtes SQL</span>
                 </div>
-              </li>
-            </ul>
-          </div>
+                <p class="text-[11px] text-zinc-500 dark:text-zinc-400 mt-1 leading-relaxed">
+                  Modélisation relationnelle (MCD/MLD), requêtage SQL (jointures, vues), mise à jour et intégrité des données.
+                </p>
+              </div>
 
-          <div class="mt-4 pt-3 border-t border-zinc-200 dark:border-zinc-800/80 text-[11px] text-zinc-500 dark:text-zinc-400">
-            Opportunité à coût maîtrisé pour TPE, PME, agences ou ETI.
+              <div class="p-2.5 rounded-lg bg-zinc-50 dark:bg-zinc-900/60 border border-zinc-200/60 dark:border-zinc-800">
+                <div class="flex items-center gap-2 font-semibold text-xs text-zinc-900 dark:text-zinc-100">
+                  <Workflow class="w-3.5 h-3.5 text-zinc-600 dark:text-zinc-400 shrink-0" />
+                  <span>Automatisation & Scripts Utilitaires</span>
+                </div>
+                <p class="text-[11px] text-zinc-500 dark:text-zinc-400 mt-1 leading-relaxed">
+                  Scripts Python, parsing de données (JSON / CSV) et interaction avec des APIs REST.
+                </p>
+              </div>
+
+              <div class="p-2.5 rounded-lg bg-zinc-50 dark:bg-zinc-900/60 border border-zinc-200/60 dark:border-zinc-800">
+                <div class="flex items-center gap-2 font-semibold text-xs text-zinc-900 dark:text-zinc-100">
+                  <ClipboardCheck class="w-3.5 h-3.5 text-zinc-600 dark:text-zinc-400 shrink-0" />
+                  <span>Recette, Tests & Documentation</span>
+                </div>
+                <p class="text-[11px] text-zinc-500 dark:text-zinc-400 mt-1 leading-relaxed">
+                  Exécution de plans de tests fonctionnels, recette des écrans, rédaction de guides utilisateurs et fiches techniques.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
 
-      </div>
-
-      <!-- Volet 3 : Calendrier & Flexibilité d'accueil -->
-      <div class="print-card bg-zinc-50/70 dark:bg-zinc-900/50 rounded-xl p-5 border border-zinc-200 dark:border-zinc-800 space-y-4">
-        <div class="flex items-center gap-2.5 text-zinc-900 dark:text-zinc-100">
-          <div class="w-8 h-8 rounded-lg bg-zinc-200/80 dark:bg-zinc-800 flex items-center justify-center shrink-0">
-            <Calendar class="w-4 h-4 text-zinc-900 dark:text-zinc-100" />
-          </div>
-          <div>
-            <h3 class="font-bold font-title text-base">Calendrier & Modalités de Réalisation</h3>
-            <span class="text-xs text-zinc-500 dark:text-zinc-400">Flexibilité maximale grâce au rythme d'apprentissage au CNED</span>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-          <div class="p-3 bg-white dark:bg-zinc-800/80 rounded-lg border border-zinc-200 dark:border-zinc-700">
-            <div class="flex items-center gap-2 text-xs font-medium text-zinc-500 dark:text-zinc-400 mb-1">
-              <Clock class="w-3.5 h-3.5" />
-              <span>Volume & Durée</span>
-            </div>
-            <p class="font-bold text-zinc-900 dark:text-zinc-100 text-sm">4 à 5 semaines</p>
-            <p class="text-[11px] text-zinc-500 dark:text-zinc-400 mt-0.5">Temps plein (35h/semaine)</p>
-          </div>
-
-          <div class="p-3 bg-white dark:bg-zinc-800/80 rounded-lg border border-zinc-200 dark:border-zinc-700">
-            <div class="flex items-center gap-2 text-xs font-medium text-zinc-500 dark:text-zinc-400 mb-1">
-              <Calendar class="w-3.5 h-3.5" />
-              <span>Période éligible</span>
-            </div>
-            <p class="font-bold text-zinc-900 dark:text-zinc-100 text-sm">Mai à Août 2027</p>
-            <p class="text-[11px] text-zinc-500 dark:text-zinc-400 mt-0.5">Dates modulables selon vos plannings</p>
-          </div>
-
-          <div class="p-3 bg-white dark:bg-zinc-800/80 rounded-lg border border-zinc-200 dark:border-zinc-700">
-            <div class="flex items-center gap-2 text-xs font-medium text-zinc-500 dark:text-zinc-400 mb-1">
-              <MapPin class="w-3.5 h-3.5" />
-              <span>Modalités de travail</span>
-            </div>
-            <p class="font-bold text-zinc-900 dark:text-zinc-100 text-sm">Présentiel / Hybride</p>
-            <p class="text-[11px] text-zinc-500 dark:text-zinc-400 mt-0.5">Cambrai, Hauts-de-France ou Télétravail</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Volet 4 : Missions opérationnelles concrètes (1re année SLAM) -->
-      <div class="print-card bg-zinc-50/70 dark:bg-zinc-900/50 rounded-xl p-5 border border-zinc-200 dark:border-zinc-800 space-y-4">
-        <div class="flex items-center gap-2.5 text-zinc-900 dark:text-zinc-100">
-          <div class="w-8 h-8 rounded-lg bg-zinc-200/80 dark:bg-zinc-800 flex items-center justify-center shrink-0">
-            <Code2 class="w-4 h-4 text-zinc-900 dark:text-zinc-100" />
-          </div>
-          <div>
-            <h3 class="font-bold font-title text-base">Périmètre d'Intervention & Missions Opérationnelles</h3>
-            <span class="text-xs text-zinc-500 dark:text-zinc-400">Compétences techniques directement mobilisables en 1re année BTS SIO SLAM</span>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm">
-          <div class="p-3.5 bg-white dark:bg-zinc-800/80 rounded-lg border border-zinc-200 dark:border-zinc-700 space-y-1.5">
-            <div class="flex items-center gap-2 font-semibold text-zinc-900 dark:text-zinc-100">
-              <Laptop class="w-4 h-4 text-zinc-700 dark:text-zinc-300 shrink-0" />
-              <span>Développement Front-End & Intégration</span>
-            </div>
-            <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
-              Intégration d'interfaces web responsives (HTML5, Tailwind CSS, JavaScript / TypeScript), respect des maquettes UX/UI et accessibilité numérique.
-            </p>
-          </div>
-
-          <div class="p-3.5 bg-white dark:bg-zinc-800/80 rounded-lg border border-zinc-200 dark:border-zinc-700 space-y-1.5">
-            <div class="flex items-center gap-2 font-semibold text-zinc-900 dark:text-zinc-100">
-              <Database class="w-4 h-4 text-zinc-700 dark:text-zinc-300 shrink-0" />
-              <span>Bases de Données & Requêtage SQL</span>
-            </div>
-            <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
-              Conception de schémas relationnels (MCD/MLD), rédaction de requêtes SQL (jointures, filtres, agrégations) et contrôle de l'intégrité des données.
-            </p>
-          </div>
-
-          <div class="p-3.5 bg-white dark:bg-zinc-800/80 rounded-lg border border-zinc-200 dark:border-zinc-700 space-y-1.5">
-            <div class="flex items-center gap-2 font-semibold text-zinc-900 dark:text-zinc-100">
-              <Workflow class="w-4 h-4 text-zinc-700 dark:text-zinc-300 shrink-0" />
-              <span>Scripts d'Automatisation & Utilitaires</span>
-            </div>
-            <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
-              Développement de scripts d'automatisation (Python), manipulation de formats de données (JSON, CSV) et interaction avec des APIs REST.
-            </p>
-          </div>
-
-          <div class="p-3.5 bg-white dark:bg-zinc-800/80 rounded-lg border border-zinc-200 dark:border-zinc-700 space-y-1.5">
-            <div class="flex items-center gap-2 font-semibold text-zinc-900 dark:text-zinc-100">
-              <ClipboardCheck class="w-4 h-4 text-zinc-700 dark:text-zinc-300 shrink-0" />
-              <span>Qualité, Recette & Documentation</span>
-            </div>
-            <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
-              Exécution de plans de tests fonctionnels, recette des interfaces, support utilisateur et rédaction de fiches documentaires claires.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Volet 5 : Contact direct & Coordonnées -->
-      <div class="print-card print-card-dark bg-zinc-900 dark:bg-zinc-950 text-white rounded-xl p-5 border border-zinc-800 space-y-4">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-          <div>
-            <h3 class="font-bold font-title text-base text-white">Contact Direct du Candidat</h3>
-            <p class="text-xs text-zinc-400">Échange immédiat pour étudier vos besoins et planifier une entrevue</p>
-          </div>
-
-          <div class="flex items-center gap-2 print-hide">
-            <a
-              href={identity.cvDownloadUrl}
-              download
-              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-white text-zinc-900 hover:bg-zinc-100 transition-colors shadow-sm"
-            >
-              <Download class="w-3.5 h-3.5" />
-              <span>Télécharger le CV</span>
-            </a>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
-          <a
-            href={`tel:${contact.phone.replace(/\s+/g, '')}`}
-            class="flex items-center gap-2.5 p-2.5 rounded-lg bg-zinc-800/80 hover:bg-zinc-800 border border-zinc-700/60 transition-colors text-zinc-200 print-contact-box"
-          >
-            <Phone class="w-4 h-4 text-white shrink-0" />
-            <div>
-              <span class="block text-[10px] text-zinc-400 uppercase tracking-wider">Téléphone</span>
-              <span class="font-semibold text-white">{contact.phone}</span>
-            </div>
-          </a>
-
-          <a
-            href={`mailto:${contact.email}`}
-            class="flex items-center gap-2.5 p-2.5 rounded-lg bg-zinc-800/80 hover:bg-zinc-800 border border-zinc-700/60 transition-colors text-zinc-200 print-contact-box"
-          >
-            <Mail class="w-4 h-4 text-white shrink-0" />
-            <div class="truncate">
-              <span class="block text-[10px] text-zinc-400 uppercase tracking-wider">Email</span>
-              <span class="font-semibold text-white truncate block">{contact.email}</span>
-            </div>
-          </a>
-
-          <div class="flex items-center gap-2.5 p-2.5 rounded-lg bg-zinc-800/80 border border-zinc-700/60 text-zinc-200 print-contact-box">
-            <MapPin class="w-4 h-4 text-white shrink-0" />
-            <div>
-              <span class="block text-[10px] text-zinc-400 uppercase tracking-wider">Localisation</span>
-              <span class="font-semibold text-white">{contact.city.split(',')[0]}</span>
-            </div>
-          </div>
-
-          <a
-            href={contact.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="flex items-center gap-2.5 p-2.5 rounded-lg bg-zinc-800/80 hover:bg-zinc-800 border border-zinc-700/60 transition-colors text-zinc-200 print-contact-box"
-          >
-            <Linkedin class="w-4 h-4 text-white shrink-0" />
-            <div>
-              <span class="block text-[10px] text-zinc-400 uppercase tracking-wider">Réseau pro</span>
-              <span class="font-semibold text-white">Profil LinkedIn</span>
-            </div>
-          </a>
-        </div>
       </div>
 
     </div>
 
-    <!-- Pied de page de la modale -->
-    <footer class="px-6 py-4 bg-zinc-50 dark:bg-zinc-900/80 border-t border-zinc-200 dark:border-zinc-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-zinc-500 dark:text-zinc-400 shrink-0">
-      <div class="flex items-center gap-2 text-center sm:text-left">
-        <FileText class="w-4 h-4 text-zinc-400 shrink-0 hidden sm:inline" />
-        <span>Document synthétique d'information • Conforme au référentiel officiel BTS SIO (Bloc 1)</span>
+    <!-- 3. Pied de modale : Ligne de contact exécutive & CTA direct -->
+    <footer class="px-6 py-3.5 bg-zinc-50 dark:bg-zinc-900/90 border-t border-zinc-200/80 dark:border-zinc-800 flex flex-wrap items-center justify-between gap-3 text-xs shrink-0">
+      
+      <!-- Coordonnées rapides cliquables -->
+      <div class="flex items-center gap-4 flex-wrap text-zinc-700 dark:text-zinc-300">
+        <a
+          href={`tel:${contact.phone.replace(/\s+/g, '')}`}
+          class="flex items-center gap-1.5 hover:text-zinc-950 dark:hover:text-white transition-colors font-medium"
+        >
+          <Phone class="w-3.5 h-3.5 text-zinc-500" />
+          <span>{contact.phone}</span>
+        </a>
+
+        <a
+          href={`mailto:${contact.email}`}
+          class="flex items-center gap-1.5 hover:text-zinc-950 dark:hover:text-white transition-colors font-medium"
+        >
+          <Mail class="w-3.5 h-3.5 text-zinc-500" />
+          <span>{contact.email}</span>
+        </a>
+
+        <a
+          href={contact.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center gap-1 hover:text-zinc-950 dark:hover:text-white transition-colors text-zinc-500"
+        >
+          <Linkedin class="w-3.5 h-3.5" />
+          <span>LinkedIn</span>
+          <ArrowUpRight class="w-3 h-3" />
+        </a>
       </div>
 
-      <div class="flex items-center gap-3 print-hide">
+      <!-- Actions directes (CV & Fermer) -->
+      <div class="flex items-center gap-2 print-hide">
+        <a
+          href={identity.cvDownloadUrl}
+          download
+          class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-zinc-900 hover:bg-black dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-950 transition-colors shadow-sm"
+        >
+          <Download class="w-3.5 h-3.5" />
+          <span>Télécharger CV</span>
+        </a>
+
         <button
           type="button"
           id="stage-modal-bottom-close-btn"
-          class="px-4 py-2 rounded-xl text-xs font-semibold bg-zinc-200 dark:bg-zinc-800 hover:bg-zinc-300 dark:hover:bg-zinc-700 text-zinc-800 dark:text-zinc-200 transition-colors cursor-pointer"
+          class="px-3 py-1.5 rounded-lg text-xs font-medium text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200/70 dark:hover:bg-zinc-800 transition-colors cursor-pointer"
         >
-          Fermer la fiche
+          Fermer
         </button>
       </div>
+
     </footer>
   </div>
 </div>
 
-<!-- Styles spécifiques à l'impression propre sur papier ou export PDF -->
+<!-- Styles spécifiques à l'impression propre sur page A4 -->
 <style>
   @media print {
-    /* Si la modale est active, masquer tout le reste de la page */
+    /* Masquage de tout le contenu hôte sauf la modale de synthèse */
     :global(body.stage-modal-open > *:not(#stage-recap-modal)) {
       display: none !important;
     }
@@ -400,7 +344,6 @@ const { identity, contact, internshipSearch } = profileData;
       opacity: 1 !important;
     }
 
-    /* Si la modale n'est pas ouverte, ne pas l'imprimer lors d'une impression classique du site */
     :global(body:not(.stage-modal-open)) #stage-recap-modal {
       display: none !important;
     }
@@ -414,7 +357,7 @@ const { identity, contact, internshipSearch } = profileData;
       max-height: none !important;
       height: auto !important;
       overflow: visible !important;
-      border: 1px solid #d4d4d8 !important;
+      border: 1px solid #e4e4e7 !important;
       border-radius: 0 !important;
       box-shadow: none !important;
       transform: none !important;
@@ -429,42 +372,13 @@ const { identity, contact, internshipSearch } = profileData;
     .modal-scroll-area {
       overflow: visible !important;
       max-height: none !important;
-      padding: 1rem 1.25rem !important;
+      padding: 1rem !important;
       color: #09090b !important;
     }
 
-    .print-card {
-      break-inside: avoid !important;
-      page-break-inside: avoid !important;
-      background: #fafafa !important;
-      border: 1px solid #e4e4e7 !important;
-      color: #09090b !important;
-    }
-
-    .print-card-dark {
-      background: #f4f4f5 !important;
-      color: #09090b !important;
-      border: 1px solid #d4d4d8 !important;
-    }
-
-    .print-card-dark h3,
-    .print-card-dark p,
-    .print-card-dark span,
-    .print-card-dark strong {
-      color: #09090b !important;
-    }
-
-    .print-contact-box {
-      background: #ffffff !important;
-      border: 1px solid #d4d4d8 !important;
-    }
-
-    .print-contact-box * {
-      color: #09090b !important;
-    }
-
-    .print-grid {
+    .print-kpi-grid {
       display: grid !important;
+      grid-template-columns: repeat(4, 1fr) !important;
     }
   }
 </style>
@@ -479,7 +393,6 @@ const { identity, contact, internshipSearch } = profileData;
     const closeBtn = document.getElementById('stage-modal-close-btn');
     const bottomCloseBtn = document.getElementById('stage-modal-bottom-close-btn');
     const printBtn = document.getElementById('stage-modal-print-btn');
-    const openBtns = document.querySelectorAll('[data-open-stage-modal]');
 
     if (!modal || !modalBox) return;
 
