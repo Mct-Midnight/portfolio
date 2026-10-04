@@ -48,13 +48,14 @@ const {
       href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
     />
 
-    <!-- Initialisation immédiate du thème pour bloquer tout scintillement blanc (Anti-FOUC) -->
+    <!-- Initialisation immédiate du thème (Mode clair par défaut pour tous, avec mémorisation du choix) -->
     <script is:inline>
       (function() {
         try {
           const storedTheme = localStorage.getItem('portfolio-theme');
-          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-          if (storedTheme === 'dark' || (!storedTheme && prefersDark)) {
+          // Le portfolio démarre d'office en mode clair pour tout nouvel arrivant
+          // Seule une sélection explicite antérieure ('dark') active le mode sombre
+          if (storedTheme === 'dark') {
             document.documentElement.classList.add('dark');
           } else {
             document.documentElement.classList.remove('dark');
