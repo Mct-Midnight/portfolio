@@ -64,12 +64,13 @@ const TYPE_CONFIG: Record<
   },
 };
 
-// Formateur de date en français
+// Formateur de date en français calé sur le fuseau horaire officiel de Paris
 function formatDateFr(isoDateString: string): string {
   try {
     const d = new Date(isoDateString);
     if (isNaN(d.getTime())) return isoDateString;
     return new Intl.DateTimeFormat('fr-FR', {
+      timeZone: 'Europe/Paris',
       day: 'numeric',
       month: 'long',
       year: 'numeric',
@@ -82,16 +83,20 @@ function formatDateFr(isoDateString: string): string {
   }
 }
 
-// Calcul d'une date relative lisible (ex: "Aujourd'hui", "Il y a 3 jours")
+// Calcul d'une date relative lisible de repli (ex: "À l'instant", "Il y a 3 h", "Hier")
 function formatRelativeDate(isoDateString: string): string {
   try {
     const now = new Date();
     const date = new Date(isoDateString);
     const diffMs = now.getTime() - date.getTime();
+    if (isNaN(diffMs) || diffMs < 0) return 'Récemment';
+
+    const diffMins = Math.floor(diffMs / (1000 * 60));
     const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
     const diffDays = Math.floor(diffHours / 24);
 
-    if (diffHours < 1) return 'À l\'instant';
+    if (diffMins < 5) return 'À l\'instant';
+    if (diffMins < 60) return `Il y a ${diffMins} min`;
     if (diffHours < 24) return `Il y a ${diffHours} h`;
     if (diffDays === 1) return 'Hier';
     if (diffDays < 30) return `Il y a ${diffDays} jours`;
@@ -163,7 +168,7 @@ function getLocalGitCommits(): GitCommit[] {
     // Délimiteur unique pour séparer les champs en toute fiabilité
     const delimiter = '___DELIMITER___';
     // Extraction de la totalité de l'historique pour des statistiques 100% fidèles
-    const command = `git log --pretty=format:%H${delimiter}%h${delimiter}%ad${delimiter}%an${delimiter}%s --date=iso`;
+    const command = `git log --pretty=format:%H${delimiter}%h${delimiter}%ad${delimiter}%an${delimiter}%s --date=iso-strict`;
     const output = execSync(command, { encoding: 'utf-8', stdio: ['pipe', 'pipe', 'pipe'] });
 
     const lines = output.trim().split('\n').filter(Boolean);
@@ -176,12 +181,19 @@ function getLocalGitCommits(): GitCommit[] {
       const [fullHash, hash, dateStr, author, rawMessage] = parts;
       const parsed = parseCommitMessage(rawMessage);
 
+      let isoDate: string;
+      try {
+        isoDate = new Date(dateStr.trim()).toISOString();
+      } catch {
+        isoDate = dateStr.trim();
+      }
+
       commits.push({
         fullHash: fullHash.trim(),
         hash: hash.trim(),
-        date: dateStr.trim(),
-        formattedDate: formatDateFr(dateStr.trim()),
-        relativeDate: formatRelativeDate(dateStr.trim()),
+        date: isoDate,
+        formattedDate: formatDateFr(isoDate),
+        relativeDate: formatRelativeDate(isoDate),
         author: author.trim(),
         rawMessage: rawMessage.trim(),
         type: parsed.type,
@@ -231,7 +243,13 @@ async function getRemoteGithubCommits(): Promise<GitCommit[]> {
     return data.map((item: any) => {
       const fullHash = item.sha;
       const hash = fullHash.substring(0, 7);
-      const dateStr = item.commit?.author?.date || new Date().toISOString();
+      const rawDate = item.commit?.author?.date || new Date().toISOString();
+      let isoDate: string;
+      try {
+        isoDate = new Date(rawDate).toISOString();
+      } catch {
+        isoDate = rawDate;
+      }
       const author = item.commit?.author?.name || 'Quentin Machu';
       const rawMessage = (item.commit?.message || '').split('\n')[0];
       const parsed = parseCommitMessage(rawMessage);
@@ -239,9 +257,9 @@ async function getRemoteGithubCommits(): Promise<GitCommit[]> {
       return {
         fullHash,
         hash,
-        date: dateStr,
-        formattedDate: formatDateFr(dateStr),
-        relativeDate: formatRelativeDate(dateStr),
+        date: isoDate,
+        formattedDate: formatDateFr(isoDate),
+        relativeDate: formatRelativeDate(isoDate),
         author,
         rawMessage,
         type: parsed.type,
