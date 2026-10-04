@@ -2,6 +2,7 @@
 // Layout principal du Portfolio BTS SIO SLAM
 import '../styles/global.css';
 import ThemeToggle from '../components/ThemeToggle.astro';
+import AuditInspector from '../components/AuditInspector.astro';
 
 interface Props {
   title?: string;
@@ -73,5 +74,8 @@ const {
     </aside>
 
     <slot />
+
+    <!-- Inspecteur d'Architecture & Télémétrie Éco-conception (Easter Egg) -->
+    <AuditInspector />
   </body>
 </html>

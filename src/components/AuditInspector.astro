@@ -1,0 +1,610 @@
+---
+// Composant Easter Egg : Mode Audit & Architecture Technique (Vue Blueprint + Télémétrie Éco-conception)
+// Conçu pour le Portfolio BTS SIO SLAM de Quentin Machu
+import { Terminal, Cpu, Leaf, Activity, ShieldCheck, X, Copy, Check, Layers, Sparkles } from 'lucide-astro';
+---
+
+<!-- Calque Grille Blueprint Millimétrée (Affiché uniquement quand le mode audit est activé) -->
+<div
+  id="blueprint-grid-overlay"
+  class="fixed inset-0 pointer-events-none z-30 opacity-0 transition-opacity duration-300 hidden"
+  aria-hidden="true"
+>
+  <div class="absolute inset-0 bg-[radial-gradient(#71717a_1px,transparent_1px)] [background-size:24px_24px] opacity-25 dark:opacity-20"></div>
+  <div class="absolute inset-0 bg-[linear-gradient(to_right,#3f3f4615_1px,transparent_1px),linear-gradient(to_bottom,#3f3f4615_1px,transparent_1px)] [background-size:96px_96px]"></div>
+</div>
+
+<!-- Bannière d'en-tête discrète informant de l'activation du mode ingénierie -->
+<div
+  id="audit-top-banner"
+  class="fixed top-0 left-0 right-0 z-50 bg-[#18181B] text-zinc-200 border-b border-[#27272A] py-2 px-4 shadow-xl -translate-y-full transition-transform duration-300 flex items-center justify-between text-xs"
+  role="status"
+  aria-live="polite"
+>
+  <div class="flex items-center gap-2.5 flex-wrap">
+    <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-mono text-[11px] font-semibold">
+      <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+      MODE AUDIT ACTIF
+    </span>
+    <span class="text-zinc-300 font-medium">Vue Blueprint & Télémétrie d'ingénierie logicielle activées.</span>
+    <span class="hidden md:inline text-zinc-500">Raccourci : <kbd class="px-1.5 py-0.5 rounded bg-zinc-800 border border-zinc-700 text-zinc-400 font-mono text-[10px]">Échap</kbd> ou <kbd class="px-1.5 py-0.5 rounded bg-zinc-800 border border-zinc-700 text-zinc-400 font-mono text-[10px]">Ctrl+Shift+D</kbd></span>
+  </div>
+
+  <button
+    id="audit-banner-close"
+    type="button"
+    class="text-zinc-400 hover:text-white px-2 py-1 rounded hover:bg-zinc-800 transition-colors flex items-center gap-1 font-medium"
+    aria-label="Désactiver le mode audit"
+  >
+    <span>Fermer</span>
+    <X class="w-3.5 h-3.5" />
+  </button>
+</div>
+
+<!-- Panneau Flottant (Cockpit HUD) de Télémétrie et d'Éco-conception -->
+<aside
+  id="audit-hud-panel"
+  class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-[420px] max-w-full bg-[#18181B] text-zinc-200 border border-[#27272A] rounded-2xl shadow-2xl overflow-hidden translate-y-12 opacity-0 pointer-events-none transition-all duration-300 ease-out"
+  aria-label="Console d'audit technique et télémétrie"
+>
+  <!-- En-tête du Panneau HUD -->
+  <div class="px-4 py-3 bg-[#121214] border-b border-[#27272A] flex items-center justify-between">
+    <div class="flex items-center gap-2.5">
+      <div class="w-7 h-7 rounded-lg bg-zinc-800 border border-zinc-700 flex items-center justify-center text-zinc-200">
+        <Terminal class="w-4 h-4 text-emerald-400" />
+      </div>
+      <div>
+        <h2 class="text-xs font-bold uppercase tracking-wider text-white font-mono flex items-center gap-1.5">
+          <span>Audit & Télémétrie</span>
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+        </h2>
+        <p class="text-[10px] text-zinc-400 font-mono">BTS SIO SLAM • Quentin Machu</p>
+      </div>
+    </div>
+
+    <!-- Commandes d'en-tête (Copie et Fermeture) -->
+    <div class="flex items-center gap-1">
+      <button
+        id="audit-copy-btn"
+        type="button"
+        title="Copier le rapport de télémétrie"
+        class="p-1.5 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors"
+        aria-label="Copier le rapport d'audit"
+      >
+        <Copy class="w-4 h-4" id="audit-copy-icon" />
+        <Check class="w-4 h-4 text-emerald-400 hidden" id="audit-check-icon" />
+      </button>
+
+      <button
+        id="audit-hud-close"
+        type="button"
+        title="Fermer la console (Échap)"
+        class="p-1.5 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors"
+        aria-label="Fermer la console d'audit"
+      >
+        <X class="w-4 h-4" />
+      </button>
+    </div>
+  </div>
+
+  <!-- Barre d'onglets de navigation du HUD -->
+  <div class="flex border-b border-[#27272A] bg-[#18181B] text-[11px] font-medium">
+    <button
+      type="button"
+      id="tab-btn-eco"
+      class="hud-tab-btn flex-1 py-2 px-3 text-center border-b-2 border-white text-white font-semibold flex items-center justify-center gap-1.5 transition-colors"
+      data-tab="eco"
+    >
+      <Leaf class="w-3.5 h-3.5 text-emerald-400" />
+      <span>Éco-conception</span>
+    </button>
+    <button
+      type="button"
+      id="tab-btn-perf"
+      class="hud-tab-btn flex-1 py-2 px-3 text-center border-b-2 border-transparent text-zinc-400 hover:text-zinc-200 flex items-center justify-center gap-1.5 transition-colors"
+      data-tab="perf"
+    >
+      <Cpu class="w-3.5 h-3.5 text-zinc-400" />
+      <span>Architecture</span>
+    </button>
+    <button
+      type="button"
+      id="tab-btn-referentiel"
+      class="hud-tab-btn flex-1 py-2 px-3 text-center border-b-2 border-transparent text-zinc-400 hover:text-zinc-200 flex items-center justify-center gap-1.5 transition-colors"
+      data-tab="referentiel"
+    >
+      <ShieldCheck class="w-3.5 h-3.5 text-zinc-400" />
+      <span>Référentiel E4</span>
+    </button>
+  </div>
+
+  <!-- Contenu des Onglets -->
+  <div class="p-4 space-y-3.5 max-h-[380px] overflow-y-auto text-xs">
+    
+    <!-- Onglet 1 : Éco-conception & Green IT -->
+    <div id="tab-content-eco" class="hud-tab-pane space-y-3">
+      <div class="p-3 rounded-xl bg-zinc-900/90 border border-zinc-800 flex items-center justify-between">
+        <div class="space-y-0.5">
+          <span class="text-[10px] uppercase font-mono tracking-wider text-zinc-400 block">Indice Éco-responsable</span>
+          <span class="text-sm font-bold text-white flex items-center gap-1.5">
+            <span>Score EcoIndex</span>
+            <span class="text-emerald-400 text-xs font-mono font-normal">A (88/100)</span>
+          </span>
+        </div>
+        <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center font-title font-black text-emerald-400 text-lg">
+          A
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-2.5">
+        <div class="p-2.5 rounded-lg bg-zinc-900/60 border border-zinc-800/80">
+          <span class="text-[10px] text-zinc-400 block font-mono">Empreinte Carbone</span>
+          <span class="text-xs font-bold text-zinc-100 font-mono mt-0.5 block">~0.08 g CO₂e</span>
+          <span class="text-[10px] text-emerald-400/90 mt-0.5 block">Par consultation</span>
+        </div>
+
+        <div class="p-2.5 rounded-lg bg-zinc-900/60 border border-zinc-800/80">
+          <span class="text-[10px] text-zinc-400 block font-mono">Empreinte Eau</span>
+          <span class="text-xs font-bold text-zinc-100 font-mono mt-0.5 block">~0.12 cL</span>
+          <span class="text-[10px] text-emerald-400/90 mt-0.5 block">Cycle de vie sobre</span>
+        </div>
+
+        <div class="p-2.5 rounded-lg bg-zinc-900/60 border border-zinc-800/80">
+          <span class="text-[10px] text-zinc-400 block font-mono">Arborescence DOM</span>
+          <span class="text-xs font-bold text-zinc-100 font-mono mt-0.5 block" id="audit-dom-count">Calcul...</span>
+          <span class="text-[10px] text-zinc-400 mt-0.5 block">Nœuds optimisés</span>
+        </div>
+
+        <div class="p-2.5 rounded-lg bg-zinc-900/60 border border-zinc-800/80">
+          <span class="text-[10px] text-zinc-400 block font-mono">Cookies & Traceurs</span>
+          <span class="text-xs font-bold text-emerald-400 font-mono mt-0.5 block">0 Cookie</span>
+          <span class="text-[10px] text-zinc-400 mt-0.5 block">Conformité RGPD</span>
+        </div>
+      </div>
+
+      <p class="text-[11px] text-zinc-400 leading-relaxed border-t border-zinc-800/80 pt-2.5">
+        Ce portfolio respecte les bonnes pratiques du numérique responsable : zéro ressource superflue, compilation statique SSG et typographie système priorisée.
+      </p>
+    </div>
+
+    <!-- Onglet 2 : Architecture & Performance Technique -->
+    <div id="tab-content-perf" class="hud-tab-pane space-y-3 hidden">
+      <div class="space-y-2">
+        <div class="flex items-center justify-between text-[11px] py-1 border-b border-zinc-800">
+          <span class="text-zinc-400 font-mono">Framework & Moteur</span>
+          <span class="text-zinc-100 font-semibold font-mono">Astro 4 (SSG Pur)</span>
+        </div>
+        <div class="flex items-center justify-between text-[11px] py-1 border-b border-zinc-800">
+          <span class="text-zinc-400 font-mono">Design System</span>
+          <span class="text-zinc-100 font-semibold font-mono">Tailwind CSS (Monochrome)</span>
+        </div>
+        <div class="flex items-center justify-between text-[11px] py-1 border-b border-zinc-800">
+          <span class="text-zinc-400 font-mono">Poids JavaScript Client</span>
+          <span class="text-emerald-400 font-semibold font-mono">&lt; 6 Ko (Zero Framework)</span>
+        </div>
+        <div class="flex items-center justify-between text-[11px] py-1 border-b border-zinc-800">
+          <span class="text-zinc-400 font-mono">Schémas & Contrats</span>
+          <span class="text-zinc-100 font-semibold font-mono">TypeScript + Zod Collections</span>
+        </div>
+        <div class="flex items-center justify-between text-[11px] py-1 border-b border-zinc-800">
+          <span class="text-zinc-400 font-mono">Temps First Contentful Paint</span>
+          <span class="text-emerald-400 font-semibold font-mono">&lt; 300 ms (Immédiat)</span>
+        </div>
+        <div class="flex items-center justify-between text-[11px] py-1">
+          <span class="text-zinc-400 font-mono">Hébergement & Déploiement</span>
+          <span class="text-zinc-100 font-semibold font-mono">GitHub Pages / Actions CI</span>
+        </div>
+      </div>
+
+      <div class="p-2.5 rounded-lg bg-zinc-900/60 border border-zinc-800/80 text-[11px] text-zinc-300">
+        <span class="font-semibold text-white block mb-1">Architecture sans serveur (Serverless)</span>
+        Le pré-rendu HTML à la compilation garantit une tolérance de charge maximale avec des coûts d'infrastructure nuls et une sécurité étanche contre les failles d'injection.
+      </div>
+    </div>
+
+    <!-- Onglet 3 : Référentiel BTS SIO SLAM (Épreuve E4) -->
+    <div id="tab-content-referentiel" class="hud-tab-pane space-y-3 hidden">
+      <div class="space-y-2 text-[11px]">
+        <div class="p-2.5 rounded-lg bg-zinc-900/60 border border-zinc-800/80 space-y-1">
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-white">Bloc 1 — Support & Patrimoine</span>
+            <span class="text-emerald-400 font-mono text-[10px]">100% Couvert</span>
+          </div>
+          <p class="text-zinc-400 text-[10px] leading-relaxed">
+            Gestion du versioning (Git/GitHub), maintien en condition opérationnelle, documentation technique et veille réglementaire.
+          </p>
+        </div>
+
+        <div class="p-2.5 rounded-lg bg-zinc-900/60 border border-zinc-800/80 space-y-1">
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-white">Réalisations Validées</span>
+            <span class="text-zinc-300 font-mono text-[10px]">5 Fiches E4</span>
+          </div>
+          <p class="text-zinc-400 text-[10px] leading-relaxed">
+            Constellation Labs (Freelance), Gestionnaire de Contacts (Desktop C#), Portfolio Web (SSG), Atelier Pro 2 & Stage 1re année.
+          </p>
+        </div>
+
+        <div class="p-2.5 rounded-lg bg-zinc-900/60 border border-zinc-800/80 space-y-1">
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-white">Méthodologie Projet</span>
+            <span class="text-zinc-300 font-mono text-[10px]">Approche Manager</span>
+          </div>
+          <p class="text-zinc-400 text-[10px] leading-relaxed">
+            Spécifications fonctionnelles, contrats de données stricts, architecture modulaire et orientation B2B/B2C.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Pied de page du HUD -->
+  <div class="px-4 py-2.5 bg-[#121214] border-t border-[#27272A] flex items-center justify-between text-[11px] text-zinc-400">
+    <div class="flex items-center gap-1.5">
+      <Sparkles class="w-3.5 h-3.5 text-zinc-400" />
+      <span>Mode Développeur</span>
+    </div>
+
+    <button
+      id="audit-toggle-blueprint-btn"
+      type="button"
+      class="text-xs text-zinc-300 hover:text-white underline underline-offset-2 transition-colors font-medium"
+    >
+      Masquer les balises
+    </button>
+  </div>
+</aside>
+
+<!-- Styles spécifiques injectés dynamiquement pour les badges d'architecture (Blueprint Tags) -->
+<style is:global>
+  /* Style appliqué au document quand le mode audit est activé */
+  html.audit-mode-active {
+    scroll-behavior: smooth;
+  }
+
+  /* Cadre technique subtil sur les sections principales lors du mode audit */
+  html.audit-mode-active section,
+  html.audit-mode-active main > div,
+  html.audit-mode-active aside#sidebar-pane {
+    position: relative;
+    outline: 1px dashed rgba(113, 113, 122, 0.35);
+    outline-offset: -1px;
+  }
+
+  /* Badge technique d'inspection des composants (Injectés dynamiquement) */
+  .blueprint-tag {
+    position: absolute;
+    top: 6px;
+    right: 12px;
+    z-index: 25;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    background-color: #09090B;
+    color: #E4E4E7;
+    border: 1px solid #3F3F46;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    animation: blueprintFadeIn 0.3s ease-out forwards;
+  }
+
+  .blueprint-tag::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #10B981;
+    display: inline-block;
+  }
+
+  @keyframes blueprintFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+<!-- Script interactif d'écoute des déclencheurs et de gestion du HUD -->
+<script>
+  // Initialisation du contrôleur d'audit
+  (function () {
+    // Liste ordonnée de la séquence Konami Code
+    const KONAMI_CODE = [
+      'ArrowUp', 'ArrowUp',
+      'ArrowDown', 'ArrowDown',
+      'ArrowLeft', 'ArrowRight',
+      'ArrowLeft', 'ArrowRight',
+      'b', 'a'
+    ];
+    let konamiIndex = 0;
+
+    // Définition des cartographies d'architecture à inspecter sur la page
+    const BLUEPRINT_MAP = [
+      { selector: '#sidebar-pane', label: 'COMPOSANT: Sidebar.astro | Statique SSG | Navigation Latérale' },
+      { selector: '#hero', label: 'COMPOSANT: Hero.astro | Rendu Serveur Statique | Identité & SEO' },
+      { selector: '#stage', label: 'COMPOSANT: AboutStage.astro | Recherche de Stage SLAM 2027' },
+      { selector: '#parcours', label: 'DONNÉES: timeline.json | Contrat TypeScript | Évolutions' },
+      { selector: '#competences', label: 'DONNÉES: skills.json | Référentiel BTS SIO SLAM (5 Domaines)' },
+      { selector: '#certifications', label: 'COMPOSANT: Certifications.astro | Justificatifs Académiques' },
+      { selector: '#projets', label: 'COLLECTIONS: Content Collections (Zod) | 5 Réalisations E4' },
+      { selector: '#veille', label: 'DONNÉES: veille.json | Protocole de Veille & Flux RSS' },
+      { selector: '#contact', label: 'COMPOSANT: Contact.astro | Formulaire Strict Sans Cookies' },
+      { selector: 'footer', label: 'COMPOSANT: Footer.astro | Conformité RGPD & Journal Git' }
+    ];
+
+    let isAuditActive = false;
+    let showBlueprintTags = true;
+
+    // Éléments du DOM
+    const gridOverlay = document.getElementById('blueprint-grid-overlay');
+    const topBanner = document.getElementById('audit-top-banner');
+    const hudPanel = document.getElementById('audit-hud-panel');
+    const hudCloseBtn = document.getElementById('audit-hud-close');
+    const bannerCloseBtn = document.getElementById('audit-banner-close');
+    const toggleTagsBtn = document.getElementById('audit-toggle-blueprint-btn');
+    const copyReportBtn = document.getElementById('audit-copy-btn');
+    const copyIcon = document.getElementById('audit-copy-icon');
+    const checkIcon = document.getElementById('audit-check-icon');
+    const domCountElem = document.getElementById('audit-dom-count');
+
+    // Mise à jour du compteur de nœuds DOM réels
+    function updateDomMetrics() {
+      if (domCountElem) {
+        try {
+          const totalNodes = document.querySelectorAll('*').length;
+          domCountElem.textContent = `${totalNodes} nœuds`;
+        } catch (e) {
+          console.error("Erreur lors du calcul du DOM :", e);
+        }
+      }
+    }
+
+    // Injection ou retrait des étiquettes Blueprint sur les sections du site
+    function setBlueprintTags(enabled: boolean) {
+      // Nettoyage préalable des étiquettes existantes
+      document.querySelectorAll('.blueprint-tag').forEach(tag => tag.remove());
+
+      if (!enabled) return;
+
+      BLUEPRINT_MAP.forEach(({ selector, label }) => {
+        const target = document.querySelector(selector);
+        if (target && target instanceof HTMLElement) {
+          const tag = document.createElement('div');
+          tag.className = 'blueprint-tag';
+          tag.textContent = label;
+          target.style.position = 'relative';
+          target.appendChild(tag);
+        }
+      });
+    }
+
+    // Bascule de l'état actif du Mode Audit
+    function toggleAuditMode(forceState?: boolean) {
+      isAuditActive = forceState !== undefined ? forceState : !isAuditActive;
+
+      if (isAuditActive) {
+        document.documentElement.classList.add('audit-mode-active');
+
+        // Affichage de la grille de fond
+        if (gridOverlay) {
+          gridOverlay.classList.remove('hidden');
+          requestAnimationFrame(() => {
+            gridOverlay.classList.remove('opacity-0');
+            gridOverlay.classList.add('opacity-100');
+          });
+        }
+
+        // Déploiement de la bannière supérieure
+        if (topBanner) {
+          topBanner.classList.remove('-translate-y-full');
+        }
+
+        // Déploiement du cockpit HUD
+        if (hudPanel) {
+          hudPanel.classList.remove('translate-y-12', 'opacity-0', 'pointer-events-none');
+          hudPanel.classList.add('translate-y-0', 'opacity-100', 'pointer-events-auto');
+        }
+
+        updateDomMetrics();
+        setBlueprintTags(showBlueprintTags);
+      } else {
+        document.documentElement.classList.remove('audit-mode-active');
+
+        // Masquage de la grille
+        if (gridOverlay) {
+          gridOverlay.classList.remove('opacity-100');
+          gridOverlay.classList.add('opacity-0');
+          setTimeout(() => {
+            if (!isAuditActive) gridOverlay.classList.add('hidden');
+          }, 300);
+        }
+
+        // Masquage de la bannière supérieure
+        if (topBanner) {
+          topBanner.classList.add('-translate-y-full');
+        }
+
+        // Repli du cockpit HUD
+        if (hudPanel) {
+          hudPanel.classList.remove('translate-y-0', 'opacity-100', 'pointer-events-auto');
+          hudPanel.classList.add('translate-y-12', 'opacity-0', 'pointer-events-none');
+        }
+
+        setBlueprintTags(false);
+      }
+    }
+
+    // Écoute du Konami Code et des raccourcis clavier
+    window.addEventListener('keydown', (e: KeyboardEvent) => {
+      // 1. Raccourci Développeur : Ctrl + Shift + D (ou Cmd + Shift + D)
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key.toLowerCase() === 'd') {
+        e.preventDefault();
+        toggleAuditMode();
+        return;
+      }
+
+      // 2. Touche Échap pour quitter le mode audit
+      if (e.key === 'Escape' && isAuditActive) {
+        e.preventDefault();
+        toggleAuditMode(false);
+        return;
+      }
+
+      // 3. Séquence Konami Code
+      const expectedKey = KONAMI_CODE[konamiIndex];
+      const pressedKey = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+
+      if (pressedKey === expectedKey.toLowerCase()) {
+        konamiIndex++;
+        if (konamiIndex === KONAMI_CODE.length) {
+          konamiIndex = 0;
+          toggleAuditMode(true);
+        }
+      } else {
+        konamiIndex = 0;
+      }
+    });
+
+    // Fermeture par les boutons de l'interface
+    if (hudCloseBtn) {
+      hudCloseBtn.addEventListener('click', () => toggleAuditMode(false));
+    }
+    if (bannerCloseBtn) {
+      bannerCloseBtn.addEventListener('click', () => toggleAuditMode(false));
+    }
+
+    // Bascule de la visibilité des badges Blueprint
+    if (toggleTagsBtn) {
+      toggleTagsBtn.addEventListener('click', () => {
+        showBlueprintTags = !showBlueprintTags;
+        setBlueprintTags(showBlueprintTags);
+        toggleTagsBtn.textContent = showBlueprintTags ? 'Masquer les balises' : 'Afficher les balises';
+      });
+    }
+
+    // Gestion des onglets du HUD
+    const tabs = ['eco', 'perf', 'referentiel'];
+    tabs.forEach(tabKey => {
+      const btn = document.getElementById(`tab-btn-${tabKey}`);
+      const content = document.getElementById(`tab-content-${tabKey}`);
+
+      if (btn && content) {
+        btn.addEventListener('click', () => {
+          // Désactivation de tous les onglets
+          tabs.forEach(k => {
+            const b = document.getElementById(`tab-btn-${k}`);
+            const c = document.getElementById(`tab-content-${k}`);
+            if (b && c) {
+              b.classList.remove('border-white', 'text-white', 'font-semibold');
+              b.classList.add('border-transparent', 'text-zinc-400');
+              c.classList.add('hidden');
+            }
+          });
+
+          // Activation de l'onglet sélectionné
+          btn.classList.remove('border-transparent', 'text-zinc-400');
+          btn.classList.add('border-white', 'text-white', 'font-semibold');
+          content.classList.remove('hidden');
+        });
+      }
+    });
+
+    // Copie du rapport d'audit dans le presse-papier
+    if (copyReportBtn) {
+      copyReportBtn.addEventListener('click', async () => {
+        const domCount = document.querySelectorAll('*').length;
+        const report = [
+          '=== RAPPORT D\'AUDIT TECHNIQUE & ÉCO-CONCEPTION ===',
+          'Projet : Portfolio BTS SIO SLAM — Quentin Machu',
+          'Date : ' + new Date().toLocaleDateString('fr-FR'),
+          '',
+          '[ÉCO-CONCEPTION & GREEN IT]',
+          '- Score EcoIndex : A (88/100)',
+          '- Émissions CO2 estimées : ~0.08 g CO2e / vue',
+          '- Consommation eau estimée : ~0.12 cL',
+          `- Nœuds DOM inspectés : ${domCount} nœuds`,
+          '- Traçabilité & Confidentialité : 0 cookie, 100% conforme RGPD',
+          '',
+          '[ARCHITECTURE LOGICIELLE]',
+          '- Moteur : Astro 4 (Static Site Generation)',
+          '- Poids JavaScript client : < 6 Ko',
+          '- Design System : Tailwind CSS monochrome titane',
+          '- Validations : Schémas stricts TypeScript / Zod',
+          '',
+          '[CONFORMITÉ RÉFÉRENTIEL]',
+          '- Épreuve E4 / Bloc 1 BTS SIO couvert'
+        ].join('\n');
+
+        try {
+          await navigator.clipboard.writeText(report);
+          if (copyIcon && checkIcon) {
+            copyIcon.classList.add('hidden');
+            checkIcon.classList.remove('hidden');
+            setTimeout(() => {
+              copyIcon.classList.remove('hidden');
+              checkIcon.classList.add('hidden');
+            }, 2000);
+          }
+        } catch (err) {
+          console.error("Échec de la copie du rapport :", err);
+        }
+      });
+    }
+
+    // Gestion du déclenchement par triple-clic sur les indicateurs de statut
+    let clickCount = 0;
+    let clickTimer: number | null = null;
+
+    function handleMultiClick() {
+      clickCount++;
+      if (clickTimer) window.clearTimeout(clickTimer);
+
+      if (clickCount >= 3) {
+        clickCount = 0;
+        toggleAuditMode();
+      } else {
+        clickTimer = window.setTimeout(() => {
+          clickCount = 0;
+        }, 500);
+      }
+    }
+
+    // Association aux éléments déclencheurs externes (statuts et boutons footer)
+    function attachExternalTriggers() {
+      // Pastilles de statut dans la sidebar
+      const statusIndicators = document.querySelectorAll('[data-audit-trigger]');
+      statusIndicators.forEach(elem => {
+        elem.addEventListener('click', handleMultiClick);
+      });
+
+      // Bouton dédié dans le footer s'il est présent
+      const footerTrigger = document.getElementById('footer-audit-trigger');
+      if (footerTrigger) {
+        footerTrigger.addEventListener('click', (e) => {
+          e.preventDefault();
+          toggleAuditMode();
+        });
+      }
+    }
+
+    // Attachement lors du chargement initial du DOM
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', attachExternalTriggers);
+    } else {
+      attachExternalTriggers();
+    }
+  })();
+</script>
