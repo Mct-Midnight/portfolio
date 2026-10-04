@@ -1,7 +1,8 @@
 ---
 // Section 2 : Profil & Recherche de Stage 2027
-import { Calendar, Clock, MapPin, CheckCircle2, ArrowRight, Target, Award } from 'lucide-astro';
+import { Calendar, Clock, MapPin, CheckCircle2, ArrowRight, Target, Award, FileText } from 'lucide-astro';
 import profileData from '../content/data/profile.json';
+import StageRecapModal from './StageRecapModal.astro';
 
 const { bio, internshipSearch } = profileData;
 ---
@@ -121,14 +122,27 @@ const { bio, internshipSearch } = profileData;
             </ul>
           </div>
 
-          <!-- Bouton CTA vers le contact -->
-          <a
-            href="#contact"
-            class="flex items-center justify-center gap-2 w-full py-3.5 px-4 rounded-xl bg-zinc-900 hover:bg-black dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-950 font-semibold text-sm transition-all duration-200 shadow-sm hover:shadow"
-          >
-            <span>{internshipSearch.callToAction}</span>
-            <ArrowRight class="w-4 h-4" />
-          </a>
+          <!-- Actions de candidature & Fiche synthèse RH -->
+          <div class="space-y-2.5 pt-2">
+            <!-- Bouton CTA vers le formulaire de contact -->
+            <a
+              href="#contact"
+              class="flex items-center justify-center gap-2 w-full py-3.5 px-4 rounded-xl bg-zinc-900 hover:bg-black dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-950 font-semibold text-sm transition-all duration-200 shadow-sm hover:shadow"
+            >
+              <span>{internshipSearch.callToAction}</span>
+              <ArrowRight class="w-4 h-4" />
+            </a>
+
+            <!-- Bouton secondaire ouvrant la fiche synthèse pour recruteurs et tuteurs -->
+            <button
+              type="button"
+              data-open-stage-modal
+              class="flex items-center justify-center gap-2 w-full py-3 px-4 rounded-xl bg-white hover:bg-zinc-50 dark:bg-zinc-900 dark:hover:bg-zinc-800 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-800 font-semibold text-sm transition-all duration-200 shadow-sm hover:shadow cursor-pointer"
+            >
+              <FileText class="w-4 h-4 text-zinc-700 dark:text-zinc-300" />
+              <span>Fiche Synthèse RH & Tuteur</span>
+            </button>
+          </div>
 
         </div>
 
@@ -136,4 +150,7 @@ const { bio, internshipSearch } = profileData;
     </div>
 
   </div>
+
+  <!-- Modale Fiche Synthèse Entreprise & RH -->
+  <StageRecapModal />
 </section>
