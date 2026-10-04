@@ -5,9 +5,9 @@ category: "professionnel"
 dateStart: "2026-09-01"
 dateEnd: "2026-10-04"
 tags: ["Astro 4", "Tailwind CSS", "TypeScript", "CI/CD GitHub Actions", "SEO & Performance", "Gestion de Projet"]
-demoUrl: "https://mct-midnight.github.io/portfolio/"
+demoUrl: ""
 repoUrl: "https://github.com/Mct-Midnight/portfolio"
-thumbnail: "/assets/images/projets/battle-station.jpg"
+thumbnail: "/assets/images/projets/portfolio-cover.png"
 featured: true
 ---
 
@@ -108,7 +108,6 @@ featured: true
 - **Ressources & Documentation :**
   - [Code source sur GitHub](https://github.com/Mct-Midnight/portfolio)
   - [Cahier des charges complet (docs/CAHIER_DES_CHARGES.md)](https://github.com/Mct-Midnight/portfolio/blob/main/docs/CAHIER_DES_CHARGES.md)
-  - [Démonstration interactive en direct](https://mct-midnight.github.io/portfolio/)
 
 ---
 
