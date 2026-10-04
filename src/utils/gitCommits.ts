@@ -204,14 +204,17 @@ function getLocalGitCommits(): GitCommit[] {
 // Récupération de secours via l'API GitHub si Git local n'est pas accessible
 async function getRemoteGithubCommits(): Promise<GitCommit[]> {
   try {
+    const headers: Record<string, string> = {
+      'User-Agent': 'Portfolio-Astro-App',
+      Accept: 'application/vnd.github.v3+json',
+    };
+    if (process.env.GITHUB_TOKEN) {
+      headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
+    }
+
     const response = await fetch(
       'https://api.github.com/repos/Mct-Midnight/portfolio/commits?per_page=100',
-      {
-        headers: {
-          'User-Agent': 'Portfolio-Astro-App',
-          Accept: 'application/vnd.github.v3+json',
-        },
-      }
+      { headers }
     );
 
     if (!response.ok) {
