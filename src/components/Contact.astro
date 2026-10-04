@@ -1,5 +1,5 @@
 ---
-import { MapPin, Phone, Mail, Github, Linkedin, Send, CheckCircle2, MessageSquare, User, AtSign, Tag, ShieldCheck, ChevronDown } from 'lucide-astro';
+import { MapPin, Phone, Mail, Github, Linkedin, Send, CheckCircle2, MessageSquare, User, AtSign, Tag, ShieldCheck, ChevronDown, X } from 'lucide-astro';
 import profileData from '../content/data/profile.json';
 
 const { identity, contact } = profileData;
@@ -83,6 +83,27 @@ const { identity, contact } = profileData;
         </div>
       </a>
 
+      <!-- Carte Discord -->
+      <a
+        href={contact.discord}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex-1 min-h-[76px] bg-white dark:bg-[#18181B] p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-[#27272A] shadow-card flex items-center gap-4 hover:border-zinc-400 dark:hover:border-zinc-500 group transition-all"
+      >
+        <div class="w-12 h-12 rounded-xl bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-700 flex items-center justify-center shrink-0 group-hover:bg-zinc-900 group-hover:text-white dark:group-hover:bg-zinc-100 dark:group-hover:text-zinc-950 group-hover:border-zinc-900 dark:group-hover:border-zinc-100 transition-colors">
+          <!-- Icône vectorielle Discord monochrome mat -->
+          <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.894.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+          </svg>
+        </div>
+        <div>
+          <span class="text-xs text-slate-500 dark:text-zinc-400 font-medium block">Messagerie tech & Collaboration</span>
+          <span class="text-sm font-bold text-slate-900 dark:text-zinc-100 group-hover:text-zinc-950 dark:group-hover:text-white transition-colors">
+            Discord / @{contact.discordUsername}
+          </span>
+        </div>
+      </a>
+
       <!-- Carte GitHub -->
       <a
         href={contact.github}
@@ -161,7 +182,7 @@ const { identity, contact } = profileData;
                 id="subject"
                 name="subject"
                 required
-                class="w-full px-3.5 py-2.5 pl-10 pr-10 rounded-xl border border-slate-300 dark:border-zinc-700 focus:outline-none focus:ring-2 focus:ring-zinc-900/20 dark:focus:ring-zinc-100/20 focus:border-zinc-900 dark:focus:border-zinc-400 text-sm bg-slate-50 dark:bg-zinc-900 text-slate-900 dark:text-zinc-100 transition-colors appearance-none cursor-pointer"
+                class="w-full px-3.5 py-2.5 pl-10 pr-10 rounded-xl border border-slate-300 dark:border-zinc-700 focus:outline-none focus:ring-2 focus:ring-zinc-900/20 dark:focus:ring-zinc-100/20 focus:border-zinc-900 dark:focus:border-zinc-400 text-sm bg-slate-50 dark:bg-zinc-900 text-slate-900 dark:text-zinc-100 transition-colors appearance-none cursor-pointer peer"
               >
                 <option value="Proposition de stage 2027 (SLAM)">🎯 Proposition de stage 2027 (SLAM)</option>
                 <option value="Collaboration technique">🔨 Collaboration technique</option>
@@ -169,7 +190,7 @@ const { identity, contact } = profileData;
                 <option value="Autre demande professionnelle">✉️ Autre demande professionnelle</option>
               </select>
               <Tag class="w-4 h-4 text-slate-400 dark:text-zinc-500 absolute left-3.5 top-3 pointer-events-none" />
-              <ChevronDown class="w-4 h-4 text-slate-400 dark:text-zinc-500 absolute right-3.5 top-3 pointer-events-none" />
+              <ChevronDown class="w-4 h-4 text-slate-400 dark:text-zinc-500 absolute right-3.5 top-3 pointer-events-none transition-transform duration-200 peer-focus:rotate-180" />
             </div>
           </div>
 
@@ -199,9 +220,6 @@ const { identity, contact } = profileData;
             <Send class="w-4 h-4" />
             <span>Envoyer le message</span>
           </button>
-
-          <!-- Zone de notification utilisateur -->
-          <div id="form-feedback" class="hidden p-4 rounded-xl text-xs font-medium border mt-3 transition-all duration-300"></div>
 
         </form>
 
@@ -240,15 +258,126 @@ const { identity, contact } = profileData;
       </a>
     </div>
   </div>
+
+  <!-- Fenêtre Pop-up (Modale) de confirmation au centre de l'écran -->
+  <div
+    id="contact-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modal-title"
+    class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-zinc-950/60 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300"
+  >
+    <div
+      id="contact-modal-box"
+      class="bg-white dark:bg-[#18181B] border border-slate-200 dark:border-[#27272A] rounded-3xl max-w-[490px] w-full p-6 sm:p-8 shadow-2xl relative transform scale-95 transition-all duration-300 text-center"
+    >
+      <!-- Bouton croix pour fermer -->
+      <button
+        type="button"
+        id="modal-close-btn"
+        aria-label="Fermer la fenêtre"
+        class="absolute top-4 right-4 p-2 rounded-xl text-slate-400 hover:text-slate-700 dark:hover:text-zinc-200 hover:bg-slate-100 dark:hover:bg-zinc-800 transition-colors"
+      >
+        <X class="w-4 h-4" />
+      </button>
+
+      <!-- Icône de confirmation avec anneau de relief -->
+      <div class="mx-auto w-12 h-12 rounded-2xl bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-700 flex items-center justify-center mb-4 ring-8 ring-zinc-50 dark:ring-zinc-900/50">
+        <CheckCircle2 class="w-6 h-6 text-zinc-900 dark:text-zinc-100" />
+      </div>
+
+      <!-- Titre principal -->
+      <h3 id="modal-title" class="text-xl font-bold font-title text-slate-900 dark:text-zinc-100">
+        Message envoyé avec succès !
+      </h3>
+
+      <!-- Description épurée sans répétition -->
+      <p class="text-sm text-slate-600 dark:text-zinc-400 mt-2">
+        Merci <strong class="text-slate-900 dark:text-zinc-100" id="modal-user-name"></strong>, votre demande a bien été transmise à Quentin.
+      </p>
+
+      <!-- Fiche récapitulative élégante (Accusé de réception) -->
+      <div class="mt-6 p-4 rounded-2xl bg-zinc-50 dark:bg-zinc-900/60 border border-zinc-200/80 dark:border-zinc-800 text-left space-y-2.5">
+        <div class="flex items-center justify-between text-xs gap-3">
+          <span class="text-slate-500 dark:text-zinc-400 font-medium shrink-0">Objet de la démarche</span>
+          <span id="modal-subject-badge" class="font-semibold text-slate-900 dark:text-zinc-100 bg-white dark:bg-zinc-800 px-2.5 py-1 rounded-lg border border-slate-200 dark:border-zinc-700 truncate max-w-[240px]">
+            <!-- Rempli dynamiquement -->
+          </span>
+        </div>
+        <div class="flex items-center justify-between text-xs pt-2.5 border-t border-slate-200/70 dark:border-zinc-800/80">
+          <span class="text-slate-500 dark:text-zinc-400 font-medium">Engagement de réponse</span>
+          <span class="inline-flex items-center gap-1.5 font-semibold text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 px-2.5 py-1 rounded-lg border border-emerald-200/60 dark:border-emerald-800/40">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            Sous 48 heures maximum
+          </span>
+        </div>
+      </div>
+
+      <!-- Bouton d'action CTA avec libellé Compris -->
+      <button
+        type="button"
+        id="modal-action-btn"
+        class="mt-6 w-full py-3.5 px-5 rounded-xl bg-zinc-900 hover:bg-black dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-950 font-semibold text-sm transition-all duration-200 shadow-sm"
+      >
+        Compris
+      </button>
+    </div>
+  </div>
 </section>
 
 <!-- Script de traitement du formulaire avec feedback propre -->
 <script>
   const form = document.getElementById('contact-form') as HTMLFormElement;
-  const feedback = document.getElementById('form-feedback');
   const submitBtn = document.getElementById('submit-btn');
   const subjectSelect = document.getElementById('subject') as HTMLSelectElement | null;
   const messageInput = document.getElementById('message') as HTMLTextAreaElement | null;
+
+  // Éléments de la fenêtre pop-up
+  const modal = document.getElementById('contact-modal');
+  const modalBox = document.getElementById('contact-modal-box');
+  const modalUserName = document.getElementById('modal-user-name');
+  const modalSubjectBadge = document.getElementById('modal-subject-badge');
+  const modalCloseBtn = document.getElementById('modal-close-btn');
+  const modalActionBtn = document.getElementById('modal-action-btn');
+
+  // Fonctions d'ouverture et fermeture de la modale
+  function openModal(name: string, subject: string) {
+    if (!modal || !modalBox) return;
+    if (modalUserName) {
+      modalUserName.textContent = name;
+    }
+    if (modalSubjectBadge) {
+      modalSubjectBadge.textContent = subject;
+    }
+    modal.classList.remove('opacity-0', 'pointer-events-none');
+    modalBox.classList.remove('scale-95');
+    modalBox.classList.add('scale-100');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    if (!modal || !modalBox) return;
+    modal.classList.add('opacity-0', 'pointer-events-none');
+    modalBox.classList.remove('scale-100');
+    modalBox.classList.add('scale-95');
+    document.body.style.overflow = '';
+  }
+
+  if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeModal);
+  if (modalActionBtn) modalActionBtn.addEventListener('click', closeModal);
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+  }
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal && !modal.classList.contains('pointer-events-none')) {
+      closeModal();
+    }
+  });
 
   // Adaptation du texte indicatif selon l'objet sélectionné
   const placeholders: Record<string, string> = {
@@ -264,10 +393,18 @@ const { identity, contact } = profileData;
       if (placeholders[selectedVal]) {
         messageInput.placeholder = placeholders[selectedVal];
       }
+      // Dès qu'une option est choisie, on retire le focus pour replacer la flèche vers le bas
+      subjectSelect.blur();
+    });
+
+    subjectSelect.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        subjectSelect.blur();
+      }
     });
   }
 
-  if (form && feedback && submitBtn) {
+  if (form && submitBtn) {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       
@@ -278,26 +415,19 @@ const { identity, contact } = profileData;
       const message = formData.get('message') as string;
 
       if (!name || !email || !message) {
-        feedback.className = 'p-4 rounded-xl text-xs font-semibold border bg-red-50 text-red-700 border-red-200 block';
-        feedback.textContent = 'Veuillez remplir l\'ensemble des champs obligatoires.';
+        form.reportValidity();
         return;
       }
 
-      // Simulation d'envoi et notification de succès
+      // Simulation d'envoi et ouverture de la modale au milieu de l'écran
       submitBtn.setAttribute('disabled', 'true');
       submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
 
       setTimeout(() => {
-        feedback.className = 'p-4 rounded-xl text-xs font-semibold border bg-emerald-50 text-emerald-800 border-emerald-200 block space-y-1';
-        feedback.innerHTML = `
-          <div class="flex items-center gap-2">
-            <strong>Message enregistré avec succès !</strong>
-          </div>
-          <p class="text-emerald-700 font-normal">Merci ${name}, votre message relatif à « ${subject} » a bien été pris en compte. Une copie sera transmise à Quentin Machu.</p>
-        `;
         form.reset();
         submitBtn.removeAttribute('disabled');
         submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
+        openModal(name, subject);
       }, 500);
     });
   }
