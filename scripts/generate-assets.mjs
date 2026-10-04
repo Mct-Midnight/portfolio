@@ -78,6 +78,10 @@ const files = [
   { path: 'public/assets/images/projets/ap2-usecase.png', w: 800, h: 450, color: moka },
   { path: 'public/assets/images/projets/stage-architecture-placeholder.png', w: 800, h: 450, color: espresso },
   { path: 'public/assets/images/projets/stage-ui-placeholder.png', w: 800, h: 450, color: sage },
+  { path: 'public/assets/images/projets/portfolio-dualpane.png', w: 800, h: 450, color: espresso },
+  { path: 'public/assets/images/projets/portfolio-architecture.png', w: 800, h: 450, color: terracotta },
+  { path: 'public/assets/images/projets/portfolio-cicd.png', w: 800, h: 450, color: sage },
+  { path: 'public/assets/images/projets/portfolio-lighthouse.png', w: 800, h: 450, color: moka },
 ];
 
 for (const f of files) {
