@@ -1,0 +1,41 @@
+# Pipeline d'intégration continue et de non-régression (GitHub Actions)
+# Portfolio BTS SIO SLAM - Quentin Machu
+name: Contrôle Qualité & Intégration Continue
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch: # Permet de lancer manuellement l'audit depuis l'interface GitHub
+
+jobs:
+  qualite-et-tests:
+    name: Validation & Non-Régression
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Récupération de l'ensemble de l'historique Git pour le journal de bord
+      - name: Récupération du dépôt Git
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # 2. Configuration de l'environnement Node.js LTS avec mise en cache
+      - name: Configuration de Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      # 3. Installation stricte et reproductible des dépendances
+      - name: Installation des dépendances
+        run: npm ci
+
+      # 4. Exécution unifiée de l'audit d'intégrité et de la compilation Astro
+      - name: Exécution des tests automatisés (npm test)
+        run: npm test
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

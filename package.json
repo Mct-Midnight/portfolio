@@ -8,7 +8,8 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "test": "node scripts/audit-qualite.mjs && astro build"
   },
   "dependencies": {
     "@astrojs/tailwind": "^6.0.2",
