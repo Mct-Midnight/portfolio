@@ -389,31 +389,35 @@ const latestCommit = commits[0];
     btn.addEventListener('click', () => {
       currentFilter = btn.getAttribute('data-filter') || 'all';
 
-      // Mise à jour de l'apparence des onglets sans conflit de survol
+      const activeClasses = [
+        'bg-zinc-900',
+        'dark:bg-zinc-100',
+        'text-white',
+        'dark:text-zinc-950',
+        'border-transparent',
+        'shadow-sm',
+      ];
+      const inactiveClasses = [
+        'bg-white',
+        'dark:bg-zinc-900',
+        'text-zinc-600',
+        'dark:text-zinc-300',
+        'border-zinc-200',
+        'dark:border-zinc-700',
+        'hover:text-zinc-950',
+        'dark:hover:text-white',
+        'hover:border-zinc-300',
+        'dark:hover:border-zinc-600',
+      ];
+
+      // Mise à jour de l'apparence des onglets sans conflit de survol ni d'incohérence de thème
       filterButtons.forEach((b) => {
         if (b === btn) {
-          b.classList.remove(
-            'bg-white',
-            'text-zinc-600',
-            'text-slate-600',
-            'border-zinc-200',
-            'border-slate-200',
-            'hover:text-zinc-950',
-            'hover:text-slate-900',
-            'hover:border-zinc-300',
-            'hover:border-slate-300'
-          );
-          b.classList.add('bg-zinc-900', 'text-white', 'border-transparent', 'shadow-sm');
+          b.classList.remove(...inactiveClasses);
+          b.classList.add(...activeClasses);
         } else {
-          b.classList.remove('bg-zinc-900', 'text-white', 'border-transparent', 'shadow-sm');
-          b.classList.add(
-            'bg-white',
-            'text-zinc-600',
-            'border',
-            'border-zinc-200',
-            'hover:text-zinc-950',
-            'hover:border-zinc-300'
-          );
+          b.classList.remove(...activeClasses);
+          b.classList.add(...inactiveClasses);
         }
       });
 
