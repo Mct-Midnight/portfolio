@@ -63,7 +63,7 @@ const { identity, contact, internshipSearch } = profileData;
         </div>
 
         <!-- 1. En-tête principal : Fiche de synthèse pour l'entreprise d'accueil -->
-        <header class="bg-white dark:bg-[#18181B] rounded-2xl p-6 sm:p-8 border border-slate-200 dark:border-[#27272A] shadow-card mb-8 space-y-4">
+        <header class="bg-white dark:bg-[#18181B] rounded-2xl p-6 sm:p-8 border border-slate-200 dark:border-[#27272A] shadow-card hover:shadow-card-hover hover:border-zinc-400 dark:hover:border-zinc-500 transition-all duration-200 mb-8 space-y-4">
           <div class="flex items-center gap-2.5">
             <span class="p-2 bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded-xl border border-zinc-200 dark:border-zinc-700">
               <Briefcase class="w-5 h-5" />
@@ -83,75 +83,77 @@ const { identity, contact, internshipSearch } = profileData;
           </p>
         </header>
 
-        <!-- 2. Section A : Le cadre en 3 points clés -->
+        <!-- 2. Section A : Le cadre en 3 points clés (Réunis dans un encadré unique avec séparateurs) -->
         <section class="mb-8">
           <div class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-zinc-500 mb-4 font-title">
             Le Cadre en 3 Points Clés
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            
-            <!-- Pilier 1 : Gratification légale -->
-            <div class="bg-white dark:bg-[#18181B] rounded-2xl p-6 border border-slate-200 dark:border-[#27272A] shadow-card flex flex-col justify-between">
-              <div>
-                <div class="flex items-center gap-2 text-zinc-900 dark:text-zinc-100 mb-2">
-                  <Coins class="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
-                  <span class="text-xs font-bold font-title">Gratification</span>
+          <div class="bg-white dark:bg-[#18181B] rounded-2xl border border-slate-200 dark:border-[#27272A] shadow-card hover:shadow-card-hover hover:border-zinc-400 dark:hover:border-zinc-500 transition-all duration-200 overflow-hidden">
+            <div class="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-slate-200 dark:divide-zinc-800">
+              
+              <!-- Point 1 : Gratification légale -->
+              <div class="p-6 sm:p-7 flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center gap-2 text-zinc-900 dark:text-zinc-100 mb-2">
+                    <Coins class="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+                    <span class="text-xs font-bold font-title">Gratification</span>
+                  </div>
+                  <p class="text-3xl font-bold font-title tracking-tight text-slate-900 dark:text-white">
+                    0 € légal
+                  </p>
+                  <p class="text-xs sm:text-sm text-slate-600 dark:text-zinc-400 mt-2 leading-relaxed">
+                    Durée de stage inférieure au seuil légal de 2 mois consécutifs (308h - art. L124-6 du Code de l'éducation). Gratification facultative.
+                  </p>
                 </div>
-                <p class="text-3xl font-bold font-title tracking-tight text-slate-900 dark:text-white">
-                  0 € légal
-                </p>
-                <p class="text-xs sm:text-sm text-slate-600 dark:text-zinc-400 mt-2 leading-relaxed">
-                  Durée de stage inférieure au seuil légal de 2 mois consécutifs (308h - art. L124-6 du Code de l'éducation). Gratification facultative.
-                </p>
-              </div>
-              <div class="mt-4 pt-3 border-t border-slate-100 dark:border-zinc-800 text-[11px] text-slate-400 dark:text-zinc-500 font-medium">
-                Zéro charge financière imposée
-              </div>
-            </div>
-
-            <!-- Pilier 2 : Durée & Calendrier -->
-            <div class="bg-white dark:bg-[#18181B] rounded-2xl p-6 border border-slate-200 dark:border-[#27272A] shadow-card flex flex-col justify-between">
-              <div>
-                <div class="flex items-center gap-2 text-zinc-900 dark:text-zinc-100 mb-2">
-                  <Calendar class="w-5 h-5 text-zinc-700 dark:text-zinc-300" />
-                  <span class="text-xs font-bold font-title">Calendrier</span>
+                <div class="mt-4 pt-3 border-t border-slate-100 dark:border-zinc-800 text-[11px] text-slate-400 dark:text-zinc-500 font-medium">
+                  Zéro charge financière imposée
                 </div>
-                <p class="text-3xl font-bold font-title tracking-tight text-slate-900 dark:text-white">
-                  4 à 5 sem.
-                </p>
-                <p class="text-xs sm:text-sm text-slate-600 dark:text-zinc-400 mt-2 leading-relaxed">
-                  Période cible de Mai à Août 2027. Dates modulables selon les disponibilités et les jalons de vos projets en entreprise.
-                </p>
               </div>
-              <div class="mt-4 pt-3 border-t border-slate-100 dark:border-zinc-800 text-[11px] text-slate-400 dark:text-zinc-500 font-medium">
-                Temps plein (35h / semaine)
-              </div>
-            </div>
 
-            <!-- Pilier 3 : Cadre légal & Convention -->
-            <div class="bg-white dark:bg-[#18181B] rounded-2xl p-6 border border-slate-200 dark:border-[#27272A] shadow-card flex flex-col justify-between">
-              <div>
-                <div class="flex items-center gap-2 text-zinc-900 dark:text-zinc-100 mb-2">
-                  <ShieldCheck class="w-5 h-5 text-zinc-700 dark:text-zinc-300" />
-                  <span class="text-xs font-bold font-title">Cadre Légal</span>
+              <!-- Point 2 : Durée & Calendrier -->
+              <div class="p-6 sm:p-7 flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center gap-2 text-zinc-900 dark:text-zinc-100 mb-2">
+                    <Calendar class="w-5 h-5 text-zinc-700 dark:text-zinc-300" />
+                    <span class="text-xs font-bold font-title">Calendrier</span>
+                  </div>
+                  <p class="text-3xl font-bold font-title tracking-tight text-slate-900 dark:text-white">
+                    4 à 5 sem.
+                  </p>
+                  <p class="text-xs sm:text-sm text-slate-600 dark:text-zinc-400 mt-2 leading-relaxed">
+                    Période cible de Mai à Août 2027. Dates modulables selon les disponibilités et les jalons de vos projets en entreprise.
+                  </p>
                 </div>
-                <p class="text-3xl font-bold font-title tracking-tight text-slate-900 dark:text-white">
-                  100% Cadré
-                </p>
-                <p class="text-xs sm:text-sm text-slate-600 dark:text-zinc-400 mt-2 leading-relaxed">
-                  Convention tripartite officielle émise par le CNED. Étudiant couvert par l'assurance scolaire et la responsabilité civile.
-                </p>
+                <div class="mt-4 pt-3 border-t border-slate-100 dark:border-zinc-800 text-[11px] text-slate-400 dark:text-zinc-500 font-medium">
+                  Temps plein (35h / semaine)
+                </div>
               </div>
-              <div class="mt-4 pt-3 border-t border-slate-100 dark:border-zinc-800 text-[11px] text-slate-400 dark:text-zinc-500 font-medium">
-                Signature dématérialisée rapide
-              </div>
-            </div>
 
+              <!-- Point 3 : Cadre légal & Convention -->
+              <div class="p-6 sm:p-7 flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center gap-2 text-zinc-900 dark:text-zinc-100 mb-2">
+                    <ShieldCheck class="w-5 h-5 text-zinc-700 dark:text-zinc-300" />
+                    <span class="text-xs font-bold font-title">Cadre Légal</span>
+                  </div>
+                  <p class="text-3xl font-bold font-title tracking-tight text-slate-900 dark:text-white">
+                    100% Cadré
+                  </p>
+                  <p class="text-xs sm:text-sm text-slate-600 dark:text-zinc-400 mt-2 leading-relaxed">
+                    Convention tripartite officielle émise par le CNED. Étudiant couvert par l'assurance scolaire et la responsabilité civile.
+                  </p>
+                </div>
+                <div class="mt-4 pt-3 border-t border-slate-100 dark:border-zinc-800 text-[11px] text-slate-400 dark:text-zinc-500 font-medium">
+                  Signature dématérialisée rapide
+                </div>
+              </div>
+
+            </div>
           </div>
         </section>
 
-        <!-- 3. Section B : Missions & Compétences Opérationnelles -->
+        <!-- 3. Section B : Missions & Compétences Opérationnelles avec effet de survol feutré -->
         <section class="mb-8">
           <div class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-zinc-500 mb-4 font-title">
             Missions & Compétences Directes (1re Année SLAM)
@@ -160,9 +162,9 @@ const { identity, contact, internshipSearch } = profileData;
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-stretch">
             
             <!-- Compétence 1 : Front-End -->
-            <div class="bg-white dark:bg-[#18181B] rounded-2xl p-6 border border-slate-200 dark:border-[#27272A] shadow-card flex flex-col justify-between h-full hover:border-slate-300 dark:hover:border-zinc-700 transition-colors">
+            <div class="bg-white dark:bg-[#18181B] rounded-2xl p-6 border border-slate-200 dark:border-[#27272A] shadow-card hover:shadow-card-hover hover:-translate-y-1 hover:border-zinc-400 dark:hover:border-zinc-500 transition-all duration-200 flex flex-col justify-between h-full group cursor-default">
               <div class="flex items-center gap-3 mb-3">
-                <div class="w-9 h-9 rounded-xl bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center text-zinc-900 dark:text-zinc-100 shrink-0">
+                <div class="w-9 h-9 rounded-xl bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center text-zinc-900 dark:text-zinc-100 shrink-0 transition-transform group-hover:scale-110">
                   <Laptop class="w-5 h-5" />
                 </div>
                 <h2 class="font-bold text-base text-slate-900 dark:text-zinc-100 font-title">
@@ -175,9 +177,9 @@ const { identity, contact, internshipSearch } = profileData;
             </div>
 
             <!-- Compétence 2 : Bases de données -->
-            <div class="bg-white dark:bg-[#18181B] rounded-2xl p-6 border border-slate-200 dark:border-[#27272A] shadow-card flex flex-col justify-between h-full hover:border-slate-300 dark:hover:border-zinc-700 transition-colors">
+            <div class="bg-white dark:bg-[#18181B] rounded-2xl p-6 border border-slate-200 dark:border-[#27272A] shadow-card hover:shadow-card-hover hover:-translate-y-1 hover:border-zinc-400 dark:hover:border-zinc-500 transition-all duration-200 flex flex-col justify-between h-full group cursor-default">
               <div class="flex items-center gap-3 mb-3">
-                <div class="w-9 h-9 rounded-xl bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center text-zinc-900 dark:text-zinc-100 shrink-0">
+                <div class="w-9 h-9 rounded-xl bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center text-zinc-900 dark:text-zinc-100 shrink-0 transition-transform group-hover:scale-110">
                   <Database class="w-5 h-5" />
                 </div>
                 <h2 class="font-bold text-base text-slate-900 dark:text-zinc-100 font-title">
@@ -190,9 +192,9 @@ const { identity, contact, internshipSearch } = profileData;
             </div>
 
             <!-- Compétence 3 : Automatisation & Python -->
-            <div class="bg-white dark:bg-[#18181B] rounded-2xl p-6 border border-slate-200 dark:border-[#27272A] shadow-card flex flex-col justify-between h-full hover:border-slate-300 dark:hover:border-zinc-700 transition-colors">
+            <div class="bg-white dark:bg-[#18181B] rounded-2xl p-6 border border-slate-200 dark:border-[#27272A] shadow-card hover:shadow-card-hover hover:-translate-y-1 hover:border-zinc-400 dark:hover:border-zinc-500 transition-all duration-200 flex flex-col justify-between h-full group cursor-default">
               <div class="flex items-center gap-3 mb-3">
-                <div class="w-9 h-9 rounded-xl bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center text-zinc-900 dark:text-zinc-100 shrink-0">
+                <div class="w-9 h-9 rounded-xl bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center text-zinc-900 dark:text-zinc-100 shrink-0 transition-transform group-hover:scale-110">
                   <Workflow class="w-5 h-5" />
                 </div>
                 <h2 class="font-bold text-base text-slate-900 dark:text-zinc-100 font-title">
@@ -205,9 +207,9 @@ const { identity, contact, internshipSearch } = profileData;
             </div>
 
             <!-- Compétence 4 : Recette & Tests -->
-            <div class="bg-white dark:bg-[#18181B] rounded-2xl p-6 border border-slate-200 dark:border-[#27272A] shadow-card flex flex-col justify-between h-full hover:border-slate-300 dark:hover:border-zinc-700 transition-colors">
+            <div class="bg-white dark:bg-[#18181B] rounded-2xl p-6 border border-slate-200 dark:border-[#27272A] shadow-card hover:shadow-card-hover hover:-translate-y-1 hover:border-zinc-400 dark:hover:border-zinc-500 transition-all duration-200 flex flex-col justify-between h-full group cursor-default">
               <div class="flex items-center gap-3 mb-3">
-                <div class="w-9 h-9 rounded-xl bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center text-zinc-900 dark:text-zinc-100 shrink-0">
+                <div class="w-9 h-9 rounded-xl bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center text-zinc-900 dark:text-zinc-100 shrink-0 transition-transform group-hover:scale-110">
                   <ClipboardCheck class="w-5 h-5" />
                 </div>
                 <h2 class="font-bold text-base text-slate-900 dark:text-zinc-100 font-title">
@@ -222,24 +224,24 @@ const { identity, contact, internshipSearch } = profileData;
           </div>
         </section>
 
-        <!-- 4. Section C : Modalités de travail & Mobilité -->
+        <!-- 4. Section C : Modalités de travail & Mobilité (Ligne continue sans aucun saut de texte) -->
         <section class="mb-8">
-          <div class="bg-white dark:bg-[#18181B] rounded-2xl p-5 sm:p-6 border border-slate-200 dark:border-[#27272A] shadow-card flex flex-col sm:flex-row sm:items-center justify-center gap-6 sm:gap-12 text-xs sm:text-sm">
+          <div class="bg-white dark:bg-[#18181B] rounded-2xl p-4 sm:p-5 border border-slate-200 dark:border-[#27272A] shadow-card hover:shadow-card-hover hover:border-zinc-400 dark:hover:border-zinc-500 transition-all duration-200 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-10 text-xs sm:text-sm whitespace-nowrap">
             <div class="flex items-center gap-2.5 text-slate-700 dark:text-zinc-300">
-              <MapPin class="w-5 h-5 text-zinc-900 dark:text-zinc-100 shrink-0" />
+              <MapPin class="w-4 h-4 text-zinc-900 dark:text-zinc-100 shrink-0" />
               <span><strong>Présentiel :</strong> Cambrai (Hauts-de-France)</span>
             </div>
-            <div class="hidden sm:block w-px h-5 bg-slate-200 dark:bg-zinc-800" aria-hidden="true"></div>
+            <div class="hidden sm:block w-px h-4 bg-slate-200 dark:bg-zinc-800" aria-hidden="true"></div>
             <div class="flex items-center gap-2.5 text-slate-700 dark:text-zinc-300">
-              <Laptop class="w-5 h-5 text-zinc-900 dark:text-zinc-100 shrink-0" />
-              <span><strong>Télétravail :</strong> Total ou hybride (autonomie prouvée au CNED)</span>
+              <Laptop class="w-4 h-4 text-zinc-900 dark:text-zinc-100 shrink-0" />
+              <span><strong>Télétravail :</strong> Total ou hybride (autonomie CNED)</span>
             </div>
           </div>
         </section>
 
         <!-- 5. Section D : Contact direct du candidat & Téléchargement CV -->
         <section class="mb-10">
-          <div class="bg-zinc-900 dark:bg-[#18181B] text-white rounded-2xl p-6 sm:p-8 border border-zinc-800 shadow-card flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+          <div class="bg-zinc-900 dark:bg-[#18181B] text-white rounded-2xl p-6 sm:p-8 border border-zinc-800 shadow-card hover:shadow-card-hover hover:border-zinc-700 transition-all duration-200 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
             <div class="space-y-2">
               <h2 class="text-lg font-bold font-title text-white">
                 Contact Direct du Candidat
