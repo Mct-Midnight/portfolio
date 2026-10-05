@@ -39,6 +39,8 @@ console.log('1. Documents officiels et fichiers clés :');
 const fichiersCles = [
   { chemin: 'public/docs/CV_Quentin_Machu_BTS_SIO.pdf', label: 'CV au format PDF' },
   { chemin: 'public/favicon.svg', label: 'Favicon du site' },
+  { chemin: 'public/robots.txt', label: 'Fichier robots.txt' },
+  { chemin: 'public/assets/images/og-preview.png', label: 'Bannière de partage Open Graph (1200x630)' },
   { chemin: 'docs/REFERENTIEL_BLOC_1.md', label: 'Référentiel officiel Bloc 1' },
   { chemin: 'docs/TEMPLATE_FICHE_PROJET.md', label: 'Template officiel de fiche projet' },
   { chemin: 'docs/CAHIER_DES_CHARGES.md', label: 'Cahier des charges du portfolio' },
