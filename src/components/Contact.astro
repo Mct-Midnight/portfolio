@@ -192,7 +192,7 @@ const web3FormsAccessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY || '336fb
             <div class="relative">
               <select
                 id="subject"
-                name="subject"
+                name="Objet de la démarche"
                 required
                 class="w-full px-3.5 py-2.5 pl-10 pr-10 rounded-xl border border-slate-300 dark:border-zinc-700 focus:outline-none focus:ring-2 focus:ring-zinc-900/20 dark:focus:ring-zinc-100/20 focus:border-zinc-900 dark:focus:border-zinc-400 text-sm bg-slate-50 dark:bg-zinc-900 text-slate-900 dark:text-zinc-100 transition-colors appearance-none cursor-pointer peer"
               >
@@ -508,9 +508,13 @@ const web3FormsAccessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY || '336fb
       const formData = new FormData(form);
       const name = ((formData.get('name') as string) || '').trim();
       const email = ((formData.get('email') as string) || '').trim();
-      const subject = ((formData.get('subject') as string) || '').trim();
+      const subject = ((formData.get('Objet de la démarche') as string) || (formData.get('subject') as string) || '').trim();
       const message = ((formData.get('message') as string) || '').trim();
       const accessKey = ((formData.get('access_key') as string) || '').trim();
+
+      // On s'assure que Web3Forms affiche l'objet dans le corps du message ET dans le titre du mail
+      formData.set('Objet de la démarche', subject);
+      formData.set('subject', `[Portfolio BTS SIO] ${subject} — ${name}`);
 
       // Vérification minimale des champs obligatoires
       if (!name || !email || !message) {
