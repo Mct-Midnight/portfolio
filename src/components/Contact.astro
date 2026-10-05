@@ -8,7 +8,7 @@ const { identity, contact } = profileData;
 const web3FormsAccessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY || '336fb2cd-5483-4162-b403-e0deefc18ef9';
 
 // Récupération de l'URL Google Apps Script pour la synchronisation avec Google Sheets
-const googleSheetsScriptUrl = import.meta.env.PUBLIC_GOOGLE_SHEETS_SCRIPT_URL || '';
+const googleSheetsScriptUrl = import.meta.env.PUBLIC_GOOGLE_SHEETS_SCRIPT_URL || 'https://script.google.com/macros/s/AKfycbx-nXfOOcgN1-oU9oJOh_xJeVnaIqcnL4eEeEObPG5UunWMYkPmy4fnwEriPeSIY8QilQ/exec';
 ---
 
 <section id="contact" class="py-16 scroll-mt-20 border-t border-slate-200 dark:border-zinc-800">
@@ -198,7 +198,7 @@ const googleSheetsScriptUrl = import.meta.env.PUBLIC_GOOGLE_SHEETS_SCRIPT_URL ||
             <div class="relative">
               <select
                 id="subject"
-                name="Objet de la démarche"
+                name="Objet de la demande"
                 required
                 class="w-full px-3.5 py-2.5 pl-10 pr-10 rounded-xl border border-slate-300 dark:border-zinc-700 focus:outline-none focus:ring-2 focus:ring-zinc-900/20 dark:focus:ring-zinc-100/20 focus:border-zinc-900 dark:focus:border-zinc-400 text-sm bg-slate-50 dark:bg-zinc-900 text-slate-900 dark:text-zinc-100 transition-colors appearance-none cursor-pointer peer"
               >
@@ -514,12 +514,14 @@ const googleSheetsScriptUrl = import.meta.env.PUBLIC_GOOGLE_SHEETS_SCRIPT_URL ||
       const formData = new FormData(form);
       const name = ((formData.get('name') as string) || '').trim();
       const email = ((formData.get('email') as string) || '').trim();
-      const subject = ((formData.get('Objet de la démarche') as string) || (formData.get('subject') as string) || '').trim();
+      const subject = ((formData.get('Objet de la demande') as string) || (formData.get('Objet') as string) || (formData.get('Objet de la démarche') as string) || (formData.get('subject') as string) || '').trim();
       const message = ((formData.get('message') as string) || '').trim();
       const accessKey = ((formData.get('access_key') as string) || '').trim();
 
-      // On s'assure que Web3Forms affiche l'objet dans le corps du message ET dans le titre du mail
-      formData.set('Objet de la démarche', subject);
+      // On transmet l'objet sous la clé sans accent 'Objet de la demande' pour éviter tout bug d'encodage (dÃ©marche) dans Web3Forms
+      formData.delete('Objet de la démarche');
+      formData.delete('Objet');
+      formData.set('Objet de la demande', subject);
       formData.set('subject', `[Portfolio BTS SIO] ${subject} — ${name}`);
 
       // Vérification minimale des champs obligatoires

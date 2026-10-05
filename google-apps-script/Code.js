@@ -35,7 +35,7 @@ function doPost(e) {
     // Extraction et nettoyage des champs du formulaire
     var name = (data.name || data.nom || "Anonyme").toString().trim();
     var email = (data.email || data.mail || "Non renseigné").toString().trim();
-    var subject = (data.subject || data["Objet de la démarche"] || "Contact Portfolio").toString().trim();
+    var subject = (data.subject || data.Objet || data["Objet de la démarche"] || "Contact Portfolio").toString().trim();
     var message = (data.message || "").toString().trim();
 
     // 2. Accès à la feuille de calcul cible
