@@ -1,4 +1,4 @@
-// Script de génération de la bannière Open Graph et Twitter Cards (1200x630 px) - Thème Sombre & 3 Piliers Clés
+// Script de génération de la bannière Open Graph et Twitter Cards (1200x630 px) - Version Rééquilibrée & Footer Pleine Largeur
 import fs from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
@@ -13,7 +13,7 @@ const RACINE = path.resolve(__dirname, '..');
 const avatarPath = path.join(RACINE, 'public/assets/images/profile-avatar.jpg');
 const destinationPng = path.join(RACINE, 'public/assets/images/og-preview.png');
 
-console.log('--- Génération de la bannière Open Graph sombre avec 3 icônes clés (1200x630 px) ---');
+console.log('--- Génération de la bannière Open Graph rééquilibrée (1200x630 px) ---');
 
 // Encodage de l'avatar en base64 pour un rendu immédiat et sans dépendance réseau
 let avatarBase64 = '';
@@ -25,7 +25,7 @@ if (fs.existsSync(avatarPath)) {
   console.warn('⚠ Avatar introuvable, fallback sans photo');
 }
 
-// Gabarit HTML haute fidélité sur fond anthracite mat (#18181B) reposant pour les yeux
+// Gabarit HTML haute fidélité avec disposition en 2 étages (corps centré + footer pleine largeur)
 const htmlContent = `<!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -44,14 +44,14 @@ const htmlContent = `<!DOCTYPE html>
       height: 630px;
       background-color: #121214;
       background-image: 
-        radial-gradient(circle at 15% 15%, rgba(39, 39, 42, 0.45) 0%, transparent 45%),
-        radial-gradient(circle at 85% 85%, rgba(39, 39, 42, 0.35) 0%, transparent 45%);
+        radial-gradient(circle at 15% 20%, rgba(39, 39, 42, 0.45) 0%, transparent 45%),
+        radial-gradient(circle at 85% 80%, rgba(39, 39, 42, 0.35) 0%, transparent 45%);
       color: #FAFAFA;
       font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 34px;
+      padding: 32px;
       overflow: hidden;
     }
 
@@ -61,9 +61,9 @@ const htmlContent = `<!DOCTYPE html>
       background: #18181B;
       border: 1px solid #27272A;
       border-radius: 24px;
-      padding: 46px 52px;
+      padding: 42px 50px 32px 50px;
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       justify-content: space-between;
       position: relative;
       box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.65);
@@ -85,13 +85,24 @@ const htmlContent = `<!DOCTYPE html>
       border-radius: 24px;
     }
 
+    /* Zone principale contenant les deux colonnes rééquilibrées */
+    .main-body {
+      flex: 1;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 2;
+      padding-bottom: 20px;
+    }
+
     .left-col {
       flex: 1;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      z-index: 2;
-      padding-right: 44px;
+      justify-content: center;
+      gap: 24px;
+      padding-right: 48px;
     }
 
     .badges-row {
@@ -137,52 +148,51 @@ const htmlContent = `<!DOCTYPE html>
     }
 
     .main-title-section {
-      margin-top: 12px;
-      margin-bottom: 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
 
     .candidate-name {
       font-family: 'Montserrat', sans-serif;
-      font-size: 54px;
+      font-size: 56px;
       font-weight: 900;
       letter-spacing: -0.03em;
       color: #FFFFFF;
       line-height: 1.05;
-      margin-bottom: 10px;
       text-transform: uppercase;
     }
 
     .role-title {
-      font-size: 24px;
+      font-size: 25px;
       font-weight: 700;
       color: #E4E4E7;
-      margin-bottom: 14px;
     }
 
     .description {
-      font-size: 16px;
+      font-size: 17px;
       color: #A1A1AA;
       line-height: 1.6;
-      max-width: 610px;
-      margin-bottom: 18px;
+      max-width: 630px;
     }
 
-    /* Rangée des 3 piliers avec icônes concrètes */
+    /* Rangée des 3 piliers avec icônes concrètes et espacements harmonieux */
     .pillars-row {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
+      margin-top: 6px;
     }
 
     .pillar-card {
       display: inline-flex;
       align-items: center;
-      gap: 9px;
-      padding: 9px 15px;
+      gap: 10px;
+      padding: 11px 18px;
       background: #202024;
       border: 1px solid #2C2C30;
-      border-radius: 10px;
-      font-size: 13.5px;
+      border-radius: 12px;
+      font-size: 14px;
       font-weight: 600;
       color: #E4E4E7;
     }
@@ -192,45 +202,20 @@ const htmlContent = `<!DOCTYPE html>
       flex-shrink: 0;
     }
 
-    .footer-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-top: 1px solid #27272A;
-      padding-top: 18px;
-      margin-top: 8px;
-    }
-
-    .site-domain {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 15.5px;
-      font-weight: 600;
-      color: #FAFAFA;
-      letter-spacing: 0.01em;
-    }
-
-    .site-tag {
-      font-size: 13.5px;
-      font-weight: 500;
-      color: #71717A;
-    }
-
-    /* Colonne droite : Photo & Informations pratiques RH */
+    /* Colonne droite : Photo & Informations RH */
     .right-col {
       width: 320px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
       align-items: center;
+      gap: 20px;
       z-index: 2;
     }
 
     .photo-wrapper {
       position: relative;
-      width: 250px;
-      height: 250px;
+      width: 230px;
+      height: 230px;
       border-radius: 24px;
       padding: 5px;
       background: linear-gradient(135deg, #3F3F46 0%, #27272A 100%);
@@ -257,8 +242,8 @@ const htmlContent = `<!DOCTYPE html>
       width: 100%;
       background: #202024;
       border: 1px solid #2C2C30;
-      border-radius: 18px;
-      padding: 20px 22px;
+      border-radius: 16px;
+      padding: 18px 20px;
       display: flex;
       flex-direction: column;
       gap: 12px;
@@ -268,7 +253,7 @@ const htmlContent = `<!DOCTYPE html>
       display: flex;
       align-items: center;
       justify-content: space-between;
-      font-size: 14px;
+      font-size: 13.5px;
     }
 
     .meta-label {
@@ -280,12 +265,40 @@ const htmlContent = `<!DOCTYPE html>
       color: #FAFAFA;
       font-weight: 600;
     }
+
+    /* Barre de pied de page s'étendant proprement sur TOUTE la largeur de la carte */
+    .footer-bar {
+      width: 100%;
+      border-top: 1px solid #27272A;
+      padding-top: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 2;
+    }
+
+    .site-domain {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 15.5px;
+      font-weight: 600;
+      color: #FAFAFA;
+      letter-spacing: 0.01em;
+    }
+
+    .site-tag {
+      font-size: 13.5px;
+      font-weight: 500;
+      color: #71717A;
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="left-col">
-      <div>
+    <!-- Zone Principale Rééquilibrée : Les informations occupent l'espace naturellement sans vide -->
+    <div class="main-body">
+      <div class="left-col">
         <div class="badges-row">
           <div class="badge-sio">
             <span>BTS SIO SLAM</span>
@@ -306,7 +319,7 @@ const htmlContent = `<!DOCTYPE html>
           </p>
         </div>
 
-        <!-- Les 3 icônes concrètes demandées : Développeur, Base de données et Gestion de projet -->
+        <!-- Les 3 compétences avec icônes concrètes et la nouvelle icône de gestion de projet (Checklist de tâches) -->
         <div class="pillars-row">
           <!-- Icône 1 : Développeur (Code) -->
           <div class="pillar-card">
@@ -327,52 +340,53 @@ const htmlContent = `<!DOCTYPE html>
             <span>Bases de données</span>
           </div>
 
-          <!-- Icône 3 : Gestion & Organisation de projet -->
+          <!-- Icône 3 : Gestion de projet (Presse-papier avec coche de tâche accomplie / suivi de livraison) -->
           <div class="pillar-card">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3" y="3" width="18" height="18" rx="2"></rect>
-              <path d="M9 3v18"></path>
-              <path d="M9 15h12"></path>
+              <rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect>
+              <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+              <path d="m9 14 2 2 4-4"></path>
             </svg>
             <span>Gestion de projet</span>
           </div>
         </div>
       </div>
 
-      <div class="footer-row">
-        <div class="site-domain">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"></circle>
-            <line x1="2" y1="12" x2="22" y2="12"></line>
-            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-          </svg>
-          <span>mct-midnight.github.io</span>
+      <div class="right-col">
+        <div class="photo-wrapper">
+          <div class="photo-inner">
+            ${avatarBase64 ? `<img src="${avatarBase64}" alt="Quentin Machu" />` : ''}
+          </div>
         </div>
-        <div class="site-tag">Portfolio &amp; Épreuve E4</div>
+
+        <div class="card-meta">
+          <div class="meta-item">
+            <span class="meta-label">Mobilité</span>
+            <span class="meta-val">Cambrai (59) / Télétravail</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Période</span>
+            <span class="meta-val">Mai à Août 2027</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Durée</span>
+            <span class="meta-val">4 à 5 semaines</span>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="right-col">
-      <div class="photo-wrapper">
-        <div class="photo-inner">
-          ${avatarBase64 ? `<img src="${avatarBase64}" alt="Quentin Machu" />` : ''}
-        </div>
+    <!-- Barre de pied de page parfaitement alignée d'un bout à l'autre du cadre -->
+    <div class="footer-bar">
+      <div class="site-domain">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="2" y1="12" x2="22" y2="12"></line>
+          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+        </svg>
+        <span>mct-midnight.github.io</span>
       </div>
-
-      <div class="card-meta">
-        <div class="meta-item">
-          <span class="meta-label">Mobilité</span>
-          <span class="meta-val">Cambrai (59) / Télétravail</span>
-        </div>
-        <div class="meta-item">
-          <span class="meta-label">Période</span>
-          <span class="meta-val">Mai à Août 2027</span>
-        </div>
-        <div class="meta-item">
-          <span class="meta-label">Durée</span>
-          <span class="meta-val">4 à 5 semaines</span>
-        </div>
-      </div>
+      <div class="site-tag">Portfolio BTS SIO SLAM • Épreuve E4</div>
     </div>
   </div>
 </body>
