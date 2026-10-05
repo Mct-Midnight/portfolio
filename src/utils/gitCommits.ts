@@ -213,7 +213,7 @@ function getLocalGitCommits(): GitCommit[] {
   }
 }
 
-// Récupération de secours via l'API GitHub si Git local n'est pas accessible
+// Récupération de secours via l'API GitHub avec pagination automatique (lève la limite de 100 commits)
 async function getRemoteGithubCommits(): Promise<GitCommit[]> {
   try {
     const headers: Record<string, string> = {
@@ -224,23 +224,39 @@ async function getRemoteGithubCommits(): Promise<GitCommit[]> {
       headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
     }
 
-    const response = await fetch(
-      'https://api.github.com/repos/Mct-Midnight/portfolio/commits?per_page=100',
-      { headers }
-    );
+    const allCommitsRaw: any[] = [];
+    let page = 1;
+    const maxPages = 20; // Permet de récupérer jusqu'à 2 000 commits en toute sécurité
 
-    if (!response.ok) {
-      console.error('Réponse non valide de l\'API GitHub :', {
-        status: response.status,
-        statusText: response.statusText,
-      });
-      return [];
+    while (page <= maxPages) {
+      const response = await fetch(
+        `https://api.github.com/repos/Mct-Midnight/portfolio/commits?per_page=100&page=${page}`,
+        { headers }
+      );
+
+      if (!response.ok) {
+        console.error('Réponse non valide de l\'API GitHub :', {
+          status: response.status,
+          statusText: response.statusText,
+          page,
+        });
+        break;
+      }
+
+      const data = await response.json();
+      if (!Array.isArray(data) || data.length === 0) break;
+
+      allCommitsRaw.push(...data);
+
+      // Si la page compte moins de 100 commits, nous avons atteint la fin de l'historique
+      if (data.length < 100) break;
+
+      page++;
     }
 
-    const data = await response.json();
-    if (!Array.isArray(data)) return [];
+    if (allCommitsRaw.length === 0) return [];
 
-    return data.map((item: any) => {
+    return allCommitsRaw.map((item: any) => {
       const fullHash = item.sha;
       const hash = fullHash.substring(0, 7);
       const rawDate = item.commit?.author?.date || new Date().toISOString();
