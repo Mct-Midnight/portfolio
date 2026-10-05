@@ -1,0 +1,6 @@
+# Configuration d'exploration pour les moteurs de recherche (SEO BTS SIO SLAM)
+User-agent: *
+Allow: /
+
+# Référence absolue vers le plan de site XML généré
+Sitemap: https://quentin-machu-portfolio.vercel.app/sitemap-index.xml
