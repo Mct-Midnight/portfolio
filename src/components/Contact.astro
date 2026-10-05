@@ -3,6 +3,9 @@ import { MapPin, Phone, Mail, Github, Linkedin, Send, CheckCircle2, MessageSquar
 import profileData from '../content/data/profile.json';
 
 const { identity, contact } = profileData;
+
+// Récupération de la clé API Web3Forms (priorité à la variable d'environnement, avec clé par défaut)
+const web3FormsAccessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY || '336fb2cd-5483-4162-b403-e0deefc18ef9';
 ---
 
 <section id="contact" class="py-16 scroll-mt-20 border-t border-slate-200 dark:border-zinc-800">
@@ -135,6 +138,15 @@ const { identity, contact } = profileData;
 
         <form id="contact-form" class="flex-1 flex flex-col justify-between gap-4">
           
+          <!-- Clé d'API Web3Forms masquée (injectée via variable d'environnement ou fallback) -->
+          <input type="hidden" name="access_key" value={web3FormsAccessKey} />
+
+          <!-- Champ anti-spam invisible (Honeypot Web3Forms : piège les robots sans gêner les visiteurs) -->
+          <input type="checkbox" name="botcheck" class="hidden" style="display: none;" tabindex="-1" autocomplete="off" />
+
+          <!-- Nom de l'expéditeur affiché dans l'objet de l'e-mail reçu -->
+          <input type="hidden" name="from_name" value={`Portfolio BTS SIO — ${identity.firstName} ${identity.lastName}`} />
+
           <!-- Ligne 1 : Nom et Email -->
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
@@ -210,14 +222,48 @@ const { identity, contact } = profileData;
             </div>
           </div>
 
-          <!-- Bouton de soumission en Noir Mat / Blanc en dark -->
+          <!-- Alerte d'erreur asynchrone (masquée par défaut) -->
+          <div
+            id="form-error-alert"
+            role="alert"
+            class="hidden p-3.5 rounded-xl bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50 text-red-800 dark:text-red-300 text-xs flex items-start gap-2.5 transition-all"
+          >
+            <div class="shrink-0 mt-0.5">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+            </div>
+            <div class="flex-1">
+              <p id="form-error-message" class="font-medium">Une erreur est survenue lors de l'envoi. Veuillez réessayer ou contacter Quentin directement par e-mail.</p>
+            </div>
+            <button
+              type="button"
+              id="form-error-dismiss"
+              aria-label="Fermer l'alerte d'erreur"
+              class="text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-200 p-0.5 rounded-lg transition-colors"
+            >
+              <X class="w-3.5 h-3.5" />
+            </button>
+          </div>
+
+          <!-- Bouton de soumission en Noir Mat / Blanc en dark avec état d'envoi dynamique -->
           <button
             type="submit"
             id="submit-btn"
-            class="inline-flex items-center justify-center gap-2 w-full py-3.5 px-6 rounded-xl bg-zinc-900 hover:bg-black dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-950 font-semibold text-sm transition-all duration-200 shadow-sm hover:shadow transform hover:-translate-y-0.5"
+            class="inline-flex items-center justify-center gap-2 w-full py-3.5 px-6 rounded-xl bg-zinc-900 hover:bg-black dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-950 font-semibold text-sm transition-all duration-200 shadow-sm hover:shadow transform hover:-translate-y-0.5 disabled:opacity-75 disabled:cursor-not-allowed disabled:transform-none"
           >
-            <Send class="w-4 h-4" />
-            <span>Envoyer le message</span>
+            <span id="btn-icon-default" class="flex items-center">
+              <Send class="w-4 h-4" />
+            </span>
+            <span id="btn-icon-loading" class="hidden items-center">
+              <svg class="animate-spin w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+              </svg>
+            </span>
+            <span id="btn-text">Envoyer le message</span>
           </button>
 
         </form>
@@ -329,12 +375,21 @@ const { identity, contact } = profileData;
 
 <!-- Script de traitement du formulaire avec feedback propre -->
 <script>
-  const form = document.getElementById('contact-form') as HTMLFormElement;
-  const submitBtn = document.getElementById('submit-btn');
+  // Éléments du formulaire et indicateurs
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement | null;
+  const btnIconDefault = document.getElementById('btn-icon-default');
+  const btnIconLoading = document.getElementById('btn-icon-loading');
+  const btnText = document.getElementById('btn-text');
   const subjectSelect = document.getElementById('subject') as HTMLSelectElement | null;
   const messageInput = document.getElementById('message') as HTMLTextAreaElement | null;
 
-  // Éléments de la fenêtre pop-up
+  // Éléments d'alerte d'erreur
+  const formErrorAlert = document.getElementById('form-error-alert');
+  const formErrorMessage = document.getElementById('form-error-message');
+  const formErrorDismiss = document.getElementById('form-error-dismiss');
+
+  // Éléments de la fenêtre modale de confirmation
   const modal = document.getElementById('contact-modal');
   const modalBox = document.getElementById('contact-modal-box');
   const modalUserName = document.getElementById('modal-user-name');
@@ -342,7 +397,29 @@ const { identity, contact } = profileData;
   const modalCloseBtn = document.getElementById('modal-close-btn');
   const modalActionBtn = document.getElementById('modal-action-btn');
 
-  // Fonctions d'ouverture et fermeture de la modale
+  // Gestion de l'affichage des erreurs
+  function showError(message: string) {
+    if (formErrorAlert && formErrorMessage) {
+      formErrorMessage.textContent = message;
+      formErrorAlert.classList.remove('hidden');
+      formErrorAlert.classList.add('flex');
+    } else {
+      console.error('[Web3Forms]', message);
+    }
+  }
+
+  function hideError() {
+    if (formErrorAlert) {
+      formErrorAlert.classList.add('hidden');
+      formErrorAlert.classList.remove('flex');
+    }
+  }
+
+  if (formErrorDismiss) {
+    formErrorDismiss.addEventListener('click', hideError);
+  }
+
+  // Fonctions d'ouverture et de fermeture de la modale de confirmation
   function openModal(name: string, subject: string) {
     if (!modal || !modalBox) return;
     if (modalUserName) {
@@ -378,7 +455,7 @@ const { identity, contact } = profileData;
     }
   });
 
-  // Adaptation du texte indicatif selon l'objet sélectionné
+  // Adaptation dynamique du texte indicatif (placeholder) selon l'objet sélectionné
   const placeholders: Record<string, string> = {
     'Proposition de stage 2027 (SLAM)': 'Bonjour Quentin, nous souhaitons vous proposer un entretien pour une mission de stage...',
     'Collaboration technique': 'Bonjour Quentin, nous souhaitons échanger avec vous au sujet d\'une collaboration technique...',
@@ -392,7 +469,6 @@ const { identity, contact } = profileData;
       if (placeholders[selectedVal]) {
         messageInput.placeholder = placeholders[selectedVal];
       }
-      // Dès qu'une option est choisie, on retire le focus pour replacer la flèche vers le bas
       subjectSelect.blur();
     });
 
@@ -403,31 +479,98 @@ const { identity, contact } = profileData;
     });
   }
 
-  if (form && submitBtn) {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      
-      const formData = new FormData(form);
-      const name = formData.get('name') as string;
-      const email = formData.get('email') as string;
-      const subject = formData.get('subject') as string;
-      const message = formData.get('message') as string;
+  // Gestion de l'état de chargement visuel du bouton de soumission
+  function setLoading(isLoading: boolean) {
+    if (!submitBtn) return;
+    if (isLoading) {
+      submitBtn.setAttribute('disabled', 'true');
+      submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
+      btnIconDefault?.classList.add('hidden');
+      btnIconLoading?.classList.remove('hidden');
+      btnIconLoading?.classList.add('inline-flex');
+      if (btnText) btnText.textContent = 'Envoi en cours...';
+    } else {
+      submitBtn.removeAttribute('disabled');
+      submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
+      btnIconDefault?.classList.remove('hidden');
+      btnIconLoading?.classList.add('hidden');
+      btnIconLoading?.classList.remove('inline-flex');
+      if (btnText) btnText.textContent = 'Envoyer le message';
+    }
+  }
 
+  // Traitement asynchrone de la soumission du formulaire
+  if (form && submitBtn) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      hideError();
+
+      const formData = new FormData(form);
+      const name = ((formData.get('name') as string) || '').trim();
+      const email = ((formData.get('email') as string) || '').trim();
+      const subject = ((formData.get('subject') as string) || '').trim();
+      const message = ((formData.get('message') as string) || '').trim();
+      const accessKey = ((formData.get('access_key') as string) || '').trim();
+
+      // Vérification minimale des champs obligatoires
       if (!name || !email || !message) {
         form.reportValidity();
         return;
       }
 
-      // Simulation d'envoi et ouverture de la modale au milieu de l'écran
-      submitBtn.setAttribute('disabled', 'true');
-      submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
+      setLoading(true);
 
-      setTimeout(() => {
-        form.reset();
-        submitBtn.removeAttribute('disabled');
-        submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
-        openModal(name, subject);
-      }, 500);
+      // Sécurité & Fallback : si la clé d'API Web3Forms n'est pas encore configurée
+      const isKeyMissing = !accessKey || accessKey === 'VOTRE_CLE_WEB3FORMS_ICI' || accessKey === 'YOUR_ACCESS_KEY_HERE';
+
+      if (isKeyMissing) {
+        console.warn(
+          "[Web3Forms] Avertissement : Aucune clé d'accès Web3Forms valide n'est configurée dans 'PUBLIC_WEB3FORMS_ACCESS_KEY'.\n" +
+          "Le formulaire fonctionne en mode simulation de secours pour tester l'interface utilisateur sans interruption.\n" +
+          "Pour recevoir de vrais e-mails sur votre boîte personnelle, créez gratuitement votre clé sur https://web3forms.com et ajoutez-la à votre fichier .env ou dans les variables d'environnement Vercel."
+        );
+
+        // Simulation temporisée pour valider le parcours utilisateur de bout en bout
+        setTimeout(() => {
+          form.reset();
+          if (subjectSelect && messageInput && placeholders[subjectSelect.value]) {
+            messageInput.placeholder = placeholders[subjectSelect.value];
+          }
+          setLoading(false);
+          openModal(name, subject);
+        }, 600);
+        return;
+      }
+
+      // Envoi asynchrone réel vers l'API Web3Forms
+      try {
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+          form.reset();
+          if (subjectSelect && messageInput && placeholders[subjectSelect.value]) {
+            messageInput.placeholder = placeholders[subjectSelect.value];
+          }
+          openModal(name, subject);
+        } else {
+          const errorMsg = result.message || "Une erreur est survenue lors de l'acheminement du message.";
+          console.error('[Web3Forms] Erreur renvoyée par le service :', result);
+          showError(errorMsg);
+        }
+      } catch (error) {
+        console.error('[Web3Forms] Erreur réseau lors de la soumission :', error);
+        showError("Une erreur réseau est survenue lors de l'envoi. Veuillez vérifier votre connexion ou me contacter directement par e-mail.");
+      } finally {
+        setLoading(false);
+      }
     });
   }
 </script>
