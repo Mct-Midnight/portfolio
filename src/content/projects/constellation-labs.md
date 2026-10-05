@@ -7,7 +7,7 @@ dateEnd: "2026-10-03"
 tags: ["Python", "API Discord", "SaaS & Abonnements", "Automatisation", "PostgreSQL", "Docker"]
 demoUrl: ""
 repoUrl: ""
-thumbnail: "/assets/images/projets/discord-community.png"
+thumbnail: "/assets/images/projets/constellation-discord-banner.png"
 featured: true
 ---
 
