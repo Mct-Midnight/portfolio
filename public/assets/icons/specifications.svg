@@ -1,49 +1,43 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="100%" height="100%" fill="none">
-  <!-- Cahier des Charges & Cadrage Fonctionnel Exécutif -->
+  <!-- Cahier des Charges : Document de Spécifications Flat Indigo (Plein et Coloré) -->
   <defs>
-    <!-- Dégradé Support Indigo Moderne -->
-    <linearGradient id="boardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="specSheetGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#6366F1"/>
-      <stop offset="100%" stop-color="#4338CA"/>
+      <stop offset="100%" stop-color="#4F46E5"/>
     </linearGradient>
-
-    <!-- Dégradé Pince Métallique Titane -->
-    <linearGradient id="clipMetal" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#F1F5F9"/>
-      <stop offset="100%" stop-color="#CBD5E1"/>
-    </linearGradient>
-
-    <!-- Ombre douce sous la feuille -->
-    <filter id="sheetShadow" x="-10%" y="-10%" width="120%" height="120%">
-      <feDropShadow dx="0" dy="2" stdDeviation="1.5" flood-color="#312E81" flood-opacity="0.25"/>
-    </filter>
   </defs>
 
-  <!-- Support rigide principal (Planchette Indigo premium) -->
-  <rect x="11" y="8" width="42" height="50" rx="8" fill="url(#boardGrad)" stroke="#4F46E5" stroke-width="1.8"/>
+  <!-- Feuille principale pleine en Indigo royal avec coins arrondis -->
+  <path
+    d="M17 6h20l12 12v36c0 3.3-2.7 6-6 6H17c-3.3 0-6-2.7-6-6V12c0-3.3 2.7-6 6-6z"
+    fill="url(#specSheetGrad)"
+  />
 
-  <!-- Feuille blanche de spécifications avec ombre portée -->
-  <rect x="15" y="14" width="34" height="40" rx="5" fill="#FFFFFF" filter="url(#sheetShadow)"/>
+  <!-- Coin replié supérieur droit (Dog-ear) avec nuance plus claire -->
+  <path
+    d="M37 6v8c0 2.2 1.8 4 4 4h8L37 6z"
+    fill="#818CF8"
+  />
 
-  <!-- Pince métallique supérieure (Clip) -->
-  <rect x="23" y="5" width="18" height="7" rx="3" fill="url(#clipMetal)" stroke="#94A3B8" stroke-width="1.4"/>
-  <circle cx="32" cy="8.5" r="1.5" fill="#64748B"/>
+  <!-- Voile droit pour relief flat à deux tons -->
+  <path
+    d="M32 18v42h11c3.3 0 6-2.7 6-6V18H32z"
+    fill="#3730A3"
+    fill-opacity="0.15"
+  />
 
-  <!-- En-tête du document de cadrage (Titre) -->
-  <rect x="20" y="19" width="18" height="3" rx="1.5" fill="#6366F1"/>
+  <!-- Ligne de titre en haut -->
+  <rect x="18" y="16" width="14" height="3.5" rx="1.75" fill="#FFFFFF"/>
 
-  <!-- Ligne de spécification 1 : Coche validée + texte -->
-  <circle cx="21" cy="28" r="3" fill="#10B981"/>
-  <path d="M19.8 28l1 1 1.8-1.8" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-  <line x1="26" y1="28" x2="43" y2="28" stroke="#64748B" stroke-width="2" stroke-linecap="round"/>
+  <!-- Spécification 1 : Coche + ligne -->
+  <path d="M18 29l3 3 5-5" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="29" y="28.5" width="16" height="3" rx="1.5" fill="#FFFFFF" fill-opacity="0.9"/>
 
-  <!-- Ligne de spécification 2 : Coche validée + texte -->
-  <circle cx="21" cy="36" r="3" fill="#10B981"/>
-  <path d="M19.8 36l1 1 1.8-1.8" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-  <line x1="26" y1="36" x2="41" y2="36" stroke="#94A3B8" stroke-width="2" stroke-linecap="round"/>
+  <!-- Spécification 2 : Coche + ligne -->
+  <path d="M18 39l3 3 5-5" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="29" y="38.5" width="16" height="3" rx="1.5" fill="#FFFFFF" fill-opacity="0.9"/>
 
-  <!-- Ligne de spécification 3 : Coche validée + texte -->
-  <circle cx="21" cy="44" r="3" fill="#10B981"/>
-  <path d="M19.8 44l1 1 1.8-1.8" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-  <line x1="26" y1="44" x2="38" y2="44" stroke="#CBD5E1" stroke-width="2" stroke-linecap="round"/>
+  <!-- Spécification 3 : Coche + ligne -->
+  <path d="M18 49l3 3 5-5" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="29" y="48.5" width="12" height="3" rx="1.5" fill="#FFFFFF" fill-opacity="0.9"/>
 </svg>
