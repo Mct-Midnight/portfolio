@@ -28,12 +28,27 @@ const {
     <meta name="description" content={description} />
     <meta name="author" content="Quentin Machu" />
     <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={Astro.url.href} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
 
-    <!-- Open Graph & Twitter Cards -->
+    <!-- Open Graph & Partage Réseaux Sociaux -->
+    <meta property="og:site_name" content="Portfolio BTS SIO — Quentin Machu" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="fr_FR" />
+    <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:image" content={new URL('/assets/images/og-preview.png', Astro.site).href} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Quentin Machu — Portfolio Développeur Logiciel BTS SIO SLAM" />
+
+    <!-- Twitter Cards (Format large image) -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL('/assets/images/og-preview.png', Astro.site).href} />
+
 
     <!-- Polices Google Fonts : Montserrat (Black / ExtraBold) pour des titres imposants et Plus Jakarta Sans pour le texte -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
