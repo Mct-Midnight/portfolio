@@ -318,6 +318,10 @@ const categoryIconMap: Record<string, any> = {
     if (modalIconContainer && iconSource) {
       modalIconContainer.innerHTML = iconSource.innerHTML;
       // Ajustement de taille de l'icône dans la modale
+      const customDiv = modalIconContainer.querySelector('div');
+      if (customDiv) {
+        customDiv.className = 'w-12 h-12 flex items-center justify-center [&>svg]:w-full [&>svg]:h-full [&>svg]:object-contain';
+      }
       const img = modalIconContainer.querySelector('img');
       if (img) {
         img.className = 'w-12 h-12 object-contain';
