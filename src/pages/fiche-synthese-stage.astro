@@ -8,10 +8,6 @@ import profileData from '../content/data/profile.json';
 import {
   ArrowLeft,
   Printer,
-  Briefcase,
-  Coins,
-  Calendar,
-  ShieldCheck,
   Laptop,
   Database,
   Workflow,
@@ -63,16 +59,7 @@ const { identity, contact, internshipSearch } = profileData;
         </div>
 
         <!-- 1. En-tête principal : Fiche de synthèse pour l'entreprise d'accueil -->
-        <header class="bg-white dark:bg-[#18181B] rounded-2xl p-6 sm:p-8 border border-slate-200 dark:border-[#27272A] shadow-card hover:shadow-card-hover hover:border-zinc-400 dark:hover:border-zinc-500 transition-all duration-200 mb-8 space-y-4">
-          <div class="flex items-center gap-2.5">
-            <span class="p-2 bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded-xl border border-zinc-200 dark:border-zinc-700">
-              <Briefcase class="w-5 h-5" />
-            </span>
-            <span class="text-xs font-bold text-zinc-900 dark:text-zinc-100 uppercase tracking-widest font-title">
-              Immersion Professionnelle • BTS SIO SLAM
-            </span>
-          </div>
-          
+        <header class="bg-white dark:bg-[#18181B] rounded-2xl p-6 sm:p-8 border border-slate-200 dark:border-[#27272A] shadow-card hover:shadow-card-hover hover:border-zinc-400 dark:hover:border-zinc-500 transition-all duration-200 mb-8 space-y-3">
           <h1 class="text-2xl sm:text-3xl font-extrabold font-title text-slate-900 dark:text-zinc-100 tracking-tight">
             Fiche de synthèse pour l'entreprise d'accueil
           </h1>
@@ -83,22 +70,18 @@ const { identity, contact, internshipSearch } = profileData;
           </p>
         </header>
 
-        <!-- 2. Section A : Le cadre en 3 points clés (Réunis dans un encadré unique avec séparateurs) -->
+        <!-- 2. Section A : Le cadre en 3 points clés (Réunis dans un encadré unique avec séparateurs aérés) -->
         <section class="mb-8">
           <div class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-zinc-500 mb-4 font-title">
             Le Cadre en 3 Points Clés
           </div>
 
           <div class="bg-white dark:bg-[#18181B] rounded-2xl border border-slate-200 dark:border-[#27272A] shadow-card hover:shadow-card-hover hover:border-zinc-400 dark:hover:border-zinc-500 transition-all duration-200 overflow-hidden">
-            <div class="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-slate-200 dark:divide-zinc-800">
+            <div class="flex flex-col md:flex-row items-stretch">
               
               <!-- Point 1 : Gratification légale -->
-              <div class="p-6 sm:p-7 flex flex-col justify-between">
+              <div class="flex-1 p-6 sm:p-7 flex flex-col justify-between">
                 <div>
-                  <div class="flex items-center gap-2 text-zinc-900 dark:text-zinc-100 mb-2">
-                    <Coins class="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
-                    <span class="text-xs font-bold font-title">Gratification</span>
-                  </div>
                   <p class="text-3xl font-bold font-title tracking-tight text-slate-900 dark:text-white">
                     0 € légal
                   </p>
@@ -106,18 +89,18 @@ const { identity, contact, internshipSearch } = profileData;
                     Durée de stage inférieure au seuil légal de 2 mois consécutifs (308h - art. L124-6 du Code de l'éducation). Gratification facultative.
                   </p>
                 </div>
-                <div class="mt-4 pt-3 border-t border-slate-100 dark:border-zinc-800 text-[11px] text-slate-400 dark:text-zinc-500 font-medium">
+                <div class="mt-4 text-[11px] text-slate-400 dark:text-zinc-500 font-medium">
                   Zéro charge financière imposée
                 </div>
               </div>
 
+              <!-- Séparateur vertical (desktop) décollé des bords / Séparateur horizontal (mobile) -->
+              <div class="hidden md:block w-px bg-slate-200 dark:bg-zinc-800 my-6 self-stretch"></div>
+              <div class="block md:hidden h-px bg-slate-200 dark:bg-zinc-800 mx-6"></div>
+
               <!-- Point 2 : Durée & Calendrier -->
-              <div class="p-6 sm:p-7 flex flex-col justify-between">
+              <div class="flex-1 p-6 sm:p-7 flex flex-col justify-between">
                 <div>
-                  <div class="flex items-center gap-2 text-zinc-900 dark:text-zinc-100 mb-2">
-                    <Calendar class="w-5 h-5 text-zinc-700 dark:text-zinc-300" />
-                    <span class="text-xs font-bold font-title">Calendrier</span>
-                  </div>
                   <p class="text-3xl font-bold font-title tracking-tight text-slate-900 dark:text-white">
                     4 à 5 sem.
                   </p>
@@ -125,18 +108,18 @@ const { identity, contact, internshipSearch } = profileData;
                     Période cible de Mai à Août 2027. Dates modulables selon les disponibilités et les jalons de vos projets en entreprise.
                   </p>
                 </div>
-                <div class="mt-4 pt-3 border-t border-slate-100 dark:border-zinc-800 text-[11px] text-slate-400 dark:text-zinc-500 font-medium">
+                <div class="mt-4 text-[11px] text-slate-400 dark:text-zinc-500 font-medium">
                   Temps plein (35h / semaine)
                 </div>
               </div>
 
+              <!-- Séparateur vertical (desktop) décollé des bords / Séparateur horizontal (mobile) -->
+              <div class="hidden md:block w-px bg-slate-200 dark:bg-zinc-800 my-6 self-stretch"></div>
+              <div class="block md:hidden h-px bg-slate-200 dark:bg-zinc-800 mx-6"></div>
+
               <!-- Point 3 : Cadre légal & Convention -->
-              <div class="p-6 sm:p-7 flex flex-col justify-between">
+              <div class="flex-1 p-6 sm:p-7 flex flex-col justify-between">
                 <div>
-                  <div class="flex items-center gap-2 text-zinc-900 dark:text-zinc-100 mb-2">
-                    <ShieldCheck class="w-5 h-5 text-zinc-700 dark:text-zinc-300" />
-                    <span class="text-xs font-bold font-title">Cadre Légal</span>
-                  </div>
                   <p class="text-3xl font-bold font-title tracking-tight text-slate-900 dark:text-white">
                     100% Cadré
                   </p>
@@ -144,7 +127,7 @@ const { identity, contact, internshipSearch } = profileData;
                     Convention tripartite officielle émise par le CNED. Étudiant couvert par l'assurance scolaire et la responsabilité civile.
                   </p>
                 </div>
-                <div class="mt-4 pt-3 border-t border-slate-100 dark:border-zinc-800 text-[11px] text-slate-400 dark:text-zinc-500 font-medium">
+                <div class="mt-4 text-[11px] text-slate-400 dark:text-zinc-500 font-medium">
                   Signature dématérialisée rapide
                 </div>
               </div>
