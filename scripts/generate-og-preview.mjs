@@ -1,4 +1,4 @@
-// Script de génération de la bannière Open Graph et Twitter Cards (1200x630 px)
+// Script de génération de la bannière Open Graph et Twitter Cards (1200x630 px) - Version Blanche Épurée
 import fs from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
@@ -13,7 +13,7 @@ const RACINE = path.resolve(__dirname, '..');
 const avatarPath = path.join(RACINE, 'public/assets/images/profile-avatar.jpg');
 const destinationPng = path.join(RACINE, 'public/assets/images/og-preview.png');
 
-console.log('--- Génération de la bannière Open Graph (1200x630 px) ---');
+console.log('--- Génération de la bannière Open Graph claire et naturelle (1200x630 px) ---');
 
 // Encodage de l'avatar en base64 pour un rendu immédiat et sans dépendance réseau
 let avatarBase64 = '';
@@ -25,7 +25,7 @@ if (fs.existsSync(avatarPath)) {
   console.warn('⚠ Avatar introuvable, fallback sans photo');
 }
 
-// Gabarit HTML haute fidélité respectant strictement la charte graphique monochrome et titane
+// Gabarit HTML haute fidélité sur fond blanc épuré, sans fioritures artificielles
 const htmlContent = `<!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -42,46 +42,28 @@ const htmlContent = `<!DOCTYPE html>
     body {
       width: 1200px;
       height: 630px;
-      background-color: #121214;
-      background-image: 
-        radial-gradient(circle at 10% 10%, rgba(39, 39, 42, 0.4) 0%, transparent 40%),
-        radial-gradient(circle at 90% 90%, rgba(39, 39, 42, 0.3) 0%, transparent 40%);
-      color: #FAFAFA;
+      background-color: #F4F4F5;
+      color: #09090B;
       font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 36px;
+      padding: 34px;
       overflow: hidden;
     }
 
     .container {
       width: 100%;
       height: 100%;
-      background: #18181B;
-      border: 1px solid #27272A;
-      border-radius: 20px;
-      padding: 44px 50px;
+      background: #FFFFFF;
+      border: 1px solid #E4E4E7;
+      border-radius: 24px;
+      padding: 46px 52px;
       display: flex;
       flex-direction: row;
       justify-content: space-between;
       position: relative;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
-    }
-
-    /* Grille décorative subtile en fond */
-    .container::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-size: 32px 32px;
-      background-image: linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-                        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-      pointer-events: none;
-      border-radius: 20px;
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04);
     }
 
     .left-col {
@@ -90,7 +72,7 @@ const htmlContent = `<!DOCTYPE html>
       flex-direction: column;
       justify-content: space-between;
       z-index: 2;
-      padding-right: 36px;
+      padding-right: 44px;
     }
 
     .badges-row {
@@ -103,28 +85,28 @@ const htmlContent = `<!DOCTYPE html>
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 6px 14px;
-      background: #27272A;
-      border: 1px solid #3F3F46;
+      padding: 7px 15px;
+      background: #F4F4F5;
+      border: 1px solid #E4E4E7;
       border-radius: 9999px;
       font-size: 13px;
       font-weight: 700;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
-      color: #F4F4F5;
+      color: #18181B;
     }
 
     .badge-stage {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 6px 14px;
-      background: rgba(16, 185, 129, 0.1);
-      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 7px 15px;
+      background: #ECFDF5;
+      border: 1px solid #A7F3D0;
       border-radius: 9999px;
       font-size: 13px;
       font-weight: 600;
-      color: #34D399;
+      color: #047857;
     }
 
     .dot-green {
@@ -132,83 +114,69 @@ const htmlContent = `<!DOCTYPE html>
       height: 8px;
       border-radius: 50%;
       background: #10B981;
-      box-shadow: 0 0 8px #10B981;
+      box-shadow: 0 0 6px rgba(16, 185, 129, 0.5);
     }
 
     .main-title-section {
-      margin-top: 10px;
-      margin-bottom: 10px;
+      margin-top: 14px;
+      margin-bottom: 8px;
     }
 
     .candidate-name {
       font-family: 'Montserrat', sans-serif;
-      font-size: 52px;
+      font-size: 54px;
       font-weight: 900;
       letter-spacing: -0.03em;
-      color: #FFFFFF;
-      line-height: 1.1;
-      margin-bottom: 8px;
+      color: #09090B;
+      line-height: 1.05;
+      margin-bottom: 10px;
       text-transform: uppercase;
     }
 
     .role-title {
       font-size: 24px;
       font-weight: 700;
-      color: #E4E4E7;
-      margin-bottom: 12px;
+      color: #3F3F46;
+      margin-bottom: 16px;
     }
 
     .description {
-      font-size: 16px;
-      color: #A1A1AA;
-      line-height: 1.5;
-      max-width: 580px;
-    }
-
-    .skills-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 8px;
-    }
-
-    .skill-pill {
-      display: inline-flex;
-      align-items: center;
-      padding: 6px 14px;
-      background: #212124;
-      border: 1px solid #2E2E33;
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: 600;
-      color: #D4D4D8;
+      font-size: 17px;
+      color: #71717A;
+      line-height: 1.6;
+      max-width: 610px;
     }
 
     .footer-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-top: 1px solid #27272A;
-      padding-top: 18px;
-      margin-top: 12px;
+      border-top: 1px solid #F4F4F5;
+      padding-top: 20px;
+      margin-top: 10px;
     }
 
     .site-domain {
       display: flex;
       align-items: center;
       gap: 10px;
-      font-size: 15px;
-      font-weight: 600;
-      color: #FAFAFA;
-      letter-spacing: 0.02em;
+      font-size: 16px;
+      font-weight: 700;
+      color: #09090B;
+      letter-spacing: 0.01em;
+    }
+
+    .site-domain svg {
+      color: #18181B;
     }
 
     .site-tag {
-      font-size: 13px;
+      font-size: 14px;
+      font-weight: 500;
       color: #71717A;
     }
 
-    /* Colonne droite : Photo & Carte d'identité */
+    /* Colonne droite : Photo & Informations RH */
     .right-col {
       width: 320px;
       display: flex;
@@ -223,17 +191,18 @@ const htmlContent = `<!DOCTYPE html>
       width: 250px;
       height: 250px;
       border-radius: 24px;
-      padding: 6px;
-      background: linear-gradient(135deg, #3F3F46 0%, #27272A 100%);
-      box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.7);
+      padding: 5px;
+      background: #FFFFFF;
+      border: 1px solid #E4E4E7;
+      box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.1);
     }
 
     .photo-inner {
       width: 100%;
       height: 100%;
-      border-radius: 18px;
+      border-radius: 19px;
       overflow: hidden;
-      background: #27272A;
+      background: #F4F4F5;
     }
 
     .photo-inner img {
@@ -241,25 +210,25 @@ const htmlContent = `<!DOCTYPE html>
       height: 100%;
       object-fit: cover;
       object-position: center top;
-      filter: grayscale(100%) contrast(108%);
+      filter: grayscale(100%) contrast(106%);
     }
 
     .card-meta {
       width: 100%;
-      background: #202024;
-      border: 1px solid #2C2C30;
-      border-radius: 16px;
-      padding: 18px 20px;
+      background: #FAFAFA;
+      border: 1px solid #E4E4E7;
+      border-radius: 18px;
+      padding: 20px 22px;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 12px;
     }
 
     .meta-item {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      font-size: 13px;
+      font-size: 14px;
     }
 
     .meta-label {
@@ -268,8 +237,8 @@ const htmlContent = `<!DOCTYPE html>
     }
 
     .meta-val {
-      color: #FAFAFA;
-      font-weight: 600;
+      color: #09090B;
+      font-weight: 700;
     }
   </style>
 </head>
@@ -280,7 +249,7 @@ const htmlContent = `<!DOCTYPE html>
         <div class="badges-row">
           <div class="badge-sio">
             <span>BTS SIO SLAM</span>
-            <span style="opacity: 0.4">•</span>
+            <span style="opacity: 0.35">•</span>
             <span>CNED</span>
           </div>
           <div class="badge-stage">
@@ -291,30 +260,23 @@ const htmlContent = `<!DOCTYPE html>
 
         <div class="main-title-section">
           <h1 class="candidate-name">Quentin Machu</h1>
-          <h2 class="role-title">Développeur Logiciel & Solutions Web</h2>
+          <h2 class="role-title">Développeur d'applications en formation</h2>
           <p class="description">
-            Portfolio professionnel officiel pour l'oral de l'Épreuve E4. Conception applicative moderne, modélisation de bases de données et gestion de projets techniques.
+            Portfolio professionnel et réalisations techniques dans le cadre du BTS SIO (Option SLAM). Conception applicative, développement web et modélisation de bases de données.
           </p>
-        </div>
-
-        <div class="skills-row">
-          <div class="skill-pill">Astro 5 &amp; TypeScript</div>
-          <div class="skill-pill">Python &amp; SQL / PostgreSQL</div>
-          <div class="skill-pill">APIs REST &amp; Architecture B2B</div>
-          <div class="skill-pill">Méthodologie Agile</div>
         </div>
       </div>
 
       <div class="footer-row">
         <div class="site-domain">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="10"></circle>
             <line x1="2" y1="12" x2="22" y2="12"></line>
             <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
           </svg>
           <span>mct-midnight.github.io</span>
         </div>
-        <div class="site-tag">Portfolio &amp; Réalisations techniques</div>
+        <div class="site-tag">Portfolio &amp; Épreuve E4</div>
       </div>
     </div>
 
@@ -331,12 +293,12 @@ const htmlContent = `<!DOCTYPE html>
           <span class="meta-val">Cambrai (59) / Télétravail</span>
         </div>
         <div class="meta-item">
-          <span class="meta-label">Disponibilité</span>
-          <span class="meta-val">4 à 5 semaines</span>
+          <span class="meta-label">Période</span>
+          <span class="meta-val">Mai à Août 2027</span>
         </div>
         <div class="meta-item">
-          <span class="meta-label">Certification</span>
-          <span class="meta-val">SecNumacadémie &amp; Pix</span>
+          <span class="meta-label">Durée</span>
+          <span class="meta-val">4 à 5 semaines</span>
         </div>
       </div>
     </div>
