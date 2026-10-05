@@ -160,16 +160,14 @@
     {
       "name": "Cahier des Charges",
       "category": "methodes-gestion",
-      "customIcon": "/assets/icons/specifications.svg",
-      "iconKey": "",
+      "iconKey": "devicon-trello-plain",
       "lucideFallback": "ClipboardCheck",
       "description": "Cadrage des besoins fonctionnels et techniques, traduction des attentes utilisateurs en spécifications claires pour guider et séquencer les développements."
     },
     {
       "name": "Tests & Contrôle Qualité",
       "category": "methodes-gestion",
-      "customIcon": "/assets/icons/testing-quality.svg",
-      "iconKey": "",
+      "iconKey": "devicon-pytest-plain",
       "lucideFallback": "ShieldCheck",
       "description": "Vérification de la conformité du code, exécution de tests fonctionnels et validation des livrables pour garantir un fonctionnement sans régression."
     }
