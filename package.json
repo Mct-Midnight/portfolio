@@ -9,9 +9,12 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "test": "node scripts/audit-qualite.mjs && astro build"
+    "check:links": "node scripts/verifier-liens.mjs",
+    "generate:og": "node scripts/generate-og-preview.mjs",
+    "test": "node scripts/audit-qualite.mjs && astro build && node scripts/verifier-liens.mjs"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.4",
     "@astrojs/tailwind": "^6.0.2",
     "@lucide/astro": "^1.50.0",
     "astro": "^5.4.2",
