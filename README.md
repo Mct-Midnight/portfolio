@@ -1,5 +1,11 @@
 # Portfolio Professionnel — BTS SIO Option SLAM (CNED)
 
+[![Contrôle Qualité & CI](https://github.com/Mct-Midnight/portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/Mct-Midnight/portfolio/actions/workflows/ci.yml)
+[![Astro v5](https://img.shields.io/badge/Astro-v5-18181B?logo=astro&logoColor=white&style=flat-square)](https://astro.build/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-v5-18181B?logo=typescript&logoColor=white&style=flat-square)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v3.4-18181B?logo=tailwindcss&logoColor=white&style=flat-square)](https://tailwindcss.com/)
+[![BTS SIO SLAM](https://img.shields.io/badge/%C3%89preuve_E4-BTS_SIO_SLAM-18181B?style=flat-square)](docs/REFERENTIEL_BLOC_1.md)
+
 Bienvenue sur le dépôt du portfolio professionnel conçu pour la préparation et la validation du **BTS SIO (Services Informatiques aux Organisations)**, spécialité **SLAM (Solutions Logicielles et Applications Métiers)**, suivi à distance via le **CNED**.
 
 Ce projet respecte une séparation stricte entre les **spécifications de design UI/UX**, les **contenus éditoriaux Markdown**, les **ressources graphiques** et la **future couche d'intégration web**.
@@ -87,6 +93,7 @@ Pour alimenter et maintenir le portfolio de manière rigoureuse durant les deux 
 - **Design & Styles :** [Tailwind CSS 3.4](https://tailwindcss.com/) avec tokens officiels
 - **Icônes :** `@lucide/astro` et Devicon CDN
 - **Gestion de contenu :** Content Collections Astro avec validation Zod
+- **Qualité & CI/CD :** Pipeline GitHub Actions avec audit d'intégrité automatisé
 
 ### Commandes usuelles :
 
@@ -97,9 +104,38 @@ npm install
 # Lancer le serveur de développement local
 npm run dev
 
+# Exécuter la suite complète de contrôle qualité (audit d'intégrité + build Astro)
+npm test
+
 # Compiler le site statique pour la production
 npm run build
 
 # Prévisualiser la version de production en local
 npm run preview
 ```
+
+---
+
+## 🛡️ Assurance Qualité & Tests Automatisés (CI/CD)
+
+Afin de garantir une fiabilité totale aux recruteurs ainsi qu'au jury de l'Épreuve E4, le projet adopte une véritable démarche professionnelle de **qualité logicielle continue (DevOps)** :
+
+### 1. La suite de validation locale (`npm test`)
+La commande `npm test` orchestre trois niveaux d'exigence avant toute livraison :
+- **Audit d'intégrité physique (`scripts/audit-qualite.mjs`) :**
+  - **Documents vitaux :** Contrôle de la présence et de la non-vacuité des pièces officielles obligatoires (CV au format PDF dans `public/docs/`, cahier des charges, référentiel de compétences Bloc 1, gabarit de fiche projet, `robots.txt` et favicon).
+  - **Données structurées :** Vérification syntaxique stricte des fichiers JSON (`profile.json`, `skills.json`, `timeline.json`).
+  - **Validation des médias Markdown :** Analyse de chaque fiche projet Markdown (`src/content/projects/*.md`) pour s'assurer que chaque visuel référencé existe réellement sur le disque.
+- **Validation Zod & Compilation de production (`astro build`) :**
+  - Contrôle des types et des schémas de données stricts via **Zod** (champs obligatoires, statuts autorisés, URLs valides).
+  - Compilation statique intégrale de l'ensemble des pages HTML dans `dist/`.
+- **Vérificateur automatique de liens internes (`scripts/verifier-liens.mjs` ou `npm run check:links`) :**
+  - **Routes internes :** Contrôle de chaque lien `<a href="/...">` vers une page HTML réelle.
+  - **Ancres intra et inter-pages :** Vérification que chaque ancre (ex: `#projets`, `#competences`, `#contact`) pointe vers un identifiant `id` existant dans la page cible.
+  - **Ressources statiques :** Contrôle physique des liens de téléchargement (CV PDF, documents).
+  - **Filtrage propre :** Exclusion des liens externes (`http://`, `https://`), emails (`mailto:`) et numéros de téléphone (`tel:`).
+
+### 2. Déclenchement automatique (Pipeline GitHub Actions)
+- À chaque livraison (`git push`) ou Pull Request sur la branche principale `main`, le pipeline automatisé [`.github/workflows/ci.yml`](.github/workflows/ci.yml) se déclenche sur un environnement Linux propre.
+- Il configure Node.js 20 LTS, procède à une installation déterministe (`npm ci`) et exécute automatiquement la commande `npm test`.
+- **Garantie de non-régression :** Si un document est absent, un lien d'image manquant ou une donnée mal renseignée, le pipeline échoue immédiatement et bloque la mise en ligne. Le badge de statut officiel en tête de ce dépôt garantit ainsi en permanence la conformité et l'intégrité du portfolio.

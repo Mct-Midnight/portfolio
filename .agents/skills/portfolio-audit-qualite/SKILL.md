@@ -14,7 +14,7 @@ Ce skill formalise le protocole d'audit complet du Portfolio avant une présenta
 ## 1. Déroulement du processus (Les 4 étapes obligatoires)
 
 ```text
-[1. Contrôle d'Intégrité] ➔ [2. Validation du Build] ➔ [3. Contrôle Accessibilité & SEO] ➔ [4. Tableau de Synthèse]
+[1. Contrôle d'Intégrité] ➔ [2. Validation du Build] ➔ [3. Vérification des Liens Internes] ➔ [4. Contrôle Accessibilité & SEO] ➔ [5. Tableau de Synthèse]
 ```
 
 ---
@@ -25,7 +25,7 @@ L'agent exécute le script d'audit du projet :
 node scripts/audit-qualite.mjs
 ```
 Ce script vérifie :
-- La présence physique et non vide des documents vitaux (`CV_Quentin_Machu_BTS_SIO.pdf`, `favicon.svg`, référentiels BTS).
+- La présence physique et non vide des documents vitaux (`CV_Quentin_Machu_BTS_SIO.pdf`, `favicon.svg`, `og-preview.png`, référentiels BTS).
 - La validité syntaxique des fichiers de données (`profile.json`, `skills.json`, `timeline.json`).
 - L'intégrité de toutes les fiches projets Markdown (`src/content/projects/`) et l'existence réelle de chaque image/miniature sur le disque.
 
@@ -40,7 +40,19 @@ npm run build
 
 ---
 
-### Étape 3 : Contrôle Accessibilité & Expérience Utilisateur
+### Étape 3 : Vérification Automatique des Liens & Ancres (Link Checker)
+L'agent exécute le contrôleur de liens post-compilation :
+```bash
+node scripts/verifier-liens.mjs
+```
+- Contrôle de toutes les routes internes (pages HTML dans `dist/`).
+- Validation de l'existence des identifiants ciblés par les ancres de navigation (`#ancre`).
+- Vérification des ressources de téléchargement physiques (PDF, assets).
+- Exclusion propre des liens externes, adresses e-mail et numéros de téléphone.
+
+---
+
+### Étape 4 : Contrôle Accessibilité & Expérience Utilisateur
 L'agent vérifie :
 1. Que les images comportent des descriptions textuelles alternatives (`alt`).
 2. Que les méta-balises de titre et de description sont présentes pour le référencement naturel (SEO).
@@ -48,7 +60,7 @@ L'agent vérifie :
 
 ---
 
-### Étape 4 : Restitution Managériale sous forme de Tableau de Bord
+### Étape 5 : Restitution Managériale sous forme de Tableau de Bord
 L'agent synthétise les résultats dans un tableau clair et compréhensible sans jargon :
 
 | Domaine de Contrôle | Périmètre Audité | Statut | Commentaire Managérial |
@@ -56,5 +68,6 @@ L'agent synthétise les résultats dans un tableau clair et compréhensible sans
 | **Documents officiels** | CV PDF, Favicon, Référentiel E4 | ✅ Conforme | Fichiers présents et accessibles |
 | **Données dynamiques** | Profil, Compétences, Parcours | ✅ Conforme | Syntaxe JSON valide et structurée |
 | **Fiches Projets** | 4 projets Markdown & Images | ✅ Conforme | Aucune image brisée ni lien manquant |
-| **Moteur Web Astro** | Compilation `dist/` (5 pages) | ✅ Conforme | Build de production 100 % réussi |
+| **Moteur Web Astro** | Compilation `dist/` (10 pages) | ✅ Conforme | Build de production 100 % réussi |
+| **Liens & Ancres** | Navigation interne, ancres & PDF | ✅ Conforme | Zéro lien mort (404) ni ancre orpheline |
 | **Prêt pour Examen** | Épreuve E4 & Présentation pro | ✅ Prêt | Zéro anomalie bloquante détectée |
