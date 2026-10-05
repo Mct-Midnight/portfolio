@@ -1,26 +1,78 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="100%" height="100%" fill="none">
-  <!-- Tests & Contrôle Qualité Logicielle -->
+  <!-- Tests & Contrôle Qualité Logicielle : Fiole de Test & Certification QA Moderne -->
   <defs>
-    <linearGradient id="shieldBg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1E293B"/>
-      <stop offset="100%" stop-color="#0F172A"/>
-    </linearGradient>
-    <linearGradient id="shieldBorder" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#38BDF8"/>
-      <stop offset="100%" stop-color="#2563EB"/>
-    </linearGradient>
-    <linearGradient id="checkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <!-- Dégradé Liquide de Test Émeraude Lumineux -->
+    <linearGradient id="testLiquidGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#34D399"/>
+      <stop offset="45%" stop-color="#10B981"/>
       <stop offset="100%" stop-color="#059669"/>
     </linearGradient>
+
+    <!-- Dégradé Verre & Parois Haute Précision -->
+    <linearGradient id="glassWallGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6EE7B7"/>
+      <stop offset="100%" stop-color="#047857"/>
+    </linearGradient>
+
+    <!-- Halo lumineux diffus en arrière-plan -->
+    <radialGradient id="qaAura" cx="50%" cy="55%" r="45%">
+      <stop offset="0%" stop-color="#10B981" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#10B981" stop-opacity="0"/>
+    </radialGradient>
   </defs>
 
-  <!-- Bouclier de conformité et de robustesse -->
-  <path d="M32 8L14 16v16c0 14 8 23 18 26 10-3 18-12 18-26V16L32 8z" fill="url(#shieldBg)" stroke="url(#shieldBorder)" stroke-width="2.2" stroke-linejoin="round"/>
+  <!-- Halo d'énergie de validation logiciel -->
+  <circle cx="32" cy="38" r="22" fill="url(#qaAura)"/>
 
-  <!-- Badge central de validation -->
-  <circle cx="32" cy="31" r="12" fill="url(#checkGrad)" stroke="#10B981" stroke-width="1.5"/>
+  <!-- Corps principal de la fiole (Verre cristallin teinté menthe) -->
+  <path
+    d="M26 15V9h12v6l12.5 28C52 46.5 49 54 42 54H22c-7 0-10-7.5-8.5-11L26 15z"
+    fill="#ECFDF5"
+    fill-opacity="0.6"
+    stroke="url(#glassWallGrad)"
+    stroke-width="2.5"
+    stroke-linejoin="round"
+  />
 
-  <!-- Encoche de test réussi -->
-  <path d="M26 31l4 4 8-8" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Collerette supérieure du goulot (Finition soignée) -->
+  <rect x="23" y="6" width="18" height="5" rx="2.5" fill="#10B981" stroke="#059669" stroke-width="1.5"/>
+
+  <!-- Liquide de test actif en réaction (Émeraude éclatant) -->
+  <path
+    d="M20 32c3 1.5 6 1.5 9 0s6-1.5 9 0 4 1 5 1.5l6 13.5c1 2.5-.5 7-7 7H22c-6.5 0-8-4.5-7-7l5-15V32z"
+    fill="url(#testLiquidGrad)"
+  />
+
+  <!-- Surface ondulée brillante du réactif -->
+  <path
+    d="M20 32c3 1.5 6 1.5 9 0s6-1.5 9 0 4 1 5 1.5"
+    stroke="#A7F3D0"
+    stroke-width="1.6"
+    stroke-linecap="round"
+  />
+
+  <!-- Graduations de couverture de code (Code Coverage) -->
+  <line x1="22" y1="26" x2="26" y2="26" stroke="#059669" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="19" y1="36" x2="24" y2="36" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" opacity="0.8"/>
+  <line x1="17" y1="44" x2="23" y2="44" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" opacity="0.8"/>
+
+  <!-- Bulles d'automatisation des tests en ascension -->
+  <circle cx="28" cy="22" r="2" fill="#34D399"/>
+  <circle cx="35" cy="18" r="1.5" fill="#6EE7B7"/>
+  <circle cx="37" cy="48" r="1.5" fill="#A7F3D0" opacity="0.6"/>
+
+  <!-- Coche blanche centrale de validation (All Tests Passed 100%) -->
+  <path
+    d="M27 43l3.5 3.5 8.5-8.5"
+    stroke="#FFFFFF"
+    stroke-width="3.2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  <!-- Étoile d'excellence et de non-régression logicielle (Sparkle QA) -->
+  <path
+    d="M48 8l1.3 3L52 12.3l-2.7 1.3L48 16.5l-1.3-2.9L44 12.3l2.7-1.3L48 8z"
+    fill="#10B981"
+  />
 </svg>
