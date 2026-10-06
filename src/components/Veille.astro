@@ -173,7 +173,6 @@ const totalArticles = axes.reduce((acc, axis) => acc + axis.articles.length, 0);
                   data-readtime={article.readTime}
                   data-summary={article.summary}
                   data-url={article.url}
-                  data-keypoints={JSON.stringify(article.keyPoints)}
                   data-tags={JSON.stringify(article.tags)}
                   data-axis={axis.name}
                 >
@@ -249,15 +248,15 @@ const totalArticles = axes.reduce((acc, axis) => acc + axis.articles.length, 0);
         role="dialog"
         aria-modal="true"
         aria-labelledby="veille-modal-title"
-        class="pointer-events-auto bg-white dark:bg-[#18181B] rounded-3xl p-6 sm:p-8 w-full shadow-2xl border border-slate-200 dark:border-[#27272A] transform scale-95 transition-all duration-200 relative text-left max-h-[88vh] overflow-y-auto"
+        class="pointer-events-auto bg-white dark:bg-[#18181B] rounded-3xl p-6 sm:p-7 w-full shadow-2xl border border-slate-200 dark:border-[#27272A] transform scale-95 transition-all duration-200 relative text-left max-h-[90vh] overflow-y-auto"
       >
         <!-- En-tête épuré : Source + Identité à gauche, Compteur + Croix à droite -->
-        <div class="flex items-center justify-between gap-4 pb-4 mb-4 border-b border-slate-100 dark:border-zinc-800">
+        <div class="flex items-center justify-between gap-4 pb-3.5 mb-3.5 border-b border-slate-100 dark:border-zinc-800">
           <!-- En-tête source : Logo + Nom + Axe + Date -->
           <div class="flex items-center gap-3 min-w-0">
             <div
               id="veille-modal-logo"
-              class="w-10 h-10 rounded-xl overflow-hidden shrink-0 flex items-center justify-center [&>svg]:w-full [&>svg]:h-full shadow-2xs"
+              class="w-9 h-9 rounded-xl overflow-hidden shrink-0 flex items-center justify-center [&>svg]:w-full [&>svg]:h-full shadow-2xs"
             ></div>
 
             <div class="min-w-0">
@@ -265,7 +264,7 @@ const totalArticles = axes.reduce((acc, axis) => acc + axis.articles.length, 0);
                 <span id="veille-modal-source" class="text-sm font-bold text-slate-900 dark:text-zinc-100 leading-tight"></span>
                 <span id="veille-modal-axis" class="text-[11px] font-semibold text-zinc-800 dark:text-zinc-200 bg-zinc-100 dark:bg-zinc-800 px-2.5 py-0.5 rounded-md border border-zinc-200 dark:border-zinc-700"></span>
               </div>
-              <div class="flex items-center gap-2 text-xs text-slate-500 dark:text-zinc-400 mt-1 flex-wrap">
+              <div class="flex items-center gap-2 text-xs text-slate-500 dark:text-zinc-400 mt-0.5 flex-wrap">
                 <span id="veille-modal-date" class="font-medium text-slate-600 dark:text-zinc-300"></span>
                 <span class="text-slate-300 dark:text-zinc-600">•</span>
                 <span id="veille-modal-sourcetype" class="text-slate-500 dark:text-zinc-400 font-medium"></span>
@@ -295,29 +294,29 @@ const totalArticles = axes.reduce((acc, axis) => acc + axis.articles.length, 0);
         </div>
 
         <!-- Titre complet de l'article -->
-        <h3 id="veille-modal-title" class="text-xl sm:text-2xl font-bold font-title text-slate-900 dark:text-zinc-100 tracking-tight leading-snug mb-4"></h3>
+        <h3 id="veille-modal-title" class="text-lg sm:text-xl font-bold font-title text-slate-900 dark:text-zinc-100 tracking-tight leading-snug mb-3"></h3>
 
-        <!-- Bandeau de métriques de qualification (3 badges équilibrés) -->
-        <div class="flex flex-wrap items-center gap-2 mb-6 pb-4 border-b border-slate-100 dark:border-zinc-800">
-          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-50 dark:bg-zinc-900 text-slate-700 dark:text-zinc-300 border border-slate-200/80 dark:border-zinc-800 text-xs font-medium">
+        <!-- Bandeau de métriques de qualification -->
+        <div class="flex flex-wrap items-center gap-2 mb-4 pb-3 border-b border-slate-100 dark:border-zinc-800">
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 dark:bg-zinc-900 text-slate-700 dark:text-zinc-300 border border-slate-200/80 dark:border-zinc-800 text-xs font-medium">
             <Clock class="w-3.5 h-3.5 text-slate-500 dark:text-zinc-400" />
             <span id="veille-modal-readtime"></span>
           </span>
 
-          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-50 dark:bg-zinc-900 text-slate-700 dark:text-zinc-300 border border-slate-200/80 dark:border-zinc-800 text-xs font-medium">
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 dark:bg-zinc-900 text-slate-700 dark:text-zinc-300 border border-slate-200/80 dark:border-zinc-800 text-xs font-medium">
             <ShieldCheck class="w-3.5 h-3.5 text-zinc-900 dark:text-zinc-100" />
-            <span>Épreuve E4 (Option SLAM)</span>
+            <span>Option SLAM</span>
           </span>
 
-          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-50 dark:bg-zinc-900 text-slate-700 dark:text-zinc-300 border border-slate-200/80 dark:border-zinc-800 text-xs font-medium">
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 dark:bg-zinc-900 text-slate-700 dark:text-zinc-300 border border-slate-200/80 dark:border-zinc-800 text-xs font-medium">
             <BookOpen class="w-3.5 h-3.5 text-slate-500 dark:text-zinc-400" />
             <span>Source certifiée</span>
           </span>
         </div>
 
-        <!-- Section 1 : Résumé analytique dans un encadré teinté et soigné -->
-        <div class="mb-6">
-          <div class="flex items-center gap-2 mb-2.5">
+        <!-- Résumé analytique -->
+        <div class="mb-4">
+          <div class="flex items-center gap-2 mb-2">
             <div class="w-1.5 h-4 bg-zinc-900 dark:bg-zinc-100 rounded-full"></div>
             <h4 class="text-xs uppercase tracking-wider font-bold text-slate-500 dark:text-zinc-400 font-title">
               Résumé analytique
@@ -328,29 +327,8 @@ const totalArticles = axes.reduce((acc, axis) => acc + axis.articles.length, 0);
           </div>
         </div>
 
-        <!-- Section 2 : Enjeux & Retombées techniques (Présentation unifiée et aérée) -->
-        <div class="mb-6">
-          <div class="flex items-center justify-between mb-2.5">
-            <div class="flex items-center gap-2">
-              <div class="w-1.5 h-4 bg-zinc-900 dark:bg-zinc-100 rounded-full"></div>
-              <h4 class="text-xs uppercase tracking-wider font-bold text-slate-500 dark:text-zinc-400 font-title">
-                Enjeux & Retombées techniques (BTS SIO SLAM)
-              </h4>
-            </div>
-            <span class="text-[11px] font-semibold text-slate-500 dark:text-zinc-400 bg-slate-100 dark:bg-zinc-800 px-2.5 py-0.5 rounded-md border border-slate-200 dark:border-zinc-700">
-              3 points clés
-            </span>
-          </div>
-          <div class="bg-slate-50/80 dark:bg-zinc-900/80 rounded-2xl p-4 sm:p-5 border border-slate-200/70 dark:border-zinc-800">
-            <ul id="veille-modal-keypoints" class="space-y-3"></ul>
-          </div>
-        </div>
-
-        <!-- Section 3 : Mots-clés & Normes associés (Tags) -->
-        <div class="mb-6">
-          <h4 class="text-xs uppercase tracking-wider font-bold text-slate-400 dark:text-zinc-400 font-title mb-2">
-            Mots-clés & Normes associés
-          </h4>
+        <!-- Mots-clés & Thématiques associés -->
+        <div class="mb-5 flex flex-wrap items-center gap-1.5">
           <div id="veille-modal-tags" class="flex flex-wrap items-center gap-1.5"></div>
         </div>
 
@@ -513,7 +491,6 @@ const totalArticles = axes.reduce((acc, axis) => acc + axis.articles.length, 0);
   const modalSourceType = document.getElementById('veille-modal-sourcetype');
   const modalReadTime = document.getElementById('veille-modal-readtime');
   const modalSummary = document.getElementById('veille-modal-summary');
-  const modalKeyPoints = document.getElementById('veille-modal-keypoints');
   const modalTags = document.getElementById('veille-modal-tags');
   const modalLogo = document.getElementById('veille-modal-logo');
   const modalLink = document.getElementById('veille-modal-link') as HTMLAnchorElement;
@@ -556,7 +533,6 @@ const totalArticles = axes.reduce((acc, axis) => acc + axis.articles.length, 0);
     const readTime = card.getAttribute('data-readtime') || '';
     const summary = card.getAttribute('data-summary') || '';
     const url = card.getAttribute('data-url') || '#';
-    const keypointsRaw = card.getAttribute('data-keypoints') || '[]';
     const tagsRaw = card.getAttribute('data-tags') || '[]';
 
     if (modalTitle) modalTitle.textContent = title;
@@ -573,27 +549,6 @@ const totalArticles = axes.reduce((acc, axis) => acc + axis.articles.length, 0);
       const cardLogo = card.querySelector('.veille-card-logo')?.innerHTML;
       if (cardLogo) {
         modalLogo.innerHTML = cardLogo;
-      }
-    }
-
-    // Remplissage harmonisé des 3 retombées techniques dans le conteneur unifié
-    if (modalKeyPoints) {
-      modalKeyPoints.innerHTML = '';
-      try {
-        const points: string[] = JSON.parse(keypointsRaw);
-        points.forEach((point, index) => {
-          const li = document.createElement('li');
-          li.className = 'flex items-start gap-3 pb-3 border-b border-slate-200/60 dark:border-zinc-800 last:border-0 last:pb-0';
-          li.innerHTML = `
-            <span class="w-5 h-5 rounded-md bg-white dark:bg-zinc-800 border border-slate-200/90 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 flex items-center justify-center shrink-0 mt-0.5 text-[11px] font-bold shadow-2xs">
-              ${index + 1}
-            </span>
-            <span class="text-xs sm:text-sm text-slate-700 dark:text-zinc-300 leading-relaxed font-medium">${point}</span>
-          `;
-          modalKeyPoints.appendChild(li);
-        });
-      } catch {
-        // Repli en cas d'erreur
       }
     }
 
