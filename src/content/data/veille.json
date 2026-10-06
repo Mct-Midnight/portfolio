@@ -171,6 +171,70 @@
           ]
         }
       ]
+    },
+    {
+      "id": "architectures-evenementielles",
+      "name": "Architectures modernes et API événementielles",
+      "shortDescription": "Découplage asynchrone, patterns d'architecture EDA (CQRS, Saga) et streaming d'événements temps réel avec Apache Kafka.",
+      "articles": [
+        {
+          "id": "ippon-patterns-architecture-2026",
+          "sourceId": "ippon",
+          "title": "De l'API REST à l'Asynchrone : Les nouveaux standards de l'architecture micro-services",
+          "date": "30 janvier 2026",
+          "source": "Ippon Technologies",
+          "sourceType": "Étude d'architecture logicielle",
+          "badgeType": "Patterns modernes 2026",
+          "readTime": "5 min",
+          "teaser": "Rupture avec les modèles synchrones bloquants : déploiement des architectures Event-Driven, API-First, CQRS et patron Saga pour les transactions distribuées.",
+          "tags": ["Event-Driven (EDA)", "CQRS & Saga", "API-First"],
+          "url": "https://blog.ippon.fr/2026/01/30/patterns-darchitecture-2026-part-1/",
+          "summary": "Analyse prospective menée par les experts d'Ippon Technologies sur les patrons d'architecture logicielle de référence en 2026. L'article démontre comment les architectures orientées événements (Event-Driven Architecture - EDA) et les démarches API-First répondent aux limites d'évolutivité des API REST synchrones en éliminant les dépendances temporelles bloquantes. Il approfondit deux patterns clés pour les microservices modernes : la ségrégation des responsabilités de lecture et d'écriture (CQRS) couplée à l'Event Sourcing, ainsi que l'orchestration de transactions distribuées sans verrouillage via le Saga Pattern.",
+          "keyPoints": [
+            "Suppression des goulots d'étranglement synchrones grâce aux échanges asynchrones (EDA)",
+            "Coordination des transactions distribuées sans verrou bloquant via le Saga Pattern",
+            "Séparation et optimisation indépendante des lectures et écritures avec le pattern CQRS"
+          ]
+        },
+        {
+          "id": "infoq-cloud-native-kafka",
+          "sourceId": "infoq",
+          "title": "Streaming d'événements et Cloud-Native : L'évolution de Kafka pour la scalabilité temps réel",
+          "date": "26 mai 2026",
+          "source": "InfoQ",
+          "sourceType": "Dossier d'ingénierie distribuée",
+          "badgeType": "Analyse Cloud-Native InfoQ",
+          "readTime": "6 min",
+          "teaser": "Évolution d'Apache Kafka vers une architecture cloud-native : stockage étagé (Tiered Storage), télémétrie FinOps et nouveau modèle de partage d'événements.",
+          "tags": ["Apache Kafka", "Tiered Storage", "Cloud-Native"],
+          "url": "https://www.infoq.com/articles/architecting-cloud-native-kafka/",
+          "summary": "Dossier technique de pointe publié sur InfoQ explorant la métamorphose de la plateforme de streaming Apache Kafka pour répondre aux exigences d'élasticité cloud-native. L'article détaille la dissociation fondamentale entre les couches de calcul et de stockage grâce au Tiered Storage (KIP-405), qui déporte les historiques de messages vers du stockage objet (S3/GCS) à coût réduit. Il examine également les Share Groups (KIP-932) pour une consommation de messages sans contrainte de partitionnement rigide, ainsi que l'instrumentation FinOps permettant d'aligner le dimensionnement des brokers sur la charge réelle.",
+          "keyPoints": [
+            "Découplage architectural entre calcul et stockage via le Tiered Storage (stockage objet S3)",
+            "Consommation flexible et mutualisée des files de messages grâce aux Share Groups (KIP-932)",
+            "Pilotage FinOps et réduction drastique de l'empreinte infrastructurelle des clusters"
+          ]
+        },
+        {
+          "id": "akava-event-driven-microservices",
+          "sourceId": "akava",
+          "title": "Transition vers l'événementiel : Découpler ses micro-services en pratique avec Kafka et FastAPI",
+          "date": "18 mars 2025",
+          "source": "Akava",
+          "sourceType": "Guide pratique de développement",
+          "badgeType": "Guide d'implémentation SLAM",
+          "readTime": "5 min",
+          "teaser": "Mise en pratique d'un pipeline événementiel complet : conteneurs Docker, broker Kafka, contrats de données Avro, producteurs/consommateurs Python et observabilité.",
+          "tags": ["FastAPI & Kafka", "Apache Avro", "Idempotence & DLQ"],
+          "url": "https://akava.io/blog/event-driven-microservices",
+          "summary": "Guide d'implémentation pratique réalisé par le cabinet Akava exposant la transition pas à pas d'un backend synchrone vers une architecture micro-services pilotée par les événements. À travers un cas concret d'orchestration de commandes avec Docker, Apache Kafka et Python (FastAPI), l'article formalise les briques essentielles du développeur SLAM : la gouvernance des schémas de données via Apache Avro pour prévenir les ruptures de compatibilité, la garantie d'idempotence des consommateurs pour neutraliser les messages dupliqués, la mise en place de Dead-Letter Queues (DLQ) pour isoler les anomalies sans interruption de service, et le traçage distribué avec OpenTelemetry.",
+          "keyPoints": [
+            "Sécurisation des formats d'échange et compatibilité ascendante avec Apache Avro",
+            "Gestion rigoureuse de l'idempotence et traitement des rejets via Dead-Letter Queues (DLQ)",
+            "Observabilité distribuée de bout en bout des flux transactionnels avec OpenTelemetry"
+          ]
+        }
+      ]
     }
   ]
 }
