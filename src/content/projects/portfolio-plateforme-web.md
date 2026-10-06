@@ -13,7 +13,7 @@ featured: true
 
 # Portfolio Professionnel & Plateforme E4
 
-> **Synthèse en une phrase :** Conception, développement et déploiement continu d'une plateforme web statique haute performance servant de support officiel à l'épreuve E4 et de vitrine professionnelle pour la recherche de stage.
+> **Synthèse en une phrase :** Conception et déploiement continu d'une plateforme web moderne servant de support officiel à l'épreuve E4 et de vitrine pour la recherche de stage.
 
 ---
 

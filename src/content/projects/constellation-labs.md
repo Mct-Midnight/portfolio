@@ -13,7 +13,7 @@ featured: true
 
 # Constellation Lab's — Plateforme SaaS de Bots Discord
 
-> **Synthèse en une phrase :** Agence digitale et solution SaaS spécialisée dans le développement, l'automatisation de communautés et l'hébergement haute disponibilité de bots Discord sur mesure.
+> **Synthèse en une phrase :** Solution SaaS et agence digitale spécialisée dans l'automatisation de serveurs et l'hébergement haute disponibilité de bots Discord sur mesure.
 
 ---
 
