@@ -61,11 +61,12 @@ for (const f of fichiersCles) {
 }
 
 // 2. Contrôle de validité des données JSON
-console.log('\n2. Données dynamiques du profil et compétences :');
+console.log('\n2. Données dynamiques du profil, compétences et veille :');
 const fichiersJson = [
   'src/content/data/profile.json',
   'src/content/data/skills.json',
-  'src/content/data/timeline.json'
+  'src/content/data/timeline.json',
+  'src/content/data/veille.json'
 ];
 
 for (const relatif of fichiersJson) {
