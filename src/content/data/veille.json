@@ -14,7 +14,7 @@
       "tools": [
         {
           "name": "Google Alerts ciblées",
-          "detail": "Mots-clés ciblés : DevSecOps, SBOM, IA générative code, OWASP 2025"
+          "detail": "Mots-clés ciblés : DevSecOps, SBOM, IA générative code, EDA, Kafka, OWASP"
         },
         {
           "name": "Newsletters spécialisées",
@@ -30,7 +30,7 @@
       "tools": [
         {
           "name": "Agrégateur RSS Feedly",
-          "detail": "Centralisation des flux de blogs d'ingénierie logicielle et de recherche"
+          "detail": "Centralisation des flux de blogs d'ingénierie logicielle et d'architecture (InfoQ, Ippon)"
         },
         {
           "name": "Référentiels & Portails officiels",
@@ -58,15 +58,10 @@
           "sourceType": "Étude officielle ANSSI & Wavestone",
           "badgeType": "Étude européenne ANSSI",
           "readTime": "4 min",
-          "teaser": "Industrialisation des tests de sécurité automatisés dans les pipelines CI/CD et mise en conformité avec les réglementations NIS2 et CRA.",
+          "teaser": "Industrialisation des tests de sécurité automatisés dans les pipelines CI/CD et conformité NIS2 et CRA.",
           "tags": ["DevSecOps", "SAST / DAST", "NIS2 & CRA"],
           "url": "https://www.solutions-numeriques.com/devsecops-europeen-bien-outille-mais-encore-domine/",
-          "summary": "Analyse d'une étude européenne portée par l'ANSSI et Wavestone sur le déploiement du DevSecOps dans le cycle de développement logiciel. L'article met en lumière l'industrialisation des tests de sécurité automatisés (SAST, DAST, inventaire SBOM) pour intégrer la sécurité dès la conception (Security by Design), tout en soulignant les défis opérationnels liés aux faux positifs et aux nouvelles exigences réglementaires européennes (NIS2, Cyber Resilience Act).",
-          "keyPoints": [
-            "Industrialisation des tests SAST et DAST dans les pipelines CI/CD",
-            "Transition du DevSecOps vers une obligation réglementaire européenne (CRA, NIS2)",
-            "Gouvernance du SBOM (Software Bill of Materials) pour tracer les dépendances"
-          ]
+          "summary": "Analyse approfondie d'une étude européenne portée par l'ANSSI et Wavestone sur l'industrialisation du DevSecOps dans le cycle de développement logiciel. Le document examine le déploiement des tests automatisés de sécurité (SAST et DAST) et la gestion des inventaires logiciels (SBOM) pour intégrer la sécurité dès la conception (Security by Design), tout en répondant aux nouvelles exigences réglementaires européennes (NIS2 et Cyber Resilience Act)."
         },
         {
           "id": "anssi-supply-chain",
@@ -77,15 +72,10 @@
           "sourceType": "Portail officiel cyber.gouv.fr",
           "badgeType": "Guide officiel ANSSI",
           "readTime": "5 min",
-          "teaser": "Sécurisation de la supply chain applicative : contrôle d'intégrité des composants open-source, inventaire SBOM et intégration S-SDLC.",
+          "teaser": "Sécurisation de la supply chain applicative : inventaire SBOM et intégration du cycle de dev sécurisé S-SDLC.",
           "tags": ["Supply Chain", "SBOM", "S-SDLC"],
           "url": "https://cyber.gouv.fr/actualites/s-sdlc-et-devsecops-enjeux-et-perspectives/",
-          "summary": "Guide officiel de l'ANSSI traitant des cyberattaques ciblant les dépendances et bibliothèques tierces au sein des projets logiciels. Il formalise les pratiques recommandées pour les développeurs : gestion de l'inventaire des composants (SBOM), contrôle d'intégrité des paquets et vérification systématique des vulnérabilités connues (CVE) avant intégration.",
-          "keyPoints": [
-            "Contrôle d'intégrité des dépendances logicielles tierces",
-            "Audit automatisé des CVE (Common Vulnerabilities and Exposures)",
-            "Adoption du cycle de développement sécurisé S-SDLC"
-          ]
+          "summary": "Guide méthodologique officiel publié par l'ANSSI formalisant les pratiques recommandées pour sécuriser la chaîne d'approvisionnement logicielle face aux compromissions de dépendances tierces. Il détaille la traçabilité des composants open-source via les inventaires SBOM (Software Bill of Materials), le contrôle cryptographique d'intégrité des paquets et l'audit continu des vulnérabilités connues (CVE) dans un cycle de développement sécurisé (S-SDLC)."
         },
         {
           "id": "owasp-top-10-2025",
@@ -96,22 +86,17 @@
           "sourceType": "Standard international de sécurité",
           "badgeType": "Standard mondial OWASP",
           "readTime": "6 min",
-          "teaser": "Référentiel des risques applicatifs critiques : Broken Access Control au 1er rang, gestion de la supply chain et Security by Design.",
+          "teaser": "Référentiel des risques applicatifs critiques : Broken Access Control au 1er rang et Security by Design.",
           "tags": ["OWASP Top 10", "Security by Design", "Web"],
           "url": "https://top10.owasp.org/2025/",
-          "summary": "Le Top 10 de l'OWASP recense les risques de sécurité les plus critiques affectant les applications logicielles et web (contrôle d'accès défaillant, supply chain, injections). Actualisé pour intégrer les menaces modernes, ce référentiel est incontournable en programmation SLAM pour appliquer le principe de Security by Design et concevoir des architectures applicatives hautement résilientes.",
-          "keyPoints": [
-            "Nouvelles catégories : défaillances de la Supply Chain & gestion d'exceptions",
-            "Broken Access Control (A01) maintenu au premier rang des vulnérabilités web",
-            "Application concrète des principes de Security by Design pour les développeurs"
-          ]
+          "summary": "Référentiel international de référence identifiant les dix catégories de failles de sécurité les plus critiques menaçant les applications web et logicielles. Réactualisé pour intégrer les défaillances de contrôle d'accès (Broken Access Control) au premier rang ainsi que les vulnérabilités de la supply chain, ce standard guide les développeurs dans l'application rigoureuse du principe de Security by Design afin de bâtir des architectures résilientes."
         }
       ]
     },
     {
       "id": "ia-ingenierie",
       "name": "IA et ingénierie logicielle",
-      "shortDescription": "Impact des grands modèles de langage (LLM), agents autonomes et gouvernance humaine dans le cycle de dev.",
+      "shortDescription": "Impact des assistants de code, agents autonomes et gouvernance humaine dans le cycle de développement.",
       "articles": [
         {
           "id": "github-copilot-productivity",
@@ -122,15 +107,10 @@
           "sourceType": "Étude empirique de recherche",
           "badgeType": "Recherche empirique R&D",
           "readTime": "4 min",
-          "teaser": "Gain mesuré de +55 % sur la complétion des tâches de code et bascule du rôle de développeur vers l'architecture et la revue critique.",
+          "teaser": "Gain mesuré de +55 % sur la complétion des tâches de code et bascule du développeur vers la revue critique.",
           "tags": ["Copilot", "Productivité LLM", "+55% Vitesse"],
           "url": "https://github.blog/news-insights/research/research-quantifying-github-copilots-impact-on-developer-productivity-and-happiness/",
-          "summary": "Étude empirique menée par GitHub analysant l'impact des assistants de code basés sur les LLM dans les flux d'ingénierie logicielle. Les résultats mettent en évidence une accélération de la rédaction de code répétitif et des tests unitaires (+55 % de rapidité), tout en soulignant le déplacement de l'effort cognitif du développeur vers la relecture critique et la validation logique.",
-          "keyPoints": [
-            "Gain mesuré de +55 % sur la vitesse de complétion des tâches de code",
-            "Réduction de la charge mentale sur les tâches répétitives et syntaxiques",
-            "Évolution du développeur vers un rôle de relecteur critique et d'architecte"
-          ]
+          "summary": "Étude empirique majeure menée par l'équipe de recherche de GitHub mesurant l'impact réel des assistants de code basés sur les LLM dans les flux de développement. Les résultats démontrent une accélération de +55 % sur la complétion des tâches de programmation répétitives et des tests unitaires, tout en illustrant l'évolution du rôle du développeur vers l'arbitrage critique, la validation de robustesse et l'architecture logicielle."
         },
         {
           "id": "lemagit-ia-agentique",
@@ -141,15 +121,10 @@
           "sourceType": "Dossier d'analyse tech",
           "badgeType": "Dossier d'analyse tech",
           "readTime": "5 min",
-          "teaser": "Émergence des flux multi-agents autonomes pour l'orchestration du refactoring, des tests automatisés et le cadrage métier.",
+          "teaser": "Émergence des flux multi-agents autonomes pour l'orchestration du refactoring, des tests et du débogage.",
           "tags": ["IA Agentique", "Multi-Agents", "Refactoring"],
           "url": "https://www.lemagit.fr/essentialguide/Agents-IA-et-IA-agentique-le-guide-pour-tout-comprendre",
-          "summary": "Dossier d'analyse sur l'émergence des agents autonomes et de l'IA agentique au sein des flux applicatifs. Il examine comment le développement évolue au-delà de la simple autocomplétion : orchestration d'agents spécialisés (refactorisation, tests automatisés, débogage) et transition du rôle de développeur vers des fonctions d'architecture et de cadrage des besoins métier.",
-          "keyPoints": [
-            "Différence entre agent unitaire et collaboration multi-agents autonome",
-            "Automatisation poussée du refactoring, des tests et du debugging",
-            "Nécessité absolue de gouvernance des données et de contrôle humain"
-          ]
+          "summary": "Dossier d'investigation technique analysant le passage de la simple autocomplétion syntaxique vers des architectures d'IA agentique et de systèmes multi-agents autonomes. L'article explore comment ces agents spécialisés collaborent pour automatiser le refactoring de code, l'exécution des batteries de tests et le débogage complexe, tout en insistant sur l'impératif managérial d'une gouvernance stricte et d'un contrôle humain continu."
         },
         {
           "id": "anssi-bsi-ai-coding",
@@ -160,15 +135,10 @@
           "sourceType": "Guide officiel ANSSI & BSI",
           "badgeType": "Recommandations officielles",
           "readTime": "4 min",
-          "teaser": "Recommandations conjointes franco-allemandes : lutte contre le code fantôme, fuites de données et impératif du Human-in-the-loop.",
-          "tags": ["Sécurité IA", "Human-in-the-loop", "Anti-Hallucination"],
+          "teaser": "Recommandations conjointes franco-allemandes : lutte contre les vulnérabilités et impératif du contrôle humain.",
+          "tags": ["Sécurité IA", "Human-in-the-loop", "Hygiène de code"],
           "url": "https://www.solutions-numeriques.com/anssi-et-le-bsi-publient-des-bonnes-pratiques-sur-la-securite-sur-la-generation-de-code-par-lia/",
-          "summary": "Synthèse des recommandations officielles publiées par l'ANSSI et son homologue allemand le BSI encadrant l'usage des assistants de programmation par IA dans les flux de développement. Le document alerte sur les risques d'introduction involontaire de vulnérabilités, de « code fantôme » et de fuites de données sensibles via les requêtes. Il formalise l'obligation d'un contrôle humain systématique (Human-in-the-loop) et de tests rigoureux avant toute mise en production de code assisté par IA.",
-          "keyPoints": [
-            "Vigilance stricte contre le « code fantôme » et les hallucinations logiques",
-            "Principe impératif du Human-in-the-loop (vérification systématique par un humain)",
-            "Protection contre les fuites de données d'entreprise lors des requêtes d'IA"
-          ]
+          "summary": "Synthèse des recommandations officielles conjointes publiées par l'ANSSI et son homologue allemand le BSI encadrant l'usage des assistants de programmation par IA en entreprise. Le rapport alerte sur les risques d'introduction involontaire de failles logiques, de « code fantôme » non maîtrisé et de fuites de données propriétaires, imposant le principe strict du Human-in-the-loop et des revues de code approfondies avant toute mise en production."
         }
       ]
     },
@@ -186,15 +156,10 @@
           "sourceType": "Étude d'architecture logicielle",
           "badgeType": "Patterns modernes 2026",
           "readTime": "5 min",
-          "teaser": "Rupture avec les modèles synchrones bloquants : déploiement des architectures Event-Driven, API-First, CQRS et patron Saga pour les transactions distribuées.",
+          "teaser": "Rupture avec les modèles synchrones bloquants : déploiement des architectures Event-Driven, API-First, CQRS et patron Saga.",
           "tags": ["Event-Driven (EDA)", "CQRS & Saga", "API-First"],
           "url": "https://blog.ippon.fr/2026/01/30/patterns-darchitecture-2026-part-1/",
-          "summary": "Analyse prospective menée par les experts d'Ippon Technologies sur les patrons d'architecture logicielle de référence en 2026. L'article démontre comment les architectures orientées événements (Event-Driven Architecture - EDA) et les démarches API-First répondent aux limites d'évolutivité des API REST synchrones en éliminant les dépendances temporelles bloquantes. Il approfondit deux patterns clés pour les microservices modernes : la ségrégation des responsabilités de lecture et d'écriture (CQRS) couplée à l'Event Sourcing, ainsi que l'orchestration de transactions distribuées sans verrouillage via le Saga Pattern.",
-          "keyPoints": [
-            "Suppression des goulots d'étranglement synchrones grâce aux échanges asynchrones (EDA)",
-            "Coordination des transactions distribuées sans verrou bloquant via le Saga Pattern",
-            "Séparation et optimisation indépendante des lectures et écritures avec le pattern CQRS"
-          ]
+          "summary": "Analyse prospective menée par les architectes d'Ippon Technologies sur les patrons d'architecture logicielle de référence en 2026. L'étude démontre comment les architectures orientées événements (EDA) et la démarche API-First permettent de dépasser les limitations des API REST synchrones en éliminant les dépendances bloquantes. Elle détaille la mise en œuvre pratique de la ségrégation des lectures et écritures (CQRS) couplée à l'Event Sourcing et au patron Saga pour orchestrer des transactions distribuées fiables."
         },
         {
           "id": "infoq-cloud-native-kafka",
@@ -205,15 +170,10 @@
           "sourceType": "Dossier d'ingénierie distribuée",
           "badgeType": "Analyse Cloud-Native InfoQ",
           "readTime": "6 min",
-          "teaser": "Évolution d'Apache Kafka vers une architecture cloud-native : stockage étagé (Tiered Storage), télémétrie FinOps et nouveau modèle de partage d'événements.",
+          "teaser": "Évolution d'Apache Kafka vers une architecture cloud-native : stockage étagé (Tiered Storage) et télémétrie FinOps.",
           "tags": ["Apache Kafka", "Tiered Storage", "Cloud-Native"],
           "url": "https://www.infoq.com/articles/architecting-cloud-native-kafka/",
-          "summary": "Dossier technique de pointe publié sur InfoQ explorant la métamorphose de la plateforme de streaming Apache Kafka pour répondre aux exigences d'élasticité cloud-native. L'article détaille la dissociation fondamentale entre les couches de calcul et de stockage grâce au Tiered Storage (KIP-405), qui déporte les historiques de messages vers du stockage objet (S3/GCS) à coût réduit. Il examine également les Share Groups (KIP-932) pour une consommation de messages sans contrainte de partitionnement rigide, ainsi que l'instrumentation FinOps permettant d'aligner le dimensionnement des brokers sur la charge réelle.",
-          "keyPoints": [
-            "Découplage architectural entre calcul et stockage via le Tiered Storage (stockage objet S3)",
-            "Consommation flexible et mutualisée des files de messages grâce aux Share Groups (KIP-932)",
-            "Pilotage FinOps et réduction drastique de l'empreinte infrastructurelle des clusters"
-          ]
+          "summary": "Dossier technique de référence publié sur InfoQ analysant la transformation d'Apache Kafka vers une architecture cloud-native découplant le calcul et la persistance. L'article détaille le fonctionnement du Tiered Storage (KIP-405) déportant les historiques de messages vers du stockage objet (S3/GCS) à coût maîtrisé, l'arrivée des Share Groups (KIP-932) pour une consommation simplifiée des flux, ainsi que le pilotage FinOps permettant d'adapter précisément l'infrastructure à la charge réelle."
         },
         {
           "id": "akava-event-driven-microservices",
@@ -224,15 +184,10 @@
           "sourceType": "Guide pratique de développement",
           "badgeType": "Guide d'implémentation SLAM",
           "readTime": "5 min",
-          "teaser": "Mise en pratique d'un pipeline événementiel complet : conteneurs Docker, broker Kafka, contrats de données Avro, producteurs/consommateurs Python et observabilité.",
+          "teaser": "Mise en pratique d'un pipeline événementiel complet : conteneurs Docker, broker Kafka, contrats Avro et FastAPI.",
           "tags": ["FastAPI & Kafka", "Apache Avro", "Idempotence & DLQ"],
           "url": "https://akava.io/blog/event-driven-microservices",
-          "summary": "Guide d'implémentation pratique réalisé par le cabinet Akava exposant la transition pas à pas d'un backend synchrone vers une architecture micro-services pilotée par les événements. À travers un cas concret d'orchestration de commandes avec Docker, Apache Kafka et Python (FastAPI), l'article formalise les briques essentielles du développeur SLAM : la gouvernance des schémas de données via Apache Avro pour prévenir les ruptures de compatibilité, la garantie d'idempotence des consommateurs pour neutraliser les messages dupliqués, la mise en place de Dead-Letter Queues (DLQ) pour isoler les anomalies sans interruption de service, et le traçage distribué avec OpenTelemetry.",
-          "keyPoints": [
-            "Sécurisation des formats d'échange et compatibilité ascendante avec Apache Avro",
-            "Gestion rigoureuse de l'idempotence et traitement des rejets via Dead-Letter Queues (DLQ)",
-            "Observabilité distribuée de bout en bout des flux transactionnels avec OpenTelemetry"
-          ]
+          "summary": "Guide d'implémentation pratique réalisé par le cabinet Akava exposant la migration concrète d'une architecture backend synchrone vers des microservices pilotés par les événements avec Docker, Apache Kafka et Python (FastAPI). L'article formalise les briques d'ingénierie indispensables : la gestion stricte des contrats de données avec Apache Avro, l'idempotence des consommateurs pour éviter les doublons, l'isolation des erreurs via des Dead-Letter Queues (DLQ) et l'observabilité distribuée avec OpenTelemetry."
         }
       ]
     }
