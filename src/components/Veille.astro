@@ -13,6 +13,7 @@ import {
   Clock,
   ChevronLeft,
   ChevronRight,
+  Workflow,
 } from 'lucide-astro';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -24,6 +25,7 @@ const { title, subtitle, pearltreesUrl, axes } = veilleData;
 const axisIconMap: Record<string, any> = {
   cybersecurite: ShieldCheck,
   'ia-ingenierie': Cpu,
+  'architectures-evenementielles': Workflow,
 };
 
 // Chargement sécurisé des véritables logos vectoriels colorés des sources
@@ -34,6 +36,9 @@ const sourceFiles: Record<string, string> = {
   github: 'source-github.svg',
   'solutions-numeriques': 'source-solutions-numeriques.svg',
   lemagit: 'source-lemagit.svg',
+  ippon: 'source-ippon.svg',
+  infoq: 'source-infoq.svg',
+  akava: 'source-akava.svg',
 };
 
 for (const [key, filename] of Object.entries(sourceFiles)) {
@@ -274,7 +279,7 @@ const totalArticles = axes.reduce((acc, axis) => acc + axis.articles.length, 0);
               id="veille-modal-counter"
               class="text-xs font-semibold text-slate-500 dark:text-zinc-400 bg-slate-100 dark:bg-zinc-800 px-3 py-1 rounded-full border border-slate-200 dark:border-zinc-700 select-none whitespace-nowrap"
             >
-              1 / 6
+              1 / {totalArticles}
             </span>
 
             <button
