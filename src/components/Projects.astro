@@ -179,8 +179,8 @@ function getStatusBadge(status: string) {
 
             <!-- Contenu textuel de la carte -->
             <div class="p-6 space-y-3">
-              <!-- Titre du projet -->
-              <h3 class="text-lg font-bold font-title text-slate-900 dark:text-zinc-100 group-hover:text-zinc-950 dark:group-hover:text-white transition-colors leading-snug tracking-tight">
+              <!-- Titre du projet avec hauteur minimale harmonisée sur desktop -->
+              <h3 class="text-lg font-bold font-title text-slate-900 dark:text-zinc-100 group-hover:text-zinc-950 dark:group-hover:text-white transition-colors leading-snug tracking-tight sm:min-h-[3.25rem]">
                 <a
                   href={`/projets/${project.slug}`}
                   class="project-modal-trigger cursor-pointer"
@@ -190,8 +190,8 @@ function getStatusBadge(status: string) {
                 </a>
               </h3>
 
-              <!-- Synthèse métier concise -->
-              <p class="text-xs sm:text-sm text-slate-600 dark:text-zinc-400 line-clamp-3 leading-relaxed">
+              <!-- Synthèse métier concise affichée intégralement sans coupure -->
+              <p class="text-xs sm:text-sm text-slate-600 dark:text-zinc-400 leading-relaxed sm:min-h-[4rem]">
                 {summary}
               </p>
 
