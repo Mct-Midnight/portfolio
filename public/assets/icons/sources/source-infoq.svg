@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="100%" height="100%" fill="none">
+  <!-- Fond vert émeraude officiel InfoQ -->
+  <rect width="48" height="48" rx="8" fill="#00791D" />
+  <!-- Typographie officielle InfoQ avec Q distinctif -->
+  <text x="24" y="27" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="900" fill="#FFFFFF" text-anchor="middle" letter-spacing="0.5">Info<tspan fill="#A7F3D0">Q</tspan></text>
+  <rect x="13" y="32" width="22" height="2" rx="1" fill="#FFFFFF" opacity="0.9" />
+  <text x="24" y="41" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="4.5" font-weight="800" fill="#D1FAE5" text-anchor="middle" letter-spacing="0.5">ARCHI &amp; CLOUD</text>
+</svg>
