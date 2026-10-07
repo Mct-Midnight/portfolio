@@ -1,32 +1,89 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="100%" height="100%" fill="none">
-  <!-- Icône Officielle API REST & Flux de Données HTTP -->
+  <!-- Définitions des dégradés modernes et vifs -->
   <defs>
-    <linearGradient id="apiBg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1E293B"/>
-      <stop offset="100%" stop-color="#0F172A"/>
+    <!-- Dégradé principal API REST (Bleu Électrique vers Indigo) -->
+    <linearGradient id="restMain" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#4F46E5"/>
     </linearGradient>
-    <linearGradient id="flowBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+
+    <!-- Dégradé Flux Requête HTTP GET/POST (Cyan) -->
+    <linearGradient id="flowCyan" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#38BDF8"/>
-      <stop offset="100%" stop-color="#2563EB"/>
+      <stop offset="100%" stop-color="#0284C7"/>
     </linearGradient>
+
+    <!-- Dégradé Flux Réponse JSON 200 OK (Émeraude) -->
     <linearGradient id="flowEmerald" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#34D399"/>
       <stop offset="100%" stop-color="#059669"/>
     </linearGradient>
   </defs>
 
-  <!-- Boîtier principal structuré -->
-  <rect x="8" y="10" width="48" height="44" rx="10" fill="url(#apiBg)" stroke="#334155" stroke-width="2"/>
+  <!-- Flèche supérieure de flux de requête (Client vers Serveur) -->
+  <path
+    d="M14 18h30a6 6 0 0 1 6 6v2"
+    stroke="url(#flowCyan)"
+    stroke-width="3.5"
+    stroke-linecap="round"
+  />
+  <path
+    d="M45 22l5 4 5-4"
+    stroke="url(#flowCyan)"
+    stroke-width="3"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
 
-  <!-- Nœuds de connexion réseau (Endpoints) -->
-  <circle cx="18" cy="22" r="4" fill="url(#flowBlue)"/>
-  <circle cx="46" cy="22" r="4" fill="url(#flowEmerald)"/>
-  <circle cx="32" cy="42" r="4" fill="#F59E0B"/>
+  <!-- Flèche inférieure de flux de réponse JSON (Serveur vers Client) -->
+  <path
+    d="M50 46H20a6 6 0 0 1-6-6v-2"
+    stroke="url(#flowEmerald)"
+    stroke-width="3.5"
+    stroke-linecap="round"
+  />
+  <path
+    d="M19 42l-5-4-5 4"
+    stroke="url(#flowEmerald)"
+    stroke-width="3"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
 
-  <!-- Lignes d'interconnexion de bus d'API -->
-  <path d="M22 22h20M18 26l11 13M46 26L35 39" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-dasharray="2 3"/>
+  <!-- Capsule / Badge central API épuré et contrasté -->
+  <rect
+    x="12"
+    y="23"
+    width="40"
+    height="18"
+    rx="6"
+    fill="url(#restMain)"
+  />
 
-  <!-- Badge central API REST -->
-  <rect x="19" y="27" width="26" height="12" rx="4" fill="#09090B" stroke="#475569" stroke-width="1.2"/>
-  <text x="32" y="36" font-family="system-ui, -apple-system, sans-serif" font-size="7.5" font-weight="800" fill="#F8FAFC" text-anchor="middle" letter-spacing="1">API</text>
+  <!-- Reflet supérieur pour effet moderne 3D subtil -->
+  <rect
+    x="14"
+    y="24.5"
+    width="36"
+    height="1.5"
+    rx="0.75"
+    fill="#FFFFFF"
+    fill-opacity="0.35"
+  />
+
+  <!-- Nœuds réseau aux extrémités -->
+  <circle cx="14" cy="18" r="3.5" fill="#38BDF8"/>
+  <circle cx="50" cy="46" r="3.5" fill="#34D399"/>
+
+  <!-- Texte API net, gras et parfaitement centré -->
+  <text
+    x="32"
+    y="35.5"
+    font-family="system-ui, -apple-system, sans-serif"
+    font-size="10.5"
+    font-weight="900"
+    fill="#FFFFFF"
+    text-anchor="middle"
+    letter-spacing="1.2"
+  >API</text>
 </svg>
