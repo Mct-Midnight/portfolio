@@ -16,9 +16,10 @@ const isHome = currentPath === '/';
 const basePath = isHome ? '' : '/';
 ---
 
-<!-- Barre supérieure mobile (Visible uniquement sur écran < 1024px) -->
+<!-- Barre supérieure mobile (Visible uniquement sur écran < 1024px, masquée à l'impression) -->
 <header
-  class="lg:hidden fixed top-0 left-0 right-0 h-16 bg-[#18181B] border-b border-[#27272A] z-50 flex items-center justify-between px-4"
+  id="mobile-header"
+  class="lg:hidden fixed top-0 left-0 right-0 h-16 bg-[#18181B] border-b border-[#27272A] z-50 flex items-center justify-between px-4 print:hidden"
 >
   <a href={`${basePath}#hero`} class="flex items-center gap-3 group">
     <div class="w-10 h-10 rounded-full overflow-hidden border border-zinc-700 bg-zinc-800 flex items-center justify-center">
@@ -54,17 +55,17 @@ const basePath = isHome ? '' : '/';
   </div>
 </header>
 
-<!-- Volet d'arrière-plan semi-transparent (Backdrop Mobile) -->
+<!-- Volet d'arrière-plan semi-transparent (Backdrop Mobile - masqué à l'impression) -->
 <div
   id="drawer-backdrop"
-  class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden transition-opacity duration-300 opacity-0 lg:hidden"
+  class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden transition-opacity duration-300 opacity-0 lg:hidden print:hidden"
   aria-hidden="true"
 ></div>
 
-<!-- Volet latéral fixe (Sidebar Desktop & Drawer Mobile) -->
+<!-- Volet latéral fixe (Sidebar Desktop & Drawer Mobile - masqué à l'impression) -->
 <aside
   id="sidebar-pane"
-  class="fixed top-0 bottom-0 left-0 w-[280px] bg-[#18181B] text-zinc-300 border-r border-[#27272A] z-50 flex flex-col justify-between transition-transform duration-300 ease-in-out -translate-x-full lg:translate-x-0 shadow-lg"
+  class="fixed top-0 bottom-0 left-0 w-[280px] bg-[#18181B] text-zinc-300 border-r border-[#27272A] z-50 flex flex-col justify-between transition-transform duration-300 ease-in-out -translate-x-full lg:translate-x-0 shadow-lg print:hidden"
 >
   <!-- Partie Supérieure : En-tête Profil épuré -->
   <div class="p-6 border-b border-[#27272A]">

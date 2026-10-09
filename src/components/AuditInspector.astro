@@ -4,20 +4,20 @@
 import { Terminal, Cpu, Leaf, Activity, ShieldCheck, X, Copy, Check, Layers, Code2, GripVertical } from 'lucide-astro';
 ---
 
-<!-- Calque Grille Blueprint Millimétrée (Affiché uniquement quand le mode audit est activé) -->
+<!-- Calque Grille Blueprint Millimétrée (Affiché uniquement quand le mode audit est activé, masqué à l'impression) -->
 <div
   id="blueprint-grid-overlay"
-  class="fixed inset-0 pointer-events-none z-30 opacity-0 transition-opacity duration-300 hidden"
+  class="fixed inset-0 pointer-events-none z-30 opacity-0 transition-opacity duration-300 hidden print:hidden"
   aria-hidden="true"
 >
   <div class="absolute inset-0 bg-[radial-gradient(#71717a_1px,transparent_1px)] [background-size:24px_24px] opacity-25 dark:opacity-20"></div>
   <div class="absolute inset-0 bg-[linear-gradient(to_right,#3f3f4615_1px,transparent_1px),linear-gradient(to_bottom,#3f3f4615_1px,transparent_1px)] [background-size:96px_96px]"></div>
 </div>
 
-<!-- Notification capsule supérieure discrète (Centrée, ne masquant aucun élément du volet ou du contenu) -->
+<!-- Notification capsule supérieure discrète (Centrée, ne masquant aucun élément du volet ou du contenu, masquée à l'impression) -->
 <div
   id="audit-top-banner"
-  class="fixed top-4 left-1/2 -translate-x-1/2 z-50 max-w-[92vw] sm:max-w-2xl bg-[#18181B]/95 backdrop-blur-md text-zinc-200 border border-[#27272A] py-1.5 px-4 rounded-full shadow-2xl -translate-y-20 opacity-0 pointer-events-none transition-all duration-300 flex items-center justify-between gap-3 text-xs select-none"
+  class="fixed top-4 left-1/2 -translate-x-1/2 z-50 max-w-[92vw] sm:max-w-2xl bg-[#18181B]/95 backdrop-blur-md text-zinc-200 border border-[#27272A] py-1.5 px-4 rounded-full shadow-2xl -translate-y-20 opacity-0 pointer-events-none transition-all duration-300 flex items-center justify-between gap-3 text-xs select-none print:hidden"
   role="status"
   aria-live="polite"
 >
@@ -41,10 +41,10 @@ import { Terminal, Cpu, Leaf, Activity, ShieldCheck, X, Copy, Check, Layers, Cod
   </button>
 </div>
 
-<!-- Panneau Flottant (Cockpit HUD) de Télémétrie et d'Éco-conception (Déplaçable à la souris) -->
+<!-- Panneau Flottant (Cockpit HUD) de Télémétrie et d'Éco-conception (Déplaçable à la souris, masqué à l'impression) -->
 <aside
   id="audit-hud-panel"
-  class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-[420px] max-w-full bg-[#18181B] text-zinc-200 border border-[#27272A] rounded-2xl shadow-2xl overflow-hidden translate-y-12 opacity-0 pointer-events-none transition-all duration-300 ease-out"
+  class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-[420px] max-w-full bg-[#18181B] text-zinc-200 border border-[#27272A] rounded-2xl shadow-2xl overflow-hidden translate-y-12 opacity-0 pointer-events-none transition-all duration-300 ease-out print:hidden"
   aria-label="Console d'audit technique et télémétrie"
 >
   <!-- En-tête du Panneau HUD (Zone de saisie et déplacement à la souris) -->
