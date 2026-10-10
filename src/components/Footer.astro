@@ -1,15 +1,14 @@
 ---
 // Pied de page épuré du portfolio avec copyright, description de projet et liens légaux
 import profileData from '../content/data/profile.json';
-import { GitBranch, Scale, ArrowLeft, FileText } from 'lucide-astro';
+import { GitBranch, Scale, ArrowLeft } from 'lucide-astro';
 
 interface Props {
   currentPath?: string;
   hideHomeLink?: boolean;
-  hideStageLink?: boolean;
 }
 
-const { currentPath = '', hideHomeLink = false, hideStageLink = false } = Astro.props;
+const { currentPath = '', hideHomeLink = false } = Astro.props;
 const { identity } = profileData;
 const currentYear = new Date().getFullYear();
 ---
@@ -35,16 +34,6 @@ const currentYear = new Date().getFullYear();
         >
           <ArrowLeft class="w-3.5 h-3.5 text-slate-400 dark:text-zinc-500 group-hover:text-slate-900 dark:group-hover:text-white transition-colors" />
           <span>Accueil</span>
-        </a>
-      )}
-
-      {!hideStageLink && currentPath !== '/fiche-synthese-stage' && currentPath !== '/404' && (
-        <a
-          href="/fiche-synthese-stage"
-          class="inline-flex items-center gap-1.5 text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white transition-colors group"
-        >
-          <FileText class="w-3.5 h-3.5 text-slate-400 dark:text-zinc-500 group-hover:text-slate-900 dark:group-hover:text-white transition-colors" />
-          <span>Fiche Synthèse Stage</span>
         </a>
       )}
 
