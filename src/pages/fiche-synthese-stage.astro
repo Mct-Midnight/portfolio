@@ -18,9 +18,7 @@ import {
   Linkedin,
   Download,
   ArrowUpRight,
-  BadgeEuro,
-  Calendar,
-  ShieldCheck
+  Building2
 } from 'lucide-astro';
 
 const { identity, contact, internshipSearch } = profileData;
@@ -65,15 +63,14 @@ const { identity, contact, internshipSearch } = profileData;
           </button>
         </div>
 
-        <!-- En-tête principal écran exécutif -->
-        <header class="bg-white dark:bg-[#18181B] rounded-2xl p-6 sm:p-8 border border-slate-200 dark:border-[#27272A] shadow-card hover:shadow-card-hover hover:border-zinc-400 dark:hover:border-zinc-500 transition-all duration-200 mb-8 space-y-4">
-          <div class="flex flex-wrap items-center gap-2.5">
-            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700">
-              <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-              <span>Document RH & Direction</span>
+        <!-- En-tête principal : Synthèse Entreprise & RH (Inspiré du Journal de bord) -->
+        <header class="bg-white dark:bg-[#18181B] rounded-2xl p-6 sm:p-8 border border-slate-200 dark:border-[#27272A] shadow-card mb-8 space-y-4">
+          <div class="flex items-center gap-2.5">
+            <span class="p-2 bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded-xl border border-zinc-200 dark:border-zinc-700">
+              <Building2 class="w-5 h-5" />
             </span>
-            <span class="text-xs text-slate-400 dark:text-zinc-500 font-medium">
-              Stage 1re Année SLAM · 2027
+            <span class="text-xs font-bold text-zinc-900 dark:text-zinc-100 uppercase tracking-widest font-title">
+              Entreprise & RH · BTS SIO SLAM 2027
             </span>
           </div>
 
@@ -81,118 +78,31 @@ const { identity, contact, internshipSearch } = profileData;
             Fiche de synthèse pour l'entreprise d'accueil
           </h1>
 
-          <p class="text-sm sm:text-base text-slate-600 dark:text-zinc-400 leading-relaxed max-w-3xl">
-            Candidature de <strong>{identity.firstName} {identity.lastName}</strong> pour un stage conventionné au CNED.
-            Ce document récapitule de manière claire et transparente le cadre administratif, l'absence d'obligation financière et les compétences techniques directement opérationnelles.
+          <p class="text-sm text-slate-600 dark:text-zinc-400 leading-relaxed">
+            Candidature de <strong>{identity.firstName} {identity.lastName}</strong> pour un stage conventionné de première année au CNED. Récapitulatif du cadre administratif et des compétences techniques opérationnelles.
           </p>
 
-          <!-- Bandeau de métadonnées exécutives -->
-          <div class="pt-3 border-t border-slate-100 dark:border-zinc-800 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-slate-600 dark:text-zinc-400">
-            <div class="flex items-center gap-2">
-              <span class="font-bold text-slate-900 dark:text-zinc-200 font-title">Période cible :</span>
-              <span>Mai à Août 2027</span>
+          <!-- Bandeau de repères clés (KPIs épurés) -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-3 border-t border-slate-100 dark:border-zinc-800">
+            <div class="p-3.5 bg-slate-50 dark:bg-zinc-900/60 rounded-xl border border-slate-100 dark:border-zinc-800">
+              <span class="text-xs text-slate-500 dark:text-zinc-400 font-medium block">Période & Durée</span>
+              <span class="text-base font-bold text-slate-900 dark:text-zinc-100 font-title block mt-0.5">4 à 5 semaines</span>
+              <span class="text-[11px] text-slate-500 dark:text-zinc-400 block mt-0.5">Mai à Août 2027 · Temps plein (35h)</span>
             </div>
-            <div class="hidden sm:block w-1 h-1 rounded-full bg-slate-300 dark:bg-zinc-700"></div>
-            <div class="flex items-center gap-2">
-              <span class="font-bold text-slate-900 dark:text-zinc-200 font-title">Format :</span>
-              <span>4 à 5 semaines (35h / sem.)</span>
+
+            <div class="p-3.5 bg-slate-50 dark:bg-zinc-900/60 rounded-xl border border-slate-100 dark:border-zinc-800">
+              <span class="text-xs text-slate-500 dark:text-zinc-400 font-medium block">Gratification</span>
+              <span class="text-base font-bold text-slate-900 dark:text-zinc-100 font-title block mt-0.5">Facultative</span>
+              <span class="text-[11px] text-slate-500 dark:text-zinc-400 block mt-0.5">Stage &lt; 2 mois (art. L124-6) · 0 € imposé</span>
             </div>
-            <div class="hidden sm:block w-1 h-1 rounded-full bg-slate-300 dark:bg-zinc-700"></div>
-            <div class="flex items-center gap-2">
-              <span class="font-bold text-slate-900 dark:text-zinc-200 font-title">Convention :</span>
-              <span>Tripartite CNED</span>
+
+            <div class="p-3.5 bg-slate-50 dark:bg-zinc-900/60 rounded-xl border border-slate-100 dark:border-zinc-800">
+              <span class="text-xs text-slate-500 dark:text-zinc-400 font-medium block">Cadre juridique</span>
+              <span class="text-base font-bold text-slate-900 dark:text-zinc-100 font-title block mt-0.5">Convention CNED</span>
+              <span class="text-[11px] text-slate-500 dark:text-zinc-400 block mt-0.5">100% Cadré · Assurance & RC incluses</span>
             </div>
           </div>
         </header>
-
-        <!-- Section A écran : Paramètres clés & Cadre administratif en 3 cartes -->
-        <section class="mb-8">
-          <div class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-zinc-500 mb-4 font-title">
-            Cadre Administratif & Modalités d'Accueil
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-stretch">
-            
-            <!-- Carte 1 : Gratification légale -->
-            <div class="bg-white dark:bg-[#18181B] rounded-2xl p-6 border border-slate-200 dark:border-[#27272A] shadow-card hover:shadow-card-hover hover:-translate-y-1 hover:border-zinc-400 dark:hover:border-zinc-500 transition-all duration-200 flex flex-col justify-between h-full group cursor-default">
-              <div>
-                <div class="flex items-center justify-between gap-2 mb-3">
-                  <div class="w-9 h-9 rounded-xl bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center text-zinc-900 dark:text-zinc-100 shrink-0 transition-transform group-hover:scale-110">
-                    <BadgeEuro class="w-5 h-5" />
-                  </div>
-                  <span class="text-[11px] font-semibold tracking-wide uppercase px-2 py-0.5 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-700">
-                    Zéro contrainte
-                  </span>
-                </div>
-                <h2 class="font-bold text-base text-slate-900 dark:text-zinc-100 font-title mb-1">
-                  Gratification Facultative
-                </h2>
-                <div class="text-2xl font-black font-title tracking-tight text-slate-900 dark:text-white mb-2">
-                  0 € imposé
-                </div>
-                <p class="text-xs sm:text-sm text-slate-600 dark:text-zinc-400 leading-relaxed">
-                  Durée de stage inférieure au seuil légal de 2 mois consécutifs (308h - art. L124-6 du Code de l'éducation). Gratification facultative sans charge financière imposée.
-                </p>
-              </div>
-              <div class="mt-4 pt-3 border-t border-slate-100 dark:border-zinc-800/80 text-[11px] text-slate-400 dark:text-zinc-500 font-medium">
-                Prime discrétionnaire laissée au libre choix
-              </div>
-            </div>
-
-            <!-- Carte 2 : Durée & Calendrier -->
-            <div class="bg-white dark:bg-[#18181B] rounded-2xl p-6 border border-slate-200 dark:border-[#27272A] shadow-card hover:shadow-card-hover hover:-translate-y-1 hover:border-zinc-400 dark:hover:border-zinc-500 transition-all duration-200 flex flex-col justify-between h-full group cursor-default">
-              <div>
-                <div class="flex items-center justify-between gap-2 mb-3">
-                  <div class="w-9 h-9 rounded-xl bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center text-zinc-900 dark:text-zinc-100 shrink-0 transition-transform group-hover:scale-110">
-                    <Calendar class="w-5 h-5" />
-                  </div>
-                  <span class="text-[11px] font-semibold tracking-wide uppercase px-2 py-0.5 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-700">
-                    Temps plein
-                  </span>
-                </div>
-                <h2 class="font-bold text-base text-slate-900 dark:text-zinc-100 font-title mb-1">
-                  Calendrier Modulable
-                </h2>
-                <div class="text-2xl font-black font-title tracking-tight text-slate-900 dark:text-white mb-2">
-                  4 à 5 semaines
-                </div>
-                <p class="text-xs sm:text-sm text-slate-600 dark:text-zinc-400 leading-relaxed">
-                  Période cible de Mai à Août 2027 (35h / semaine). Dates modulables selon les disponibilités et les jalons de vos projets en entreprise.
-                </p>
-              </div>
-              <div class="mt-4 pt-3 border-t border-slate-100 dark:border-zinc-800/80 text-[11px] text-slate-400 dark:text-zinc-500 font-medium">
-                Période adaptable selon vos besoins
-              </div>
-            </div>
-
-            <!-- Carte 3 : Cadre légal & Convention -->
-            <div class="bg-white dark:bg-[#18181B] rounded-2xl p-6 border border-slate-200 dark:border-[#27272A] shadow-card hover:shadow-card-hover hover:-translate-y-1 hover:border-zinc-400 dark:hover:border-zinc-500 transition-all duration-200 flex flex-col justify-between h-full group cursor-default">
-              <div>
-                <div class="flex items-center justify-between gap-2 mb-3">
-                  <div class="w-9 h-9 rounded-xl bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center text-zinc-900 dark:text-zinc-100 shrink-0 transition-transform group-hover:scale-110">
-                    <ShieldCheck class="w-5 h-5" />
-                  </div>
-                  <span class="text-[11px] font-semibold tracking-wide uppercase px-2 py-0.5 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-700">
-                    CNED officiel
-                  </span>
-                </div>
-                <h2 class="font-bold text-base text-slate-900 dark:text-zinc-100 font-title mb-1">
-                  Sécurité Contractuelle
-                </h2>
-                <div class="text-2xl font-black font-title tracking-tight text-slate-900 dark:text-white mb-2">
-                  100% Encadré
-                </div>
-                <p class="text-xs sm:text-sm text-slate-600 dark:text-zinc-400 leading-relaxed">
-                  Convention tripartite officielle émise par le CNED. Étudiant couvert par l'assurance scolaire et la responsabilité civile.
-                </p>
-              </div>
-              <div class="mt-4 pt-3 border-t border-slate-100 dark:border-zinc-800/80 text-[11px] text-slate-400 dark:text-zinc-500 font-medium">
-                Signature dématérialisée rapide sous 48h
-              </div>
-            </div>
-
-          </div>
-        </section>
 
         <!-- Section B écran : Missions & Compétences Opérationnelles -->
         <section class="mb-8">
