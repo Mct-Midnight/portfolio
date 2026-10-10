@@ -137,7 +137,7 @@ Le portfolio adopte une structure moderne à double volet (*Dual-Pane Layout*), 
     - Durée : **4 à 5 semaines consécutives**.
     - Période éligible : **Mai à Août 2027**.
     - Spécialité : **Développement d'applications logicielles & Web (SLAM)**.
-    - Modalités : Présentiel, hybride ou télétravail (selon secteur géographique).
+    - Modalités : Présentiel prioritaire (secteur Cambrai), hybride ponctuel possible (1 à 2 j max/semaine).
     - Bouton dédié : *"Proposer une opportunité"* pointant directement vers le formulaire de contact.
 
 ---

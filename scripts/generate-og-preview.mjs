@@ -362,7 +362,7 @@ const htmlContent = `<!DOCTYPE html>
         <div class="card-meta">
           <div class="meta-item">
             <span class="meta-label">Mobilité</span>
-            <span class="meta-val">Cambrai (59) / Télétravail</span>
+            <span class="meta-val">Secteur Cambrai (59)</span>
           </div>
           <div class="meta-item">
             <span class="meta-label">Période</span>
