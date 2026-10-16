@@ -4,11 +4,11 @@ import profileData from '../content/data/profile.json';
 
 const { identity, contact } = profileData;
 
-// Récupération de la clé API Web3Forms (priorité à la variable d'environnement, avec clé par défaut)
-const web3FormsAccessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY || '336fb2cd-5483-4162-b403-e0deefc18ef9';
+// Récupération de la clé API Web3Forms depuis les variables d'environnement (.env / Vercel)
+const web3FormsAccessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY || '';
 
-// Récupération de l'URL Google Apps Script pour la synchronisation avec Google Sheets
-const googleSheetsScriptUrl = import.meta.env.PUBLIC_GOOGLE_SHEETS_SCRIPT_URL || 'https://script.google.com/macros/s/AKfycbx-nXfOOcgN1-oU9oJOh_xJeVnaIqcnL4eEeEObPG5UunWMYkPmy4fnwEriPeSIY8QilQ/exec';
+// Récupération de l'URL Google Apps Script depuis les variables d'environnement (.env / Vercel)
+const googleSheetsScriptUrl = import.meta.env.PUBLIC_GOOGLE_SHEETS_SCRIPT_URL || '';
 ---
 
 <section id="contact" class="py-16 scroll-mt-20 border-t border-slate-200 dark:border-zinc-800">
@@ -315,6 +315,8 @@ const googleSheetsScriptUrl = import.meta.env.PUBLIC_GOOGLE_SHEETS_SCRIPT_URL ||
     id="contact-modal"
     role="dialog"
     aria-modal="true"
+    aria-hidden="true"
+    inert
     aria-labelledby="modal-title"
     class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300"
   >
@@ -434,14 +436,21 @@ const googleSheetsScriptUrl = import.meta.env.PUBLIC_GOOGLE_SHEETS_SCRIPT_URL ||
     if (modalSubjectBadge) {
       modalSubjectBadge.textContent = subject;
     }
+    // Déverrouille la modale pour le clavier et les lecteurs d'écran
+    modal.removeAttribute('inert');
+    modal.setAttribute('aria-hidden', 'false');
     modal.classList.remove('opacity-0', 'pointer-events-none');
     modalBox.classList.remove('scale-95');
     modalBox.classList.add('scale-100');
     document.body.style.overflow = 'hidden';
+    modalActionBtn?.focus();
   }
 
   function closeModal() {
     if (!modal || !modalBox) return;
+    // Verrouille la modale fermée (plus de focus fantôme via Tab)
+    modal.setAttribute('inert', '');
+    modal.setAttribute('aria-hidden', 'true');
     modal.classList.add('opacity-0', 'pointer-events-none');
     modalBox.classList.remove('scale-100');
     modalBox.classList.add('scale-95');
@@ -512,6 +521,10 @@ const googleSheetsScriptUrl = import.meta.env.PUBLIC_GOOGLE_SHEETS_SCRIPT_URL ||
       hideError();
 
       const formData = new FormData(form);
+      // Blocage immédiat si le champ honeypot anti-robot est coché
+      if (formData.get('botcheck')) {
+        return;
+      }
       const name = ((formData.get('name') as string) || '').trim();
       const email = ((formData.get('email') as string) || '').trim();
       const subject = ((formData.get('Objet de la demande') as string) || (formData.get('Objet') as string) || (formData.get('Objet de la démarche') as string) || (formData.get('subject') as string) || '').trim();
