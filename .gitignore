@@ -44,3 +44,8 @@ Desktop.ini
 .idea/
 *.sublime-project
 *.sublime-workspace
+
+# Rapports d'audit internes et documents locaux (non publiés sur GitHub)
+AUDIT_*.md
+AUDIT_PORTFOLIO.md
+
