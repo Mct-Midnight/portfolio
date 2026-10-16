@@ -188,15 +188,26 @@ html.dark ::-webkit-scrollbar-thumb:hover {
 
 /* Rendu haut de gamme des tableaux Markdown (notamment le tableau de validation Bloc 1 E4) */
 .markdown-content table {
+  /* Défilement horizontal sur mobile pour éviter les débordements */
+  display: block;
   width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   border-collapse: separate;
   border-spacing: 0;
   background-color: #FFFFFF;
   border-radius: 0.75rem;
-  overflow: hidden;
   box-shadow: 0 2px 12px -2px rgba(15, 23, 42, 0.04);
   border: 1px solid #E2E8F0;
   margin: 1.5rem 0 2rem 0;
+}
+
+/* Retour au rendu tableau classique dès les écrans tablette */
+@media (min-width: 640px) {
+  .markdown-content table {
+    display: table;
+    overflow: hidden;
+  }
 }
 
 .markdown-content th {
