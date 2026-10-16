@@ -237,7 +237,7 @@ const totalArticles = axes.reduce((acc, axis) => acc + axis.articles.length, 0);
         type="button"
         aria-label="Fiche précédente"
         title="Fiche précédente (Flèche gauche)"
-        class="hidden sm:flex pointer-events-auto absolute -left-14 md:-left-20 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white dark:bg-[#18181B] text-zinc-800 dark:text-zinc-200 hover:text-black dark:hover:text-white hover:bg-white dark:hover:bg-zinc-800 border border-slate-200/90 dark:border-[#27272A] shadow-xl hover:shadow-2xl hover:scale-110 active:scale-95 transition-all duration-200 items-center justify-center cursor-pointer z-50 disabled:opacity-0 disabled:pointer-events-none group"
+        class="hidden lg:flex pointer-events-auto absolute -left-14 md:-left-20 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white dark:bg-[#18181B] text-zinc-800 dark:text-zinc-200 hover:text-black dark:hover:text-white hover:bg-white dark:hover:bg-zinc-800 border border-slate-200/90 dark:border-[#27272A] shadow-xl hover:shadow-2xl hover:scale-110 active:scale-95 transition-all duration-200 items-center justify-center cursor-pointer z-50 disabled:opacity-0 disabled:pointer-events-none group"
       >
         <ChevronLeft class="w-6 h-6 transition-transform group-hover:-translate-x-0.5" />
       </button>
@@ -345,7 +345,7 @@ const totalArticles = axes.reduce((acc, axis) => acc + axis.articles.length, 0);
             </button>
 
             <!-- Navigation mobile compacte (visible uniquement sur petit écran) -->
-            <div class="sm:hidden flex items-center gap-1.5">
+            <div class="lg:hidden flex items-center gap-1.5">
               <button
                 id="veille-modal-prev-mobile"
                 type="button"
@@ -385,7 +385,7 @@ const totalArticles = axes.reduce((acc, axis) => acc + axis.articles.length, 0);
         type="button"
         aria-label="Fiche suivante"
         title="Fiche suivante (Flèche droite)"
-        class="hidden sm:flex pointer-events-auto absolute -right-14 md:-right-20 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white dark:bg-[#18181B] text-zinc-800 dark:text-zinc-200 hover:text-black dark:hover:text-white hover:bg-white dark:hover:bg-zinc-800 border border-slate-200/90 dark:border-[#27272A] shadow-xl hover:shadow-2xl hover:scale-110 active:scale-95 transition-all duration-200 items-center justify-center cursor-pointer z-50 disabled:opacity-0 disabled:pointer-events-none group"
+        class="hidden lg:flex pointer-events-auto absolute -right-14 md:-right-20 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white dark:bg-[#18181B] text-zinc-800 dark:text-zinc-200 hover:text-black dark:hover:text-white hover:bg-white dark:hover:bg-zinc-800 border border-slate-200/90 dark:border-[#27272A] shadow-xl hover:shadow-2xl hover:scale-110 active:scale-95 transition-all duration-200 items-center justify-center cursor-pointer z-50 disabled:opacity-0 disabled:pointer-events-none group"
       >
         <ChevronRight class="w-6 h-6 transition-transform group-hover:translate-x-0.5" />
       </button>
