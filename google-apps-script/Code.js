@@ -32,11 +32,27 @@ function doPost(e) {
       data = e.parameter;
     }
 
-    // Extraction et nettoyage des champs du formulaire
-    var name = (data.name || data.nom || "Anonyme").toString().trim();
-    var email = (data.email || data.mail || "Non renseigné").toString().trim();
-    var subject = (data.subject || data.Objet || data["Objet de la démarche"] || "Contact Portfolio").toString().trim();
-    var message = (data.message || "").toString().trim();
+    // Blocage côté serveur si le piège anti-robot (honeypot) est activé
+    if (data.botcheck) {
+      return ContentService
+        .createTextOutput(JSON.stringify({ status: "ignored", message: "Bot détecté" }))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+
+    // Fonction de neutralisation contre l'injection de formules Google Sheets (=, +, -, @)
+    function sanitizeForSheet(val) {
+      var str = (val || "").toString().trim();
+      if (/^[=+\-@\t\r]/.test(str)) {
+        return "'" + str;
+      }
+      return str;
+    }
+
+    // Extraction, nettoyage et sécurisation des champs du formulaire
+    var name = sanitizeForSheet(data.name || data.nom || "Anonyme");
+    var email = sanitizeForSheet(data.email || data.mail || "Non renseigné");
+    var subject = sanitizeForSheet(data.subject || data.Objet || data["Objet de la démarche"] || "Contact Portfolio");
+    var message = sanitizeForSheet(data.message || "");
 
     // 2. Accès à la feuille de calcul cible
     var ss = SpreadsheetApp.getActiveSpreadsheet();
