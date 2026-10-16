@@ -49,8 +49,8 @@ for (const [key, filename] of Object.entries(sourceFiles)) {
       svg = svg.replace(/<\?xml[^>]*\?>/gi, '').replace(/<!--[\s\S]*?-->/g, '').trim();
       sourceLogoMap[key] = svg;
     }
-  } catch {
-    // Repli propre silencieux
+  } catch (err) {
+    console.error("[Veille] Erreur lors du chargement du logo SVG (${filename}) :", err);
   }
 }
 
@@ -563,8 +563,8 @@ const totalArticles = axes.reduce((acc, axis) => acc + axis.articles.length, 0);
           span.textContent = `#${tag}`;
           modalTags.appendChild(span);
         });
-      } catch {
-        // Repli en cas d'erreur
+      } catch (err) {
+        console.error('[Veille] Erreur lors du décodage JSON des tags de la fiche :', { tagsRaw, err });
       }
     }
 
@@ -584,6 +584,8 @@ const totalArticles = axes.reduce((acc, axis) => acc + axis.articles.length, 0);
 
     if (isInitialOpen) {
       backdrop.classList.remove('hidden');
+      backdrop.setAttribute('aria-hidden', 'false');
+      closeBtn?.focus();
       setTimeout(() => {
         backdrop.classList.add('opacity-100');
         modalCard.classList.remove('scale-95');
@@ -609,6 +611,9 @@ const totalArticles = axes.reduce((acc, axis) => acc + axis.articles.length, 0);
     if (!backdrop || !modalCard) return;
 
     backdrop.classList.remove('opacity-100');
+    backdrop.setAttribute('aria-hidden', 'true');
+    // Restitution du focus à la carte d'origine
+    getVisibleCards()[currentCardIndex]?.focus();
     modalCard.classList.remove('scale-100');
     modalCard.classList.add('scale-95');
 

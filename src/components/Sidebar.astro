@@ -48,6 +48,8 @@ const basePath = isHome ? '' : '/';
     <button
       id="mobile-menu-open-btn"
       aria-label="Ouvrir le menu de navigation"
+      aria-expanded="false"
+      aria-controls="sidebar-pane"
       class="p-2 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors focus:outline-none focus:ring-2 focus:ring-zinc-600"
     >
       <Menu class="w-6 h-6" />
@@ -330,6 +332,7 @@ const basePath = isHome ? '' : '/';
     if (!sidebar || !backdrop) return;
     sidebar.classList.remove('-translate-x-full');
     backdrop.classList.remove('hidden');
+    openBtn?.setAttribute('aria-expanded', 'true');
     setTimeout(() => {
       backdrop.classList.add('opacity-100');
     }, 10);
@@ -340,6 +343,7 @@ const basePath = isHome ? '' : '/';
     if (!sidebar || !backdrop) return;
     sidebar.classList.add('-translate-x-full');
     backdrop.classList.remove('opacity-100');
+    openBtn?.setAttribute('aria-expanded', 'false');
     setTimeout(() => {
       backdrop.classList.add('hidden');
     }, 300);
@@ -349,6 +353,20 @@ const basePath = isHome ? '' : '/';
   if (openBtn) openBtn.addEventListener('click', openDrawer);
   if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
   if (backdrop) backdrop.addEventListener('click', closeDrawer);
+
+  // Fermeture du tiroir avec la touche Échap
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && backdrop && !backdrop.classList.contains('hidden')) {
+      closeDrawer();
+    }
+  });
+
+  // Déverrouillage du défilement si l'écran passe en mode bureau
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 1024 && backdrop && !backdrop.classList.contains('hidden')) {
+      closeDrawer();
+    }
+  });
 
   // Fermeture automatique lors d'un clic sur un lien d'ancrage sur mobile
   navLinks.forEach((link) => {
@@ -365,7 +383,13 @@ const basePath = isHome ? '' : '/';
     link.addEventListener('click', () => {
       const filter = link.getAttribute('data-filter');
       if (filter) {
-        // Envoi d'un événement personnalisé vers le composant Projets
+        try {
+          // Mémorisation du filtre pour le cas d'une navigation vers l'accueil
+          sessionStorage.setItem('pending-project-filter', filter);
+        } catch (err) {
+          console.warn('Impossible de mémoriser le filtre de projet :', err);
+        }
+        // Envoi d'un événement personnalisé vers le composant Projets si déjà sur l'accueil
         window.dispatchEvent(new CustomEvent('filter-projects', { detail: { category: filter } }));
       }
     });

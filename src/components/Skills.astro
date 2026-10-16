@@ -52,8 +52,8 @@ for (const item of items) {
         svg = svg.replace(/<\?xml[^>]*\?>/gi, '').replace(/<!--[\s\S]*?-->/g, '').trim();
         customSvgMap[item.customIcon] = svg;
       }
-    } catch {
-      // Repli propre silencieux
+    } catch (err) {
+      console.error(`[Skills] Erreur lors du chargement de l'icône SVG (${item.customIcon}) :`, err);
     }
   }
 }
@@ -366,6 +366,8 @@ const categoryIconMap: Record<string, any> = {
     renderSkillData(btn);
 
     modalBackdrop.classList.remove('hidden');
+    modalBackdrop.setAttribute('aria-hidden', 'false');
+    modalClose?.focus();
     setTimeout(() => {
       modalBackdrop.classList.add('opacity-100');
       modalCard.classList.remove('scale-95');
@@ -377,6 +379,9 @@ const categoryIconMap: Record<string, any> = {
   function closeSkillModal() {
     if (!modalBackdrop || !modalCard) return;
     modalBackdrop.classList.remove('opacity-100');
+    modalBackdrop.setAttribute('aria-hidden', 'true');
+    // Restitution du focus à la carte compétence d'origine
+    skillButtons[currentSkillIndex]?.focus();
     modalCard.classList.remove('scale-100');
     modalCard.classList.add('scale-95');
     setTimeout(() => {

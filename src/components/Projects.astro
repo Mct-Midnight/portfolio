@@ -305,7 +305,7 @@ function getStatusBadge(status: string) {
       <button
         id="project-wip-modal-btn"
         type="button"
-        class="w-full py-3 px-5 rounded-xl bg-slate-900 hover:bg-slate-800 dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-950 text-xs font-bold transition-all shadow-sm focus:outline-none focus:ring-2 focus:ring-zinc-900 cursor-pointer"
+        class="w-full py-3 px-5 rounded-xl bg-zinc-900 hover:bg-black dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-950 text-xs font-bold transition-all shadow-sm focus:outline-none focus:ring-2 focus:ring-zinc-900 cursor-pointer"
       >
         Compris
       </button>
@@ -361,7 +361,7 @@ function getStatusBadge(status: string) {
       <button
         id="repo-wip-modal-btn"
         type="button"
-        class="w-full py-3 px-5 rounded-xl bg-slate-900 hover:bg-slate-800 dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-950 text-xs font-bold transition-all shadow-sm focus:outline-none focus:ring-2 focus:ring-slate-600 cursor-pointer"
+        class="w-full py-3 px-5 rounded-xl bg-zinc-900 hover:bg-black dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-950 text-xs font-bold transition-all shadow-sm focus:outline-none focus:ring-2 focus:ring-slate-600 cursor-pointer"
       >
         Compris
       </button>
@@ -448,11 +448,23 @@ function getStatusBadge(status: string) {
     });
 
     // Écoute de l'événement global déclenché depuis la Sidebar
-    window.addEventListener('filter-projects', (e: any) => {
-      if (e.detail && e.detail.category) {
-        applyFilter(e.detail.category);
+    window.addEventListener('filter-projects', (e: Event) => {
+      const customEvent = e as CustomEvent<{ category?: string }>;
+      if (customEvent.detail?.category) {
+        applyFilter(customEvent.detail.category);
       }
     });
+
+    // Application d'un éventuel filtre mémorisé lors d'une navigation depuis une autre page
+    try {
+      const pendingFilter = sessionStorage.getItem('pending-project-filter');
+      if (pendingFilter) {
+        sessionStorage.removeItem('pending-project-filter');
+        applyFilter(pendingFilter);
+      }
+    } catch (err) {
+      console.warn('Impossible de lire le filtre de projet mémorisé :', err);
+    }
   }
 
   // Gestion de la modale d'information pour les études de cas en cours d'écriture
@@ -469,6 +481,8 @@ function getStatusBadge(status: string) {
 
       wipModalName.textContent = projectName;
       wipModalBackdrop.classList.remove('hidden');
+      wipModalBackdrop.setAttribute('aria-hidden', 'false');
+      wipModalClose?.focus();
       setTimeout(() => {
         wipModalBackdrop.classList.add('opacity-100');
         wipModalCard.classList.remove('scale-95');
@@ -480,6 +494,7 @@ function getStatusBadge(status: string) {
     function closeWipModal() {
       if (!wipModalBackdrop || !wipModalCard) return;
       wipModalBackdrop.classList.remove('opacity-100');
+      wipModalBackdrop.setAttribute('aria-hidden', 'true');
       wipModalCard.classList.remove('scale-100');
       wipModalCard.classList.add('scale-95');
       setTimeout(() => {
@@ -533,6 +548,8 @@ function getStatusBadge(status: string) {
 
       repoModalName.textContent = projectName;
       repoModalBackdrop.classList.remove('hidden');
+      repoModalBackdrop.setAttribute('aria-hidden', 'false');
+      repoModalClose?.focus();
       setTimeout(() => {
         repoModalBackdrop.classList.add('opacity-100');
         repoModalCard.classList.remove('scale-95');
@@ -544,6 +561,7 @@ function getStatusBadge(status: string) {
     function closeRepoModal() {
       if (!repoModalBackdrop || !repoModalCard) return;
       repoModalBackdrop.classList.remove('opacity-100');
+      repoModalBackdrop.setAttribute('aria-hidden', 'true');
       repoModalCard.classList.remove('scale-100');
       repoModalCard.classList.add('scale-95');
       setTimeout(() => {
