@@ -18,7 +18,8 @@ import {
   Linkedin,
   Download,
   ArrowUpRight,
-  Building2
+  Building2,
+  X
 } from 'lucide-astro';
 
 const { identity, contact, internshipSearch } = profileData;
@@ -56,7 +57,7 @@ const { identity, contact, internshipSearch } = profileData;
             type="button"
             id="print-synthese-btn"
             class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold bg-white dark:bg-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-700 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700 shadow-sm transition-colors cursor-pointer"
-            title="Imprimer ou enregistrer cette fiche au format PDF (1 page A4)"
+            title="Export PDF bientôt disponible (en cours d'optimisation)"
           >
             <Printer class="w-4 h-4 text-zinc-700 dark:text-zinc-300" />
             <span>Imprimer la fiche en PDF (1 page A4)</span>
@@ -489,24 +490,142 @@ const { identity, contact, internshipSearch } = profileData;
     </footer>
 
   </div>
+
+  <!-- =========================================================================
+       3. FENÊTRE MODALE D'INFORMATION (Export PDF en cours de refonte)
+       Affichée lors du clic sur le bouton ou de la commande Ctrl+P / Cmd+P
+       ========================================================================= -->
+  <div
+    id="print-wip-modal-backdrop"
+    class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 hidden opacity-0 transition-opacity duration-200 flex items-center justify-center p-4"
+    aria-hidden="true"
+  >
+    <div
+      id="print-wip-modal-card"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="print-wip-modal-title"
+      class="bg-white dark:bg-[#18181B] rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl border border-slate-200 dark:border-[#27272A] transform scale-95 transition-all duration-200 relative flex flex-col items-center text-center"
+    >
+      <!-- Bouton de fermeture instantanée avec croix -->
+      <button
+        id="print-wip-modal-close"
+        type="button"
+        aria-label="Fermer la fenêtre d'information"
+        class="absolute top-4 right-4 p-2 rounded-xl text-slate-400 hover:text-slate-700 dark:hover:text-zinc-200 hover:bg-slate-100 dark:hover:bg-zinc-800 transition-colors focus:outline-none focus:ring-2 focus:ring-zinc-900 cursor-pointer"
+      >
+        <X class="w-5 h-5" />
+      </button>
+
+      <!-- Icône thématique centrale sobre et professionnelle (Imprimante) -->
+      <div class="w-20 h-20 rounded-2xl bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 flex items-center justify-center mb-5 text-zinc-900 dark:text-zinc-100 shadow-inner">
+        <Printer class="w-9 h-9 text-zinc-900 dark:text-zinc-100" />
+      </div>
+
+      <!-- Titre principal de la modale -->
+      <h3 id="print-wip-modal-title" class="text-2xl font-black font-title text-slate-900 dark:text-zinc-100 tracking-tight mb-2">
+        Export PDF bientôt disponible
+      </h3>
+
+      <!-- Pastille de statut informative -->
+      <div class="mb-4 px-3.5 py-1.5 rounded-xl bg-slate-100/90 dark:bg-zinc-800 text-slate-800 dark:text-zinc-200 text-xs font-semibold max-w-full border border-slate-200/80 dark:border-zinc-700">
+        <span>Fiche synthétique en cours d'optimisation</span>
+      </div>
+
+      <!-- Explication pédagogique et professionnelle -->
+      <p class="text-sm text-slate-600 dark:text-zinc-400 leading-relaxed font-normal mb-6">
+        La mise en page de la fiche imprimable au format PDF (1 page A4) fait actuellement l'objet d'une refonte graphique complète pour vous offrir un rendu visuel irréprochable.
+        <br class="hidden sm:inline" />
+        Cette fonctionnalité sera de nouveau accessible très prochainement.
+      </p>
+
+      <!-- Bouton de confirmation pour fermer la fenêtre -->
+      <button
+        id="print-wip-modal-btn"
+        type="button"
+        class="w-full py-3 px-5 rounded-xl bg-zinc-900 hover:bg-black dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-950 text-xs font-bold transition-all shadow-sm focus:outline-none focus:ring-2 focus:ring-zinc-900 cursor-pointer"
+      >
+        Compris
+      </button>
+    </div>
+  </div>
 </Layout>
 
-<!-- Script pour l'action d'impression en PDF -->
+<!-- Script interactif de gestion de la modale d'information pour l'export PDF -->
 <script>
-  function initPrintAction() {
+  function setupPrintModal() {
     const printBtn = document.getElementById('print-synthese-btn');
-    printBtn?.addEventListener('click', () => {
-      window.print();
+    const modalBackdrop = document.getElementById('print-wip-modal-backdrop');
+    const modalCard = document.getElementById('print-wip-modal-card');
+    const modalClose = document.getElementById('print-wip-modal-close');
+    const modalBtn = document.getElementById('print-wip-modal-btn');
+
+    function openModal() {
+      if (!modalBackdrop || !modalCard) return;
+      modalBackdrop.classList.remove('hidden');
+      modalBackdrop.setAttribute('aria-hidden', 'false');
+      modalClose?.focus();
+      setTimeout(() => {
+        modalBackdrop.classList.add('opacity-100');
+        modalCard.classList.remove('scale-95');
+        modalCard.classList.add('scale-100');
+      }, 10);
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      if (!modalBackdrop || !modalCard) return;
+      modalBackdrop.classList.remove('opacity-100');
+      modalBackdrop.setAttribute('aria-hidden', 'true');
+      modalCard.classList.remove('scale-100');
+      modalCard.classList.add('scale-95');
+      setTimeout(() => {
+        modalBackdrop.classList.add('hidden');
+      }, 200);
+      document.body.style.overflow = '';
+    }
+
+    // Déclenchement au clic sur le bouton
+    printBtn?.addEventListener('click', (e) => {
+      e.preventDefault();
+      openModal();
     });
+
+    // Interception des raccourcis clavier (Ctrl+P / Cmd+P et Échap)
+    window.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'p') {
+        e.preventDefault();
+        openModal();
+      } else if (e.key === 'Escape' && modalBackdrop && !modalBackdrop.classList.contains('hidden')) {
+        closeModal();
+      }
+    });
+
+    // Événements de fermeture
+    if (modalClose) {
+      modalClose.addEventListener('click', closeModal);
+    }
+
+    if (modalBtn) {
+      modalBtn.addEventListener('click', closeModal);
+    }
+
+    if (modalBackdrop) {
+      modalBackdrop.addEventListener('click', (e) => {
+        if (e.target === modalBackdrop) {
+          closeModal();
+        }
+      });
+    }
   }
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initPrintAction);
+    document.addEventListener('DOMContentLoaded', setupPrintModal);
   } else {
-    initPrintAction();
+    setupPrintModal();
   }
 
-  document.addEventListener('astro:page-load', initPrintAction);
+  document.addEventListener('astro:page-load', setupPrintModal);
 </script>
 
 <!-- Styles d'impression dédiée A4 et masquage strict -->
@@ -538,6 +657,7 @@ const { identity, contact, internshipSearch } = profileData;
 
     /* Masquage radical de toute la structure web et de ses composants */
     .screen-only-layout,
+    #print-wip-modal-backdrop,
     :global(#sidebar-pane),
     :global(#mobile-header),
     :global(#drawer-backdrop),
