@@ -69,6 +69,7 @@ function getStatusBadge(status: string) {
       <button
         type="button"
         data-filter-btn="all"
+        aria-pressed="true"
         class="project-filter-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-950 shadow-sm cursor-pointer whitespace-nowrap"
       >
         <span>Tous</span>
@@ -79,6 +80,7 @@ function getStatusBadge(status: string) {
       <button
         type="button"
         data-filter-btn="freelance"
+        aria-pressed="false"
         class="project-filter-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-200/60 dark:hover:bg-zinc-800 transition-all duration-200 cursor-pointer whitespace-nowrap"
       >
         <span>Freelance</span>
@@ -89,6 +91,7 @@ function getStatusBadge(status: string) {
       <button
         type="button"
         data-filter-btn="professionnel"
+        aria-pressed="false"
         class="project-filter-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-200/60 dark:hover:bg-zinc-800 transition-all duration-200 cursor-pointer whitespace-nowrap"
       >
         <span>Professionnel</span>
@@ -99,6 +102,7 @@ function getStatusBadge(status: string) {
       <button
         type="button"
         data-filter-btn="scolaire"
+        aria-pressed="false"
         class="project-filter-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-200/60 dark:hover:bg-zinc-800 transition-all duration-200 cursor-pointer whitespace-nowrap"
       >
         <span>Scolaire</span>
@@ -231,6 +235,7 @@ function getStatusBadge(status: string) {
                   ]}
                   data-project-title={project.data.title}
                   title="Code source sur GitHub"
+                  aria-label={`Code source sur GitHub pour ${project.data.title}`}
                 >
                   <Github class="w-3.5 h-3.5" />
                   <span class="hidden sm:inline">Code source</span>
@@ -243,6 +248,7 @@ function getStatusBadge(status: string) {
                   rel="noopener noreferrer"
                   class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white hover:bg-white dark:hover:bg-zinc-800 hover:border-slate-200 dark:hover:border-zinc-700 border border-transparent hover:shadow-xs transition-all"
                   title="Voir la démo en ligne"
+                  aria-label={`Voir la démo en ligne de ${project.data.title}`}
                 >
                   <ExternalLink class="w-3.5 h-3.5" />
                   <span class="hidden sm:inline">Démo</span>
@@ -411,7 +417,10 @@ function getStatusBadge(status: string) {
       buttons.forEach((btn) => {
         const btnFilter = btn.getAttribute('data-filter-btn');
         const countBadge = btn.querySelector('.count-badge');
-        
+
+        // Annonce de l'état actif aux lecteurs d'écran
+        btn.setAttribute('aria-pressed', String(btnFilter === category));
+
         if (btnFilter === category) {
           btn.classList.remove(...inactiveBtnClasses);
           btn.classList.add(...activeBtnClasses);

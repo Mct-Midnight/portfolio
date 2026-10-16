@@ -586,10 +586,14 @@ const { identity, contact, internshipSearch } = profileData;
     }
 
     // Déclenchement au clic sur le bouton
-    printBtn?.addEventListener('click', (e) => {
-      e.preventDefault();
-      openModal();
-    });
+    // Garde anti-doublon : un seul écouteur de clic par bouton
+    if (printBtn && printBtn.dataset.printBound !== 'true') {
+      printBtn.dataset.printBound = 'true';
+      printBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        openModal();
+      });
+    }
 
     // Interception des raccourcis clavier (Ctrl+P / Cmd+P et Échap)
     window.addEventListener('keydown', (e) => {

@@ -19,10 +19,10 @@ import fs from 'node:fs';
 import path from 'node:path';
 import veilleData from '../content/data/veille.json';
 
-const { title, subtitle, pearltreesUrl, axes } = veilleData;
+const { title, subtitle, pearltreesUrl, methodology, axes } = veilleData;
 
 // Correspondance des icônes pour les en-têtes d'axes
-const axisIconMap: Record<string, any> = {
+const axisIconMap: Record<string, typeof Radio> = {
   cybersecurite: ShieldCheck,
   'ia-ingenierie': Cpu,
   'architectures-evenementielles': Workflow,
@@ -90,10 +90,10 @@ const totalArticles = axes.reduce((acc, axis) => acc + axis.articles.length, 0);
       </div>
       <div>
         <h3 class="text-sm font-bold font-title text-slate-900 dark:text-zinc-100">
-          Dispositif méthodologique bimodal (Push & Pull)
+          {methodology.title}
         </h3>
         <p class="text-xs text-slate-500 dark:text-zinc-400 mt-0.5">
-          Combinaison d'alertes automatisées et d'agrégation ciblée pour capter les standards émergents.
+          {methodology.description}
         </p>
       </div>
     </div>
@@ -117,6 +117,7 @@ const totalArticles = axes.reduce((acc, axis) => acc + axis.articles.length, 0);
       <button
         type="button"
         data-filter="all"
+        aria-pressed="true"
         class="veille-filter-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-950 shadow-sm cursor-pointer whitespace-nowrap"
       >
         <span>Toutes les fiches</span>
@@ -128,6 +129,7 @@ const totalArticles = axes.reduce((acc, axis) => acc + axis.articles.length, 0);
         <button
           type="button"
           data-filter={axis.id}
+          aria-pressed="false"
           class="veille-filter-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-200/60 dark:hover:bg-zinc-800 transition-all duration-200 cursor-pointer whitespace-nowrap"
         >
           <span>{axis.name}</span>
@@ -438,6 +440,8 @@ const totalArticles = axes.reduce((acc, axis) => acc + axis.articles.length, 0);
 
       // Mise à jour complète de l'apparence des onglets et de leurs pastilles de comptage
       filterBtns.forEach((b) => {
+        // Annonce de l'état actif aux lecteurs d'écran
+        b.setAttribute('aria-pressed', String(b === btn));
         const countBadge = b.querySelector('.count-badge');
         if (b === btn) {
           b.classList.remove(...inactiveBtnClasses);

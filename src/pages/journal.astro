@@ -128,6 +128,7 @@ const latestCommit = commits[0];
           <button
             type="button"
             data-filter="all"
+            aria-pressed="true"
             class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-950 shadow-sm border border-transparent transition-all"
           >
             Tous ({totalCommits})
@@ -135,6 +136,7 @@ const latestCommit = commits[0];
           <button
             type="button"
             data-filter="feat"
+            aria-pressed="false"
             class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-white dark:bg-zinc-900 text-zinc-600 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white border border-zinc-200 dark:border-zinc-700 hover:border-zinc-300 dark:hover:border-zinc-600 transition-all"
           >
             Fonctionnalités ({featCount})
@@ -142,6 +144,7 @@ const latestCommit = commits[0];
           <button
             type="button"
             data-filter="fix"
+            aria-pressed="false"
             class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-white dark:bg-zinc-900 text-zinc-600 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white border border-zinc-200 dark:border-zinc-700 hover:border-zinc-300 dark:hover:border-zinc-600 transition-all"
           >
             Correctifs ({fixCount})
@@ -149,6 +152,7 @@ const latestCommit = commits[0];
           <button
             type="button"
             data-filter="chore"
+            aria-pressed="false"
             class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-white dark:bg-zinc-900 text-zinc-600 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white border border-zinc-200 dark:border-zinc-700 hover:border-zinc-300 dark:hover:border-zinc-600 transition-all"
           >
             Maintenance ({choreCount})
@@ -157,6 +161,7 @@ const latestCommit = commits[0];
             <button
               type="button"
               data-filter="style"
+              aria-pressed="false"
               class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-white dark:bg-zinc-900 text-zinc-600 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white border border-zinc-200 dark:border-zinc-700 hover:border-zinc-300 dark:hover:border-zinc-600 transition-all"
             >
               Design & Ergonomie ({styleCount})
@@ -166,6 +171,7 @@ const latestCommit = commits[0];
             <button
               type="button"
               data-filter="other"
+              aria-pressed="false"
               class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-white dark:bg-zinc-900 text-zinc-600 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white border border-zinc-200 dark:border-zinc-700 hover:border-zinc-300 dark:hover:border-zinc-600 transition-all"
             >
               Autres ({otherCount})
@@ -412,6 +418,8 @@ const latestCommit = commits[0];
 
       // Mise à jour de l'apparence des onglets sans conflit de survol ni d'incohérence de thème
       filterButtons.forEach((b) => {
+        // Annonce de l'état actif aux lecteurs d'écran
+        b.setAttribute('aria-pressed', String(b === btn));
         if (b === btn) {
           b.classList.remove(...inactiveClasses);
           b.classList.add(...activeClasses);
@@ -485,5 +493,7 @@ const latestCommit = commits[0];
   // Initialisation immédiate au chargement du composant
   renderView();
   refreshRelativeDates();
-  setInterval(refreshRelativeDates, 60000);
+  // Minuteur nettoyé à la fermeture de la page pour éviter toute fuite
+  const relativeDateTimer = window.setInterval(refreshRelativeDates, 60000);
+  window.addEventListener('pagehide', () => window.clearInterval(relativeDateTimer), { once: true });
 </script>

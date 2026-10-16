@@ -99,10 +99,12 @@ import { Terminal, Cpu, Leaf, Activity, ShieldCheck, X, Copy, Check, Layers, Cod
   </div>
 
   <!-- Barre d'onglets de navigation du HUD -->
-  <div class="flex border-b border-[#27272A] bg-[#18181B] text-[11px] font-medium">
+  <div role="tablist" aria-label="Onglets de la console d'audit" class="flex border-b border-[#27272A] bg-[#18181B] text-[11px] font-medium">
     <button
       type="button"
       id="tab-btn-eco"
+      role="tab"
+      aria-selected="true"
       class="hud-tab-btn flex-1 py-2 px-3 text-center border-b-2 border-white text-white font-semibold flex items-center justify-center gap-1.5 transition-colors"
       data-tab="eco"
     >
@@ -112,6 +114,8 @@ import { Terminal, Cpu, Leaf, Activity, ShieldCheck, X, Copy, Check, Layers, Cod
     <button
       type="button"
       id="tab-btn-perf"
+      role="tab"
+      aria-selected="false"
       class="hud-tab-btn flex-1 py-2 px-3 text-center border-b-2 border-transparent text-zinc-400 hover:text-zinc-200 flex items-center justify-center gap-1.5 transition-colors"
       data-tab="perf"
     >
@@ -121,6 +125,8 @@ import { Terminal, Cpu, Leaf, Activity, ShieldCheck, X, Copy, Check, Layers, Cod
     <button
       type="button"
       id="tab-btn-referentiel"
+      role="tab"
+      aria-selected="false"
       class="hud-tab-btn flex-1 py-2 px-3 text-center border-b-2 border-transparent text-zinc-400 hover:text-zinc-200 flex items-center justify-center gap-1.5 transition-colors"
       data-tab="referentiel"
     >
@@ -562,6 +568,7 @@ import { Terminal, Cpu, Leaf, Activity, ShieldCheck, X, Copy, Check, Layers, Cod
             if (b && c) {
               b.classList.remove('border-white', 'text-white', 'font-semibold');
               b.classList.add('border-transparent', 'text-zinc-400');
+              b.setAttribute('aria-selected', 'false');
               c.classList.add('hidden');
             }
           });
@@ -569,6 +576,7 @@ import { Terminal, Cpu, Leaf, Activity, ShieldCheck, X, Copy, Check, Layers, Cod
           // Activation de l'onglet sélectionné
           btn.classList.remove('border-transparent', 'text-zinc-400');
           btn.classList.add('border-white', 'text-white', 'font-semibold');
+          btn.setAttribute('aria-selected', 'true');
           content.classList.remove('hidden');
         });
       }

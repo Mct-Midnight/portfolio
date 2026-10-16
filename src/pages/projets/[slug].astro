@@ -11,6 +11,7 @@ import {
   ExternalLink,
   ShieldCheck,
   CheckCircle,
+  Clock,
   FileCode,
   FileText,
 } from 'lucide-astro';
@@ -120,7 +121,7 @@ const statusDetails = getStatusDetails(project.data.status);
 
               <!-- Badge de Statut -->
               <span class={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold border ${statusDetails.class}`}>
-                <CheckCircle class="w-3.5 h-3.5" />
+                {project.data.status === 'réalisé' ? <CheckCircle class="w-3.5 h-3.5" /> : <Clock class="w-3.5 h-3.5" />}
                 <span>{statusDetails.label}</span>
               </span>
             </div>
@@ -210,7 +211,7 @@ const statusDetails = getStatusDetails(project.data.status);
         <!-- Navigation de fin de page -->
         <div class="mt-10 flex flex-col sm:flex-row items-center justify-between gap-4 p-6 bg-white dark:bg-[#18181B] rounded-2xl border border-slate-200 dark:border-[#27272A] shadow-card">
           <div>
-            <h4 class="font-bold font-title text-slate-900 dark:text-white text-sm">Fin de l'étude de cas</h4>
+            <h3 class="font-bold font-title text-slate-900 dark:text-white text-sm">Fin de l'étude de cas</h3>
             <p class="text-xs text-slate-500 dark:text-zinc-400">Consultez les autres projets ou contactez le candidat.</p>
           </div>
           <div class="flex items-center gap-3">
