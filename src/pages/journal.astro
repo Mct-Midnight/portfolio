@@ -13,8 +13,6 @@ import {
   ExternalLink,
   CheckCircle2,
   Calendar,
-  Layers,
-  Sparkles,
   ShieldCheck,
   Tag,
   ChevronDown,
@@ -185,7 +183,7 @@ const latestCommit = commits[0];
           id="commits-container"
           style="overflow-anchor: none;"
         >
-          {commits.map((commit, index) => (
+          {commits.map((commit) => (
             <div
               class="commit-card relative flex items-start gap-4 sm:gap-5 pl-1"
               data-type={commit.type}

@@ -1,7 +1,7 @@
 ---
 // Composant Easter Egg : Mode Audit & Architecture Technique (Vue Blueprint + Télémétrie Éco-conception)
 // Conçu pour le Portfolio BTS SIO SLAM de Quentin Machu
-import { Terminal, Cpu, Leaf, Activity, ShieldCheck, X, Copy, Check, Layers, Code2, GripVertical } from 'lucide-astro';
+import { Terminal, Cpu, Leaf, ShieldCheck, X, Copy, Check, Code2, GripVertical } from 'lucide-astro';
 ---
 
 <!-- Calque Grille Blueprint Millimétrée (Affiché uniquement quand le mode audit est activé, masqué à l'impression) -->
@@ -738,15 +738,6 @@ import { Terminal, Cpu, Leaf, Activity, ShieldCheck, X, Copy, Check, Layers, Cod
       statusIndicators.forEach(elem => {
         elem.addEventListener('click', handleMultiClick);
       });
-
-      // Bouton dédié dans le footer s'il est présent
-      const footerTrigger = document.getElementById('footer-audit-trigger');
-      if (footerTrigger) {
-        footerTrigger.addEventListener('click', (e) => {
-          e.preventDefault();
-          toggleAuditMode();
-        });
-      }
     }
 
     // Attachement lors du chargement initial du DOM
