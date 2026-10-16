@@ -11,8 +11,6 @@ thumbnail: "/assets/images/projets/aerial-desk.jpg"
 featured: true
 ---
 
-# Atelier Professionnel n°2 — Évolution d'un Service en Ligne
-
 > **Synthèse en une phrase :** Modernisation et refonte d'un portail web de gestion interne, incluant le traitement des incidents applicatifs et la valorisation des données métiers.
 
 ---

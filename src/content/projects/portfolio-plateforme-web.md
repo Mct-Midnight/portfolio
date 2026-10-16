@@ -11,8 +11,6 @@ thumbnail: "/assets/images/projets/portfolio-cover.png"
 featured: true
 ---
 
-# Portfolio Professionnel & Plateforme E4
-
 > **Synthèse en une phrase :** Conception et déploiement continu d'une plateforme web moderne servant de support officiel à l'épreuve E4 et de vitrine pour la recherche de stage.
 
 ---

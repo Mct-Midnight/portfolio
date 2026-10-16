@@ -11,8 +11,6 @@ thumbnail: "/assets/images/projets/contacts-app.png"
 featured: true
 ---
 
-# Application de Gestion de Contacts Desktop
-
 > **Synthèse en une phrase :** Solution logicielle locale développée en Python permettant l'organisation, le filtrage dynamique et la persistance relationnelle de répertoires de contacts professionnels.
 
 ---

@@ -11,8 +11,6 @@ thumbnail: "/assets/images/projets/constellation-discord-banner.png"
 featured: true
 ---
 
-# Constellation Lab's — Plateforme SaaS de Bots Discord
-
 > **Synthèse en une phrase :** Solution SaaS et agence digitale spécialisée dans l'automatisation de serveurs et l'hébergement haute disponibilité de bots Discord sur mesure.
 
 ---

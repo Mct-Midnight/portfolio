@@ -11,8 +11,6 @@ thumbnail: "/assets/images/projets/desk-setup.jpg"
 featured: true
 ---
 
-# Stage d'Immersion Professionnelle SLAM (1re Année)
-
 > **Synthèse en une phrase :** Mission d'immersion de 4 à 5 semaines en entreprise dédiée à la conception, l'intégration logicielle et l'accompagnement des utilisateurs finaux dans le cadre du BTS SIO SLAM.
 
 ---
