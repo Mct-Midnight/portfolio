@@ -13,6 +13,8 @@ interface Props {
 
 const { currentPath = '/' } = Astro.props;
 const isHome = currentPath === '/';
+// Étude de cas détaillée : l'onglet « Projets » reste actif
+const isProjectDetail = currentPath.startsWith('/projets/');
 const basePath = isHome ? '' : '/';
 ---
 
@@ -116,7 +118,7 @@ const basePath = isHome ? '' : '/';
   </div>
 
   <!-- Navigation Principale avec icônes pleines (Solid) modernes -->
-  <nav class="flex-1 px-4 py-5 space-y-2 lg:space-y-2.5 overflow-y-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden" id="sidebar-nav">
+  <nav class="flex-1 px-4 py-5 space-y-2 lg:space-y-2.5 overflow-y-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden" id="sidebar-nav" aria-label="Navigation principale">
     
     <!-- Accueil -->
     <a
@@ -192,11 +194,15 @@ const basePath = isHome ? '' : '/';
     <div class="pt-1">
       <a
         href={`${basePath}#projets`}
-        class="nav-link flex items-center gap-3 px-3.5 py-3 rounded-xl text-sm font-medium text-zinc-400 hover:text-white hover:bg-zinc-800/80 transition-all duration-200 group"
+        class={`nav-link flex items-center gap-3 px-3.5 py-3 rounded-xl text-sm font-medium transition-all duration-200 group ${
+          isProjectDetail
+            ? 'bg-white text-zinc-950 font-semibold shadow-sm'
+            : 'text-zinc-400 hover:text-white hover:bg-zinc-800/80'
+        }`}
         data-section="projets"
       >
         <!-- Dossier complet plein (Heroicons solid folder) -->
-        <svg class="w-5 h-5 text-zinc-400 group-hover:text-white shrink-0 transition-colors" viewBox="0 0 24 24" fill="currentColor">
+        <svg class={`w-5 h-5 shrink-0 transition-colors ${isProjectDetail ? 'text-zinc-950' : 'text-zinc-400 group-hover:text-white'}`} viewBox="0 0 24 24" fill="currentColor">
           <path d="M19.5 21a3 3 0 0 0 3-3v-4.5a3 3 0 0 0-3-3h-15a3 3 0 0 0-3 3V18a3 3 0 0 0 3 3h15Z" />
           <path d="M1.5 10.146V6a3 3 0 0 1 3-3h5.379a2.25 2.25 0 0 1 1.59.659l2.122 2.121c.14.141.331.22.53.22H19.5a3 3 0 0 1 3 3v1.146A4.483 4.483 0 0 0 19.5 9h-15a4.483 4.483 0 0 0-3 1.146Z" />
         </svg>
@@ -400,32 +406,46 @@ const basePath = isHome ? '' : '/';
   const mainNavLinks = document.querySelectorAll('.nav-link');
 
   function highlightActiveNav() {
+    // Aucune section sur la page (ex : étude de cas, journal) : l'état actif est géré côté serveur
+    if (sections.length === 0) return;
+
     const scrollY = window.scrollY + 120;
+    let activeId: string | null = null;
+
     sections.forEach((section) => {
       const sectionHeight = (section as HTMLElement).offsetHeight;
       const sectionTop = (section as HTMLElement).offsetTop;
-      const sectionId = section.getAttribute('id');
-
       if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-        mainNavLinks.forEach((link) => {
-          if (link.getAttribute('data-section') === sectionId) {
-            link.classList.add('bg-white', 'text-zinc-950', 'font-semibold', 'shadow-sm');
-            link.classList.remove('text-zinc-400', 'hover:bg-zinc-800/80', 'hover:text-white');
-            const icon = link.querySelector('svg');
-            if (icon) {
-              icon.classList.remove('text-zinc-400', 'group-hover:text-white');
-              icon.classList.add('text-zinc-950');
-            }
-          } else {
-            link.classList.remove('bg-white', 'text-zinc-950', 'font-semibold', 'shadow-sm');
-            link.classList.add('text-zinc-400', 'hover:bg-zinc-800/80', 'hover:text-white');
-            const icon = link.querySelector('svg');
-            if (icon) {
-              icon.classList.add('text-zinc-400', 'group-hover:text-white');
-              icon.classList.remove('text-zinc-950');
-            }
-          }
-        });
+        activeId = section.getAttribute('id');
+      }
+    });
+
+    // Tout en bas de page sur grand écran : la section « contact » est forcée comme active
+    const isLargeScreen = window.matchMedia('(min-width: 1024px)').matches;
+    const isPageBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 40;
+    if (isLargeScreen && isPageBottom && document.getElementById('contact')) {
+      activeId = 'contact';
+    }
+
+    if (!activeId) return;
+
+    mainNavLinks.forEach((link) => {
+      if (link.getAttribute('data-section') === activeId) {
+        link.classList.add('bg-white', 'text-zinc-950', 'font-semibold', 'shadow-sm');
+        link.classList.remove('text-zinc-400', 'hover:bg-zinc-800/80', 'hover:text-white');
+        const icon = link.querySelector('svg');
+        if (icon) {
+          icon.classList.remove('text-zinc-400', 'group-hover:text-white');
+          icon.classList.add('text-zinc-950');
+        }
+      } else {
+        link.classList.remove('bg-white', 'text-zinc-950', 'font-semibold', 'shadow-sm');
+        link.classList.add('text-zinc-400', 'hover:bg-zinc-800/80', 'hover:text-white');
+        const icon = link.querySelector('svg');
+        if (icon) {
+          icon.classList.add('text-zinc-400', 'group-hover:text-white');
+          icon.classList.remove('text-zinc-950');
+        }
       }
     });
   }
