@@ -184,7 +184,8 @@ function getLocalGitCommits(): GitCommit[] {
       let isoDate: string;
       try {
         isoDate = new Date(dateStr.trim()).toISOString();
-      } catch {
+      } catch (err) {
+        console.warn('[gitCommits] Date invalide, valeur brute conservée :', err);
         isoDate = dateStr.trim();
       }
 
@@ -263,7 +264,8 @@ async function getRemoteGithubCommits(): Promise<GitCommit[]> {
       let isoDate: string;
       try {
         isoDate = new Date(rawDate).toISOString();
-      } catch {
+      } catch (err) {
+        console.warn('[gitCommits] Date invalide, valeur brute conservée :', err);
         isoDate = rawDate;
       }
       const author = item.commit?.author?.name || 'Quentin Machu';
@@ -301,7 +303,8 @@ function isShallowRepository(): boolean {
       stdio: ['pipe', 'pipe', 'pipe'],
     }).trim();
     return isShallow === 'true';
-  } catch {
+  } catch (err) {
+    console.warn('[gitCommits] Avertissement mineur :', err);
     return false;
   }
 }
