@@ -7,7 +7,7 @@
     scroll-behavior: smooth;
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     color: #334155;
-    background-color: #F8FAFC;
+    background-color: #FAFAFA;
   }
 
   html.dark {
@@ -213,7 +213,7 @@ html.dark ::-webkit-scrollbar-thumb:hover {
 .markdown-content th {
   background-color: #18181B;
   color: #FFFFFF;
-  font-family: 'Space Grotesk', system-ui, sans-serif;
+  font-family: 'Montserrat', system-ui, sans-serif;
   font-size: 0.85rem;
   font-weight: 700;
   text-transform: uppercase;
