@@ -108,6 +108,8 @@
 
 | Projet / Réalisation | Type (Scolaire / Perso / Pro) | B1.1 | B1.2 | B1.3 | B1.4 | B1.5 | B1.6 |
 | :------------------- | :---------------------------- | :--: | :--: | :--: | :--: | :--: | :--: |
+| Portfolio Professionnel & Plateforme E4 | Professionnel | [x] | [x] | [x] | [x] | [x] | [x] |
+| Constellation Lab's — SaaS & Bots Discord | Freelance | [x] | [x] | [x] | [x] | [x] | [ ] |
 | Application Gestion Contacts Desktop | Scolaire | [x] | [ ] | [ ] | [x] | [ ] | [ ] |
 | Atelier Professionnel n°2 (AP2) | Scolaire | [ ] | [x] | [x] | [ ] | [ ] | [ ] |
 | Stage d'Immersion SLAM (1re Année) | Professionnel | [ ] | [ ] | [ ] | [ ] | [x] | [x] |
