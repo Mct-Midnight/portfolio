@@ -1,7 +1,7 @@
 # Cahier des Charges & Charte UI/UX — Portfolio BTS SIO SLAM
 
 > **Rôle du document :** Spécifications fonctionnelles, ergonomiques et techniques de référence pour la conception du portfolio professionnel (BTS SIO option SLAM — suivi via le CNED).  
-> **Direction Artistique :** Inspirée du modèle de référence validé par le CNED (Layout Dual-Pane, tons chauds chocolat/terracotta/crème, typographie contemporaine et cartes épurées).
+> **Direction Artistique :** Inspirée du modèle de référence validé par le CNED (Layout Dual-Pane, monochrome mat anthracite/titane/blanc studio, typographie contemporaine et cartes épurées).
 
 ---
 
@@ -39,10 +39,10 @@ La palette repose sur un contraste exécutif haut de gamme entre une barre laté
 | **Statut "Réalisé / Dispo"** | *Vert Émeraude* | `#10B981` | Pastille discrète de disponibilité stage ou certification délivrée. |
 
 ### 2.2. Typographie & Rythme Visuel
-- **Police Principale :** `Inter` ou `Poppins` (Google Fonts), polices sans-serif modernes, géométriques et hautement lisibles sur tous les types d'écrans.
+- **Police Principale :** `Montserrat` et `Plus Jakarta Sans` (Google Fonts), polices sans-serif modernes, géométriques et hautement lisibles sur tous les types d'écrans.
 - **Hiérarchie Typographique :**
-  - **Surtitres de rubriques (Eyebrows) :** Majuscules (`uppercase`), graisse fine à moyenne (`font-medium` ou `font-semibold`), espacement inter-lettres accentué (`tracking-widest`), couleur d'accent `#D95A2B`.
-  - **Titres H1 / Hero :** 36px à 48px, graisse forte (`font-extrabold`), couleur sombre `#1E1B18`.
+  - **Surtitres de rubriques (Eyebrows) :** Majuscules (`uppercase`), graisse fine à moyenne (`font-medium` ou `font-semibold`), espacement inter-lettres accentué (`tracking-widest`), couleur gris titane `#64748B`.
+  - **Titres H1 / Hero :** 36px à 48px, graisse forte (`font-extrabold`), couleur noir mat `#09090B`.
   - **Titres de sections H2 :** 28px à 32px, graisse marquée (`font-bold`).
   - **Titres de cartes H3 :** 18px à 20px, graisse semi-bold (`font-semibold`).
   - **Corps de texte :** 15px à 16px, interligne généreux (`leading-relaxed`), couleur `#374151`.
@@ -60,11 +60,11 @@ Le portfolio adopte une structure moderne à double volet (*Dual-Pane Layout*), 
 ```
 ┌───────────────────────────┬──────────────────────────────────────────────────────────────┐
 │  SIDEBAR FIXE (Desktop)   │  ZONE DE CONTENU PRINCIPALE (Scroll Fluide)                  │
-│  Largeur : ~260px         │  Fond : #F8F7F4                                              │
-│  Fond : #1E1B18           │                                                              │
+│  Largeur : ~260px         │  Fond : #FAFAFA                                              │
+│  Fond : #18181B           │                                                              │
 │                           │  1. Hero / Accueil (Titre, CTA, photo ronde)                 │
 │  [ Photo de profil ]      │  2. Profil & Encadré "Recherche de stage 2027"               │
-│  Prénom Nom               │  3. Parcours (Timeline continue avec points orange)         │
+│  Prénom Nom               │  3. Parcours (Timeline continue avec points noir mat)         │
 │  Étudiant BTS SIO SLAM    │  4. Compétences (Grid Cards avec logos centrés)              │
 │                           │  5. Certifications (Bannières avec badge vert "Obtenue")    │
 │  • Accueil                │  6. Projets (Onglets Scolaires / Professionnels)             │
@@ -79,21 +79,21 @@ Le portfolio adopte une structure moderne à double volet (*Dual-Pane Layout*), 
 
 ### 3.1. Volet Latéral Gauche (Sidebar Fixe Desktop)
 - **Dimensions :** Largeur fixe de **260px**, hauteur de 100vh, position `fixed` à gauche de l'écran.
-- **Couleur d'arrière-plan :** Teinte sombre Espresso `#1E1B18`.
+- **Couleur d'arrière-plan :** Teinte sombre Anthracite Mat `#18181B`.
 - **En-tête de la Sidebar :**
-  - Photo de profil ronde (diamètre ~90px), bordure fine subtile (`#3D3834`).
+  - Photo de profil ronde (diamètre ~90px), bordure fine subtile (`#27272A`).
   - Nom complet en blanc pur (`#FFFFFF`, `font-bold`, 18px).
-  - Intitulé du poste : *"Étudiant en BTS SIO Option SLAM"* en gris clair chaud (`#A8A29E`, 13px).
+  - Intitulé du poste : *"Étudiant en BTS SIO Option SLAM"* en gris clair neutre (`#A1A1AA`, 13px).
 - **Navigation verticale :**
   - Liens avec icônes vectorielles sobres (accueil, utilisateur, formation, code, diplôme, classeur, enveloppe).
-  - États : Survol interactif avec fond translucide (`rgba(255, 255, 255, 0.08)`), état actif souligné par une bordure gauche ou un texte teinté Terracotta `#D95A2B`.
+  - États : Survol interactif avec fond translucide (`rgba(255, 255, 255, 0.08)`), état actif souligné par une bordure gauche ou une capsule blanc pur avec texte noir mat `#09090B`.
   - Rubrique *Projets* découpée avec sous-liens indentés : *Projets scolaires* et *Projets professionnels*.
 - **Pied de sidebar :** Mention discrète de l'année en cours et lien discret vers les mentions légales.
 
 ### 3.2. Version Mobile / Tablette (Responsive Drawer)
 - Sur écran inférieur à 1024px, la sidebar se replie automatiquement.
 - Barre d'en-tête mobile supérieure (*Navbar sticky*) avec logo/nom et bouton menu hamburger.
-- Tiroir latéral rétractable (*Drawer*) coulissant depuis la gauche avec fond sombre `#1E1B18` lors du clic.
+- Tiroir latéral rétractable (*Drawer*) coulissant depuis la gauche avec fond sombre `#18181B` lors du clic.
 
 ### 3.3. Zone de Contenu Principale (Right Pane)
 - Défilement vertical fluide (*Smooth scrolling*).
@@ -110,13 +110,13 @@ Le portfolio adopte une structure moderne à double volet (*Dual-Pane Layout*), 
 - **Objectif :** Règle des 15 secondes. Présentation percutante et accès direct aux actions prioritaires.
 - **Disposition :** Structure en 2 colonnes ou bloc héroïque équilibré.
 - **Contenu :**
-  - Surtitre orange Terracotta `#D95A2B` : `PORTFOLIO`.
+  - Surtitre gris titane `#64748B` : `PORTFOLIO`.
   - Titre H1 imposant : `[Prénom Nom]`.
   - Sous-titre valorisant : `Étudiant en informatique / Développement d'applications`.
   - Mention explicite du cursus : `BTS Services Informatiques aux Organisations — Option SLAM (CNED)`.
   - Phrase d'accroche soulignant la rigueur technique, le sens de l'organisation et la volonté de créer des solutions concrètes.
   - **Groupe de boutons d'action (CTA) :**
-    1. Bouton primaire plein (Orange Terracotta `#D95A2B`) : *"Voir les projets"* (ancre fluide vers la section Projets).
+    1. Bouton primaire plein (Noir Mat `#09090B`) : *"Voir les projets"* (ancre fluide vers la section Projets).
     2. Bouton secondaire avec contour : *"Voir mon CV"* (ouvre/télécharge le CV PDF situé dans `public/docs/`).
     3. Bouton tertiaire discret ou icône : *"Me contacter"* (ancre vers la section Contact).
   - **Élément visuel droit :** Photo de profil portrait stylisée dans un conteneur circulaire ou arrondi moderne avec ombre portée douce.
@@ -131,7 +131,7 @@ Le portfolio adopte une structure moderne à double volet (*Dual-Pane Layout*), 
   - Titre de section : `Profil & Parcours Professionnel`.
   - Paragraphes de présentation : transition vers le développement, méthodologie de travail en autonomie grâce au CNED, appétence pour la gestion de projet et l'architecture logicielle.
 - **Colonne de droite (Carte d'Appel "Recherche de Stage") :**
-  - Carte blanche surélevée (`#FFFFFF`) avec liseré supérieur ou badge Terracotta.
+  - Carte blanche surélevée (`#FFFFFF`) avec liseré supérieur ou badge Noir Mat / Titane.
   - Titre bien visible : `🎯 Recherche de stage 2027`.
   - **Mentions contractuelles obligatoires :**
     - Durée : **4 à 5 semaines consécutives**.
@@ -144,7 +144,7 @@ Le portfolio adopte une structure moderne à double volet (*Dual-Pane Layout*), 
 
 ### Section 3 : Parcours (Timeline de Formation & Expériences)
 - **Objectif :** Retracer l'historique post-bac et les expériences sous une forme chronologique limpide.
-- **Disposition :** Ligne guide verticale continue avec points de repère de couleur Terracotta `#D95A2B`.
+- **Disposition :** Ligne guide verticale continue avec points de repère de couleur Noir Mat `#09090B`.
 - **Cartes d'étape :**
   - Fond blanc `#FFFFFF`, angles arrondis, bordure légère.
   - Badge temporel en haut à droite (ex: `Sept. 2026 - En cours`).
@@ -196,7 +196,7 @@ Le portfolio adopte une structure moderne à double volet (*Dual-Pane Layout*), 
     - `à venir` (Badge gris chaud / planifié)
   - **Titre du projet :** Clair et explicite.
   - **Description synthétique :** 2 à 3 lignes résumant la problématique métier résolue.
-  - **Pastilles technologiques (Pills) :** Badges discrets moka/gris chaud `#ECE8E1` indiquant la stack utilisée.
+  - **Pastilles technologiques (Pills) :** Badges discrets gris titane feutré `#F4F4F5` indiquant la stack utilisée.
   - **Actions cliquables :**
     - Bouton principal : *"Lire l'étude de cas"* (ouvre la fiche projet complète générée depuis le Markdown).
     - Lien secondaire avec icône : *"Projet sur GitHub"* menant au code source.
@@ -207,7 +207,7 @@ Le portfolio adopte une structure moderne à double volet (*Dual-Pane Layout*), 
 - **Objectif :** Permettre une prise de contact fluide, immédiate et sécurisée.
 - **Disposition :** Deux colonnes symétriques et équilibrées.
 - **Colonne de gauche (Coordonnées directes) :**
-  - Pile de cartes blanches individuelles avec icônes colorées Terracotta :
+  - Pile de cartes blanches individuelles avec icônes Noir Mat / Titane :
     - **Localisation :** Ville et région uniquement (respect de la vie privée).
     - **Téléphone :** Numéro de portable professionnel.
     - **Email :** Adresse professionnelle normée (`prenom.nom@domaine.com`).
@@ -220,7 +220,7 @@ Le portfolio adopte une structure moderne à double volet (*Dual-Pane Layout*), 
     - *Adresse E-mail*
     - *Objet de la prise de contact* (avec option rapide "Proposition de stage 2027")
     - *Message*
-  - Bouton de soumission stylisé en Orange Terracotta `#D95A2B` : *"Envoyer le message"*.
+  - Bouton de soumission stylisé en Noir Mat `#09090B` : *"Envoyer le message"*.
   - Traitement avec message de retour utilisateur clair (succès ou erreur de validation).
 
 ---

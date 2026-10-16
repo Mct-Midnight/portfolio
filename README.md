@@ -28,12 +28,12 @@ Ce projet respecte une séparation stricte entre les **spécifications de design
 Le design est inspiré d'une maquette de référence validée par le CNED :
 
 - **Architecture Dual-Pane :**
-  - Volet gauche fixe (Sidebar ~260px) : fond sombre élégant _Espresso_ (`#1E1B18`), photo de profil, identité, navigation verticale avec icônes.
-  - Volet droit dynamique : fond clair doux _Crème chaud_ (`#F8F7F4`), typographie moderne sans-serif (_Inter / Poppins_), surtitres en capitales couleur d'accent _Terracotta_ (`#D95A2B`).
+  - Volet gauche fixe (Sidebar ~260px) : fond anthracite mat (`#18181B`) bordé de titane (`#27272A`), photo de profil, identité, navigation verticale avec icônes.
+  - Volet droit dynamique : fond studio neutre (`#FAFAFA`), typographie Montserrat & Plus Jakarta Sans, surtitres en capitales gris titane (charte « Monochrome Mat & Titane »).
 - **Composants clés :**
   - Grille de compétences sous forme de cartes carrées blanches avec logos officiels centrés (aucune barre de pourcentage arbitraire).
   - Bannières de certifications avec badge "Obtenue" en vert pastel (`#D1FAE5`).
-  - Grille de projets à 3 colonnes avec filtres scolaires/professionnels et badges de statut (`réalisé`, `en cours`, `à venir`).
+  - Grille de projets à 2 colonnes avec filtres scolaires/professionnels et badges de statut (`réalisé`, `en cours`, `à venir`).
   - Section Contact en deux colonnes équilibrées (coordonnées directes et formulaire).
 
 ---
@@ -91,7 +91,7 @@ Pour alimenter et maintenir le portfolio de manière rigoureuse durant les deux 
 
 - **Générateur Statique :** [Astro 5](https://astro.build/)
 - **Design & Styles :** [Tailwind CSS 3.4](https://tailwindcss.com/) avec tokens officiels
-- **Icônes :** `@lucide/astro` et Devicon CDN
+- **Icônes :** `lucide-astro` et Devicon CDN
 - **Gestion de contenu :** Content Collections Astro avec validation Zod
 - **Qualité & CI/CD :** Pipeline GitHub Actions avec audit d'intégrité automatisé
 

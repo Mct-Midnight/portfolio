@@ -145,5 +145,5 @@ featured: true
 - **Déploiement du service (B1.5.2) :** Automatisation de la chaîne de livraison continue via GitHub Actions assurant le déploiement instantané et sécurisé de la solution en environnement de production HTTPS.
 
 #### Justification B1.6 — Organiser son développement professionnel
-- **Environnement d'apprentissage personnel (B1.6.1) :** Appropriation d'une pile logicielle moderne (Astro 4, Tailwind CSS, TypeScript), veille active sur les outils de productivité et bancs d'essais technologiques.
+- **Environnement d'apprentissage personnel (B1.6.1) :** Appropriation d'une pile logicielle moderne (Astro 5, Tailwind CSS, TypeScript), veille active sur les outils de productivité et bancs d'essais technologiques.
 - **Gestion de son identité professionnelle (B1.6.3) :** Centralisation et valorisation de l'ensemble de ses réalisations, de ses compétences et de sa démarche professionnelle au sein d'une vitrine numérique accessible et soignée.
