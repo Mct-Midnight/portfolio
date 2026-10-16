@@ -58,16 +58,12 @@ function createPng(width, height, r, g, b) {
 }
 
 // Couleurs en RGB
-const terracotta = [217, 90, 43];
-const espresso = [30, 27, 24];
-const moka = [236, 232, 225];
-const sage = [209, 250, 229];
+const terracotta = [24, 24, 27]; // Anthracite mat
+const espresso = [39, 39, 42]; // Titane foncé
+const moka = [244, 244, 245]; // Gris titane clair
+const sage = [228, 228, 231]; // Gris titane moyen
 
 const files = [
-  { path: 'public/assets/images/profile-avatar.png', w: 400, h: 400, color: terracotta },
-  { path: 'public/assets/images/projets/contacts-desktop-cover.png', w: 800, h: 450, color: espresso },
-  { path: 'public/assets/images/projets/ap2-cover.png', w: 800, h: 450, color: terracotta },
-  { path: 'public/assets/images/projets/stage-1ere-annee-cover.png', w: 800, h: 450, color: moka },
   { path: 'public/assets/images/projets/contacts-list.png', w: 800, h: 450, color: moka },
   { path: 'public/assets/images/projets/contacts-form.png', w: 800, h: 450, color: sage },
   { path: 'public/assets/images/projets/contacts-mcd.png', w: 800, h: 450, color: espresso },
