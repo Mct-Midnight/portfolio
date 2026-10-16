@@ -59,7 +59,7 @@ for (const item of items) {
 }
 
 // Correspondance des icônes Lucide de repli
-const lucideMap: Record<string, any> = {
+const lucideMap: Record<string, typeof Terminal> = {
   Terminal,
   Code2,
   FileCode,
@@ -90,7 +90,7 @@ const lucideMap: Record<string, any> = {
 };
 
 // Correspondance des icônes pour les en-têtes de catégories
-const categoryIconMap: Record<string, any> = {
+const categoryIconMap: Record<string, typeof Terminal> = {
   'dev-ia': Code2,
   'bases-de-donnees': Database,
   'outils-environnements': Wrench,
@@ -125,7 +125,7 @@ const categoryIconMap: Record<string, any> = {
               <span>{cat.title}</span>
             </h3>
             <span class="text-xs font-semibold text-slate-500 dark:text-zinc-400 bg-slate-100 dark:bg-zinc-800/80 px-2.5 py-1 rounded-full border border-slate-200 dark:border-zinc-700">
-              {categorySkills.length} technologies
+              {categorySkills.length} {cat.id === 'methodes-gestion' ? 'méthodes' : 'technologies'}
             </span>
           </div>
 

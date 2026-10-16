@@ -3,6 +3,16 @@
 
 import { execSync } from 'node:child_process';
 
+// Structure minimale d'un commit renvoyé par l'API GitHub (évite l'usage de `any`)
+interface GitHubApiCommitItem {
+  sha: string;
+  html_url?: string;
+  commit?: {
+    message?: string;
+    author?: { name?: string; date?: string };
+  };
+}
+
 // Définition de l'interface d'un commit typé et documenté
 export interface GitCommit {
   hash: string;             // Hash court (ex: 10dab7a)
@@ -225,7 +235,7 @@ async function getRemoteGithubCommits(): Promise<GitCommit[]> {
       headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
     }
 
-    const allCommitsRaw: any[] = [];
+    const allCommitsRaw: GitHubApiCommitItem[] = [];
     let page = 1;
     const maxPages = 20; // Permet de récupérer jusqu'à 2 000 commits en toute sécurité
 
@@ -257,7 +267,7 @@ async function getRemoteGithubCommits(): Promise<GitCommit[]> {
 
     if (allCommitsRaw.length === 0) return [];
 
-    return allCommitsRaw.map((item: any) => {
+    return allCommitsRaw.map((item: GitHubApiCommitItem) => {
       const fullHash = item.sha;
       const hash = fullHash.substring(0, 7);
       const rawDate = item.commit?.author?.date || new Date().toISOString();
