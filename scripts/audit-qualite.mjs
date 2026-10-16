@@ -51,7 +51,9 @@ for (const f of fichiersCles) {
   if (fs.existsSync(cheminAbsolu)) {
     const stats = fs.statSync(cheminAbsolu);
     if (stats.size > 0) {
-      logSucces(`${f.label} présent (${Math.round(stats.size / 1024)} Ko)`);
+      // Fichiers de moins de 1 Ko affichés en octets pour éviter « 0 Ko »
+      const tailleFormatee = stats.size < 1024 ? `${stats.size} octets` : `${Math.round(stats.size / 1024)} Ko`;
+      logSucces(`${f.label} présent (${tailleFormatee})`);
     } else {
       logErreur(`${f.label} existe mais est vide (0 octet)`);
     }

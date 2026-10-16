@@ -384,7 +384,7 @@ const htmlContent = `<!DOCTYPE html>
           <line x1="2" y1="12" x2="22" y2="12"></line>
           <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
         </svg>
-        <span>mct-midnight.github.io</span>
+        <span>quentin-machu-portfolio.vercel.app</span>
       </div>
       <div class="site-tag">Portfolio BTS SIO SLAM • Épreuve E4</div>
     </div>
@@ -397,10 +397,14 @@ const tempHtmlPath = path.join(os.tmpdir(), `og-template-${Date.now()}.html`);
 fs.writeFileSync(tempHtmlPath, htmlContent, 'utf-8');
 
 // Détection du navigateur Chromium / Edge sous Windows
-const edgeBinary = 'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe';
+const edgeCandidats = [
+  'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe',
+  'C:\\Program Files\\Microsoft\\Edge\\Application\\msedge.exe',
+];
+const edgeBinary = edgeCandidats.find((p) => fs.existsSync(p));
 
-if (!fs.existsSync(edgeBinary)) {
-  console.error('❌ Moteur Edge introuvable à l\'emplacement standard :', edgeBinary);
+if (!edgeBinary) {
+  console.error('❌ Moteur Edge introuvable aux emplacements standards :', edgeCandidats.join(' | '));
   process.exit(1);
 }
 
