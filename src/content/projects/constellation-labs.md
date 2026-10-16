@@ -3,7 +3,7 @@ title: "Constellation Lab's — SaaS & Bots Discord"
 status: "en cours"
 category: "freelance"
 dateStart: "2025-01-15"
-dateEnd: "2026-10-03"
+dateEnd: "En cours"
 tags: ["Python", "API Discord", "SaaS & Abonnements", "Automatisation", "PostgreSQL", "Docker"]
 demoUrl: ""
 repoUrl: ""
@@ -47,15 +47,37 @@ Les administrateurs de serveurs Discord (créateurs de contenu, entreprises, com
 
 ---
 
-## 3. Alignement avec le Référentiel BTS SIO SLAM (Épreuve E4)
+## 3. Tableau de Correspondance & Justifications — Bloc 1 (Épreuve E4)
 
-Ce projet valide les compétences majeures du **Bloc 1 — Support et mise à disposition de services informatiques** :
+> *Matrice officielle des compétences du Bloc 1 mobilisées et justifiées pour la conception et l'exploitation de la plateforme SaaS Constellation Lab's.*
 
-- **B1.1 — Gérer le patrimoine informatique :** Déploiement et maintien en condition opérationnelle de serveurs d'exécution d'applications distribuées.
-- **B1.2 — Répondre aux incidents et aux demandes d'assistance :** Support technique direct aux clients et résolution des dysfonctionnements en temps réel.
-- **B1.3 — Développer la présence en ligne de l'organisation :** Valorisation d'une offre commerciale et présence digitale de l'agence Constellation Lab's.
-- **B1.4 — Travailler en mode projet :** Gestion du cycle de vie logiciel (recueil des exigences, planification des sprints, livraisons itératives).
-- **B1.5 — Mettre à disposition des utilisateurs un service informatique :** Mise en production, gestion des droits d'accès et accompagnement des utilisateurs.
+| Compétence Officielle Bloc 1 | Mobilisée | Sous-compétence(s) visée(s) |
+| :--- | :---: | :--- |
+| **B1.1 - Gérer le patrimoine informatique** | [x] | B1.1.1 Recensement et identification des ressources / B1.1.5 Sauvegardes |
+| **B1.2 - Répondre aux incidents et demandes** | [x] | B1.2.1 Collecte et suivi des demandes / B1.2.3 Traitement des demandes d'assistance |
+| **B1.3 - Développer la présence en ligne** | [x] | B1.3.1 Image de marque / B1.3.2 Référencement et visibilité |
+| **B1.4 - Travailler en mode projet** | [x] | B1.4.1 Objectifs et cahier des charges / B1.4.2 Planification |
+| **B1.5 - Mettre à disposition un service** | [x] | B1.5.1 Tests d'acceptation / B1.5.2 Déploiement et mise en production |
+| **B1.6 - Organiser son développement pro** | [ ] | Non mobilisée sur ce projet |
+
+### Justifications Détaillées des Compétences Mobilisées
+
+#### Justification B1.1 - Gérer le patrimoine informatique
+- **Recensement des ressources (B1.1.1) :** Déploiement et maintien en condition opérationnelle de serveurs d'exécution d'applications distribuées, avec inventaire des instances de bots et de leurs configurations.
+- **Sauvegardes et traçabilité (B1.1.5) :** Versionnage des modules sur GitHub et conservation des données (profils membres, logs d'audit) dans des bases PostgreSQL / SQLite.
+
+#### Justification B1.2 - Répondre aux incidents et demandes d'assistance
+- **Collecte et traitement des demandes (B1.2.1, B1.2.3) :** Support technique direct aux clients via un système de tickets, résolution des dysfonctionnements en temps réel et suivi des demandes d'évolution.
+
+#### Justification B1.3 - Développer la présence en ligne de l'organisation
+- **Image de marque (B1.3.1) :** Valorisation d'une offre commerciale et d'une identité digitale cohérente pour l'agence Constellation Lab's.
+- **Visibilité (B1.3.2) :** Présentation publique des services et des offres d'abonnement afin d'attirer des clients B2C et B2B.
+
+#### Justification B1.4 - Travailler en mode projet
+- **Cadrage et planification (B1.4.1, B1.4.2) :** Gestion du cycle de vie logiciel (recueil des exigences, planification des sprints, livraisons itératives).
+
+#### Justification B1.5 - Mettre à disposition des utilisateurs un service informatique
+- **Tests et déploiement (B1.5.1, B1.5.2) :** Mise en production dans des conteneurs Docker isolés, tests de charge, gestion des droits d'accès et accompagnement des utilisateurs.
 
 ---
 
