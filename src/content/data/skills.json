@@ -35,6 +35,20 @@
       "description": "Langage incontournable du web pour dynamiser les interfaces, gérer les événements utilisateurs et interagir avec des services externes en direct."
     },
     {
+      "name": "TypeScript",
+      "category": "dev-ia",
+      "iconKey": "devicon-typescript-plain",
+      "lucideFallback": "FileCode",
+      "description": "Sur-ensemble typé de JavaScript qui sécurise le développement, facilite la maintenance des projets web et prévient les erreurs dès la compilation."
+    },
+    {
+      "name": "PHP",
+      "category": "dev-ia",
+      "iconKey": "devicon-php-plain",
+      "lucideFallback": "Code2",
+      "description": "Langage serveur robuste utilisé pour concevoir des applications web dynamiques, gérer l'authentification et communiquer avec des bases de données SQL."
+    },
+    {
       "name": "Astro",
       "category": "dev-ia",
       "iconKey": "devicon-astro-plain",
@@ -130,6 +144,22 @@
       "description": "Assistant de développement en ligne de commande permettant de naviguer dans les architectures de code, refactoriser et concevoir rapidement."
     },
     {
+      "name": "OpenAI Codex",
+      "category": "outils-environnements",
+      "customIcon": "/assets/icons/codex.svg",
+      "iconKey": "",
+      "lucideFallback": "Bot",
+      "description": "Agent de développement autonome propulsé par OpenAI (ChatGPT) utilisé pour générer, auditer et exécuter des évolutions logicielles en environnement isolé."
+    },
+    {
+      "name": "Cursor",
+      "category": "outils-environnements",
+      "customIcon": "/assets/icons/cursor.svg",
+      "iconKey": "",
+      "lucideFallback": "AppWindow",
+      "description": "Éditeur de code intelligent intégrant l'IA nativement pour accélérer l'écriture, l'édition multi-fichiers et le débogage de projets."
+    },
+    {
       "name": "Docker",
       "category": "outils-environnements",
       "iconKey": "devicon-docker-plain",
@@ -142,6 +172,28 @@
       "iconKey": "devicon-github-original",
       "lucideFallback": "Github",
       "description": "Système de contrôle de version et plateforme collaborative pour historiser les développements, gérer les branches et travailler en équipe."
+    },
+    {
+      "name": "Obsidian",
+      "category": "outils-environnements",
+      "customIcon": "/assets/icons/obsidian.svg",
+      "iconKey": "",
+      "lucideFallback": "FileText",
+      "description": "Outil de prise de notes en Markdown et de gestion des connaissances (Second Cerveau) utilisé pour documenter, structurer les projets et centraliser la veille technique."
+    },
+    {
+      "name": "Linux / VPS",
+      "category": "outils-environnements",
+      "iconKey": "devicon-linux-plain",
+      "lucideFallback": "Terminal",
+      "description": "Administration de serveurs privés virtuels sous Linux pour déployer, sécuriser et superviser des services et conteneurs Docker en production."
+    },
+    {
+      "name": "Vercel",
+      "category": "outils-environnements",
+      "iconKey": "devicon-vercel-original",
+      "lucideFallback": "Rocket",
+      "description": "Plateforme cloud utilisée pour le déploiement continu (CI/CD), l'hébergement statique haute performance et la prévisualisation automatique de sites web."
     },
     {
       "name": "Modélisation Merise",
